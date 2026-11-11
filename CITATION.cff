@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: Please cite the paper; this repository supplies its source.
+type: software
+title: "One noisy cellular automaton with an uncomputable noise diagram"
+version: 1.0.0
+date-released: '2026-11-11'
+license: [CC-BY-4.0, MIT, Apache-2.0]
+authors: [{"family-names": "Douglas", "given-names": "Seth", "orcid": "https://orcid.org/0009-0007-4708-3252"}, {"family-names": "Mghirbi", "given-names": "Nidhal", "orcid": "https://orcid.org/0009-0005-6534-1118"}]
+keywords: ["cellular automata", "probabilistic cellular automata", "noise", "ergodicity", "undecidability", "halting problem", "Gibbs measures", "noise diagram"]
+abstract: "Can varying only the noise rate of one cellular automaton encode the halting problem? We construct one computably specified cellular automaton on Z^6, with a finite alphabet and a finite neighbourhood, whose ergodicity under uniform replacement noise does so. There are pairwise disjoint open intervals I_n with rational endpoints computable from n such that, at every rate in I_n, the perturbed automaton is ergodic exactly when a fixed universal machine halts on input n. In the nonhalting case it has at least two translation-invariant stationary laws; in the halting case it has one stationary law attracting every initial law. Finite rulers in a hierarchical tiling turn the noise rate into a cutoff in a sequence of local flags. Computation boards read that cutoff and simulate the selected input. A threshold checker preserves a global bit when the computation does not halt. When it halts, interval-valued sensors erase every surviving chart, and a common-noise coupling removes dependence on every initial state. The guaranteed intervals accumulate at zero and lie at astronomically small rates. The space-time Gibbs correspondence gives a finite-energy interaction on Z^7 with undecidable translation-invariant Gibbs uniqueness. Thus one fixed local rule has an uncomputable noise diagram."

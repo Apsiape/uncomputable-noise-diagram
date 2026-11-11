@@ -1,0 +1,35 @@
+{
+  "precision": 100,
+  "k": 52386,
+  "n0": 888653587,
+  "log10_C": "-15766.1538054593175316709066188488111480567769",
+  "log10_B": "31539.5147057066377849338514780745834005567903",
+  "log10_kappa": "31565.5846559226982387635542021427778860747246",
+  "log10_Delta_rare": "31571.5846559226982387635542021464747553623509",
+  "log10_K_rare": "32392606.3059643772949484555342331712537850394928",
+  "log10_N_0": "1047300.4749376902143033338628965402291153957707",
+  "epsilon_star_negative_log10": "535038537.3933126638902233708730092772777375339617",
+  "epsilon_star_terms_negative_log10": {
+    "C/100": "15768.1538054593175316709066188488111480567769",
+    "(64*K_mem)^-4": "31531.1034909359791385609582821187243240064810",
+    "(64*K_hist)^-44": "137301.3414466404024741776400925101506226178424",
+    "[64*K_rare*(N_0+1)]^-16": "535038537.3933126638902233708730092772777375339617"
+  },
+  "dominant_term": "[64*K_rare*(N_0+1)]^-16",
+  "log10_I1_lower": "-535038537.6386481222999666622907688482482120216301",
+  "log10_I1_upper": "-535038537.6174588232300285894972635811249535457146",
+  "log10_I1_width": "-535038538.9396781179639478575045077429727050483983",
+  "I_n_exact": "(2*C/(2*4^(n+n0)-1), 21*C/(10*(2*4^(n+n0)-1)))",
+  "log10_I_n_shift": "subtract (n-1)*log10(4), with correction <1e-50 for each endpoint",
+  "helper_alphabet_double_log10": "31539.8157357023017661290652169693078935835585",
+  "B_search_pass_certificate": "eta<4*2^-w<target",
+  "B_search_pass_w": 322199,
+  "B_search_previous": "eta>=2^(1-w)>=target",
+  "B_search_previous_w": 80549,
+  "positive_control": {
+    "comb(40,12)": 5586853480,
+    "log_binomial_control_error": "0.0000000000000000000000000112064850638153"
+  },
+  "error_statement": "Reported production logs rounded to 40 decimals have absolute error <1e-39; log N_0 uses Stirling remainder <2e-61, and log(N_0+1)-log(N_0)<10^(-1e6). Integer searches certified by the stated bounds.",
+  "precision_agreement": "80 and 100 decimal digits agree to absolute error <1e-50."
+}
