@@ -1,6 +1,6 @@
 # One noisy cellular automaton with an uncomputable noise diagram
 
-Seth Douglas and Nidhal Mghirbi. Version 1.2.0, November 2026. DOI for all versions: [10.5281/zenodo.24147268](https://doi.org/10.5281/zenodo.24147268); version 1.1.0: [10.5281/zenodo.24152233](https://doi.org/10.5281/zenodo.24152233); version 1.0.0: [10.5281/zenodo.24147269](https://doi.org/10.5281/zenodo.24147269).
+Seth Douglas and Nidhal Mghirbi. Version 1.2.0, November 2026. DOI for all versions: [10.5281/zenodo.24147268](https://doi.org/10.5281/zenodo.24147268); version 1.2.0: [10.5281/zenodo.24174445](https://doi.org/10.5281/zenodo.24174445); version 1.1.0: [10.5281/zenodo.24152233](https://doi.org/10.5281/zenodo.24152233); version 1.0.0: [10.5281/zenodo.24147269](https://doi.org/10.5281/zenodo.24147269).
 
 **This is a preprint. It has not been peer reviewed.**
 
