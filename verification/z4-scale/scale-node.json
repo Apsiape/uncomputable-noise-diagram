@@ -1,0 +1,41 @@
+{
+  "engine": "Node.js BigInt certified fixed-point intervals with 200-term logarithm bounds",
+  "k": 43406,
+  "n0": 713161615,
+  "kMinimalCertified": true,
+  "n0MinimalCertified": true,
+  "bindingTerm": "rare",
+  "inverseThresholdLog2Bounds": {
+    "C_over_100": {
+      "lowerNumerator": "50038190174345418234359",
+      "upperNumerator": "50038190174345418234360",
+      "denominator": "1152921504606846976"
+    },
+    "memory": {
+      "lowerNumerator": "100056448973322995902704",
+      "upperNumerator": "100056448973322995902705",
+      "denominator": "1152921504606846976"
+    },
+    "history": {
+      "lowerNumerator": "437231873509097646080337",
+      "upperNumerator": "437231873509097646080338",
+      "denominator": "1152921504606846976"
+    },
+    "rare": {
+      "lowerNumerator": "1644488756078471022826300356",
+      "upperNumerator": "1644488756078471022826300357",
+      "denominator": "1152921504606846976"
+    },
+    "density": {
+      "lowerNumerator": "1108360642441386284093340",
+      "upperNumerator": "1108360642441386284093341",
+      "denominator": "1152921504606846976"
+    }
+  },
+  "log2_10Cden_over_21": {
+    "lowerNumerator": "50029296254796283983114",
+    "upperNumerator": "50029296254796283983115",
+    "denominator": "1152921504606846976"
+  },
+  "independentEngineAgreement": true
+}

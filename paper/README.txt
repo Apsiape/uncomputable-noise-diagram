@@ -1,10 +1,21 @@
 One noisy cellular automaton with an uncomputable noise diagram
 Seth Douglas and Nidhal Mghirbi
-Version 1.2.0, November 2026
+Version 1.3.0, November 2026
 
 Build: python -B build.py [--build-dir NEW_OR_EMPTY_DIRECTORY]
-Requires Python 3 and pdflatex with the packages loaded by main.tex (including aliascnt). The bibliography is inline. The build runs pdflatex three times without shell escape and rejects warnings, unresolved references and overfull or underfull boxes. main.pdf is the compiled preprint (43 pages). abstract.txt is the abstract as plain text; appendix-lean.tex is included by main.tex.
+Requires Python 3 and pdflatex with the packages loaded by main.tex (including aliascnt). The bibliography is
+inline. The build runs pdflatex three times without shell escape and rejects warnings, unresolved references and
+overfull or underfull boxes. main.pdf is the compiled preprint (59 pages). abstract.txt is the abstract as plain
+text; lower-dimension.tex (Section 10) and appendix-lean.tex (Appendix C) are included by main.tex.
 
-Version 1.2.0 adds the Lean formalization appendix and updates the verification account. Theorem A, in the existential form of Theorem 9.3, Corollary 9.4 and the one-rule corollary after Theorem A are proved end to end, without sorry or named hypotheses, using only propext, Classical.choice and Quot.sound. Appendix C gives the exact scope, proof-route differences, pins and recorded checks. No mathematical statement, statement number or construction constant changes. The paper's "Changes from version 1.1.0" and "Changes from version 1.0.0" paragraphs record the version history.
+Version 1.3.0 adds Theorem C, one fixed finite-alphabet finite-range automaton on Z^4 whose rational rate windows
+encode halting, with exponential all-input coalescence on halting windows and two translation-invariant stationary
+laws on nonhalting windows; and Corollary D, one fixed translation-invariant finite-range {0,1}-energy interaction
+on Z^5 whose uniqueness among all Gibbs measures, on computable inverse-temperature windows, is equivalent to
+halting. Section 10 proves both. All earlier statements and statement numbers, the Z^6 and Z^7 results and the Lean
+appendix are unchanged. Theorem C and Corollary D are not formalized in Lean.
 
-The Lean sources and verification records are in lean/ of the release repository. Its README-ARXIV.md gives the recorded reproduction setup and commands. Dependencies and the reused cores in vendor/ are fetched, not shipped. The scale computation of Section 9 is in verification/scale_check.py of the release repository; the alternative values of Remark 9.13 are not part of that script. No publication or submission is performed by the paper build.
+The Lean sources and records of Appendix C are in lean/ of the release repository; lean/README.md explains them.
+The scale of the Z^6 construction is checked by verification/scale_check.py; the parameters of the Z^4 rule
+(k = 43406, n0 = 713161615) are certified by two independent exact-arithmetic programs in verification/z4-scale/.
+No publication or submission is performed by the build.

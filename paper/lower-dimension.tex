@@ -1,0 +1,445 @@
+\section{Lower dimension}\label{sec:lower}
+
+All constants and alphabets in this section belong to a second fixed construction. They do not replace those of Sections~2--9 or Appendices~A--C. We write $C_4=C$ and $n_4=n_0$ when comparing with the introduction. The planar chart, finite machine and interval controller remain those of Sections~2--4, with the new fixed $B,n_0$ specified below. Only the transverse geometry and the stochastic proof change. Theorems~9.6--9.7, Corollaries~9.8--9.12 and Theorem~B.1 keep their original dimensions; no lower-dimensional version of their extremal, field-response, effective or robustness conclusions is asserted. The marked-parent mechanism is that of \cite[Section~12, Lemmas~12.3--12.4]{DMforgetLower}; its complete-history coherence argument must also be made quantitative for finite histories here.
+
+\subsection{One fixed rule and terminating parameter choices}
+
+Use $(u,P)\in\Z^2\times\Z^2$, the planar Moore set $\Mo$, and
+\[
+ \begin{gathered}
+ m=16,\quad L=160,\quad K=256,\quad q=768,\quad h=512,\\
+ S_0=\{0,\ldots,15\}^2,\quad S_1=160e_1+S_0,\quad
+ S_2=160e_2+S_0,\quad S=S_0\cup S_1\cup S_2,\\
+ T=500,\qquad v=(58,58),\qquad V=175,\qquad
+ D=\operatorname{diam}_{\ell^1}(S)=350.
+ \end{gathered}
+\]
+The live alphabet is the same $3\times3$ block presentation $\mathcal L_R$ with one global bit; $\mathcal A_R=\mathcal L_R\sqcup\{\botv\}$. Define $F_R$ by the same eight-neighbour planar check, retaining a live letter when at least $h$ of these $q$ checked providers retain it. Since $2h>q$, the result is unique. Keep the 100-letter helper alphabet, with LOW, UNKNOWN and 98 HIGH aliases, and put $\Sigma_4=\mathcal A_R\times\mathcal A_R\times\HH^B$.
+
+For clarity, the entire controller prescription is as follows. At proposal time $t$ use
+\[
+ A_t=F_R(D_{t-1}),\qquad
+ Q_t(u,P)=F_R^T(D_{t-1})(u,P-(T-1)v).
+\]
+Field $j$ at $w$ uses base $z=w-j\mathbf e_y$ and predecessor $w-\mathbf e_x+v$. Its provisional interval $J_{j,t}(w)$ is UNKNOWN if $A_t(z)=\botv$; it is $\{0\}\cup I_{j,t-1}(w-\mathbf e_x+v)$ if $A_t(z)$ is live but $Q_t(z)=\botv$; it is $\{0\}$ if both are live and $\Orig(Q_t(z))$; otherwise it is the predecessor interval. At base $w$ let $h_w$ count the $J_{j,t}(w+j\mathbf e_y)$ containing one, and $l_w$ those equal to $\{1\}$. Erase the data when $Q_t(w)=\botv$, or when $Q_t(w)$ is a phase-zero end and either its row flag is one with $h_w\ge s$, or its row flag is zero with $l_w<s$. Propose the erased or retained $A_t$ as data, $A_t$ as the second coordinate, and the fixed representative of each $J_{j,t}$ as its helper output. Then perform independent uniform replacement of the whole product symbol with probability $\eps$. This defines the rule on every configuration, including malformed symbols and exceptional walls. No driver reads an old helper, and the rule receives neither $n$ nor $\eps$.
+
+Here is a complete rational specification of its constants. Put
+\[
+ \begin{gathered}
+ \Delta=10^6(T+2)(9q+10),\quad X=2\Delta^2,\quad
+ K_{\rm mem}=2^{20}X^{257},\\
+ K_{\rm hist}=2^{40}[100(V+1)]^{10}X^{100},\qquad
+ C=(128K_{\rm mem})^{-2}.
+ \end{gathered}
+\]
+For $B=4^k$ define
+\[
+ \begin{gathered}
+ u_B=2^{-\lfloor3BC/100\rfloor},\quad
+ z_B=2^{-\lfloor BC/3\rfloor},\quad
+ w_B=2^{-\lfloor BC^2/50\rfloor},\\
+ \eta_B=\frac{3u_B}{1-4z_B}+2w_B.
+ \end{gathered}
+\]
+Choose the least integer $k\ge1$ for which $B\ge20/C$, $4z_B<1$, and
+\[
+ \eta_B<\min\{(64K_{\rm mem})^{-6},(64K_{\rm hist})^{-4}\}.
+\]
+Set $s=\lceil3CB/4\rceil$ and
+\[
+ \begin{gathered}
+ n_A=9q,\quad n_Q=(2T+1)^2[T(L+m-1)+1]^2,\quad
+ \kappa=2B(n_A+n_Q+2),\\
+ \lambda=176,\quad M=h-K=256,\quad
+ N_0=\binom{(2\lambda)^2}{M},\\
+ \Delta_{\rm rare}=10^6[\kappa+B+(2\lambda)^2+q+T+1],\quad
+ K_{\rm rare}=2^{20}(2\Delta_{\rm rare}^2)^{513}.
+ \end{gathered}
+\]
+The dependency count is proved exactly as in \cref{prop:local}: the $B$ driver bases, their two-dimensional virtual cones and the $B$ helper predecessors use at most $B(n_A+n_Q+2)$ parents; reverse degree is the same. Recentring translates the virtual support and does not enlarge its cardinality. Define
+\[
+ \begin{split}
+ B_0&=2(18q)^2=382205952,\\
+ \eps_*&=\min\{C/100,\ (64K_{\rm mem})^{-4},\ (64K_{\rm hist})^{-44},\\
+ &\hspace{31mm}[64K_{\rm rare}(N_0+1)]^{-16},\ B_0^{-33720}\}.
+ \end{split}
+\]
+Choose the least $n_0\ge k+2$ with
+\[
+ \frac{21C}{10(2\cdot4^{n_0+1}-1)}<\eps_*.
+\]
+Only now construct the finite machine and chart palette of Sections~3--4, using these $B,n_0$. All counts above are independent of the palette size. The $B$ search terminates because its three exponential factors tend to zero; the $n_0$ search terminates because its left side tends to zero. The finite-approximant phase decoder of Section~3 also terminates. Thus no circular parameter choice is involved. For this new recipe, independent exact-integer/rational and certified fixed-point interval implementations verify the least values $k=43406$ and $n_0=713161615$, and that the rare-birth term is the minimum defining $\eps_*$. These are the new scale values; the six-dimensional values preceding this section are unchanged. The exact parameter recipe, rather than an approximate decimal scale, specifies the rule.
+
+For every $n\ge1$ put
+\[
+ \begin{gathered}
+ a=n+n_0,\quad \ell_d=2\cdot4^d-1,\quad
+ I_n^{(4)}=\left(\frac{2C}{\ell_a},\frac{21C}{10\ell_a}\right),\\
+ W=\lfloor C/\eps\rfloor\quad(\eps\in I_n^{(4)}),\qquad
+ W_n^*=\lfloor\ell_a/2\rfloor=4^a-1.
+ \end{gathered}
+\]
+The intervals are nonempty rational open intervals, uniformly computable and pairwise disjoint: $\ell_{a+1}=4\ell_a+3$ gives $21/(10\ell_{a+1})<2/\ell_a$. They lie below $\eps_*$, and the same integer rounding as in \cref{prop:parameters} gives
+\[
+ \ell_{a-1}<W,\qquad 2W\le\ell_a,\qquad W\le W_n^*.
+\]
+In particular both critical depths are phase-zero rows. These are analysis windows for one already fixed alphabet, neighbourhood and rule.
+
+\begin{theorem}[The four-dimensional noise diagram]\label{thm:lower}
+For the single rule just specified, for every $n\ge1$ and every $\eps\in I_n^{(4)}$, ergodicity is equivalent to halting of $U(n)$. Nonhalting gives two stationary laws invariant under every translation of $\Z^4$. If $U(n)$ halts, an algorithm terminating on that input finds an integer $C_n\ge1$ such that for every integer $t\ge0$, every $\eps\in I_n^{(4)}$ and every finite $F\subset\Z^4$,
+\[
+ \Prob\{\text{the shared depth-$t$ full-symbol map is nonconstant on }F\}
+ \le |F|C_n\exp\!\left[-\frac{t}{4\cdot701(W_n^*+52)}\right].
+\]
+The same bound holds for a forward block and a pullback block, over all initial configurations simultaneously. Consequently every finite-window pullback image is almost surely eventually a singleton, and the unique stationary law attracts every initial law. The decay rate is total computable from $n$; the prefactor algorithm is only asserted to terminate on halting inputs.
+\end{theorem}
+
+\subsection{Marked-parent density and finite-history coherence}
+
+Take two-sided independent replacement flags and their least finitary closure $\MM$ under the rule of two marked ordinary parents in distinct clusters. Ordinary parents have offsets $\Mo\times S$ and lower physical time by one. Write $\mathsf H(z)$ when $z$ has some ordinary parent in $\MM$. This auxiliary notation is distinct from the physical second coordinate $H$. Our raw set is exactly the marked set of \cite[Section~12]{DMforgetLower} with logical dimension $r=2$ and logical parent set $\{-1,0,1\}^2$. Set $\mathcal D_0=\varnothing$ and, for $N\ge1$, let $\mathcal D_N(z)$ mean that some ordinary backward $N$-edge path from $z$ has $\mathsf H$ at least $N/1404$ times in its first $N$ vertices.
+
+The hypotheses of \cite[Lemmas~12.3 and 12.4]{DMforgetLower} apply as stated: the logical parent set is $\Mo$ of size nine, the three provider boxes and quorum are exactly theirs, and $\eps\le B_0^{-33720}$. In their notation take $\delta=1/1404$ and $C_\delta=16860$, reserving $B$ here for the helper count. They give finite contours with at most $12(f-1)$ edges and distinct physical flag terminals, the one-cluster exclusion budget $K$, and
+\[
+ \Prob(\mathcal D_N(z))\le
+ 4\sum_{f\ge\lceil N/16848\rceil}(B_0^{16860}\eps)^f
+ \le\frac{16}{3}e^{-N}.                                      \tag{L.1}\label{eq:lower-density}
+\]
+Indeed $B_0^{16860}\eps\le B_0^{-16860}<1/4$, and
+$16860\log B_0/16848>1$. The event holds uniformly over all paths, including paths chosen after seeing all innovations or initial configurations. Almost surely every sufficiently long path from any root has fewer than $N/1404$ marked-parent vertices, and no infinite all-$\MM$ ordinary path exists. We use these published lemmas directly rather than reproving their physical contour and density estimates.
+
+\begin{lemma}[Finite-history coherence]\label{lem:lower-coherence}
+Fix arbitrary replacement values and a trajectory starting with an arbitrary full row at time zero. Two unmarked live data or second-coordinate readings at time $s\ge1$, at equal or Moore-neighbouring planar sites and transverse distance $d$, agree or are compatible, respectively, if $s\ge2d+1$ and neither root has $\mathcal D_{s-1}$. The assertion is simultaneous over every initial row. In complete histories the corresponding coherence and compatibility hold almost surely without an age restriction; any nonempty unmarked live domain then determines one full legal time-constant planar chart.
+\end{lemma}
+\begin{proof}
+At transverse distance zero, live data and second-coordinate outputs at positive time equal their ordinary proposal off flags. At neighbouring planar sites the two retained-provider sets overlap in at least $2h-q=256$ offsets; a check at a common offset verifies compatibility, including diagonal neighbours. No time-zero hypothesis is used.
+
+Suppose a pair conflicts at positive distance. An unmarked live root has $h$ successful providers and at most $K$ contaminated offsets, so at least $h-K=256$ clean successes. Each supplies an unmarked live data centre with the same letter and a clean checked Moore star. If neither current root has $\mathsf H$, every provider is clean. Pair offsets within each box by a signed unit shift reducing the transverse distance. There are $3\cdot15\cdot16=720$ injective pairs. The two roots exclude at most $2(q-h)=512$ failed pairs, so a pair of successful clean centres remains, preserving the conflicting labels and reducing distance by one. At a step with $\mathsf H$ on either side, choose any clean success at each root; distance increases by at most $D=350$. Planar sites and their displacement remain fixed throughout.
+
+Continue for $N=s-1$ steps, stopping if distance becomes zero. It cannot become zero while the remaining age is at least one, by the base case. Otherwise, with $b_N$ counting steps having $\mathsf H$ on either path,
+\[
+ 1\le d_N\le d-N+(D+1)b_N.
+\]
+Outside the two $\mathcal D_N$ events, $b_N<2N/1404$, so $d_N<d-N/2\le0$ for $N\ge2d$, a contradiction. Every exceptional event depends only on flags, establishing the all-start assertion. In a complete history continue the paired paths arbitrarily far and use the almost-sure all-path density conclusion instead.
+
+Let $V_t$ be the planar sites admitting unmarked live readings in a complete history. The just-proved coherence labels them uniquely; clean stars give $V_t+\Mo\subset V_{t-1}$ and preserve the centre label. A nonempty domain expands backwards to cover the plane. Nested domains and persistent labels define a full chart, with each Moore compatibility checked at a common earlier time. Every later unmarked live reading has its label. This is the block-chart version of \cite[Lemmas~12.6--12.8]{DMforgetLower}; unlike those raw-tile statements, the finite-history assertion above includes our retained second coordinate and all eight Moore directions.
+\end{proof}
+
+\begin{lemma}[Characteristic contours]\label{lem:lower-poles}
+For the new geometry the grouped charge-arm estimate is
+\[
+ e\le A_0(g-1)+g\Omega/129,\qquad A_0=1440/129<12.
+\]
+Here $g$ counts distinct terminal groups, $\Omega$ bounds their total three-potential oscillation, and unary zero-potential links are excluded from $e$. With time-decreasing support edges and time-preserving identifications the span is at most $e$. A wrong live depth-$500$ forecast whose wrong actual leaves are marked has at least eleven distinct flags, at most $50(f-1)$ edges, and, at characteristic lag $\ell\le W$ from time $b$, earliest flag time at least $b-\ell-1-50(f-1)$.
+\end{lemma}
+\begin{proof}
+For physical time use balanced potentials
+\[
+ \psi_0=3(P_1+P_2)+348t,\qquad
+ \psi_1=-3P_1-174t,\qquad\psi_2=-3P_2-174t.
+\]
+A nonzero-cluster support gives charge zero gain at least $480-348=132$; a support outside cluster $i$ gives charge $i$ gain at least $174-45=129$. Every support gain is at least $-351$. In characteristic coordinates $\chi=P+vt$ the same potentials are $3(\chi_1+\chi_2),-3\chi_1,-3\chi_2$ and support displacements are $s-v$. Thus the characteristic gains are $129,-351$, rather than the $130,-350$ of the separate physical density proof in \cite[Lemma~12.3]{DMforgetLower}.
+
+The frontier proof of \cref{lem:pole} applies with three charges: frontier components are joined by overlapping descendant terminal-group names; a binary exposure splits a component into at most two and cannot join an outside component. At a split add one three-charge source, placing each new endpoint in the daughter lacking its old endpoint, then follow good supports. Only the new source's first edge can be bad. At the terminal frontier, each charge bijects the sources and distinct selected groups in the root incidence component. There are $g$ sources and at most $3(g-1)$ bad edges, also when branches merge. Summing increments and comparing each group with one reference leaf gives
+\[
+ 129e-480\cdot3(g-1)\le g\Omega,
+\]
+which proves the bound. Connectedness proves the clock claim when group and unary links preserve time; for unequal-time equal-potential groups only the edge bound is used.
+
+For a wrong live forecast, every retained centre has its wrong letter, hence supplies wrong supports in two clusters at every virtual level. Append finite marked derivations to the wrong actual leaves. A virtual $F_R^j(D_s)$ uses characteristic $P+vs+jv$ and formal clock $s+j$; actual data use $P+vs$ and physical clock $s$. Recentring puts the root at the output characteristic. Every arm crosses $T=500$ virtual levels, so $500\le e<12(f-1)$; in particular $f\ge11$, and the conservative $50(f-1)$ bound holds. All actual flags are no later than the queried input time. Each support lowers the formal clock by one, giving the asserted conservative earliest-time bound. Auxiliary negative-time flags are genuine paid-for flags, never substitutes for arbitrary initial letters.
+\end{proof}
+
+\subsection{Planar computation, sensors and nonhalting memory}
+
+The planar specification in Sections~3--4 is unchanged as a finite algorithm, now instantiated with the new $B,n_0$. In particular \cref{prop:scaffold,lem:cutoff,lem:allphase,lem:machine,lem:input,prop:chart} use no transverse coordinate. The finite-rank wall hypotheses of \cite[Lemmas~A.6--A.7]{DMhard} apply inside each closed frame even when the other phase coordinate is exceptional: the frame residues lie in $[4^d+1,3\cdot4^d]$ modulo $4^{d+1}$ and exclude $0,1$, forcing finite parent rank at most $2d$. The laminar routing argument therefore still forces every $N_d\times N_d$ board, $N_d=2^{d+2}-2$, with precisely its initialized one-head computation.
+
+More explicitly, a cutoff at rank $2a-2$ or $2a-1$ makes the first odd-rank zero on a depth-$d>a$ board have index $2^{a+1}-2$ and rank $2a-1$. The machine marks that many cells plus two, halves until one remains, obtains $a+1$ tokens, skips $n_0+1$, and runs $U(a-n_0)=U(n)$. Smaller boards fail, have no zero, or meet an even-rank zero first. Thus nonhalting supplies a legal typical-phase cutoff chart with either bit. Conversely, if every depth-$(a-1)$ flag were one and every depth-$a$ flag zero, the same rank constraints would force $U(n)$ on every sufficiently large board in every phase. A board exceeding both the halting time and visited tape space would contain the forbidden halting state. This proves the same all-phase wrong-gate alternative for the new palette.
+
+\begin{lemma}[Sensor law and source counts]\label{lem:lower-sensors}
+For every fixed reference-chart phase and every $\eps\in I_n^{(4)}$, the intrinsic gate experiments have independent lanes, bin failure probability at most $\eta_B$, and critical-gate failure probability at most $\eta_B$. For $g$ distinct characteristic/bin labels, the joint probability of a raw or statistical source at every label is at most
+\[
+ \gamma^g,\qquad \gamma=\sqrt C+\eta_B^{1/6}.
+\]
+Memory witnesses with $g$ distinct labels have at most $K_{\rm mem}^g$ encodings. Historical witnesses with $f$ distinct flags and $m_0$ intrinsic restarts have at most $K_{\rm hist}^{f+m_0}W^{6f/11}$ encodings. These counts are independent of $B,W,n,n_0$ and palette size except for the explicitly displayed factors.
+\end{lemma}
+\begin{proof}
+The invariant coordinates of backward copying are $(x-t,y,P+vt)$. A phase-zero row owns exactly its $B$ physical lane rows; those row blocks partition the plane. A finite ruler owns the source interval $[L_d,R_d-1]$ along each characteristic. Different rulers' intervals are disjoint, so each physical atom has one owner, and the $B$ lanes use disjoint atoms. The integer drift $58$ changes no ownership identity. The uniform product replacement gives upper success probability $.99[1-(1-\eps)^{\ell_d}]$ and recent lower success probability $.98[1-(1-\eps)^W]$.
+
+For a short ruler $d=a-1-r$, $\eps(\ell_d+1)<.53C4^{-r}$. The exponential-moment bound for Bernoulli sums at threshold $.75CB$ has exponent exceeding $.03BC$ at $r=0$ and increasing by at least $BC/3$ per rank. At most $3\cdot4^r$ such ends lie in a $W$-bin, so their summed tail is at most $3u_B/(1-4z_B)$, exactly as in \cref{lem:tails}. For long rulers, $\eps W\ge.99C$ and $C<.01$ give success probability greater than $.9C$, whereas $s/B\le.8C$. The independent-lane lower tail is at most $e^{-BC^2/50}$; at most two long ends lie in a bin. This gives $\eta_B$. The bounds use only ruler lengths, independent lanes and the window margins, so the numerical proof of \cref{lem:tails} applies without a dimensional change.
+
+A raw bin has probability at most $\eps W\le C$. A statistical bin uses its own and preceding bins on its private lanes. Partition statistical labels by time-bin residue modulo three; a largest class is independent and bounds $g_S$ simultaneous failures by $\eta_B^{g_S/3}$. Distinct raw bins are independent. Cauchy--Schwarz bounds mixed tests by $C^{g_R/2}\eta_B^{g_S/6}$, even if raw and statistical supports overlap. Summing the two choices at each label proves the stated joint source law. All these arguments first fix a phase and are uniform in it.
+
+Here are the literal counts, to specify their dependence. The projected graph uses actual data/second-coordinate roles, $T$ virtual levels, source-hub and entry/corridor roles. Including neutral and charge decorations there are at most $32(T+2)$ roles. Support offsets have at most $18q$ choices; ten zero-offset types, five bin differences and both orientations give degree at most
+\[
+ 640(T+2)(9q+10)<\Delta.
+\]
+A connected $e$-edge witness and its terminal subset have at most $2(2\Delta^2)^e$ doubled-traversal encodings. In a finite memory derivation all leaves with one source label have identical characteristic potentials. \Cref{lem:lower-poles} gives fewer than $12(g-1)$ positive edges. Each source-free characteristic corridor and its entry cost at most two links per positive edge, plus three terminal-role links per group, for fewer than $39g<256g$ edges. This yields
+\[
+ 2\sum_{e=0}^{256g}X^e\le4X^{256g}\le K_{\rm mem}^g.
+\]
+The arm estimate precedes projection; projected cycles or merged branches do not change it. Characteristic links have zero spatial displacement and bin difference at most two, so no $B$ or $W$ choices are hidden in the graph degree.
+
+For a historical contour with $f_i$ flags, use the conservative $50(f_i-1)$ duration. Its lag has at most $2W$ choices, its restart gap at most $52f_iW$, and its net transverse endpoint at most $(V\,\mathrm{gap}+1)^2$ choices. Keeping the larger four-coordinate envelope bounds their product by
+\[
+ 2[54(V+1)]^5 f_i^5W^6.
+\]
+Traversal, terminal subset and root role cost at most $X^{51f_i}$. Since $f_i^5\le2^{5f_i}$, size compositions cost $2^f$, interleavings $2^{f+m_0}$, and endpoint/source/stop annotations at most $2^{4(f+m_0)}$, their product, including $q\le X$ choices per intrinsic restart, is bounded by $K_{\rm hist}^{f+m_0}W^{6c}$. Each contour has eleven flags, so $c\le f/11$. This proves the historical count, including a last whole contour extending below the scanned prefix.
+\end{proof}
+
+\begin{proof}[Nonhalting direction of \cref{thm:lower}]
+Start data and second coordinate in a correct cutoff chart of bit $b$, cloned transversely. Initialize helpers by ideal negative-time chart instructions and independent negative-time innovations; almost surely an earlier reset or replacement determines each helper. Average the joint law spatially, so the phase is Haar and typical almost surely. This initialization is covariant under every planar and transverse translation, and independent of positive-time noise.
+
+A bad ordinary forecast has at least $q-h+1=257$ providers not returning the reference letter, each with a bad Moore input, occupying two clusters. The same holds at every level of a bad deep forecast. At an unflagged data error, either $A$ is bad, $Q$ is bad, or a correct critical gate falsely erased. On a short correct gate its true origin is within $W$ steps, and correct drivers reproduce the upper experiment. On a long correct gate the last HIGH marks in the recent $W$ steps supply the necessary singleton fields independently of older helpers. Thus a false erasure requires its intrinsic bad event or a driver error along one base characteristic at lag at most $W$. A bottom driver counts as an error. Every source-free characteristic link lands at a driver with a positive support step. This is a finite acyclic derivation: recursion lowers physical time or a finite virtual level, and the pre-zero drivers are the perfect chart of the initialization.
+
+Apply the memory count and source law of \cref{lem:lower-sensors} before integrating over the chart. Uniformly in site, time and rate, its error probability is at most
+\[
+ \sum_{g\ge1}(K_{\rm mem}\gamma)^g<3/125,
+\]
+using $K_{\rm mem}\sqrt C=1/128$ and $K_{\rm mem}\eta_B^{1/6}<1/64$. The live data bit-$b$ cylinder therefore has probability greater than $122/125$ at all times. The kernel is Feller on a compact configuration space. Temporal Ces\`aro subsequential limits are stationary by telescoping the one-step difference, and preserve invariance under all four spatial translations. The two disjoint bit cylinders separate the two limiting laws. This proves nonergodicity with the claimed invariance scope.
+\end{proof}
+
+\subsection{Halting: a finite motif and a simultaneous noise event}
+
+\begin{lemma}[Finite motif certificate]\label{lem:lower-motif}
+On every halting input a terminating finite search finds $r\ge1$ such that every Moore-compatible live patch on $Q_r=[-r,r]^2$ contains a type S or type L motif. Type S is a segment of $\ell_{a-1}+1$ letters with $\Orig$ only at its left endpoint, and $\End$, phase zero and row flag zero at its right endpoint. Type L has $\ell_a+1$ letters and right flag one.
+\end{lemma}
+\begin{proof}
+The planar wrong-gate alternative just proved holds in every phase. Its finite ride has only its endpoint walls: a bottom row of depth $d$ lies outside all smaller row frames, same-depth column frames are disjoint, and strict nesting excludes deeper endpoints from the closed frame. The finite-rank classification applies there even in exceptional phases. Thus every legal full chart contains one of these motifs. Enumerate all live patterns on increasing $Q_r$, test internal Moore compatibility and reject both contained motifs. If a survivor existed for every $r$, product compactness would give a legal full chart with neither motif, a contradiction. Every finite test uses only the effective palette and its finite phase lookup. The first empty test terminates on halting inputs, with no extension oracle. This is precisely the planar search of \cref{lem:motif}, instantiated with the new fixed parameters.
+\end{proof}
+
+Fix such an $r$, put $R=r+T$, $A=2D+1=701$ and $J=W_n^*+52$. Choose a computable integer radius $r_F\ge1$ bounding every actual read offset. The following stronger-than-needed burn-in will avoid all floor and boundary cases:
+\[
+ t\ge t_0:=4[A(R+W_n^*+1)+2D(T+1)+4].              \tag{L.2}\label{eq:lower-burnin}
+\]
+From an unmarked live root $(u_0,P_0,t)$, propagate $R$ clean checked stars backwards. They supply unmarked live data at every site of $u_0+Q_R$ at time $t-R$, with providers in $P_0+[0,VR]^2$. At each such site choose a clean centre path further backwards. The supplied letter persists and its provider at age $\sigma$ lies in $P_0+[0,V(t-\sigma)]^2$.
+
+Follow a motif endpoint's path for $N=\lfloor t/(2A)\rfloor$ vertices starting at $t-R$. At sampled time $b$ and lag $\ell\le W$, a depth-$T$ query has actual input age $\sigma=b-\ell-1$ and leaf providers
+\[
+ P_b+\ell v-(T-1)v+\sum_{i=1}^T s_i,\qquad s_i\in S.
+\]
+Relative to $P_0$ they lie coordinatewise in $[-VT,V(t-\sigma+T)]$; their distance from the reference providers is at most $D(t-\sigma+T)$. Every planar query leaf lies inside $Q_R$. Since $t-\sigma\le R+N+W_n^*$, \eqref{eq:lower-burnin} implies
+\[
+ \sigma\ge2D(t-\sigma+T)+1,\qquad \sigma\ge\lceil t/2\rceil+1,
+\]
+and the analogous age condition for the reference patch at $t-R$.
+
+To make these comparisons simultaneous, take
+\[
+ R_n=10[r_F+B+V(T+W_n^*+r+1)+r+T+W_n^*+1]
+\]
+and let $\mathcal G_t$ exclude $\mathcal D_{s-1}(z)$ at every deterministic root with
+\[
+ \lceil t/2\rceil+1\le s\le t,\qquad
+ \|z-(u_0,P_0)\|_\infty\le R_n(t+1).
+\]
+All patch, path, recentered query and reference roots used above lie in this set; if necessary its spatial radius also encloses their one-step ordinary parents. The displayed $R_n$ already dominates those fixed offsets. By \eqref{eq:lower-density}, for $t\ge t_0$,
+\[
+ \Prob(\mathcal G_t^c)\le
+ 16(t+1)[2R_n(t+1)+1]^4e^{-t/2}.                  \tag{L.3}\label{eq:lower-good}
+\]
+The harmless factor $16$ covers integer rounding. On $\mathcal G_t$, \cref{lem:lower-coherence} makes the reference patch compatible and identifies every unmarked live query leaf with its reference letter, simultaneously for every initial row. For Moore compatibility one can equivalently take a clean checked star and apply same-site agreement one physical age earlier. All those earlier roots lie in the same enlarged deterministic set; the burn-in also gives $t-R-1\ge2D(R+1)+1$. In particular, \eqref{eq:lower-good} also gives the weaker estimate, since $t\ge t_0\ge2$:
+\[
+ \Prob(\mathcal G_t^c)\le12(t+1)[2R_n(t+1)+1]^4e^{-t/4}.
+\]
+This event uses flags only. All remaining certificate estimates are unconditional; none is obtained by conditioning on $\mathcal G_t$ or on a selected patch.
+
+\begin{lemma}[Uniform unmarked-liveness estimate]\label{lem:lower-unmarked}
+An integer $C_U$ is effectively findable from $r$ and the fixed parameters such that for every $\eps\in I_n^{(4)}$, every integer $t\ge0$ and every fixed target, the probability that some initial row yields an unmarked live data or second-coordinate reading there at time $t$ is at most $C_Ue^{-t/(701J)}$.
+\end{lemma}
+\begin{proof}
+For $t\ge t_0$ work on $\mathcal G_t$. A putative live root gives a compatible reference patch, a motif and its sampled centre path. A wrong live deep query has marked actual leaves, hence the contour of \cref{lem:lower-poles}, with at least eleven flags. At a sampled live unmarked data output, $A$ and current $Q$ are live and the erasure test did not fire. A wrong current $Q$ is a lag-zero contour. Otherwise it reads the correct wrong-gate motif. If no wrong live deep instruction occurs on its short ride or long recent window, the helper inclusions force erasure unless the intrinsic experiment failed. For a short flag-zero gate the origin starts with a set containing the ideal upper bit; UNKNOWN, union with zero, correct copies and replacement intervals preserve that inclusion. Fewer than $s$ upper ones forces $l_w<s$. For a long flag-one gate, $s$ last-HIGH marks preserve the possibility of one under these same operations, so $h_w\ge s$. Both contradict the surviving data. This argument holds for arbitrary initial helpers. Thus every sampled vertex supplies an intrinsic failure or a wrong live deep query at one lag at most $W$.
+
+Attach whole deep contours greedily and restart one time before their earliest flag, retaining the last contour even when it passes the prefix end. Intrinsic failures advance one centre step. Distinct contour terminal slabs are disjoint; with $f$ flags, $c$ contours and $m_0$ intrinsic tests, $c\le f/11$. Their coverage obeys
+\[
+ N\le[50+(W+1)/11]f+m_0\le J(f+m_0).
+\]
+At one fixed planar endpoint, distinct sampled times have disjoint intrinsic atoms: an atom's planar coordinate is $g_x-\ell$ and time $b-\ell$, so equality of atoms forces the same lag and sampled time, regardless of the chosen provider path. For a fixed certificate the intrinsic tests therefore have probability at most $\eta_B^{m_0}$; raw tests have probability $\eps^f$. Their two families may overlap. H\"older with exponents $4/3$ and $4$ gives weight at most $\eps^{3f/4}\eta_B^{m_0/4}$.
+
+Multiply by the historical count in \cref{lem:lower-sensors} and use $W\le C/\eps$. The resulting bases are
+\[
+ K_{\rm hist}C^{6/11}\eps^{9/44}<1/64,\qquad
+ K_{\rm hist}\eta_B^{1/4}<1/64.
+\]
+The first follows from $\eps\le(64K_{\rm hist})^{-44}$ and the second from the $B$ search. In particular both are below $1/32$. Summing masses $k=f+m_0\ge\lceil N/J\rceil$ gives
+\[
+ \sum_{k\ge\lceil N/J\rceil}(k+1)32^{-k}
+ \le(16/15)16^{-\lceil N/J\rceil}.
+\]
+There are at most $2|Q_r|(VR+1)^2$ endpoint/type candidates. The motif segment fixes the tested instructions and atoms; there is no count over arbitrary chart fillings. Each fixed certificate is a noise event, and the deterministic union covers existence of every possible start. Add \eqref{eq:lower-good} by an unconditional union bound. Since $N\ge t/(2A)-1$ and $\log16/2>1$, the historical tail has rate at least $1/(AJ)$. The polynomial in \eqref{eq:lower-good} decays faster. Increasing an effective integer constant absorbs this polynomial and all $t<t_0$, proving the assertion uniformly over the interval.
+\end{proof}
+
+\subsection{Rare births and full-symbol all-input coalescence}
+
+Define the minimal scalar centre-only field at each planar site by finite-past increasing limits,
+\[
+ W^{\rm live}_t=E_t\vee\Theta_h(W^{\rm live}_{t-1}),\qquad
+ N^{\rm live}_t=\Theta_h(W^{\rm live}_t).
+\]
+Here $\Theta_h$ tests the $q$ transverse centres and uses no planar Moore neighbours. A birth of $N^{\rm live}$ with at most $M-1=255$ fresh flags has at least $h-(M-1)=257=K+1$ old $N^{\rm live}$ providers, hence two distinct clusters. Its alternative seed requires $256$ fresh flags.
+
+Partition transverse space into squares $Y=\lambda z+[0,\lambda-1]^2$. All fresh flags for a seed rooted anywhere in $Y$ lie in $\lambda z+[0,2\lambda-2]^2$. The group event that this box has at least $M$ flags has probability at most $N_0\eps^M$. Different planar sites and times have disjoint atoms; equal-parity squares have disjoint enlarged boxes. Among $g$ distinct groups a largest one of the four parity classes has at least $g/4$ members. Since the seed weight is below one, the weaker bound
+\[
+ \Prob\{\text{all }g\text{ group events}\}\le(N_0\eps^{256})^{g/16}
+                                                               \tag{L.4}\label{eq:lower-seeds}
+\]
+also holds. The groups seed whole root squares in the minimal two-cluster closure.
+
+Within one group, planar site and physical time agree and the total three-potential oscillation is at most $\Omega=2\cdot3\cdot2\cdot175=2100$. Hence \cref{lem:lower-poles} gives
+\[
+ e\le H_0g-A_0,\qquad H_0=(1440+2100)/129=3540/129<28,
+ \qquad A_0>2.                                                \tag{L.5}\label{eq:lower-groups}
+\]
+These identifications preserve physical time.
+
+\begin{lemma}[Late ancestry and discrepancy packing]\label{lem:lower-full}
+The one-site full-symbol all-input coefficient is at most $C_ne^{-t/(4\cdot701J)}$, for an integer $C_n$ effectively findable on halting inputs and uniform over $I_n^{(4)}$.
+\end{lemma}
+\begin{proof}
+First justify the minimal-field domination for finite histories. A prescribed marked ordinary path of $L_*$ vertices has probability at most
+\[
+ \sum_{f\ge\lceil L_*/50\rceil}(K_{\rm mem}\eps)^f.
+\]
+To see this, attach whole flag contours and restart before the earliest terminal; selected slabs have distinct flags, each contour covers at most $50f_i$ vertices, and the whole path plus contours costs at most $101f$ edges. The doubled-traversal bound used in \cref{lem:lower-sensors} applies. Its base is below $1/64$.
+
+Put $m_t=\lfloor t/4\rfloor$. In a deterministic enlarged dependency cone of the time-$t$ target, union-bound \cref{lem:lower-unmarked} and this marked-path estimate with $L_*=m_t+1$ at all relevant roots of ages $\lceil t/2\rceil$ through $t$. The cone includes every fixed helper shift and ordinary ancestor used below and has size bounded by a computable polynomial in $t$, for example after enlarging $r_F$, $(t+1)[2r_F(t+1)+1]^4$. Except on a noise event of probability at most a computable polynomial times $e^{-t/(2\cdot701J)}$, simultaneously over all starts, every relevant live reading is marked and no marked branch of $m_t$ ordinary edges persists.
+
+A live ordinary proposal along the top $m_t$ discrepancy vertices has its live data parents at time at least $t-m_t$. Follow their retained live centres, stopping at actual flags. Through $m_t$ generations they remain in the late cone, since $t-2m_t\ge\lceil t/2\rceil$. All nodes are marked and a depth-$m_t$ branch is excluded. Finite branching therefore makes this ancestry finite with flag leaves. Induction puts it in the minimal $W^{\rm live}$ field, and the proposal in $N^{\rm live}$ at its true input time. This step does not assign noise contours to arbitrary time-zero symbols.
+
+If the full-symbol map at the target is nonconstant, choose a discrepant pair after fixing the innovations. A replacement output is common. A differing deterministic output has a discrepant actual parent. Moreover at least one of the $B$ ordinary proposals at bases $w-j\mathbf e_y$ is live in one run: if all were bottom, both data coordinates would be bottom and every helper would be the common UNKNOWN, irrespective of old helpers or deep instructions. Follow discrepant parents for $m_t$ vertices. On the good late-cone event, attach to its chosen live-proposal base a grouped contour at its actual time $s-1$, keeping every group time unchanged. The connector from discrepancy time $s$ to time $s-1$ lies outside the pole contour. Restart before its earliest group time, retaining the whole last contour. By \eqref{eq:lower-groups}, coverage including connector and restart is at most $e+2\le H_0g_i$. Distinct selected slabs give distinct groups, and $m_t\le H_0g$.
+
+Support and covered-path edges cost at most $2H_0g$, group stars at most $3g$ and literal planar shifted-root connectors at most $g$; allowing the conservative extra connectors gives fewer than $(2H_0+6)g<62g<512g$ edges. A supergraph with 64 roles includes actual path offsets, ordinary supports, square stars and all $B$ literal shifts. Its degree is at most
+\[
+ 64[2\kappa+2B+2(2\lambda)^2+18q+2(T+1)]<\Delta_{\rm rare}.
+\]
+Thus doubled traversals and source subsets give at most $K_{\rm rare}^g$ certificates. By \eqref{eq:lower-seeds} the weighted base is
+\[
+ K_{\rm rare}(N_0\eps^{256})^{1/16}<1/64,
+\]
+using the defining threshold and $\eps^{256}\le\eps$. Summing $g\ge\lceil m_t/H_0\rceil$ gives exponential rate at least $\log32/(4H_0)$. This and the marked-path rate $\log64/200$ exceed $1/(2\cdot701J)$. Add the late-cone exception and absorb its polynomial by halving that slowest exponent. All constants are effective from the motif radius, finite lookup radius and rational parameters. For example $y^ke^{-by}\le(k/b)^k$ for $k\ge1,b>0$, together with rational lower bounds on logarithms, gives an effective integer absorption constant. Enlarge it for finitely many small times. Every certificate is an unconditional noise event covering existence of any discrepant pair; no selected pair or history is presumed independent of the noise. This proves the claimed coefficient bound.
+\end{proof}
+
+\begin{proof}[Completion of the proof of \cref{thm:lower}]
+Nonhalting was proved above. On halting inputs \cref{lem:lower-motif,lem:lower-full} give the stated rate and a prefactor search terminating on every such input. Translation and a union bound give the finite-set factor $|F|$. The ordered forward and pullback blocks have the same distribution. At a fixed finite window the pullback images of all starts are nested nonempty finite sets, and their nonconstancy probabilities tend to zero. Hence they are eventually singletons almost surely, simultaneously over the countably many finite windows. Compactness and the Feller property provide a stationary law. Coupling it to any initial law bounds their finite-window total variation distance by the all-input coefficient, proving attraction and uniqueness. The midpoint map $n\mapsto41C/(20\ell_{n+n_0})$ reduces halting to ergodicity at rational rates for this one fixed rule. Thus its noise diagram is uncomputable and Theorem~C follows.
+\end{proof}
+
+\subsection{The all-Gibbs transfer and a fixed interaction on five dimensions}
+
+The exact transfer needed here is \cite[Corollary~13.7, equations~(7)--(8)]{DMst}, whose statement covers every spatial dimension $d\ge1$. We record its hypotheses and proof to distinguish all-DLR uniqueness from stationary uniqueness. For probability laws on a finite target set, $d_{\rm TV}$ denotes total variation distance. A basic local-map representation means independent identically distributed random maps at the update sites whose evaluation at each parent word has the specified transition law; the same map acts on every possible parent word.
+
+\begin{proposition}[Exponential common maps imply all-DLR mixing]\label{prop:lower-transfer}
+Let a translation-invariant PCA on $\Z^d$, $d\ge1$, have a finite alphabet with at least two symbols, finite neighbourhood $N$ containing zero and strictly positive transition table $p$. Suppose it has an i.i.d.\ basic local-map representation with
+\[
+ q_t=\Prob\{\text{the depth-$t$ common map at one site is nonconstant
+ over all initial rows}\}\le C_0e^{-\alpha t}
+\]
+for every integer $t\ge0$, with $C_0,\alpha>0$. The space--time interaction $-\log p$ has exactly one DLR measure $\bar\mu$, without an invariance assumption. There are constants $A_*,c_*>0$ such that for every finite $\Lambda\subset\Z^{d+1}$, every $E\subset\Lambda$ and all exterior configurations $\tau,\tau'$,
+\[
+ \begin{aligned}
+ d_{\rm TV}((\gamma_\Lambda^\tau)_E,\bar\mu_E)
+ &\le A_*\sum_{z\in E}e^{-c_*\operatorname{dist}_\infty(z,\Lambda^c)},\\
+ d_{\rm TV}((\gamma_\Lambda^\tau)_E,(\gamma_\Lambda^{\tau'})_E)
+ &\le 2A_*\sum_{z\in E}e^{-c_*\operatorname{dist}_\infty(z,\Lambda^c)}.
+ \end{aligned}
+\]
+Every factor meeting $\Lambda$, including each exterior-child factor, is included in $\gamma_\Lambda^\tau$. Holes and disconnected volumes are allowed. No lower bound on $\alpha$ in terms of the radius is required.
+\end{proposition}
+\begin{proof}
+Put $r=\max(1,\max_{z\in N}\|z\|_\infty)$. Choose an integer slab height $H$ and partition spatial rows into cells of side $b=rH$. A slab marker $(j,k)$ is bad when its $H$-step output word on cell $k$ is nonconstant over all input rows. Its probability is at most
+\[
+ p_*=b^dC_0e^{-\alpha H}.
+\]
+It depends only on the slab's backward seed cone $U_{j,k}$. Within one slab cones at cell-index distance greater than two are disjoint, and different slabs are independent. One of the $3^d$ cell residue classes therefore supplies independent markers for any fixed list.
+
+For a single root spin use the expanding future-only volume
+\[
+ V_n=\{(0,0)\}\cup
+ \{(x,t):1\le t\le nH,\ \|x\|_\infty\le5b+3rt\}.
+\]
+Starting with the root cell $S_0$, let $S_j$ be the bad cells at index distance at most three from $S_{j-1}$. Every reached cell is within $3j$ cells of the root, and its seed cone is within $(3j+2)b$. This is inside the buffer, whose half-width at the beginning of slab $j$ is $5b+3r(j-1)H=(3j+2)b$. Thus the clipped and unrestricted common maps agree wherever this exploration uses them.
+
+We need a deterministic splice before any probability conditioning. Fix original seeds $x$ and a reached prefix through level $j$, and replace seeds only in the union of its listed cones, obtaining seeds $y$. At each level $i\le j$ the clipped outputs for a fixed root value differ only within two cells of $S_i(x)$. Indeed, a cell whose computation reads a replaced seed is within two cells of the corresponding listed bad cell. Otherwise its map is unchanged; a different output can only come from a differing input within two cells of $S_{i-1}$, and finite speed adds one cell. It is then a distance-three candidate and its unchanged original map is nonconstant, so its original marker is bad and reached. This proves the induction without any assumption on the repaired marker status. The number of changed spins at level $i$ is at most $c_0|S_i|$, where $c_0=(5b)^d$. For identical seeds and different root values, the same induction confines differences to $S_i$ itself. Extinction therefore makes the top row common for every root value.
+
+All exterior children of $V_n$ lie in its top cap, because the sides expand faster than the dependency radius. Let $h$ be the product of their transition factors. With root value $a$, clipped forward evolution $X^a$ and fixed parents, write
+\[
+ Z_a=\mathbb E h(X^a_{nH}),\qquad w_a=p(a\mid\text{fixed parents}).
+\]
+The finite-volume root law is $w_aZ_a/\sum_cw_cZ_c$. The cap cannot be discarded. Put
+\[
+ K_p=\max_{c,u,u'}\frac{p(c\mid u)}{p(c\mid u')},\qquad
+ \zeta=|N|\log K_p.
+\]
+If two rows $z,z'$ at slab level $j$ differ in $k$ spins, their integrated future messages satisfy $g_j(z)\le e^{\zeta k}g_j(z')$. Pair identical future histories term by term: only immediate next-row factors change, at most $|N|k$ of them, each by a ratio at most $K_p$. Later factors and the cap agree. At the final level the same argument applies directly to cap factors. The ratio bound is independent of the remaining future duration and exterior values.
+
+Fix a deterministic exact reached-prefix event $E_S$ through level $j$. Its mass is $M_j=\sum_{i=1}^j|S_i|$, excluding the root $S_0$, and its last width is $a_j=|S_j|$. Independently resample the deterministic union $U(S)$ of its listed seed cones. On $E_S$ the splice and message bounds give
+\[
+ g_j(X^a_j(x))\le e^{\zeta c_0a_j}g_j(X^a_j(y)).
+\]
+Only after using this inequality enlarge $E_S$ to the event $B_S$ that every listed nonroot marker is bad in $x$. This event is measurable in $x$ restricted to $U(S)$ and is independent of the repaired product seed field $y$. The residue-class bound gives $\Prob(B_S)\le p_*^{M_j/3^d}$. Consequently, with $b_0=\zeta c_0$,
+\[
+ \mathbb E[\ind_{E_S}h(X^a_{nH})]
+ \le e^{b_0a_j}p_*^{M_j/3^d}Z_a.                 \tag{L.6}\label{eq:lower-prefix}
+\]
+This is an unconditional finite-product resampling inequality; it does not assert posterior independence under a Gibbs law.
+
+If $S_n$ survives, each level is nonempty and $|S_i|\le(6i+1)^d$. Choose $L_0=\max(2,b_0)$. For all sufficiently large $n$, some $j\in[\lceil n/2\rceil,n]$ has $M_j\ge L_0a_j$. Otherwise $M_j>[L_0/(L_0-1)]M_{j-1}$ throughout that half, contradicting the polynomial bound $M_n\le\sum_{i\le n}(6i+1)^d$. The finite threshold depends only on $d,L_0$.
+
+A prefix is a connected rooted vertex set in a level-cell graph of degree at most $\Delta_d=2\cdot7^d$. Its spanning-tree doubled traversal gives at most $\Delta_d^{2M}$ prefixes of mass $M$, jointly over all heights. At the selected late cut $e^{b_0a_j}\le e^{M_j}$. Choose $H$ so large that
+\[
+ \theta_*=e\Delta_d^2p_*^{1/3^d}<1.
+\]
+This is possible for every $\alpha>0$ since $H^de^{-\alpha H}\to0$. The possibly large $b_0$ changes only the finite late-cut threshold, not this inequality. Summing \eqref{eq:lower-prefix} over deterministic prefixes gives, for large $n$,
+\[
+ \mathbb E[\ind_{\{S_n\ne\varnothing\}}h(X^a_{nH})]
+ \le\delta_nZ_a,\qquad
+ \delta_n=\frac{\theta_*^{\lceil n/2\rceil}}{1-\theta_*}.
+\]
+On extinction the top cap row is common for all $a$, so $Z_a=Z^{\rm common}+R_a$ with $R_a\le\delta_nZ_a$. The root conditional is a mixture of $w$ and a residual law of mass at most $\delta_n$. Enlarging a constant for bounded $n$ gives root error at most $C_1s^n$, uniformly over every exterior, where $s=\sqrt{\theta_*}<1$.
+
+For any DLR measure $\nu$, use the translated future-only volumes at a site $v$. The entire past and every other same-row spin are outside each such volume. The tower property and the uniform root error tending to zero imply
+\[
+ \nu(\sigma_v=a\mid\text{entire past and all other same-row spins})
+ =p(a\mid\text{parents})
+\]
+almost surely. Factoring finite subsets of a row gives the product PCA transition given the past. Thus every DLR measure is a two-sided PCA trajectory law, with no invariance assumed. A stationary PCA law $\mu$ exists by Feller compactness; its trajectory law is DLR by the finite-factor cancellation, including exterior children, of \cite[Lemma~2.4]{DMst}. If $\nu_t$ is any DLR row marginal, then $\nu_t=\nu_{t-m}P^m$. Common-map coupling bounds its distance from $\mu$ on finite $F$ by $|F|q_m$. Letting $m\to\infty$ identifies every row marginal, and the product transitions identify the whole trajectory law. This proves all-DLR uniqueness.
+
+Finally take any finite $\Lambda$ and exterior and sample its Gibbs law in increasing time, with a fixed order within each row. Whenever $w+V_n$ fits in $\Lambda$, previously exposed spins are outside that future-only volume; the tower property bounds the chain-rule conditional $K_w$ from the PCA update at its actual parents by $C_1s^n$. Draw a fresh basic map $M_w$ independently of the joint past and evaluate it at those parents, obtaining $Y_w$. Couple its transition law maximally to $K_w$, then sample the actual spin from that coupling conditionally on $Y_w$. The Gibbs chain rule is exact, and the basic maps retain their i.i.d.\ law. Draw one stationary reference base row independently below all target cones, evolve it with these maps and with fresh maps outside $\Lambda$, and use this common reference for all targets.
+
+For a target $z$ at distance $\rho$ from $\Lambda^c$, take backward depth $k=\lfloor(\rho-1)/(2r)\rfloor$ and $n$ maximal with $5b+3rnH\le(\rho-1)/2$. For sufficiently large $\rho$ these are positive and all required comparison volumes fit. A union bound on the cone and the unconditional all-input map event give
+\[
+ \Prob(\text{actual}_z\ne\text{reference}_z)
+ \le k(2rk+1)^d C_1s^n+C_0e^{-\alpha k}.
+\]
+No conditioning on absence of mismatches is used; the actual lower row may depend on the maps, but common-map constancy covers every input. Both depths grow linearly in $\rho$, so polynomial absorption bounds this by $A_*e^{-c_*\rho}$. For bounded $\rho$ enlarge $A_*$ using the probability bound one. The common coupling and a union bound over $E$ give the first estimate; the triangle inequality gives the second. Only distance to the complement was used, so disconnected volumes and holes require no additional hypothesis.
+\end{proof}
+
+\begin{corollary}[The five-dimensional binary-energy diagram]\label{cor:lower-gibbs}
+There is one computably specified translation-invariant finite-range interaction on $\Z^5$, on a finite alphabet and with individual terms in $\{0,1\}$, and uniformly computable pairwise disjoint nonempty rational open inverse-temperature intervals $\mathcal J_n^{(5)}$, such that for every $n\ge1$ and $\beta\in\mathcal J_n^{(5)}$ uniqueness among all Gibbs measures is equivalent to halting of $U(n)$. On halting windows the specification has arbitrary-volume exponential weak spatial mixing with the two bounds in \cref{prop:lower-transfer}; their constants may depend on $\beta$, but not on the volume, target set or exteriors. On nonhalting windows there are at least two Gibbs measures invariant under every translation of $\Z^5$. Reciprocating endpoints also gives rational open temperature windows.
+\end{corollary}
+\begin{proof}
+Let $f_4$ be the deterministic rule of \cref{thm:lower}, $N_F$ its finite neighbourhood and $N_\Sigma=|\Sigma_4|$. At $(w,t)\in\Z^4\times\Z$ use the factor
+\[
+ \Phi_{w,t}(\sigma)=
+ \ind\{\sigma(w,t)\ne f_4((\sigma(w+z,t-1))_{z\in N_F})\}
+\]
+on the support consisting of its child and all parents. Every factor has value zero or one; the interaction is fixed, finite-range and translation-invariant. In every finite-volume specification include all factors whose supports meet the volume. The parent-independent normalizer gives
+\[
+ \begin{aligned}
+ p_\beta(c\mid\eta)
+ &=\frac{e^{-\beta\ind\{c\ne f_4(\eta)\}}}
+ {1+(N_\Sigma-1)e^{-\beta}}\\
+ &=(1-\eps(\beta))\ind\{c=f_4(\eta)\}+\eps(\beta)/N_\Sigma,
+ \qquad \eps(\beta)=\frac{N_\Sigma}{e^\beta+N_\Sigma-1}.
+ \end{aligned}
+\]
+Dividing every factor by this constant cancels from finite-volume weights, including the exterior-child factors. Thus this is exactly the replacement PCA space--time specification.
+
+The neighbourhood contains zero, because the ordinary driver includes the zero Moore and provider offsets (adding a dummy parent would also be harmless). The alphabet has at least two symbols (already $\HH$ has 100). Every transition entry is at least $\eps(\beta)/N_\Sigma>0$. The independent whole-symbol replacement maps are basic i.i.d.\ local maps. On a halting window \cref{thm:lower} supplies the required exponential all-input coefficient with positive rate $1/[4\cdot701(W_n^*+52)]$. All hypotheses of \cref{prop:lower-transfer}, equivalently \cite[Corollary~13.7]{DMst}, therefore hold in $d=4$. Ordinary stationary uniqueness alone would not supply this conclusion.
+
+On a nonhalting window the two stationary laws invariant under all four spatial translations have distinct time-zero marginals. Their stationary two-sided trajectory laws are DLR by \cite[Lemma~2.4]{DMst} and invariant under all five space--time translations; those time-zero marginals distinguish them. Normalization preserves the binary-energy specification.
+
+If $I_n^{(4)}=(\eps_n^-,\eps_n^+)$, its inverse-temperature preimage is
+\[
+ \left(\log(N_\Sigma/\eps_n^+-N_\Sigma+1),\
+       \log(N_\Sigma/\eps_n^--N_\Sigma+1)\right).
+\]
+The endpoints are computable reals and strictly ordered. Enumerate rational approximations until two ordered rationals are certified strictly inside, and take the open interval between them as $\mathcal J_n^{(5)}$. Openness guarantees termination uniformly in $n$, without a halting answer. Strict monotonicity of $\eps(\beta)$ inherits disjointness from the rate windows. The endpoints are positive; their reciprocals give the stated temperature windows. This proves Corollary~D and answers \cite[Open problem~9.2]{DMhard} in dimension five with finite energies.
+\end{proof}

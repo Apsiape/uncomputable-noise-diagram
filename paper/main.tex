@@ -38,6 +38,8 @@
 \aliascntresetthe{remark}
 \newtheorem*{mainA}{Theorem A}
 \newtheorem*{gibbsB}{Corollary B}
+\newtheorem*{mainC}{Theorem C}
+\newtheorem*{gibbsD}{Corollary D}
 \crefname{theorem}{Theorem}{Theorems}
 \crefname{proposition}{Proposition}{Propositions}
 \crefname{lemma}{Lemma}{Lemmas}
@@ -66,19 +68,20 @@
 \hypersetup{pdftitle={One noisy cellular automaton with an uncomputable noise diagram},pdfauthor={Seth Douglas and Nidhal Mghirbi}}
 \title{\vspace{-1.2cm}\LARGE One noisy cellular automaton\\ with an uncomputable noise diagram}
 \author{Seth Douglas \and Nidhal Mghirbi}
-\date{\small Version 1.2.0, November 2026}
+\date{\small Version 1.3.0, November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
 \noindent
-Can varying only the noise rate of one cellular automaton encode halting? We construct one computably specified finite-alphabet, finite-range automaton on $\Z^6$ with computable disjoint rational open rate intervals $I_n$. Throughout $I_n$, uniform replacement noise makes it ergodic exactly when a fixed universal machine halts on $n$. Halting gives exponential all-input coalescence and attraction from every initial law; nonhalting gives at least two translation-invariant stationary laws and continuum many extremal stationary laws.
-
-Hierarchical rulers select the input from the noise rate. Finite computation boards read the input; a threshold checker preserves a bit, and interval sensors erase every surviving chart when the computation halts. The space--time correspondence gives one fixed $\{0,1\}$-energy interaction on $\Z^7$: on the corresponding temperature windows, halting gives one Gibbs measure and exponential weak spatial mixing in arbitrary volumes; nonhalting gives continuum many extremal Gibbs measures. These extremes need not be translation invariant. The zero-field pressure is analytic, yet its derivative in one fixed field direction exists at zero exactly on halting windows. Thus one fixed local rule has an uncomputable noise diagram. Theorem~A, the ergodicity criterion with attraction and two invariant laws, is verified in Lean.
-
+Can varying only the noise rate of one cellular automaton encode halting? We construct one computably specified finite-alphabet, finite-range automaton on $\Z^4$ with computable disjoint rational open rate windows. Throughout the $n$th window, uniform whole-symbol replacement is ergodic exactly when a fixed universal machine halts on $n$. Halting gives exponential coalescence simultaneously over all initial configurations and attraction from every initial law; nonhalting gives two laws invariant under every spatial translation. Planar rulers and computation boards select the input; three transverse quorum boxes, marked-parent density and interval sensors control errors. The space-time construction gives one fixed translation-invariant finite-range $\{0,1\}$-energy interaction on $\Z^5$ with computable rational inverse-temperature windows: halting is equivalent to uniqueness among all Gibbs measures and also gives exponential weak spatial mixing in arbitrary volumes. The earlier $\Z^6$ and $\Z^7$ constructions, their extremal and field-response results, and the Lean verification of Theorem A and its stated corollaries are retained. The $\Z^4$ theorem and $\Z^5$ corollary are not formalized.
 \end{abstract}
 \begin{center}\small AI systems assisted with this work; see ``How this work was done.''\end{center}
 \setcounter{tocdepth}{1}
-{\footnotesize\linespread{1}\selectfont\tableofcontents}
+\makeatletter
+{\footnotesize\linespread{1}\selectfont
+\renewcommand{\l@section}[2]{\@dottedtocline{1}{0em}{2em}{\bfseries #1}{\bfseries #2}}
+\tableofcontents}
+\makeatother
 \clearpage
 
 \section{Introduction}\label{sec:intro}
@@ -90,7 +93,26 @@ Here is the main result in plain words. Fix a universal deterministic machine $U
 \proved\ There is one computably specified cellular automaton on $\Z^6$, with a finite alphabet and a finite neighbourhood, and computable disjoint rational open intervals $I_n$, such that at every rate in $I_n$ uniform whole-symbol replacement makes the automaton ergodic exactly when $U(n)$ halts. Nonhalting gives at least two translation-invariant stationary laws. Halting gives a unique stationary law attracting every initial law.
 \end{mainA}
 
-In particular, the noise diagram, the set of rates at which $F_\eps$ is ergodic, is undecidable at rational rates for this rule (\cref{cor:undecidable}). The local rule receives no numerical noise parameter. Rulers of different lengths see different numbers of random replacements. Their responses select an integer, and finite computation boards read it. All boards use the same machine and the same alphabet. The computation is in the spatial constraints of a chart; a halting computation is excluded by forbidding its halting state. \Cref{fig:mechanism} shows the two parts of this selection.
+In particular, the noise diagram, the set of rates at which $F_\eps$ is ergodic, is undecidable at rational rates for this rule (\cref{cor:undecidable}).
+
+The dimension can be lowered while retaining an exponential common-map bound.
+\begin{mainC}
+There is one computably specified finite-alphabet, finite-range automaton on $\Z^4$, with fixed rational $C_4>0$ and integer $n_4$, and computable pairwise disjoint nonempty rational open intervals
+\[
+ I_n^{(4)}=\left(\frac{2C_4}{2\cdot4^{n+n_4}-1},
+ \frac{21C_4}{10(2\cdot4^{n+n_4}-1)}\right),\qquad n\ge1.
+\]
+At every rate in $I_n^{(4)}$ uniform whole-symbol replacement is ergodic if and only if $U(n)$ halts. Nonhalting gives two stationary laws invariant under every spatial translation. Halting gives finite-window coupling from the past over all initial configurations, attraction from every initial law, and, for every finite $F\subset\Z^4$ and integer $t\ge0$,
+\[
+ \begin{gathered}
+ \Prob\{\text{the shared depth-$t$ full-symbol map is nonconstant on }F\}\\
+ \le |F|C_n\exp\!\left[-\frac{t}{4\cdot701(4^{n+n_4}-1+52)}\right].
+ \end{gathered}
+\]
+The integer prefactor $C_n$ is effectively findable on halting inputs and is uniform over the whole window; the displayed rate is total computable from $n$. The construction uses three transverse $16\times16$ boxes, threshold $512$ of $768$, depth $500$ and drift $(58,58)$, with all fixed constants specified in \cref{sec:lower}.
+\end{mainC}
+
+The local rule receives no numerical noise parameter. Rulers of different lengths see different numbers of random replacements. Their responses select an integer, and finite computation boards read it. All boards use the same machine and the same alphabet. The computation is in the spatial constraints of a chart; a halting computation is excluded by forbidding its halting state. \Cref{fig:mechanism} shows the two parts of this selection.
 
 Theorem~A (in the form of \cref{thm:main}), \cref{cor:undecidable} and the one-rule conclusion above are proved in Lean; \cref{app:lean} states the scope and the checks.
 
@@ -98,15 +120,23 @@ The numbered additions strengthen this dichotomy: halting gives exponential all-
 
 Through the space--time correspondence and \cite[Corollary~13.7]{DMst}, Corollary~B in \cref{sec:parameters} gives one computably specified translation-invariant finite-range $\{0,1\}$-energy interaction on $\Z^7$. On computable rational inverse-temperature windows $\mathcal J_n$, halting gives exactly one Gibbs measure, with no invariance assumed, and exponential weak spatial mixing in arbitrary volumes; nonhalting gives at least two translation-invariant Gibbs measures and continuum many extremal Gibbs measures. The latter extremes need not be translation invariant. A fixed field direction has a derivative at zero exactly on the halting windows, although the zero-field pressure is analytic (\cref{thm:field}).
 
+\begin{gibbsD}
+There is one computably specified translation-invariant finite-range interaction on $\Z^5$, with a finite alphabet and individual energies in $\{0,1\}$, and computable pairwise disjoint nonempty rational open inverse-temperature intervals $\mathcal J_n^{(5)}$. For every $n\ge1$ and every $\beta\in\mathcal J_n^{(5)}$, uniqueness among all Gibbs measures is equivalent to halting of $U(n)$. Halting also gives exponential weak spatial mixing in every finite volume, uniformly over all exterior configurations and including volumes with holes or disconnected components. Nonhalting gives two Gibbs measures invariant under every translation of $\Z^5$. The mixing constants may depend on $\beta$; the interaction is fixed independently of $n$ and $\beta$.
+\end{gibbsD}
+
+Theorem~C and Corollary~D are proved in \cref{sec:lower}; neither is formalized in Lean. The six-dimensional Theorem~A, seven-dimensional Corollary~B and the stated Lean verification of the earlier results are retained.
+
 The hard-model paper asks the following questions \cite[Open problems~9.1--9.2]{DMhard}:
 \begin{quote}
 \lq\lq Is there one translation-invariant finite-range interaction on $\Z^d$ with finite rational energies, and computable rational inverse temperatures $\beta_n$, such that uniqueness of the translation-invariant Gibbs measure at $\beta_n$ is undecidable?\rq\rq
 
 \lq\lq Is there one interaction, with or without hard constraints, for which uniqueness among all Gibbs measures, as a function of $\beta$, is undecidable?\rq\rq
 \end{quote}
-Version~1.0.0's Corollary~B already answered Open problem~9.1, by taking $\beta_n$ to be the midpoint of $\mathcal J_n$. The upgraded corollary answers Open problem~9.2 in dimension seven with finite energies.
+Version~1.0.0's Corollary~B already answered Open problem~9.1, by taking $\beta_n$ to be the midpoint of $\mathcal J_n$. The upgraded corollary answers Open problem~9.2 in dimension seven with finite energies. Corollary~D answers the same question in dimension five with finite energies.
 
-\paragraph{Changes from version 1.1.0.} This version adds \cref{app:lean}, reporting the Lean proofs of Theorem~A (in the form of Theorem~9.3), Corollary~9.4 and the one-rule conclusion after Theorem~A, and updates the verification account. It also reconciles the historical count of corrections. No mathematical statement, statement number or construction constant changes.
+\paragraph{Changes from version 1.2.0.} This version adds Theorem~C on $\Z^4$ and Corollary~D on $\Z^5$, with the full construction, finite-history all-input proof and all-DLR transfer in \cref{sec:lower}. Three transverse $16\times16$ boxes at threshold $512$ of $768$ and marked-parent density replace the five-box geometry and every-step coherence for this second rule. The planar chart, computation boards and sensors are retained as finite algorithms with newly selected fixed parameters. No existing statement or statement number changes; the constants of the earlier rule and the Lean appendix are unchanged. The two lower-dimensional results are not formalized.
+
+\paragraph{Changes from version 1.1.0.} Version~1.2.0 added \cref{app:lean}, reporting the Lean proofs of Theorem~A (in the form of Theorem~9.3), Corollary~9.4 and the one-rule conclusion after Theorem~A, and updated the verification account. It also reconciled the historical count of corrections. No mathematical statement, statement number or construction constant changes.
 
 \paragraph{Changes from version 1.0.0.} Corrections: (i) in \cref{lem:pole} the time-span clause now requires unary links to preserve time, and the two-terminal clause requires a positive support edge; (ii) in \cref{sec:chart} the gate classification is restricted to finite bottom rows, and (iii) the phase decoder uses finite approximants instead of liftability; (iv) the birth-contour clock in \cref{lem:fullcoupling} is stated once; (v) the proof of \cref{prop:local} counts each helper parent once, with $\kappa$ unchanged. Corollary~B is strengthened to uniqueness among all Gibbs measures, with exponential weak spatial mixing, on halting windows and continuum many extremal Gibbs measures on nonhalting windows; its version~1.0.0 sentence on uniformly recurrent and periodic Gibbs measures is subsumed and removed. Separate numbered results add exponential coalescence, extremal continua, field response, a computable robustness radius and effective corollaries. Theorem~A, Theorem~9.3, Corollary~9.4 and the construction constants keep their statements and values.
 
@@ -154,9 +184,9 @@ Theorem A and \cref{thm:exponential} & One CA on $\Z^6$ & Halting-labelled windo
 
 \paragraph{What is ours.}\proved\ Theorem~A realizes halting-labelled windows for a cellular automaton: a shift-commuting map with one finite neighbourhood, within the class whose possible diagrams are left open in \cite[Section~5]{MS25}. Our construction combines a fixed computational chart, a finite-range interval controller, a joint estimate for sensor feedback, and a common-noise coupling. The hierarchical scaffold is from our hard-constraint paper \cite{DMhard}. Our forgetting paper supplies the checker/quorum approach \cite{DMforget}; our windows paper asks the fixed-rule question answered here \cite{DMwindows}. Our nilpotent paper gives, for each $n$, a nilpotent rule with $n$ separated memory windows and the mechanism of independent gates read from diagonal copies \cite[Section~3, Exact gate law]{DMnil}; here the intrinsic gate sources follow diagonal characteristics as well. Corollary~B uses the correspondence between translation-invariant stationary laws and translation-invariant space--time Gibbs measures due to Goldstein, Kuik, Lebowitz and Maes \cite{GKLM89}, in the form proved in our space--time paper \cite[Lemma~2.4 and Corollary~10.4]{DMst}, and obtains uniqueness among all Gibbs measures and weak spatial mixing from \cref{thm:exponential} through \cite[Corollary~13.7]{DMst}. The proof below establishes the stochastic statements needed for this construction and proves finite-board forcing in every phase. The new finite-history argument uses a finite motif certificate and coherence within one trajectory. Its direct precursor is the varying-rule all-Gibbs result of \cite[Corollary~8.8 and Remark~8.14]{DMforget}; common-map certificates and their effective search are \cite[Propositions~4.2--4.3]{DMst}. Here the same rule is selected by its noise rate. Chart conditioning gives the extremal continuum without stacking, unlike \cite[Corollary~8.17]{DMforget}. The field-response argument follows \cite[Corollary~10.7]{DMthermal}, and the zero-pressure normalization is recalled in \cite[Remark~10.13]{DMst}.
 
-\paragraph{Dimension and scale.} Two coordinates carry the chart and four carry the threshold checker. The interval endpoints are specified by terminating rational searches; \cref{sec:parameters} gives their scale.
+\paragraph{Dimension and scale.} Theorem~A uses two chart coordinates and four transverse checker coordinates. Theorem~C keeps the two chart coordinates and uses two transverse coordinates, with marked-parent density in place of every-step coherence. Both rules use terminating rational parameter searches. The scale values in \cref{sec:parameters} refer to the original six-dimensional rule; the new rule is specified independently in \cref{sec:lower}.
 
-\paragraph{Reading guide.} \Cref{sec:parameters} contains the Gibbs corollary on $\Z^7$, field response and the effective consequences. The finite-history proof is in \cref{app:finite}, and the local-kernel radius is in \cref{app:robust}. \Cref{sec:rule} gives the noisy dynamics and its complete local rule, with constants selected in \cref{sec:parameters}. \Cref{sec:chart,sec:machine} construct the chart and prove the all-phase board lemma. \Cref{sec:poles,sec:sensors} give the contour and sensor estimates. \Cref{sec:memory} proves memory; \cref{sec:forget} proves forgetting from every initial state. The imported scaffold facts are isolated in \cref{prop:scaffold}. Readers interested in the stochastic mechanism can take that proposition as the cited input and read \cref{sec:rule,sec:poles,sec:sensors,sec:memory,sec:forget}.
+\paragraph{Reading guide.} The four-dimensional construction and five-dimensional Gibbs transfer are in \cref{sec:lower}. \Cref{sec:parameters} contains the Gibbs corollary on $\Z^7$, field response and the effective consequences. The finite-history proof is in \cref{app:finite}, and the local-kernel radius is in \cref{app:robust}. \Cref{sec:rule} gives the noisy dynamics and its complete local rule, with constants selected in \cref{sec:parameters}. \Cref{sec:chart,sec:machine} construct the chart and prove the all-phase board lemma. \Cref{sec:poles,sec:sensors} give the contour and sensor estimates. \Cref{sec:memory} proves memory; \cref{sec:forget} proves forgetting from every initial state. The imported scaffold facts are isolated in \cref{prop:scaffold}. Readers interested in the stochastic mechanism can take that proposition as the cited input and read \cref{sec:rule,sec:poles,sec:sensors,sec:memory,sec:forget}.
 
 \section{Dynamics and the fixed local rule}\label{sec:rule}
 
@@ -1019,11 +1049,11 @@ Membership of a positive rational in the union of windows is decidable: their ra
 For the full set, the table is rational and strictly positive at each positive rational rate. By Halawi's uniform-ergodicity result, as reproduced in \cite[Proposition~10.7]{DMst}, and \cite[Lemma~10.8]{DMst}, ergodicity is equivalent to $\forall I\ \forall k\ \exists t\ \Delta(I,t)<1/k$, where $\Delta(I,t)=\max_{x,y}d_{\rm TV}((\delta_xP_\eps^t)_I,(\delta_yP_\eps^t)_I)$. Each finite-window diameter is a computable rational by finite-cone enumeration. This is the recalled $\Pi^0_2$ placement of \cite[Remark~10.9]{DMst}; compare \cite[Remark~8.9]{DMforget}. The extra universality assumption is confined to this corollary and is not an assumption of \cref{cor:undecidable}.
 \end{proof}
 
-\paragraph{Scale and remaining questions.} Every window lies below $10^{-5\cdot10^8}$, and the alphabet has more than $10^{10^{31539}}$ symbols. With the constants above, $k=52386$, $\log_{10}B=31539.51470\ldots$ and $n_0=888653587$. The rare-birth term in \eqref{eq:epsstar} is the minimum. It and the largest window give
+\paragraph{Scale for the six-dimensional construction.} Every window lies below $10^{-5\cdot10^8}$, and the alphabet has more than $10^{10^{31539}}$ symbols. With the constants above, $k=52386$, $\log_{10}B=31539.51470\ldots$ and $n_0=888653587$. The rare-birth term in \eqref{eq:epsstar} is the minimum. It and the largest window give
 \begin{align*}
  \log_{10}\eps_*&=-535038537.39331\ldots,\\
  \log_{10}\sup I_1&=-535038537.61745\ldots.
-\end{align*} Indeed the helper alphabet alone has $100^B$ symbols, and $\log_{10}(2B)=31539.81573\ldots>31539$. The behaviour between windows, a lower-dimensional construction, and whether there are continuum many extreme translation-invariant stationary laws or Gibbs measures on the nonhalting windows remain questions. The full positive-rational ergodicity set has the recalled $\Pi^0_2$ upper bound of \cite[Remark~10.9]{DMst}; its exact complexity remains open. Robustness under arbitrary unnormalized energy perturbations remains open as well.
+\end{align*} Indeed the helper alphabet alone has $100^B$ symbols, and $\log_{10}(2B)=31539.81573\ldots>31539$. 
 
 \begin{remark}[Chernoff alternative for the scales]\label{rem:chernoff}
 \proved\ The original choices $w_B=2^{-\lfloor BC^2/50\rfloor}$, $k=52386$ and $n_0=888653587$ are retained in this construction because a Lean formalization of Theorem~A (Theorem~9.3) and Corollary~9.4 uses them (\cref{app:lean}). A smaller alternative follows from a standard multiplicative Chernoff bound \cite{Chernoff52}. For $X\sim\operatorname{Bin}(B,p_W)$, put $\vartheta=.8C$. We have $s\le .8CB$ since $B\ge20/C$, and $p_W>.9C$, so
@@ -1046,13 +1076,24 @@ The rare-birth term remains the minimum. Also
 $\log_{10}(2B)=15774.27280278\ldots$. The integer searches and these logarithms were independently recomputed with a second arithmetic method in the verification record. These alternative values are not substituted into the fixed rule of this paper.
 \end{remark}
 
+\input{lower-dimension.tex}
+
+\section*{Open problems}
+\addcontentsline{toc}{section}{Open problems}
+The fixed-rule noise diagram on $\Z^3$ remains open. In particular, the varying-rule three-dimensional family of \cite[Theorem~12.11]{DMforgetLower} does not by itself supply a single rule with halting-labelled rate windows. The present planar higher-block chart is not given by a north/east deterministic generator; a deterministic chart construction retaining the rate sensors and full-state erasure would require an additional argument. The analogous fixed-rule questions on $\Z^2$ and $\Z$ remain open as well. A fixed finite-range $\{0,1\}$-energy interaction with this all-Gibbs uniqueness diagram on $\Z^4$ or below is also open.
+
+For the two constructions, behaviour between the specified windows remains undetermined. Whether the nonhalting windows have continuum many extreme translation-invariant stationary laws or Gibbs measures remains a separate question from the extremal conclusion without invariance in \cref{thm:continuum}. The full positive-rational ergodicity set has the recalled $\Pi^0_2$ upper bound of \cite[Remark~10.9]{DMst}; its exact complexity remains open. Robustness under arbitrary unnormalized energy perturbations also remains open. No such robustness conclusion, extremal continuum or field-response theorem is asserted here for the lower-dimensional rule beyond what was proved in \cref{sec:lower}.
+
 \section*{How this work was done}
 \addcontentsline{toc}{section}{How this work was done}
 
-\paragraph{AI note.} GPT-6.1 Sol derived the construction and proofs in a long working session in which agents of the same model family audited parts of the argument; Claude Opus 5.5 checked the result refutation-first in three reviews from the other developer. GPT-6.1 Sol also searched the literature and wrote this manuscript. Claude Opus 5.5 then checked the written text refutation-first against the derivation and the three reviews. GPT-6.1 Sol then added Corollary~B, which Claude Opus 5.5 checked in a further refutation-first pass. For version~1.1.0, GPT-6 Astra and GPT-6.1 Sol, directed by Nidhal Mghirbi, found the corrections and new results; Claude Opus 5.5 verified that package refutation-first and independently recomputed both scale choices. GPT-6.1 Sol integrated the verified package into version~1.1.0, and Claude Opus 5.5 read the integrated text back refutation-first. The Lean development was written by Claude Opus 5.5 agents. The text of version~1.2.0 was written by GPT-6.1 Sol. The authors chose the question, directed the work and take responsibility. Models are not listed as authors.
+\paragraph{AI note.} GPT-6.1 Sol derived the construction and proofs in a long working session in which agents of the same model family audited parts of the argument; Claude Opus 5.5 checked the result refutation-first in three reviews from the other developer. GPT-6.1 Sol also searched the literature and wrote this manuscript. Claude Opus 5.5 then checked the written text refutation-first against the derivation and the three reviews. GPT-6.1 Sol then added Corollary~B, which Claude Opus 5.5 checked in a further refutation-first pass. For version~1.1.0, GPT-6 Astra and GPT-6.1 Sol, directed by Nidhal Mghirbi, found the corrections and new results; Claude Opus 5.5 verified that package refutation-first and independently recomputed both scale choices. GPT-6.1 Sol integrated the verified package into version~1.1.0, and Claude Opus 5.5 read the integrated text back refutation-first. The Lean development was written by Claude Opus 5.5 agents. The text of version~1.2.0 was written by GPT-6.1 Sol. For version~1.3.0, the lower-dimensional results were found in a GPT-6.1 Sol research run and proved again in an independent blind GPT-6.1 Sol replication. Claude Opus 5.5 then checked both lower-dimensional results refutation-first across model families; its citation, scope, finite-history exposition and scale repairs are incorporated here. The authors chose the question, directed the work and take responsibility. Models are not listed as authors.
+That check re-derived each load-bearing step from the source papers before reading either run's argument.
 
 \section*{Verification status}
 \addcontentsline{toc}{section}{Verification status}
+
+Theorem~C on $\Z^4$ and Corollary~D on $\Z^5$ have written proofs in \cref{sec:lower} and are not formalized in Lean. The lower-dimensional proof uses the published physical contour and all-path density lemmas of \cite[Lemmas~12.3--12.4]{DMforgetLower}; it proves the characteristic contour, finite-history coherence, all-input full-symbol estimate and all-DLR transfer needed here. The original Lean appendix is byte-for-byte unchanged, and no new Lean run is claimed. The supplied cross-family check confirms both lower-dimensional results; its repairs have been applied. The new least scale parameters and binding threshold were separately certified by two independent exact-arithmetic implementations.
 
 Theorem~A (in the form of \cref{thm:main}), \cref{cor:undecidable} and the one-rule corollary after Theorem~A are now proved end to end in Lean; \cref{app:lean} gives the formal statements, scope, proof-route differences and release checks.
 
@@ -1301,6 +1342,7 @@ Spatial averaging followed by temporal Cesaro limits gives two translation-invar
 \bibitem{Toom00b} A. Toom, \emph{Algorithmical unsolvability of the ergodicity problem for locally interacting processes with continuous time}, Journal of Statistical Physics \textbf{98} (2000), 495--501. \href{https://doi.org/10.1023/A:1018699527637}{doi:10.1023/A:1018699527637}.
 \bibitem{Toometal90} A. L. Toom, N. B. Vasilyev, O. N. Stavskaya, L. G. Mityushin, G. L. Kurdyumov and S. A. Pirogov, \emph{Discrete local Markov systems}, in R. L. Dobrushin, V. I. Kryukov and A. L. Toom (eds.), \emph{Stochastic Cellular Systems: Ergodicity, Memory, Morphogenesis}, Manchester University Press, 1990.
 \bibitem{vdBS99} J. van den Berg and J. E. Steif, \emph{On the existence and nonexistence of finitary codings for a class of random fields}, Annals of Probability \textbf{27} (1999), 1501--1522.
+\bibitem{DMforgetLower} S. Douglas and N. Mghirbi, \emph{Forgetting under noise is undecidable}, version 2.0.0, 2026, Section~12. \href{https://doi.org/10.5281/zenodo.24176024}{doi:10.5281/zenodo.24176024}.
 \end{thebibliography}
 \end{document}
 
