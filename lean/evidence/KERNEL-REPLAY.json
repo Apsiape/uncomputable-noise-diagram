@@ -1,0 +1,151 @@
+{
+  "export_sha256": "772397a9863f43cc888928df1752790d8916015d9d69e8fdfe8239b56d11e73b",
+  "export_bytes": 428064401,
+  "export_receipt": "results/export-receipt.json",
+  "export_command": [
+    "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/toolchain/bin/leanexport",
+    "Solution",
+    "--",
+    "Quot",
+    "Quot.mk",
+    "Quot.lift",
+    "Quot.ind",
+    "UND.theorem_A",
+    "UND.corollary_9_4",
+    "UND.one_rule_undecidable",
+    "propext",
+    "Quot.sound",
+    "Classical.choice",
+    "Nat.add",
+    "Nat.sub",
+    "Nat.mul",
+    "Nat.pow",
+    "Nat.gcd",
+    "Nat.div",
+    "Nat.mod",
+    "Nat.beq",
+    "Nat.ble",
+    "Nat.land",
+    "Nat.lor",
+    "Nat.xor",
+    "Nat.shiftLeft",
+    "Nat.shiftRight",
+    "String.ofList",
+    "Char.ofNat",
+    "List",
+    "eagerReduce",
+    "Nat",
+    "String",
+    "String.mk",
+    "Char",
+    "optParam",
+    "autoParam",
+    "semiOutParam",
+    "outParam"
+  ],
+  "export_lean_path": "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/project/.lake/build/lib/lean:/opt/uncomputable-noise-diagram-arxiv-2026-11-12/project/vendor/plausible/.lake/build/lib/lean:/opt/uncomputable-noise-diagram-arxiv-2026-11-12/project/vendor/LeanSearchClient/.lake/build/lib/lean:/opt/uncomputable-noise-diagram-arxiv-2026-11-12/project/vendor/importGraph/.lake/build/lib/lean:/opt/uncomputable-noise-diagram-arxiv-2026-11-12/project/vendor/proofwidgets/.lake/build/lib/lean:/opt/uncomputable-noise-diagram-arxiv-2026-11-12/project/vendor/aesop/.lake/build/lib/lean:/opt/uncomputable-noise-diagram-arxiv-2026-11-12/project/vendor/Qq/.lake/build/lib/lean:/opt/uncomputable-noise-diagram-arxiv-2026-11-12/project/vendor/batteries/.lake/build/lib/lean:/opt/uncomputable-noise-diagram-arxiv-2026-11-12/project/vendor/Cli/.lake/build/lib/lean:/opt/uncomputable-noise-diagram-arxiv-2026-11-12/project/vendor/mathlib/.lake/build/lib/lean",
+  "export_seconds": 16.882,
+  "export_peak_tree_rss_bytes": 3845197824,
+  "roots": [
+    "UND.theorem_A",
+    "UND.corollary_9_4",
+    "UND.one_rule_undecidable"
+  ],
+  "kernel_replays": {
+    "leanchecker": {
+      "exit": 0,
+      "seconds": 56.812,
+      "peak_tree_rss_bytes": 796975104,
+      "peak_tree_vms_bytes": 3534954496,
+      "stop_rss_bytes": 9000000000,
+      "memory_stop": false,
+      "command": [
+        "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/toolchain/bin/leanchecker",
+        "--from-export",
+        "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/results/Solution.ndjson"
+      ],
+      "binary_path": "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/toolchain/bin/leanchecker",
+      "binary_sha256": "12c38901cdbfab178f1bf6145dd30012e9a3b2c11ca695292a5884fa3cbaddb6",
+      "export_sha256": "772397a9863f43cc888928df1752790d8916015d9d69e8fdfe8239b56d11e73b",
+      "export_bytes": 428064401,
+      "host_free_before_bytes": 13107310592,
+      "linux_available_before_bytes": 15894585344,
+      "threads": 1,
+      "log_sha256": "b4a5a2119e1d34b46527d63317f417c74261b65eeb93f14026389da2519c2ead",
+      "log_tail": "Lean default kernel accepts the solution\n"
+    },
+    "nanoda": {
+      "exit": 0,
+      "seconds": 32.949,
+      "peak_tree_rss_bytes": 686465024,
+      "peak_tree_vms_bytes": 1012207616,
+      "stop_rss_bytes": 9000000000,
+      "memory_stop": false,
+      "command": [
+        "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/toolchain/bin/nanoda_bin",
+        "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/kernels/nanoda.json"
+      ],
+      "binary_path": "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/toolchain/bin/nanoda_bin",
+      "binary_sha256": "cbf13950fc4a48f635a0beceeb5ed32dd82568b870cfd081b6391c1f2cf02ba5",
+      "export_sha256": "772397a9863f43cc888928df1752790d8916015d9d69e8fdfe8239b56d11e73b",
+      "export_bytes": 428064401,
+      "host_free_before_bytes": 13166473216,
+      "linux_available_before_bytes": 15897968640,
+      "threads": 1,
+      "stack_rlimit_bytes": 134217728,
+      "config": {
+        "use_stdin": false,
+        "export_file_path": "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/results/Solution.ndjson",
+        "num_threads": 1,
+        "nat_extension": true,
+        "string_extension": true,
+        "permitted_axioms": [
+          "propext",
+          "Classical.choice",
+          "Quot.sound"
+        ],
+        "unpermitted_axiom_hard_error": true
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_tail": ""
+    },
+    "nanoda-negative-control": {
+      "exit": 1,
+      "seconds": 0.102,
+      "peak_tree_rss_bytes": 1523712,
+      "peak_tree_vms_bytes": 5111808,
+      "stop_rss_bytes": 9000000000,
+      "memory_stop": false,
+      "command": [
+        "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/toolchain/bin/nanoda_bin",
+        "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/kernels/nanoda-negative-control.json"
+      ],
+      "binary_path": "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/toolchain/bin/nanoda_bin",
+      "binary_sha256": "cbf13950fc4a48f635a0beceeb5ed32dd82568b870cfd081b6391c1f2cf02ba5",
+      "export_sha256": "772397a9863f43cc888928df1752790d8916015d9d69e8fdfe8239b56d11e73b",
+      "export_bytes": 428064401,
+      "host_free_before_bytes": 13197512704,
+      "linux_available_before_bytes": 15899131904,
+      "threads": 1,
+      "stack_rlimit_bytes": 134217728,
+      "config": {
+        "use_stdin": false,
+        "export_file_path": "/opt/uncomputable-noise-diagram-arxiv-2026-11-12/results/Solution.ndjson",
+        "num_threads": 1,
+        "nat_extension": true,
+        "string_extension": true,
+        "permitted_axioms": [
+          "propext",
+          "Quot.sound"
+        ],
+        "unpermitted_axiom_hard_error": true
+      },
+      "purpose": "negative control: same export, Classical.choice removed from permitted_axioms; nanoda must reject",
+      "expected": "nonzero exit",
+      "log_sha256": "515bbe599561c36418e74bc41ae404d788e760890692db2906c0427822fcfa9a",
+      "log_tail": "Error: export file declares unpermitted axiom \"Classical.choice\"\n\nrun with `-h` or `--help` for help\n"
+    }
+  },
+  "note": "Both replays use the Linux binaries of the pinned toolchain (cp -a of the forgetting relay's toolchain, as in the hard-model relay). Each runs serially under the process-tree RSS watchdog (stop at 9.0 GB); neither tool has a memory-cap option. nanoda runs with num_threads 1 and a 128 MiB main-thread stack (RLIMIT_STACK), with the precedent relays' axiom policy. The negative control reruns nanoda on the same export with Classical.choice not permitted and must be rejected.",
+  "status": "PASS"
+}

@@ -1,0 +1,264 @@
+{
+  "FixedNoiseErgodicity": {
+    "vendored_from": "/opt/forgetting-arxiv-2026-11-10/project",
+    "copy": "rsync -a (cp -a semantics) excluding vendor/, .lake/ and the relay heartbeat files",
+    "files": 90,
+    "files_differing_from_source_workspace": [],
+    "source_files_absent": [],
+    "release": {
+      "release_repo": "C:/Infanox/fixed-noise-ergodicity-release",
+      "tag": "v1.4.0",
+      "tag_commit": "",
+      "head": "bdfca9b804e9dbd95dc2e1940d8b9974fe77bed2",
+      "lean_dir_clean": true
+    },
+    "release_lean_files_compared": 72,
+    "release_lean_comparison": {
+      "identical": 66,
+      "different": [
+        "FixedNoiseErgodicity/Hypotheses.lean",
+        "FixedNoiseErgodicity/Main.lean",
+        "FixedNoiseErgodicity/Section2/Ergodic.lean",
+        "FixedNoiseErgodicity/Three/Corner.lean",
+        "FixedNoiseErgodicity/Three/CornerCheck.lean"
+      ],
+      "absent_in_vendor": [
+        "cache-tool/Requests.lean"
+      ]
+    },
+    "compiled_modules_from_vendored_sources": [
+      "FixedNoiseErgodicity.Basic",
+      "FixedNoiseErgodicity.Combinatorics.EdgeCount",
+      "FixedNoiseErgodicity.Section2.Process",
+      "FixedNoiseErgodicity.Statements"
+    ],
+    "compiled_module_sources_identical_to_release": true,
+    "compiled_oleans_byte_identical_to_precedent_oleans": [
+      [
+        "FixedNoiseErgodicity.Basic",
+        true
+      ],
+      [
+        "FixedNoiseErgodicity.Combinatorics.EdgeCount",
+        true
+      ],
+      [
+        "FixedNoiseErgodicity.Section2.Process",
+        true
+      ],
+      [
+        "FixedNoiseErgodicity.Statements",
+        true
+      ]
+    ],
+    "release_difference_note": "The vendored tree is the forgetting relay workspace. Five of its files differ from the v1.4.0 release lean/ folder only in comments (the release removed internal reviewer references): Hypotheses.lean, Main.lean, Section2/Ergodic.lean, Three/Corner.lean, Three/CornerCheck.lean; none of them is compiled here. The full diff is evidence/VENDOR-FNE-vs-release-v1.4.0.diff. cache-tool/Requests.lean exists only in the release (outside the proof import closure). The release v1.4.0 has no git tag in the local release repository; its head commit is recorded."
+  },
+  "UndecidablePhaseDiagram": {
+    "vendored_from": "/opt/undecidable-phase-diagram-arxiv-2026-11-11/project",
+    "copy": "rsync -a (cp -a semantics) excluding vendor/, .lake/ and the relay heartbeat files",
+    "files": 98,
+    "files_differing_from_source_workspace": [],
+    "source_files_absent": [],
+    "release": {
+      "release_repo": "C:/Infanox/undecidable-phase-diagram-release",
+      "tag": "v1.2.0",
+      "tag_commit": "007fbc270ce5769847d70e25733f608e3a82822a",
+      "head": "d57af60115fd028058340296458e4de001f491b4",
+      "lean_dir_clean": true
+    },
+    "release_lean_files_compared": 80,
+    "release_lean_comparison": {
+      "identical": 79,
+      "different": [],
+      "absent_in_vendor": [
+        "relay/attempts/comparator-1-matcher-mismatch/Challenge.lean"
+      ]
+    },
+    "compiled_modules_from_vendored_sources": [
+      "UndecidablePhaseDiagram.Background.BgMap",
+      "UndecidablePhaseDiagram.Background.Computation",
+      "UndecidablePhaseDiagram.Background.Construct",
+      "UndecidablePhaseDiagram.Background.Freeze",
+      "UndecidablePhaseDiagram.Background.Grids",
+      "UndecidablePhaseDiagram.Background.Line",
+      "UndecidablePhaseDiagram.Background.Machine",
+      "UndecidablePhaseDiagram.Background.Markers",
+      "UndecidablePhaseDiagram.Background.Routing",
+      "UndecidablePhaseDiagram.Background.Run",
+      "UndecidablePhaseDiagram.Background.Split",
+      "UndecidablePhaseDiagram.Background.Unique",
+      "UndecidablePhaseDiagram.Compiler.Encode",
+      "UndecidablePhaseDiagram.Compiler.Fold",
+      "UndecidablePhaseDiagram.Compiler.OneSided",
+      "UndecidablePhaseDiagram.Compiler.Universal",
+      "UndecidablePhaseDiagram.Gibbs.Hard",
+      "UndecidablePhaseDiagram.Gibbs.Site",
+      "UndecidablePhaseDiagram.Gibbs.Weights",
+      "UndecidablePhaseDiagram.Hypotheses",
+      "UndecidablePhaseDiagram.Interaction.Basic",
+      "UndecidablePhaseDiagram.Scaffold.Desub",
+      "UndecidablePhaseDiagram.Scaffold.Frames",
+      "UndecidablePhaseDiagram.Scaffold.Haar",
+      "UndecidablePhaseDiagram.Scaffold.Legal",
+      "UndecidablePhaseDiagram.Scaffold.Phase",
+      "UndecidablePhaseDiagram.Scaffold.QuarterPhase",
+      "UndecidablePhaseDiagram.Scaffold.Quarters",
+      "UndecidablePhaseDiagram.Scaffold.Red",
+      "UndecidablePhaseDiagram.Scaffold.Substitution",
+      "UndecidablePhaseDiagram.Scaffold.TILaw",
+      "UndecidablePhaseDiagram.Scaffold.Tables",
+      "UndecidablePhaseDiagram.Scaffold.Tower",
+      "UndecidablePhaseDiagram.Scaffold.Typical",
+      "UndecidablePhaseDiagram.Scaffold.Walls",
+      "UndecidablePhaseDiagram.Statements"
+    ],
+    "compiled_module_sources_identical_to_release": true,
+    "compiled_oleans_byte_identical_to_precedent_oleans": [
+      [
+        "UndecidablePhaseDiagram.Background.BgMap",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Computation",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Construct",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Freeze",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Grids",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Line",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Machine",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Markers",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Routing",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Run",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Split",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Background.Unique",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Compiler.Encode",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Compiler.Fold",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Compiler.OneSided",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Compiler.Universal",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Gibbs.Hard",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Gibbs.Site",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Gibbs.Weights",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Hypotheses",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Interaction.Basic",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Desub",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Frames",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Haar",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Legal",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Phase",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.QuarterPhase",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Quarters",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Red",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Substitution",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.TILaw",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Tables",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Tower",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Typical",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Scaffold.Walls",
+        true
+      ],
+      [
+        "UndecidablePhaseDiagram.Statements",
+        true
+      ]
+    ],
+    "release_difference_note": "Every Lean file of the v1.2.0 release lean/ folder is byte-identical in the vendored tree except relay/attempts/comparator-1-matcher-mismatch/Challenge.lean, a relay record that exists only in the release."
+  }
+}

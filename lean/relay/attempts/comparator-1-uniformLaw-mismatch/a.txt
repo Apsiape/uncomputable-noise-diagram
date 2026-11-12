@@ -1,0 +1,27 @@
+NAME UND.CA.uniformLaw levels=[] hints=regular 37
+TYPE {d : Nat} →
+  (A : UND.CA d) → @MeasureTheory.Measure.{0} (@UND.CA.Sym d A) (Fin.instMeasurableSpace (@UND.CA.numSymbols d A))
+VALUE fun {d : Nat} (A : UND.CA d) =>
+  @HSMul.hSMul.{0, 0, 0} ENNReal
+    (@MeasureTheory.Measure.{0} (@UND.CA.Sym d A) (Fin.instMeasurableSpace (@UND.CA.numSymbols d A)))
+    (@MeasureTheory.Measure.{0} (@UND.CA.Sym d A) (Fin.instMeasurableSpace (@UND.CA.numSymbols d A)))
+    (@instHSMul.{0, 0} ENNReal
+      (@MeasureTheory.Measure.{0} (@UND.CA.Sym d A) (Fin.instMeasurableSpace (@UND.CA.numSymbols d A)))
+      (@MeasureTheory.Measure.instSMul.{0, 0} (@UND.CA.Sym d A) ENNReal
+        (Fin.instMeasurableSpace (@UND.CA.numSymbols d A))
+        (@instSMulOfMul.{0} ENNReal
+          (@Distrib.toMul.{0} ENNReal
+            (@instDistribOfSemiring.{0} ENNReal (@CommSemiring.toSemiring.{0} ENNReal ENNReal.instCommSemiring))))
+        UND.CA.uniformLaw._proof_1))
+    (@Inv.inv.{0} ENNReal ENNReal.instInv
+      (@Nat.cast.{0} ENNReal
+        (@AddMonoidWithOne.toNatCast.{0} ENNReal
+          (@AddCommMonoidWithOne.toAddMonoidWithOne.{0} ENNReal ENNReal.instAddCommMonoidWithOne))
+        (@UND.CA.numSymbols d A)))
+    (@MeasureTheory.Measure.count.{0} (@UND.CA.Sym d A) (Fin.instMeasurableSpace (@UND.CA.numSymbols d A)))
+NAME UND.CA.Sym levels=[] hints=abbrev
+TYPE {d : Nat} → (A : UND.CA d) → Type
+VALUE fun {d : Nat} (A : UND.CA d) => Fin (@UND.CA.numSymbols d A)
+NAME UND.CA.numSymbols levels=[] hints=abbrev
+TYPE {d : Nat} → (self : UND.CA d) → Nat
+VALUE fun (d : Nat) (self : UND.CA d) => self.1

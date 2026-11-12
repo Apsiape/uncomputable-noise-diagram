@@ -1,0 +1,239 @@
+BUILD FixedNoiseErgodicity.Statements core free_GiB 14.88
+RESULT FixedNoiseErgodicity.Statements 0 18.899 s; warnings 0 ; peak 3.129 GiB
+BUILD UndecidablePhaseDiagram.Statements core free_GiB 13.65
+RESULT UndecidablePhaseDiagram.Statements 0 4.225 s; warnings 0 ; peak 3.129 GiB
+BUILD UncomputableNoiseDiagram.Statements pkg free_GiB 13.43
+RESULT UncomputableNoiseDiagram.Statements 0 1.717 s; warnings 0 ; peak 3.167 GiB
+BUILD UndecidablePhaseDiagram.Compiler.OneSided core free_GiB 13.36
+RESULT UndecidablePhaseDiagram.Compiler.OneSided 0 1.416 s; warnings 2 ; peak 3.167 GiB
+BUILD UndecidablePhaseDiagram.Compiler.Encode core free_GiB 13.28
+RESULT UndecidablePhaseDiagram.Compiler.Encode 0 1.617 s; warnings 0 ; peak 3.167 GiB
+BUILD UndecidablePhaseDiagram.Compiler.Fold core free_GiB 13.28
+RESULT UndecidablePhaseDiagram.Compiler.Fold 0 2.369 s; warnings 5 ; peak 3.167 GiB
+BUILD UndecidablePhaseDiagram.Compiler.Universal core free_GiB 13.16
+RESULT UndecidablePhaseDiagram.Compiler.Universal 0 1.918 s; warnings 4 ; peak 3.167 GiB
+BUILD UncomputableNoiseDiagram.Corollary pkg free_GiB 13.35
+RESULT UncomputableNoiseDiagram.Corollary 0 1.868 s; warnings 0 ; peak 3.173 GiB
+BUILD UncomputableNoiseDiagram.Parameters.Geometry pkg free_GiB 13.25
+RESULT UncomputableNoiseDiagram.Parameters.Geometry 0 2.218 s; warnings 0 ; peak 3.173 GiB
+BUILD UncomputableNoiseDiagram.Rule.Checker pkg free_GiB 13.21
+RESULT UncomputableNoiseDiagram.Rule.Checker 0 2.169 s; warnings 0 ; peak 3.182 GiB
+BUILD UncomputableNoiseDiagram.Rule.Proposal pkg free_GiB 13.17
+RESULT UncomputableNoiseDiagram.Rule.Proposal 0 7.331 s; warnings 0 ; peak 3.193 GiB
+BUILD UncomputableNoiseDiagram.Rule.CA pkg free_GiB 13.53
+RESULT UncomputableNoiseDiagram.Rule.CA 0 1.718 s; warnings 0 ; peak 3.193 GiB
+BUILD FixedNoiseErgodicity.Basic core free_GiB 13.53
+RESULT FixedNoiseErgodicity.Basic 0 1.668 s; warnings 3 ; peak 3.193 GiB
+BUILD FixedNoiseErgodicity.Section2.Process core free_GiB 13.51
+RESULT FixedNoiseErgodicity.Section2.Process 0 12.136 s; warnings 11 ; peak 3.193 GiB
+BUILD UncomputableNoiseDiagram.PCA.Process pkg free_GiB 13.41
+RESULT UncomputableNoiseDiagram.PCA.Process 0 2.017 s; warnings 0 ; peak 3.193 GiB
+BUILD UncomputableNoiseDiagram.Rule.Noise pkg free_GiB 13.87
+RESULT UncomputableNoiseDiagram.Rule.Noise 0 1.717 s; warnings 0 ; peak 3.193 GiB
+BUILD UncomputableNoiseDiagram.PCA.Markov pkg free_GiB 13.87
+RESULT UncomputableNoiseDiagram.PCA.Markov 0 2.318 s; warnings 0 ; peak 3.193 GiB
+BUILD UncomputableNoiseDiagram.PCA.Cylinder pkg free_GiB 13.88
+RESULT UncomputableNoiseDiagram.PCA.Cylinder 0 2.018 s; warnings 0 ; peak 3.193 GiB
+BUILD UncomputableNoiseDiagram.PCA.Feller pkg free_GiB 13.76
+RESULT UncomputableNoiseDiagram.PCA.Feller 0 3.119 s; warnings 0 ; peak 3.21 GiB
+BUILD UncomputableNoiseDiagram.PCA.Translation pkg free_GiB 13.5
+RESULT UncomputableNoiseDiagram.PCA.Translation 0 1.767 s; warnings 0 ; peak 3.21 GiB
+BUILD UncomputableNoiseDiagram.PCA.ForgetErgodic pkg free_GiB 13.47
+RESULT UncomputableNoiseDiagram.PCA.ForgetErgodic 0 2.168 s; warnings 0 ; peak 3.21 GiB
+BUILD UncomputableNoiseDiagram.PCA.Pullback pkg free_GiB 13.39
+RESULT UncomputableNoiseDiagram.PCA.Pullback 0 1.918 s; warnings 0 ; peak 3.21 GiB
+BUILD UncomputableNoiseDiagram.Contour.Coherence pkg free_GiB 13.31
+RESULT UncomputableNoiseDiagram.Contour.Coherence 0 3.871 s; warnings 0 ; peak 3.248 GiB
+BUILD FixedNoiseErgodicity.Combinatorics.EdgeCount core free_GiB 13.09
+RESULT FixedNoiseErgodicity.Combinatorics.EdgeCount 0 2.118 s; warnings 3 ; peak 3.248 GiB
+BUILD UncomputableNoiseDiagram.Contour.Grouped pkg free_GiB 13.08
+RESULT UncomputableNoiseDiagram.Contour.Grouped 0 3.521 s; warnings 0 ; peak 3.248 GiB
+BUILD UncomputableNoiseDiagram.Parameters.Search pkg free_GiB 13.03
+RESULT UncomputableNoiseDiagram.Parameters.Search 0 2.569 s; warnings 3 ; peak 3.248 GiB
+BUILD UncomputableNoiseDiagram.Windows pkg free_GiB 13.58
+RESULT UncomputableNoiseDiagram.Windows 0 2.268 s; warnings 0 ; peak 3.248 GiB
+BUILD UncomputableNoiseDiagram.Parameters.Threshold pkg free_GiB 13.9
+RESULT UncomputableNoiseDiagram.Parameters.Threshold 0 3.873 s; warnings 0 ; peak 3.248 GiB
+BUILD UncomputableNoiseDiagram.Contour.Counting pkg free_GiB 13.89
+RESULT UncomputableNoiseDiagram.Contour.Counting 0 2.519 s; warnings 0 ; peak 3.248 GiB
+BUILD UncomputableNoiseDiagram.Parameters.Bases pkg free_GiB 13.84
+RESULT UncomputableNoiseDiagram.Parameters.Bases 0 2.669 s; warnings 0 ; peak 3.248 GiB
+BUILD UncomputableNoiseDiagram.Contour.RawPaths pkg free_GiB 13.63
+RESULT UncomputableNoiseDiagram.Contour.RawPaths 0 3.922 s; warnings 0 ; peak 3.261 GiB
+BUILD UncomputableNoiseDiagram.Memory.Count pkg free_GiB 13.59
+RESULT UncomputableNoiseDiagram.Memory.Count 0 2.469 s; warnings 0 ; peak 3.261 GiB
+BUILD UncomputableNoiseDiagram.Sensors.Tails pkg free_GiB 13.58
+RESULT UncomputableNoiseDiagram.Sensors.Tails 0 7.679 s; warnings 0 ; peak 3.321 GiB
+BUILD UncomputableNoiseDiagram.Sensors.Ideal pkg free_GiB 13.43
+RESULT UncomputableNoiseDiagram.Sensors.Ideal 0 2.419 s; warnings 0 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Tables core free_GiB 13.44
+RESULT UndecidablePhaseDiagram.Scaffold.Tables 0 2.219 s; warnings 0 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Legal core free_GiB 13.42
+RESULT UndecidablePhaseDiagram.Scaffold.Legal 0 1.417 s; warnings 3 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Substitution core free_GiB 13.69
+RESULT UndecidablePhaseDiagram.Scaffold.Substitution 0 5.425 s; warnings 9 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Tower core free_GiB 13.52
+RESULT UndecidablePhaseDiagram.Scaffold.Tower 0 2.368 s; warnings 7 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Desub core free_GiB 13.23
+RESULT UndecidablePhaseDiagram.Scaffold.Desub 0 4.322 s; warnings 6 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Phase core free_GiB 13.05
+RESULT UndecidablePhaseDiagram.Scaffold.Phase 0 2.469 s; warnings 0 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Red core free_GiB 12.98
+RESULT UndecidablePhaseDiagram.Scaffold.Red 0 3.371 s; warnings 25 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Quarters core free_GiB 12.84
+RESULT UndecidablePhaseDiagram.Scaffold.Quarters 0 6.828 s; warnings 8 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.QuarterPhase core free_GiB 13.28
+RESULT UndecidablePhaseDiagram.Scaffold.QuarterPhase 0 3.17 s; warnings 0 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Frames core free_GiB 13.22
+RESULT UndecidablePhaseDiagram.Scaffold.Frames 0 4.473 s; warnings 7 ; peak 3.321 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Walls core free_GiB 13.76
+RESULT UndecidablePhaseDiagram.Scaffold.Walls 0 1.668 s; warnings 0 ; peak 3.321 GiB
+BUILD UncomputableNoiseDiagram.Chart.Walls pkg free_GiB 13.73
+RESULT UncomputableNoiseDiagram.Chart.Walls 0 1.617 s; warnings 0 ; peak 3.321 GiB
+BUILD UncomputableNoiseDiagram.Chart.LanePhase pkg free_GiB 13.73
+RESULT UncomputableNoiseDiagram.Chart.LanePhase 0 1.768 s; warnings 0 ; peak 3.321 GiB
+BUILD UncomputableNoiseDiagram.Chart.Origins pkg free_GiB 13.64
+RESULT UncomputableNoiseDiagram.Chart.Origins 0 1.918 s; warnings 0 ; peak 3.321 GiB
+BUILD UncomputableNoiseDiagram.Sensors.Ownership pkg free_GiB 13.55
+RESULT UncomputableNoiseDiagram.Sensors.Ownership 0 2.719 s; warnings 0 ; peak 3.321 GiB
+BUILD UncomputableNoiseDiagram.Sensors.Gate pkg free_GiB 13.44
+RESULT UncomputableNoiseDiagram.Sensors.Gate 0 2.369 s; warnings 0 ; peak 3.321 GiB
+BUILD UncomputableNoiseDiagram.Memory.Ride pkg free_GiB 13.44
+RESULT UncomputableNoiseDiagram.Memory.Ride 0 2.419 s; warnings 0 ; peak 3.321 GiB
+BUILD UncomputableNoiseDiagram.Contour.Deep pkg free_GiB 13.44
+RESULT UncomputableNoiseDiagram.Contour.Deep 0 3.522 s; warnings 0 ; peak 3.321 GiB
+BUILD UncomputableNoiseDiagram.Sensors.Joint pkg free_GiB 13.4
+RESULT UncomputableNoiseDiagram.Sensors.Joint 0 8.133 s; warnings 0 ; peak 3.358 GiB
+BUILD UncomputableNoiseDiagram.Memory.Derivation pkg free_GiB 13.32
+RESULT UncomputableNoiseDiagram.Memory.Derivation 0 4.873 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Sensors.Selected pkg free_GiB 13.65
+RESULT UncomputableNoiseDiagram.Sensors.Selected 0 3.021 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Memory.Error pkg free_GiB 13.63
+RESULT UncomputableNoiseDiagram.Memory.Error 0 2.018 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Memory.Init pkg free_GiB 13.61
+RESULT UncomputableNoiseDiagram.Memory.Init 0 2.669 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Memory.InitLaw pkg free_GiB 13.54
+RESULT UncomputableNoiseDiagram.Memory.InitLaw 0 3.021 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.BlackType pkg free_GiB 13.5
+RESULT UncomputableNoiseDiagram.Chart.BlackType 0 1.517 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.Decorated pkg free_GiB 13.5
+RESULT UncomputableNoiseDiagram.Chart.Decorated 0 2.819 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.PhaseTable pkg free_GiB 13.43
+RESULT UncomputableNoiseDiagram.Chart.PhaseTable 0 1.868 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.Routing pkg free_GiB 13.41
+RESULT UncomputableNoiseDiagram.Chart.Routing 0 1.918 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.RChart pkg free_GiB 13.33
+RESULT UncomputableNoiseDiagram.Chart.RChart 0 2.118 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.Board pkg free_GiB 13.24
+RESULT UncomputableNoiseDiagram.Chart.Board 0 1.918 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.BoardGaps pkg free_GiB 13.16
+RESULT UncomputableNoiseDiagram.Chart.BoardGaps 0 2.319 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.BoardFlags pkg free_GiB 13.05
+RESULT UncomputableNoiseDiagram.Chart.BoardFlags 0 2.118 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.BoardTableau pkg free_GiB 13.75
+RESULT UncomputableNoiseDiagram.Chart.BoardTableau 0 1.868 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.Input pkg free_GiB 13.74
+RESULT UncomputableNoiseDiagram.Chart.Input 0 3.922 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Machine.P pkg free_GiB 13.64
+RESULT UncomputableNoiseDiagram.Machine.P 0 2.018 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.PCA.Attraction pkg free_GiB 13.6
+RESULT UncomputableNoiseDiagram.PCA.Attraction 0 1.768 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Assembly pkg free_GiB 13.58
+RESULT UncomputableNoiseDiagram.Assembly 0 1.567 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.TheCA pkg free_GiB 13.51
+RESULT UncomputableNoiseDiagram.Chart.TheCA 0 1.517 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Machine.Run pkg free_GiB 13.51
+RESULT UncomputableNoiseDiagram.Machine.Run 0 4.072 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Machine.Scan pkg free_GiB 13.43
+RESULT UncomputableNoiseDiagram.Machine.Scan 0 3.221 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Machine.Passes pkg free_GiB 13.31
+RESULT UncomputableNoiseDiagram.Machine.Passes 0 3.922 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Machine.Decode pkg free_GiB 13.28
+RESULT UncomputableNoiseDiagram.Machine.Decode 0 2.018 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.BoardRun pkg free_GiB 13.25
+RESULT UncomputableNoiseDiagram.Chart.BoardRun 0 2.218 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.Halting pkg free_GiB 13.19
+RESULT UncomputableNoiseDiagram.Chart.Halting 0 2.018 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.NonHalting pkg free_GiB 13.76
+RESULT UncomputableNoiseDiagram.Chart.NonHalting 0 1.918 s; warnings 0 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Typical core free_GiB 13.77
+RESULT UndecidablePhaseDiagram.Scaffold.Typical 0 1.617 s; warnings 0 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Line core free_GiB 13.78
+RESULT UndecidablePhaseDiagram.Background.Line 0 2.569 s; warnings 0 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Interaction.Basic core free_GiB 13.66
+RESULT UndecidablePhaseDiagram.Interaction.Basic 0 1.867 s; warnings 9 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Routing core free_GiB 13.62
+RESULT UndecidablePhaseDiagram.Background.Routing 0 2.369 s; warnings 3 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Machine core free_GiB 13.54
+RESULT UndecidablePhaseDiagram.Background.Machine 0 3.471 s; warnings 13 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Run core free_GiB 13.39
+RESULT UndecidablePhaseDiagram.Background.Run 0 2.82 s; warnings 21 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Grids core free_GiB 13.37
+RESULT UndecidablePhaseDiagram.Background.Grids 0 3.871 s; warnings 3 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Computation core free_GiB 13.36
+RESULT UndecidablePhaseDiagram.Background.Computation 0 3.521 s; warnings 2 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Split core free_GiB 13.32
+RESULT UndecidablePhaseDiagram.Background.Split 0 1.868 s; warnings 0 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Markers core free_GiB 13.27
+RESULT UndecidablePhaseDiagram.Background.Markers 0 1.868 s; warnings 0 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Unique core free_GiB 13.25
+RESULT UndecidablePhaseDiagram.Background.Unique 0 3.121 s; warnings 6 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Hypotheses core free_GiB 13.82
+RESULT UndecidablePhaseDiagram.Hypotheses 0 1.467 s; warnings 0 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Gibbs.Weights core free_GiB 13.76
+RESULT UndecidablePhaseDiagram.Gibbs.Weights 0 2.62 s; warnings 11 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Gibbs.Site core free_GiB 13.66
+RESULT UndecidablePhaseDiagram.Gibbs.Site 0 1.868 s; warnings 8 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Gibbs.Hard core free_GiB 13.66
+RESULT UndecidablePhaseDiagram.Gibbs.Hard 0 2.168 s; warnings 19 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Freeze core free_GiB 13.53
+RESULT UndecidablePhaseDiagram.Background.Freeze 0 1.417 s; warnings 0 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.Haar core free_GiB 13.53
+RESULT UndecidablePhaseDiagram.Scaffold.Haar 0 2.72 s; warnings 12 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Scaffold.TILaw core free_GiB 13.37
+RESULT UndecidablePhaseDiagram.Scaffold.TILaw 0 2.97 s; warnings 30 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.Construct core free_GiB 13.3
+RESULT UndecidablePhaseDiagram.Background.Construct 0 8.331 s; warnings 79 ; peak 3.383 GiB
+BUILD UndecidablePhaseDiagram.Background.BgMap core free_GiB 13.17
+RESULT UndecidablePhaseDiagram.Background.BgMap 0 3.321 s; warnings 11 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.Construct pkg free_GiB 13.08
+RESULT UncomputableNoiseDiagram.Chart.Construct 0 5.274 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Chart.ChartLaw pkg free_GiB 13.68
+RESULT UncomputableNoiseDiagram.Chart.ChartLaw 0 4.073 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Memory.RefChart pkg free_GiB 13.62
+RESULT UncomputableNoiseDiagram.Memory.RefChart 0 1.868 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Memory.Theorem pkg free_GiB 13.62
+RESULT UncomputableNoiseDiagram.Memory.Theorem 0 2.769 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Forget.Miss pkg free_GiB 13.57
+RESULT UncomputableNoiseDiagram.Forget.Miss 0 2.419 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Forget.History pkg free_GiB 13.55
+RESULT UncomputableNoiseDiagram.Forget.History 0 4.423 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Forget.HistBase pkg free_GiB 13.5
+RESULT UncomputableNoiseDiagram.Forget.HistBase 0 5.726 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Forget.Eliminate pkg free_GiB 13.42
+RESULT UncomputableNoiseDiagram.Forget.Eliminate 0 2.419 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Forget.Coupling pkg free_GiB 13.39
+RESULT UncomputableNoiseDiagram.Forget.Coupling 0 3.622 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Forget.Gate pkg free_GiB 13.65
+RESULT UncomputableNoiseDiagram.Forget.Gate 0 1.667 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Forget.Halting pkg free_GiB 13.62
+RESULT UncomputableNoiseDiagram.Forget.Halting 0 3.822 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Main pkg free_GiB 13.54
+RESULT UncomputableNoiseDiagram.Main 0 1.467 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram pkg free_GiB 13.52
+RESULT UncomputableNoiseDiagram 0 1.517 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.AuditCommand pkg free_GiB 13.52
+RESULT UncomputableNoiseDiagram.AuditCommand 0 3.019 s; warnings 0 ; peak 3.383 GiB
+BUILD UncomputableNoiseDiagram.Audit pkg free_GiB 13.36
+RESULT UncomputableNoiseDiagram.Audit 0 3.02 s; warnings 0 ; peak 3.754 GiB
+BUILD Challenge pkg free_GiB 13.01
+RESULT Challenge 0 1.868 s; warnings 3 ; peak 3.754 GiB
+BUILD Solution pkg free_GiB 12.84
+RESULT Solution 0 1.567 s; warnings 0 ; peak 3.754 GiB
+BUILD Audit pkg free_GiB 12.88
+RESULT Audit 0 69.699 s; warnings 0 ; peak 3.941 GiB
+REPLAY PASS 117 reachable modules compiled here; peak 4231589888
+EXIT 0
+BUILD Challenge pkg free_GiB 13.2
+RESULT Challenge 0 1.918 s; warnings 3 ; peak 3.195 GiB
+REPLAY PASS 117 reachable modules compiled here; peak 3431137280

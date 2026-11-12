@@ -1,0 +1,69 @@
+% Scope and checks: SCOPE.md, REPORT.md, STATEMENT-READ.md, STATUS.md,
+% UncomputableNoiseDiagram/Statements.lean and Main.lean, README-ARXIV.md.
+\section{Lean formalization}\label{app:lean}
+
+Theorem~A (in the form of \cref{thm:main}), \cref{cor:undecidable} and the one-rule corollary after Theorem~A are proved end to end in Lean~4 \cite{Lean4} with its mathematical library Mathlib \cite{Mathlib20}. The proofs contain no unproved step (\texttt{sorry}), take no named hypotheses, and use no axioms beyond \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. This appendix says what is stated, what is outside the formalization, where the proof routes differ, and how the proofs were checked.
+
+\paragraph{The statements.} The statement file \texttt{Statements.lean} defines the cellular automata, replacement noise, stationary laws, ergodicity, translation invariance, common-noise pullbacks and rational windows that occur in the results. Its definitions carry comments identifying the printed passages they render. The final proofs of its three propositions are in the development's \texttt{Main.lean}:
+\begingroup\small
+\begin{verbatim}
+theorem UND.theorem_A : UND.TheoremA
+theorem UND.corollary_9_4 : UND.CorollaryNineFour
+theorem UND.one_rule_undecidable : UND.OneRuleUndecidable
+\end{verbatim}
+\endgroup
+The first is Theorem~A in the form of Theorem~9.3, including the finite-window pullback conclusion; the second is Corollary~9.4; the third is the sentence after Theorem~A, using \texttt{UPD.Compiler.univMachine\_universal} of the hard-model core \cite{DMhard}.
+
+\paragraph{Choices.} Theorem~9.3 is formalized in its existential form, as in Theorem~A: for every machine $U$ there exist an automaton $A$ on $\Z^6$ and rational endpoint maps $\mathit{lo},\mathit{hi}$. They satisfy \texttt{UND.NoiseDiagram U A lo hi}, the statement checked by the comparator. The proof's witnesses are the automaton~\eqref{eq:proposal}, \texttt{UND.theCA U}, and the intervals~\eqref{eq:windows}, \texttt{UND.Param.loF} and \texttt{UND.Param.hiF}; their identification with these printed objects is read from the definitions. The checked statement does not name these witnesses.
+
+The formal Theorem~A holds for every machine $U$, since the construction does not use universality; Corollary~9.4 assumes undecidability of its halting set on positive inputs. The finite alphabet is presented as $\{0,\ldots,|\Sigma|-1\}$. Rational endpoints have computable presentations by pairs of natural numbers $(p,q)$ with $q>0$, and the windows lie in $(0,1)$. Undecidability is the promise problem: no computable answer is correct on every presentation of a rational rate in a window. The adjective ``computably specified'' for one fixed finite automaton is not rendered as a separate condition; the development gives the automaton by explicit definitions and claims no computable family $U\mapsto A_U$ in the statement.
+
+\paragraph{What is proved.} Every step of Sections~2--8 and of the parameter verification of Section~9 used by the three results is proved. The construction parameters, including $k=52386$, are unchanged. In particular, the formal neighbourhood has the corrected $B$ helper sites of \cref{prop:local}. The bound \texttt{card\_nbhdP\_le} proves $|N_F|\le B(n_A+n_Q)+B\le B(n_A+n_Q+2)$, and \texttt{prop\_2\_1} gives the unchanged two-direction bound $\kappa$. The $j=0$ helper parent is counted once.
+
+Two earlier Lean cores are reused, on the same pins: the core \texttt{FixedNoiseErgodicity} of the forgetting paper, version~1.4.0 \cite{DMforget}, and \texttt{UndecidablePhaseDiagram} of the hard-model paper, version~1.2.0 \cite{DMhard}. The former supplies \texttt{FNE.flagLaw}, \texttt{FNE.WeakTendsto}, and process and edge-count layers. The latter supplies the machine and halting definitions, the existence of a universal machine, and the scaffold, tower and background-chart layers. The typical-phase routing existence used in \cref{prop:chart} is a proved import: the routing fields are \texttt{UPD.BG.cfg} unchanged, with (O1)--(E3), activity and carriers supplied by the hard-model core's proved lemmas. The release check compiled from source the four imported modules of the forgetting core and the 36 of the hard-model core; these sources are byte-identical to the released cores.
+
+\paragraph{Proof routes.} The statements are held as printed, with the existential form noted above. Four proof routes differ from the text; the labels below are those of the development's fidelity record.
+\begin{itemize}
+\item F17: the translation-invariant chart law in \cref{prop:chart} is the pushforward of Haar measure along $\tau\mapsto\texttt{chartOf}\,\tau$, rather than a weak limit of spatial averages of one chart.
+\item F19: the copied-arm witnesses in \cref{lem:memorycount,lem:fullcoupling} keep every group link and count them linearly, at most $25g$, rather than extracting the printed $5g$ star sub-witness. The encodings still feed the printed union bounds: at most $256g$ edges against $K_{\rm mem}$ and $512g$ edges against $K_{\rm rare}$.
+\item F21: the proof of \cref{lem:fullcoupling} bounds a live $A_t$ by the raw marked set $\MM$ through \cref{lem:eliminate}. It covers discrepancy paths by the raw contours of \cref{lem:rawpaths}, with at most $101f\le512f$ edges for $f$ flags, into $K_{\rm rare}^f$, and base $K_{\rm rare}\eps<1$. It builds no rare-birth contours, so version~1.1.0's birth-contour clock correction is not exercised. Consequently \cref{lem:rare} is not used or formalized (F22). The printed proof of \cref{lem:fullcoupling} is retained here.
+\item F23: the historical queries of \cref{lem:eliminate} are packed by their number $r$ of blocks, with H\"older weights using the printed exponents. Their block weights sum to at most $\beta^r$, $\beta<1$, instead of the printed $(f+m_0)$-indexed count.
+\end{itemize}
+
+\paragraph{Not formalized.} The following are outside the scope of this formalization:
+\begin{itemize}
+\item Corollary~B (the fixed interaction on $\Z^7$);
+\item Theorems~9.5--9.7 (exponential all-input coalescence, continuum many extremal states, field response) and the finite-history Appendix~A that serves them;
+\item Theorem~B.1 (the robustness radius);
+\item Corollaries~9.8--9.12;
+\item the scale remark, Remark~9.13 (the Chernoff alternative for the scales), and the numerical scale report of Section~9 (\texttt{verification/scale\_check.py});
+\item two printed intermediate claims that Theorem~A does not use: the clause ``any other positive count eventually fails'' of Lemma~4.1(b) (F16), and Lemma~8.3 (F22).
+\end{itemize}
+
+\paragraph{Toolchain and release.} The pins are Lean~4.35.0 and Mathlib at the commits
+\begin{flushleft}\small\leftskip1.5em
+Lean: \nolinkurl{eb6cafb7290e8bd5f2937522d8d804f58f02bafc},\\
+Mathlib: \nolinkurl{56a005855ea17e0b0958f73ec801ae140b0a1679}.
+\end{flushleft}
+The sources, pins, scope and check records are in the \texttt{lean/} folder of this paper's release repository. Dependencies and the reused cores under \texttt{vendor/} are fetched, not shipped. The reproduction instructions are in \texttt{README-ARXIV.md} there.
+\begin{itemize}
+\item \emph{The comparator.} A challenge imports only Mathlib. It contains verbatim excerpts of the two reused statement files and the whole of this development's statement file except its imports, followed by the three open proofs. The excerpts supply \texttt{FNE.flagLaw}, \texttt{FNE.WeakTendsto}, \texttt{UPD.Machine} with its run and halting definitions, and \texttt{UPD.Universal}. Auxiliary commands set the module names, set two elaboration options for the hard-model excerpt, and reset the per-file auxiliary-proof cache before each copy. The last command reproduces the empty cache of a separate module and affects only generated proof names. The comparator compares every constant reachable from the three statements with the development. The actual Linux run of \texttt{lake comparator -{}-config comparator.json}, inside the default bubblewrap sandbox and with the default kernel, accepted all three targets, with only \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound} permitted.
+\item \emph{Two kernel replays.} An export of \texttt{Solution} was accepted by \texttt{leanchecker -{}-from-export} and by \texttt{nanoda}, the latter with only the same three axioms permitted. The negative control, with \texttt{Classical.choice} not permitted, was rejected.
+\item \emph{Build and audit.} A fresh serial build from a clean copy compiled all 117 reachable modules, including the 40 imported core modules. Lint passed and the \texttt{sorry} census was zero. The fresh axiom audit covered all 3712 development declarations and 4452 declarations of the imported core modules, including private and generated declarations, and checked the types of the three final theorems. Only the three axioms above occur. The dependency sources match the pinned manifest; Mathlib was not rebuilt from source, and both kernel replays checked the exported proof closure.
+\end{itemize}
+
+In short form, the reproduction commands below use the recorded package layout and the toolchain, dependency and host-memory setup specified in \texttt{README-ARXIV.md}. They are run from its \texttt{project/} directory.
+\begingroup\small
+\begin{verbatim}
+python3 -I -B scripts/replay.py
+bash scripts/lint.sh
+python3 -I -B scripts/sorry_census.py
+python3 -I -B ../run-linux.py comparator
+python3 -I -B ../run-linux.py export
+python3 -I -B ../run-linux.py leanchecker
+python3 -I -B ../run-linux.py nanoda
+python3 -I -B ../run-linux.py nanoda-negative
+\end{verbatim}
+\endgroup
+
+

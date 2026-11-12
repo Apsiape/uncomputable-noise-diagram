@@ -1,0 +1,16 @@
+Resolving dependencies
+Building Challenge
+ℹ [1/1] Ran UncomputableNoiseDiagram/Challenge
+info: stdout:
+REPLAY PASS 117 reachable modules compiled here; peak 19128320
+Build completed successfully (1 job).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, UND.theorem_A, UND.corollary_9_4, UND.one_rule_undecidable, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Challenge
+Building Solution
+ℹ [1/1] Ran UncomputableNoiseDiagram/Solution
+info: stdout:
+REPLAY PASS 117 reachable modules compiled here; peak 18923520
+Build completed successfully (1 job).
+Exporting #[Quot, Quot.mk, Quot.lift, Quot.ind, UND.theorem_A, UND.corollary_9_4, UND.one_rule_undecidable, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList, Char.ofNat, List, eagerReduce, Nat, String, String.mk, Char, optParam, autoParam, semiOutParam, outParam] from Solution
+Running Lean default kernel on solution
+Lean default kernel accepts the solution
+Your solution is okay!

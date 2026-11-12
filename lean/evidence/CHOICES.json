@@ -1,0 +1,46 @@
+{
+  "scope": "Every [choice] occurrence in the development's Lean source (commit ec67163). F1-F24, FD1-FD2 and QB's rulings are in STATUS.md (unchanged); the release adds no fidelity choice.",
+  "count": 8,
+  "choices": [
+    {
+      "file": "UncomputableNoiseDiagram/Statements.lean",
+      "line": 16,
+      "text": "Fidelity choices are marked **[choice]**; each is explained in `STATUS.md` (\"Statement fidelity\")"
+    },
+    {
+      "file": "UncomputableNoiseDiagram/Statements.lean",
+      "line": 62,
+      "text": "**[choice]** `ℤ⁶` is `Fin 6 → ℤ`; the paper's coordinates `(u, P) ∈ ℤ² × ℤ⁴` are an"
+    },
+    {
+      "file": "UncomputableNoiseDiagram/Statements.lean",
+      "line": 68,
+      "text": "**[choice]** The finite alphabet is `Fin numSymbols` with `numSymbols > 0` (every finite alphabet"
+    },
+    {
+      "file": "UncomputableNoiseDiagram/Statements.lean",
+      "line": 103,
+      "text": "**[choice]** As in the forgetting core, the process starts at time `0`; the paper's time"
+    },
+    {
+      "file": "UncomputableNoiseDiagram/Statements.lean",
+      "line": 186,
+      "text": "**[choice]** As in the hard-model core (`UPD.CorollaryB`): rational endpoints \"computable from"
+    },
+    {
+      "file": "UncomputableNoiseDiagram/Statements.lean",
+      "line": 196,
+      "text": "**[choice]** \"Rates\" is made explicit as `0 < lo n` and `hi n < 1` (true of the paper's"
+    },
+    {
+      "file": "UncomputableNoiseDiagram/Statements.lean",
+      "line": 222,
+      "text": "**[choice]** Stated for every machine `U` (the construction does not use universality; as in"
+    },
+    {
+      "file": "UncomputableNoiseDiagram/Statements.lean",
+      "line": 230,
+      "text": "**[choice]** A rate is presented by a pair `p` of natural numbers (`p.1 / p.2`, `p.2 > 0`, as in"
+    }
+  ]
+}

@@ -1,0 +1,362 @@
+{
+  "commit": "ec67163",
+  "archive": "source.tar (git archive of the commit)",
+  "archive_sha256": "347c22b12b3abe139e563fd313426838aaf8e7b5f8d75fbe93be357281203069",
+  "project_files_identical_to_commit_except_expected": true,
+  "differences": [
+    "AXIOMS.txt"
+  ],
+  "expected_differences": {
+    "AXIOMS.txt": "replaced by the output of the package Audit.lean (scripts/replay.py copies it); the development audit output of this replay is evidence/AXIOMS-DEV-AUDIT.txt"
+  },
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "ec2b82cfce21783d027aa0570aa47f4548e095bd06da406db797b29a0481cd9e"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "4f1b4f70b31518e7d2ab0f6e0e7bbfbe0a50876d3433418e577bfb00ec99ba7e"
+    },
+    {
+      "path": "AXIOMS.txt",
+      "sha256": "aa2709a9d48d2dda86602579e8fa4f3209656a3af6d3f8ae66a3266d16bd41c2"
+    },
+    {
+      "path": "BLUEPRINT.md",
+      "sha256": "bf885500523741654ecf08cb9918f3ce57f5fb24f4ca586181cb7b10c8365479"
+    },
+    {
+      "path": "HANDOFF.md",
+      "sha256": "f7ecd413e56f0ef65e2b902feeeb018788fc3e928d34e3c49c718a62a99da7ef"
+    },
+    {
+      "path": "STATUS.md",
+      "sha256": "880ca4f723a229cf7ca02ceeb57c82eb21cd1ded978e860b64688a444888b034"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Assembly.lean",
+      "sha256": "f013ff6547897dfaefc8f217e888e50540475aa0264b886fd1ab493e3bc08706"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Audit.lean",
+      "sha256": "ac8428c940bf75e6d9694d012e441c56bb06a7afc888731fce630c003b224def"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/AuditCommand.lean",
+      "sha256": "71a2a5d762756c966a3b54965fb281d88f8994194e2812a0e8ae9f181868f2e0"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/BlackType.lean",
+      "sha256": "dedaa66a8b701bf5f0f2a57b358fadfb4aef6eef26122ade7286c3e2f9a26d48"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/Board.lean",
+      "sha256": "7a1fa528a48c3d4bcc8aed2dadb684f1286362a2dbd07171114b4b5502e0f15e"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/BoardFlags.lean",
+      "sha256": "d724c4a3b0219d3f3cd0b75677beba3aced7c388c9de403389f80920c757e5ce"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/BoardGaps.lean",
+      "sha256": "2c2df5f602acb365f8b53b6cb06707f161ed44048800c7aa429af52702dd2cfa"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/BoardRun.lean",
+      "sha256": "4102924a57c9b07ddeca9b3567e04006fe5c39ab907fc3d7f18777e88b4a8886"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/BoardTableau.lean",
+      "sha256": "fd9c491016390b5a1b97bbc7f45d021b9b72ff5aec904dace4fe728e3197a3c0"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/ChartLaw.lean",
+      "sha256": "42d8d83bd66170b0fd97bc07e75c309f09744c31f73ef74aacad10500532169b"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/Construct.lean",
+      "sha256": "e4d376e053b2bf59141299fe182d483ac32228e02808912eeeb22ed6577de620"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/Decorated.lean",
+      "sha256": "84c13100590ea1c3572fb9f7ccc502a2a05c33dd7cd79b688078e711bca64bd9"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/Halting.lean",
+      "sha256": "e8c003d05cd65e90bf98dcb246a106079ee545225dfa1165b25debd6e5767fce"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/Input.lean",
+      "sha256": "588c1c85a764503b42937412930d7ed6cb2805bb1e92234ba37967be4c03e7ae"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/LanePhase.lean",
+      "sha256": "ac6c16a354a8e280d6fece2350517682fde6c4e57b0eb2a3153037bd90f12102"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/NonHalting.lean",
+      "sha256": "46b6376f32bbac8857568eda2672419240446780c15630fb6fdd3b201839c560"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/Origins.lean",
+      "sha256": "cb928ee3afe000f1b44881b44386f27748df126779885a5b01cbc633ef383e8e"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/PhaseTable.lean",
+      "sha256": "e3a6d8fbd413a0e2afeaf699b6d751e3c890cac9104288b891d0b67e8aef435f"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/RChart.lean",
+      "sha256": "7982219a25ad9fcf5adade07c174f95a726d90e939e57e14da59532633ed0a96"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/Routing.lean",
+      "sha256": "15a669e35de6ae19d62d18910d2d641eac73401f32dd8d8924a7d203e523debf"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/TheCA.lean",
+      "sha256": "440c75a5513a5394b80bbe20d0a8b9c139b4bca0e77de97db464565215b9b17a"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Chart/Walls.lean",
+      "sha256": "7ea3c0d082b8193ac091649c945e9d1018e7c58fc902bc1e6b1471fea8b6e21d"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Contour/Coherence.lean",
+      "sha256": "215bf938f2082d3ffe21cdd1205786329b5ae9414c476295bc71c98fa174c869"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Contour/Counting.lean",
+      "sha256": "80fc01172aee986b6cd44926fc9b8d7e9cf271ec2325208c59f0d894cf7e76ee"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Contour/Deep.lean",
+      "sha256": "65a33696656f7dfdc0de71fb6caec02e3a485fc37b0d0b8c6d203beb5a8ac974"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Contour/Grouped.lean",
+      "sha256": "f3460d018ed3094a6e3122057897fa7e31afc507b0c22f5ca5a92f3c65e11677"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Contour/RawPaths.lean",
+      "sha256": "00cf65b98cd46fb644cbb035493927e160d368adf257aa4e33ecb45a7f74124a"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Corollary.lean",
+      "sha256": "8ac7c95bd677eec9bc3e9c702713b41432da2c49bea753e5c55cf2438d7a7eff"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Forget/Coupling.lean",
+      "sha256": "a886f1ed4c09c3a4cd4873eccf7409f86179fcf317ab16a78f2a1e7aca112536"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Forget/Eliminate.lean",
+      "sha256": "3d6fd4dad82d555c9d8088231a6d5111229203b32dee8b32b42b1ce9a795c495"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Forget/Gate.lean",
+      "sha256": "ef15840cfc6d71f4d3e13fd60233c03c145248f514915454752764c3070ca3b7"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Forget/Halting.lean",
+      "sha256": "2976d95437160fc53444f76ac993b4084ea94f098f2671fb4208a0fa59531aa4"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Forget/HistBase.lean",
+      "sha256": "c4b934fae93621cd4112f094ef711e4b73123a51ec45281685acc6840d8b3d1b"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Forget/History.lean",
+      "sha256": "fdadf688d0fc43333faa7497ff9901b56d5afc32ce9e31caa38a7fb0b18b85a0"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Forget/Miss.lean",
+      "sha256": "566e6b633ea5ad24231a7200373580711c7bb7b3a0bf49e723e014a5876af438"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Machine/Decode.lean",
+      "sha256": "8d8e86c82662d4dc98f4de75943695b04da235aa2e5d1a5526850dea6b5fcafb"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Machine/P.lean",
+      "sha256": "a32179039d1ca19a230d506c02f0eef25637e3a3469cc4aa8459a54b95b0f2fc"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Machine/Passes.lean",
+      "sha256": "c74f728124f430613a880c573967b4876c1d3df050adab07bc72c03e73202842"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Machine/Run.lean",
+      "sha256": "b624c6005165c0489e176b598041d20eb1509a96fa2ee8a079358c645989b961"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Machine/Scan.lean",
+      "sha256": "771463d2e3493e8262c4d539fb145963619940e5f77789557e8c9845313f08b5"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Main.lean",
+      "sha256": "aa0986e358fc3970be21ec807f7d63fe1310c1028697c6ad694aeff815b8da0c"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Memory/Count.lean",
+      "sha256": "c905f77ee47c505383333860c5455f67e3c91dc8a67840e2669868e131319c79"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Memory/Derivation.lean",
+      "sha256": "e52565d017ae057b9d9f6edc83c274f8228e4a9cd155b086e6e0d40ef50a4fe7"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Memory/Error.lean",
+      "sha256": "3782d412b32b4d814a6ff74efb929faec6f0a6fd6a5f7f7adc628b6d675804c2"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Memory/Init.lean",
+      "sha256": "cb86b0bdd4529ca677ecaef622345595f090959f9dd81280a0568f077fa4f375"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Memory/InitLaw.lean",
+      "sha256": "96662e95e58bfd48460b8b338d0e774d5023eed4f42e6c8fa304842924bfae15"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Memory/RefChart.lean",
+      "sha256": "f52b060c7809f503d9fc9a3c29fcaa6534fae2f547b69a7704f3dfb9332515c9"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Memory/Ride.lean",
+      "sha256": "02f7764ba0343b8e83710afa31a1c112f5dc030d5b11389b437ac0d923f9a356"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Memory/Theorem.lean",
+      "sha256": "acc50021064e157136b51117cf475255b6e321d41be769b3f898aed80b6fdb1b"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/PCA/Attraction.lean",
+      "sha256": "fd4dcdd4bce1d8c0d55158574f11866492f7637173fec02b479aab1943add3d7"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/PCA/Cylinder.lean",
+      "sha256": "d7d42f69362928931defddf68aff7774cf3472e415b96a42e50fbd9b6fd448cc"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/PCA/Feller.lean",
+      "sha256": "77e1055efa0b25e6e7230bce5c9de938aa096ecab76dea70cae91c7f392185b0"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/PCA/ForgetErgodic.lean",
+      "sha256": "51938545ee656423478bdd5dabad8471f2855ca930791ab966ce82453846121a"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/PCA/Markov.lean",
+      "sha256": "cdc7b1c3ef491236a455a6fd45812f1a1ad52f84805f599c3a8e432491e2ee9c"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/PCA/Process.lean",
+      "sha256": "cfdbdfbb0197b098b591821d92589988e847ec65a256f35f317868ed7aefb531"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/PCA/Pullback.lean",
+      "sha256": "cab5c3263e769e18b1c5de897c4f2b8717d18cd91e0d7347d8e360633a5c799b"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/PCA/Translation.lean",
+      "sha256": "0e30018db9fda2cf6e19d8fc2aa78a33ae0980c535c739c1eb517a193933a18c"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Parameters/Bases.lean",
+      "sha256": "4800d08f52e18667c449813271cab5260fe00801d3cb3bb395e69187fb24df7d"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Parameters/Geometry.lean",
+      "sha256": "bda87a2560e3f500f0209ed98a366a606f99e474515254d2d0861a9362046f78"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Parameters/Search.lean",
+      "sha256": "e7f255b6f23d895f20c182a0ec329fa2a9427b34298dce69866ca5a5ff1bf458"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Parameters/Threshold.lean",
+      "sha256": "b8968b92938dd9c9a3025b31f8a3a83d77c1a8c065e5089c5b7fcdf92e95dcde"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Rule/CA.lean",
+      "sha256": "79405836691faec5704330221c311df5c841b56e46c8c206b9899d7cc3b48855"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Rule/Checker.lean",
+      "sha256": "8999cbb006c3fa5243ad270170ac9f7363726beebd110b73ba8c69e93ef0a7f1"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Rule/Noise.lean",
+      "sha256": "797e36c8d1f5148c76b70939692fb3843e6ee4a0a13f4150de3727a69121839b"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Rule/Proposal.lean",
+      "sha256": "937807686162a8cf63796f9f8599f319e603dced69bf4076486a7d65e43c7abf"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Sensors/Gate.lean",
+      "sha256": "f98626f429cfe2e5972e249f1e6597430ecb0716ee70ca65d66f6d02ec026c42"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Sensors/Ideal.lean",
+      "sha256": "02c3262d0f05e1d7b7db6b7a0cbe772fcd588d6578175aa97054315090333716"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Sensors/Joint.lean",
+      "sha256": "859ed7ae47101988d3c17678a75ecceb5aa6d10b45a157d351aa3bf347b3597b"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Sensors/Ownership.lean",
+      "sha256": "6a6fd0e5d95a21b14132cce4ed113d3cc879875b1d9e3f80eba1c4c5b31ea434"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Sensors/Selected.lean",
+      "sha256": "69efac8b2a97677e66e8c17c4d1b1f4740a10d9d16b2ce2c99e347629a039269"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Sensors/Tails.lean",
+      "sha256": "bed504bcbb3feb5ed6d9053531ff62ec4fce2737b2620278a0a23ec97463c229"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Statements.lean",
+      "sha256": "b5c9e965b2ffbb39d2817ab4c3a41b3a71d463cbe1a0f6f186a8cc8833d0aa2c"
+    },
+    {
+      "path": "UncomputableNoiseDiagram/Windows.lean",
+      "sha256": "1e16e09b36cb88a5713fa16c2b43453fa525acfd3a37387a73f0a64ebc3f6328"
+    },
+    {
+      "path": "UncomputableNoiseDiagram.lean",
+      "sha256": "46ca6b36e955a88a7a20b5dc4a6f84b2f345ca655a6d5d41a625a0eaa860dd9c"
+    },
+    {
+      "path": "lean-toolchain",
+      "sha256": "ead308ab4fc749eb2389819903fd7baa11bf06e490827f6896a8cbfe622fa703"
+    },
+    {
+      "path": "scripts/audit.sh",
+      "sha256": "26e8a536cfec00def92ec659bfde10fb0d5fbf8d59679230ecc6d543070ad77f"
+    },
+    {
+      "path": "scripts/build.py",
+      "sha256": "dabfcee4d4c077197161cb213a5dcc858936846fbdd4489d77302927c019570d"
+    },
+    {
+      "path": "scripts/env.sh",
+      "sha256": "25032cbce95b12cb14c253116c2563755e24c55b1ea836ee8695ca8339cde5b7"
+    },
+    {
+      "path": "scripts/lint.sh",
+      "sha256": "c853cdbc5c7bc0525f5d9a87241767731169897f965e1110e16e574295373f8d"
+    },
+    {
+      "path": "scripts/sorry_census.py",
+      "sha256": "e5da45d3d36acd69d99d0127344f2f632abffbe05d342aef08c03180bdb7a6fe"
+    },
+    {
+      "path": "scripts/wsl.ps1",
+      "sha256": "e90ee6a2ee8d119ea428eeb987d587aa72767496319602868596bba5a55ec2f1"
+    }
+  ]
+}

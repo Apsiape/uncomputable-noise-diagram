@@ -1,0 +1,11 @@
+{
+  "expected_mathlib_commit": "56a005855ea17e0b0958f73ec801ae140b0a1679",
+  "vendor_copy": "cp -a of /opt/forgetting-arxiv-2026-11-10/project/vendor/<package> for the nine packages of lake-manifest.json",
+  "hard_links_in_vendor": 0,
+  "reference": "/opt/forgetting-arxiv-2026-11-10/evidence/DEPENDENCY-SOURCES.json (the forgetting relay's manifest; its model package compared the mathematical Mathlib sources byte for byte with the official commit archive; published as lean/pins/DEPENDENCY-SOURCES.json of the forgetting release v1.4.0)",
+  "reference_sha256": "c830bf9d45917bebf411a261396bb97df1049ac1f1d5ff012987d4f890d33fc0",
+  "checked_dependency_source_files": 10268,
+  "mismatches": [],
+  "unlisted_lean_source_files_outside_build_dirs": [],
+  "status": "PASS"
+}

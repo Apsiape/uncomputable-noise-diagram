@@ -1,6 +1,6 @@
 # One noisy cellular automaton with an uncomputable noise diagram
 
-Seth Douglas and Nidhal Mghirbi. Version 1.1.0, November 2026. DOI for all versions: [10.5281/zenodo.24147268](https://doi.org/10.5281/zenodo.24147268); version 1.1.0: [10.5281/zenodo.24152233](https://doi.org/10.5281/zenodo.24152233); version 1.0.0: [10.5281/zenodo.24147269](https://doi.org/10.5281/zenodo.24147269).
+Seth Douglas and Nidhal Mghirbi. Version 1.2.0, November 2026. DOI for all versions: [10.5281/zenodo.24147268](https://doi.org/10.5281/zenodo.24147268); version 1.1.0: [10.5281/zenodo.24152233](https://doi.org/10.5281/zenodo.24152233); version 1.0.0: [10.5281/zenodo.24147269](https://doi.org/10.5281/zenodo.24147269).
 
 **This is a preprint. It has not been peer reviewed.**
 
@@ -8,7 +8,7 @@ Seth Douglas and Nidhal Mghirbi. Version 1.1.0, November 2026. DOI for all versi
 
 Can varying only the noise rate of one cellular automaton encode halting? We construct one computably specified finite-alphabet, finite-range automaton on Z^6 with computable disjoint rational open rate intervals I_n. Throughout I_n, uniform replacement noise makes it ergodic exactly when a fixed universal machine halts on n. Halting gives exponential all-input coalescence and attraction from every initial law; nonhalting gives at least two translation-invariant stationary laws and continuum many extremal stationary laws.
 
-Hierarchical rulers select the input from the noise rate. Finite computation boards read the input; a threshold checker preserves a bit, and interval sensors erase every surviving chart when the computation halts. The space-time correspondence gives one fixed {0,1}-energy interaction on Z^7: on the corresponding temperature windows, halting gives one Gibbs measure and exponential weak spatial mixing in arbitrary volumes; nonhalting gives continuum many extremal Gibbs measures. These extremes need not be translation invariant. The zero-field pressure is analytic, yet its derivative in one fixed field direction exists at zero exactly on halting windows. Thus one fixed local rule has an uncomputable noise diagram.
+Hierarchical rulers select the input from the noise rate. Finite computation boards read the input; a threshold checker preserves a bit, and interval sensors erase every surviving chart when the computation halts. The space-time correspondence gives one fixed {0,1}-energy interaction on Z^7: on the corresponding temperature windows, halting gives one Gibbs measure and exponential weak spatial mixing in arbitrary volumes; nonhalting gives continuum many extremal Gibbs measures. These extremes need not be translation invariant. The zero-field pressure is analytic, yet its derivative in one fixed field direction exists at zero exactly on halting windows. Thus one fixed local rule has an uncomputable noise diagram. Theorem A, the ergodicity criterion with attraction and two invariant laws, is verified in Lean.
 
 ## What the paper proves
 
@@ -49,6 +49,12 @@ Scale:
 
 Marsan and Sablik realize every G_delta subset of [0,1] containing 1 as the uniqueness and ergodicity set of a continuous map on the Cantor space under uniform noise. They state that every Pi_2-computable such set is the uniqueness set of a computable map, and that for cellular automata the possible uniqueness sets are still to be characterized. The map here is a cellular automaton: it commutes with shifts and has one finite neighbourhood. The paper does not characterize all noise diagrams of cellular automata. Section 1 gives the full credits.
 
+## Changes in 1.2.0
+
+- **Appendix C (new): Lean formalization.** Theorem A (in the existential form of Theorem 9.3), Corollary 9.4 and the one-rule corollary after Theorem A are proved end to end in Lean 4 with Mathlib, with no `sorry` and no named hypotheses, using only the axioms `propext`, `Classical.choice` and `Quot.sound`. The proof passed a sandboxed comparator run and two independent kernel replays. The sources and records are in `lean/`.
+- The verification history now says that the cross-family check of version 1.1.0 re-derived corrections (i)-(iv). Correction (v), the helper-parent count in Proposition 2.1, was found by the Lean development, and the count is proved in Lean.
+- No mathematical statement, statement number or construction constant changes.
+
 ## Changes in 1.1.0
 
 Corrections to version 1.0.0:
@@ -68,8 +74,9 @@ Other changes:
 
 ## Contents and reproduction
 
-- `paper/main.pdf`: the manuscript (40 pages).
+- `paper/main.pdf`: the manuscript (43 pages).
 - `paper/`: the LaTeX source (`main.tex`), the plain-text abstract and a strict build driver. Run `python -B build.py` there with pdflatex installed. The build disables shell escape, runs pdflatex three times, and rejects warnings, unresolved references and box defects.
+- `lean/`: the Lean 4 development of Appendix C (Lean 4.35.0, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`): the statement file, the proofs, the comparator challenge, the axiom audit, the evidence records and the report. `lean/README.md` explains it. The Mathlib dependencies and the two reused cores are fetched, not shipped.
 - `verification/scale_check.py`: recomputes the parameters of Section 9 with exact integers and high-precision decimal logarithms, and writes `scale-output.json` and `scale-output.txt` (the recorded outputs are included). It includes a positive control on exact binomial coefficients. Run `python -B scale_check.py` in that directory. It checks the constants that the construction uses; the alternative values of Remark 9.13 are not part of it.
 - `SHA256SUMS`: SHA-256 hashes of every shipped file except this manifest. Check with `sha256sum -c SHA256SUMS` from the repository root.
 
@@ -79,8 +86,9 @@ The paper's AI note and its "Verification status" paragraph give the full accoun
 
 - Version 1.0.0: the main theorem and the written manuscript were checked refutation-first by a model from a different developer than the one that wrote it. Corollary B and the scale received a further refutation-first check, which re-derived the corollary's proof and recomputed the scale with an independent program.
 - Version 1.1.0: the corrections and new results were found by OpenAI models (GPT-6 Astra and GPT-6.1 Sol), directed by Nidhal Mghirbi. Claude Opus 5.5 verified them refutation-first and independently recomputed both scale choices. That verification took the earlier scaffold and stochastic lemmas as inputs, and it checked the statement and hypotheses of Corollary 13.7 of our space-time paper without re-proving it. Claude Opus 5.5 then read the integrated text back refutation-first.
+- Version 1.2.0: the Lean development was written by Claude Opus 5.5 agents, and this version's text by GPT-6.1 Sol. Claude Opus 5.5 read the text back refutation-first against the Lean records.
 - The scale computation is exact or certified to stated precision.
-- The theorem rests on the hierarchical scaffold of our paper on an uncomputable phase diagram, cited as an input. Several scaffold facts are formalized in Lean in that paper's Appendix D, as the Verification status says. A Lean formalization of Theorem A and Corollary 9.4 is in progress; it is not part of this release. Apart from the cited scaffold facts, no statement of this paper is formally verified, and the new results are written proofs.
+- The theorem rests on the hierarchical scaffold of our paper on an uncomputable phase diagram, cited as an input. Several scaffold facts are formalized in Lean in that paper's Appendix D, as the Verification status says. Theorem A, Corollary 9.4 and the one-rule corollary are formally verified in Lean (Appendix C and `lean/`). The other results, including Corollary B and the results added in version 1.1.0, are written proofs.
 
 ## Citation and rights
 

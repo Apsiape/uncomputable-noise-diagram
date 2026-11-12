@@ -1,0 +1,66 @@
+--- vendor/FixedNoiseErgodicity/FixedNoiseErgodicity/Hypotheses.lean
++++ release-v1.4.0/lean/FixedNoiseErgodicity/Hypotheses.lean
+@@ -1,7 +1,7 @@
+ /-
+ # Named hypotheses: theorems of other authors that Mathlib lacks
+ 
+-Policy (QB): a theorem by OTHER authors that Mathlib lacks may enter as a named hypothesis,
++Policy: a theorem by OTHER authors that Mathlib lacks may enter as a named hypothesis,
+ stated exactly as published, with source and theorem number, collected in this file only.
+ The paper's own results and the authors' other papers are never hypotheses.
+ 
+--- vendor/FixedNoiseErgodicity/FixedNoiseErgodicity/Main.lean
++++ release-v1.4.0/lean/FixedNoiseErgodicity/Main.lean
+@@ -1,7 +1,7 @@
+ /-
+ # The final theorem: Corollary `cor:eight` (Theorem A on `ℤ⁸`)
+ 
+-`Statements.lean` states the corollary as the proposition `CorEight` (QB's ruling of session 9:
++`Statements.lean` states the corollary as the proposition `CorEight` (a ruling of session 9:
+ the statement file keeps the printed statement byte for byte; the proof lives here, in a file that
+ imports every part of the formalization). The proof: the family `R_M` of `def:family`
+ (`familyR`, `Family/FamilyR.lean`) is computable (`computable_familyR`, Section 8,
+--- vendor/FixedNoiseErgodicity/FixedNoiseErgodicity/Section2/Ergodic.lean
++++ release-v1.4.0/lean/FixedNoiseErgodicity/Section2/Ergodic.lean
+@@ -1,8 +1,8 @@
+ /-
+ # Section 2.3: memory excludes ergodicity (decision D8: the direct proof)
+ 
+-`set:def-forget` (memory) and `set:memory-nonergodic` in the direct form allowed by QB (BLUEPRINT
+-Part D, D8): if the process has memory, it is not ergodic. Under ergodicity both
++`set:def-forget` (memory) and `set:memory-nonergodic` in the direct form of decision D8 (BLUEPRINT
++Part D): if the process has memory, it is not ergodic. Under ergodicity both
+ `law (δ_x) t` and `law (δ_{x'}) t` converge weakly to `π`; the indicator of the clopen cylinder
+ `{y : y|_O ∈ ℰ}` is bounded and continuous, so both probabilities converge to `π(Γ)`, against
+ the gap `α > 0`. (The paper's statement also produces two invariant measures; that is not needed
+--- vendor/FixedNoiseErgodicity/FixedNoiseErgodicity/Three/Corner.lean
++++ release-v1.4.0/lean/FixedNoiseErgodicity/Three/Corner.lean
+@@ -10,7 +10,7 @@
+ * `corner_lemma_box`: the same on every box `V_r`, `r ≥ 6`, by the restriction lemma
+   (`ConsistentOn.anti`); in particular on the printed box `V_16` (`corner_lemma_V16`).
+ 
+-**[choice] (a strengthening; QB planning note 1, session 5).** The printed lemma says that on
++**[choice] (a strengthening; planning note 1, session 5).** The printed lemma says that on
+ `V_16` *every* list `𝒦(v)` is empty. Its only use (`thr:corner-plane`) needs `𝒦(0) = ∅`, and
+ that already holds on `V_6`: `VERIFY.md` (ENGINE-C) reports 13 as the least side on which the root
+ is deleted, and the kernel confirms it here. So `thr:corner-plane` is proved with `z₀ + V_6`
+--- vendor/FixedNoiseErgodicity/FixedNoiseErgodicity/Three/CornerCheck.lean
++++ release-v1.4.0/lean/FixedNoiseErgodicity/Three/CornerCheck.lean
+@@ -3,7 +3,7 @@
+ 
+ * The finite statement of `thr:corner` (09:211): the thin-type rule of thin phase `0`
+   (`thinRule`), the lists `𝒟_κ(v)` (`InD`), and consistency on a box (`ConsistentOn`).
+-* **The restriction lemma** (QB planning note 1): a family consistent on a set `U` is consistent
++* **The restriction lemma** (planning note 1): a family consistent on a set `U` is consistent
+   on every `U' ⊆ U` (`ConsistentOn.anti`); the lists `𝒟_κ(v)` are defined from `κ` and `v` alone,
+   not from the box (`InD` has no box parameter), so a sub-box sees the same constraints.
+ * The checker (`BLUEPRINT.md`, Part E). Sites of `V_6` are indices `j < 169` in raster order
+@@ -50,7 +50,7 @@
+ def ConsistentOn (U : Set Plane) (K : Plane → Set Letter) : Prop :=
+   ∀ v ∈ U, ∀ a ∈ K v, ∀ d : Dir, v + d.vec ∈ U → ∃ b ∈ K (v + d.vec), a.Fits d b
+ 
+-/-- **The restriction lemma** (QB planning note 1, session 5): consistency on `U` gives
++/-- **The restriction lemma** (planning note 1, session 5): consistency on `U` gives
+ consistency on every subset of `U`, in particular on a centred sub-box. -/
+ theorem ConsistentOn.anti {U U' : Set Plane} {K : Plane → Set Letter} (h : ConsistentOn U K)
+     (hU : U' ⊆ U) : ConsistentOn U' K :=
