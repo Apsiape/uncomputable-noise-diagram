@@ -66,14 +66,15 @@
 \hypersetup{pdftitle={One noisy cellular automaton with an uncomputable noise diagram},pdfauthor={Seth Douglas and Nidhal Mghirbi}}
 \title{\vspace{-1.2cm}\LARGE One noisy cellular automaton\\ with an uncomputable noise diagram}
 \author{Seth Douglas \and Nidhal Mghirbi}
-\date{\small Version 1.0.0, November 2026}
+\date{\small Version 1.1.0, November 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
 \noindent
-Can varying only the noise rate of one cellular automaton encode the halting problem? We construct one computably specified cellular automaton on $\Z^6$, with a finite alphabet and a finite neighbourhood, whose ergodicity under uniform replacement noise does so. There are pairwise disjoint open intervals $I_n$ with rational endpoints computable from $n$ such that, at every rate in $I_n$, the perturbed automaton is ergodic exactly when a fixed universal machine halts on input $n$. In the nonhalting case it has at least two translation-invariant stationary laws; in the halting case it has one stationary law attracting every initial law.
+Can varying only the noise rate of one cellular automaton encode halting? We construct one computably specified finite-alphabet, finite-range automaton on $\Z^6$ with computable disjoint rational open rate intervals $I_n$. Throughout $I_n$, uniform replacement noise makes it ergodic exactly when a fixed universal machine halts on $n$. Halting gives exponential all-input coalescence and attraction from every initial law; nonhalting gives at least two translation-invariant stationary laws and continuum many extremal stationary laws.
 
-Finite rulers in a hierarchical tiling turn the noise rate into a cutoff in a sequence of local flags. Computation boards read that cutoff and simulate the selected input. A threshold checker preserves a global bit when the computation does not halt. When it halts, interval-valued sensors erase every surviving chart, and a common-noise coupling removes dependence on every initial state. The guaranteed intervals accumulate at zero and lie at astronomically small rates. The space--time Gibbs correspondence gives a finite-energy interaction on $\Z^7$ with undecidable translation-invariant Gibbs uniqueness. Thus one fixed local rule has an uncomputable noise diagram.
+Hierarchical rulers select the input from the noise rate. Finite computation boards read the input; a threshold checker preserves a bit, and interval sensors erase every surviving chart when the computation halts. The space--time correspondence gives one fixed $\{0,1\}$-energy interaction on $\Z^7$: on the corresponding temperature windows, halting gives one Gibbs measure and exponential weak spatial mixing in arbitrary volumes; nonhalting gives continuum many extremal Gibbs measures. These extremes need not be translation invariant. The zero-field pressure is analytic, yet its derivative in one fixed field direction exists at zero exactly on halting windows. Thus one fixed local rule has an uncomputable noise diagram.
+
 \end{abstract}
 \begin{center}\small AI systems assisted with this work; see ``How this work was done.''\end{center}
 \setcounter{tocdepth}{1}
@@ -91,7 +92,19 @@ Here is the main result in plain words. Fix a universal deterministic machine $U
 
 In particular, the noise diagram, the set of rates at which $F_\eps$ is ergodic, is undecidable at rational rates for this rule (\cref{cor:undecidable}). The local rule receives no numerical noise parameter. Rulers of different lengths see different numbers of random replacements. Their responses select an integer, and finite computation boards read it. All boards use the same machine and the same alphabet. The computation is in the spatial constraints of a chart; a halting computation is excluded by forbidding its halting state. \Cref{fig:mechanism} shows the two parts of this selection.
 
-Through the space--time Gibbs correspondence, Theorem~A also gives an equilibrium statement with finite energies, Corollary~B in \cref{sec:parameters}: one computably specified translation-invariant finite-range interaction on $\Z^7$, with a finite alphabet and energies in $\{0,1\}$, whose Gibbs measure invariant under all translations of $\Z^7$ is unique, on computable disjoint rational open intervals $\mathcal J_n$ of inverse temperature, exactly when $U(n)$ halts. This answers \cite[Open problem~9.1]{DMhard} in dimension seven: take $\beta_n$ to be the midpoint of $\mathcal J_n$.
+The numbered additions strengthen this dichotomy: halting gives exponential all-input coalescence; nonhalting gives continuum many extremal stationary laws (\cref{thm:exponential,thm:continuum}). The two translation-invariant bit laws in Theorem~A remain a separate conclusion.
+
+Through the space--time correspondence and \cite[Corollary~13.7]{DMst}, Corollary~B in \cref{sec:parameters} gives one computably specified translation-invariant finite-range $\{0,1\}$-energy interaction on $\Z^7$. On computable rational inverse-temperature windows $\mathcal J_n$, halting gives exactly one Gibbs measure, with no invariance assumed, and exponential weak spatial mixing in arbitrary volumes; nonhalting gives at least two translation-invariant Gibbs measures and continuum many extremal Gibbs measures. The latter extremes need not be translation invariant. A fixed field direction has a derivative at zero exactly on the halting windows, although the zero-field pressure is analytic (\cref{thm:field}).
+
+The hard-model paper asks the following questions \cite[Open problems~9.1--9.2]{DMhard}:
+\begin{quote}
+\lq\lq Is there one translation-invariant finite-range interaction on $\Z^d$ with finite rational energies, and computable rational inverse temperatures $\beta_n$, such that uniqueness of the translation-invariant Gibbs measure at $\beta_n$ is undecidable?\rq\rq
+
+\lq\lq Is there one interaction, with or without hard constraints, for which uniqueness among all Gibbs measures, as a function of $\beta$, is undecidable?\rq\rq
+\end{quote}
+Version~1.0.0's Corollary~B already answered Open problem~9.1, by taking $\beta_n$ to be the midpoint of $\mathcal J_n$. The upgraded corollary answers Open problem~9.2 in dimension seven with finite energies.
+
+\paragraph{Changes from version 1.0.0.} Corrections: (i) in \cref{lem:pole} the time-span clause now requires unary links to preserve time, and the two-terminal clause requires a positive support edge; (ii) in \cref{sec:chart} the gate classification is restricted to finite bottom rows, and (iii) the phase decoder uses finite approximants instead of liftability; (iv) the birth-contour clock in \cref{lem:fullcoupling} is stated once; (v) the proof of \cref{prop:local} counts each helper parent once, with $\kappa$ unchanged. Corollary~B is strengthened to uniqueness among all Gibbs measures, with exponential weak spatial mixing, on halting windows and continuum many extremal Gibbs measures on nonhalting windows; its version~1.0.0 sentence on uniformly recurrent and periodic Gibbs measures is subsumed and removed. Separate numbered results add exponential coalescence, extremal continua, field response, a computable robustness radius and effective corollaries. Theorem~A, Theorem~9.3, Corollary~9.4 and the construction constants keep their statements and values.
 
 \begin{figure}[ht]
 \centering
@@ -126,7 +139,7 @@ Marsan--Sablik \cite{MS25} & One continuous Cantor map; shift commutation not re
 Forgetting \cite{DMforget} & Computable family on $\Z^8$ & Halting selects ergodicity at fixed noise\\[3pt]
 Windows \cite{DMwindows} & One CA on $\Z^4$ & Infinitely many alternating computable windows\\[3pt]
 Hard-constraint \cite{DMhard} & One classical hard-constraint model & Halting-labelled Gibbs uniqueness windows\\[3pt]
-Theorem A & One CA on $\Z^6$ & Halting-labelled uniform-noise windows\\
+Theorem A and \cref{thm:exponential} & One CA on $\Z^6$ & Halting-labelled windows; exponential all-input coalescence when halting\\
 \bottomrule
 \end{tabularx}
 \caption{The closest results and the parameter in which their conclusions vary.}
@@ -135,11 +148,11 @@ Theorem A & One CA on $\Z^6$ & Halting-labelled uniform-noise windows\\
 
 \recalled\ Hochman and Meyerovitch characterized multidimensional SFT entropies \cite{HM10}. Chazottes and Hochman, and Gayral, Sablik and Taati studied zero-temperature Gibbs limits and their computability \cite{CH10,GST25}. Cubitt, Perez-Garcia and Wolf proved spectral-gap undecidability \cite{CPGW15,CPGW22}; Bausch, Cubitt and Watson gave a continuous quantum parameter family with an uncomputable phase diagram \cite{BCW21}, and Purcell, Li and Cubitt placed a transition at an uncomputable number \cite{PLC24}.
 
-\paragraph{What is ours.}\proved\ Theorem~A realizes halting-labelled windows for a cellular automaton: a shift-commuting map with one finite neighbourhood, within the class whose possible diagrams are left open in \cite[Section~5]{MS25}. Our construction combines a fixed computational chart, a finite-range interval controller, a joint estimate for sensor feedback, and a common-noise coupling. The hierarchical scaffold is from our hard-constraint paper \cite{DMhard}. Our forgetting paper supplies the checker/quorum approach \cite{DMforget}; our windows paper asks the fixed-rule question answered here \cite{DMwindows}. Our nilpotent paper gives, for each $n$, a nilpotent rule with $n$ separated memory windows and the mechanism of independent gates read from diagonal copies \cite[Section~3, Exact gate law]{DMnil}; here the intrinsic gate sources follow diagonal characteristics as well. Corollary~B uses the correspondence between translation-invariant stationary laws and translation-invariant space--time Gibbs measures due to Goldstein, Kuik, Lebowitz and Maes \cite{GKLM89}, in the form proved in our space--time paper \cite[Lemma~2.4 and Corollary~10.4]{DMst}. The proof below establishes the stochastic statements needed for this construction and proves finite-board forcing in every phase.
+\paragraph{What is ours.}\proved\ Theorem~A realizes halting-labelled windows for a cellular automaton: a shift-commuting map with one finite neighbourhood, within the class whose possible diagrams are left open in \cite[Section~5]{MS25}. Our construction combines a fixed computational chart, a finite-range interval controller, a joint estimate for sensor feedback, and a common-noise coupling. The hierarchical scaffold is from our hard-constraint paper \cite{DMhard}. Our forgetting paper supplies the checker/quorum approach \cite{DMforget}; our windows paper asks the fixed-rule question answered here \cite{DMwindows}. Our nilpotent paper gives, for each $n$, a nilpotent rule with $n$ separated memory windows and the mechanism of independent gates read from diagonal copies \cite[Section~3, Exact gate law]{DMnil}; here the intrinsic gate sources follow diagonal characteristics as well. Corollary~B uses the correspondence between translation-invariant stationary laws and translation-invariant space--time Gibbs measures due to Goldstein, Kuik, Lebowitz and Maes \cite{GKLM89}, in the form proved in our space--time paper \cite[Lemma~2.4 and Corollary~10.4]{DMst}, and obtains uniqueness among all Gibbs measures and weak spatial mixing from \cref{thm:exponential} through \cite[Corollary~13.7]{DMst}. The proof below establishes the stochastic statements needed for this construction and proves finite-board forcing in every phase. The new finite-history argument uses a finite motif certificate and coherence within one trajectory. Its direct precursor is the varying-rule all-Gibbs result of \cite[Corollary~8.8 and Remark~8.14]{DMforget}; common-map certificates and their effective search are \cite[Propositions~4.2--4.3]{DMst}. Here the same rule is selected by its noise rate. Chart conditioning gives the extremal continuum without stacking, unlike \cite[Corollary~8.17]{DMforget}. The field-response argument follows \cite[Corollary~10.7]{DMthermal}, and the zero-pressure normalization is recalled in \cite[Remark~10.13]{DMst}.
 
 \paragraph{Dimension and scale.} Two coordinates carry the chart and four carry the threshold checker. The interval endpoints are specified by terminating rational searches; \cref{sec:parameters} gives their scale.
 
-\paragraph{Reading guide.} \Cref{sec:parameters} ends with the Gibbs corollary on $\Z^7$. \Cref{sec:rule} gives the noisy dynamics and its complete local rule, with constants selected in \cref{sec:parameters}. \Cref{sec:chart,sec:machine} construct the chart and prove the all-phase board lemma. \Cref{sec:poles,sec:sensors} give the contour and sensor estimates. \Cref{sec:memory} proves memory; \cref{sec:forget} proves forgetting from every initial state. The imported scaffold facts are isolated in \cref{prop:scaffold}. Readers interested in the stochastic mechanism can take that proposition as the cited input and read \cref{sec:rule,sec:poles,sec:sensors,sec:memory,sec:forget}.
+\paragraph{Reading guide.} \Cref{sec:parameters} contains the Gibbs corollary on $\Z^7$, field response and the effective consequences. The finite-history proof is in \cref{app:finite}, and the local-kernel radius is in \cref{app:robust}. \Cref{sec:rule} gives the noisy dynamics and its complete local rule, with constants selected in \cref{sec:parameters}. \Cref{sec:chart,sec:machine} construct the chart and prove the all-phase board lemma. \Cref{sec:poles,sec:sensors} give the contour and sensor estimates. \Cref{sec:memory} proves memory; \cref{sec:forget} proves forgetting from every initial state. The imported scaffold facts are isolated in \cref{prop:scaffold}. Readers interested in the stochastic mechanism can take that proposition as the cited input and read \cref{sec:rule,sec:poles,sec:sensors,sec:memory,sec:forget}.
 
 \section{Dynamics and the fixed local rule}\label{sec:rule}
 
@@ -208,10 +221,10 @@ One uniform whole-symbol replacement follows. These cases also specify the rule 
  \kappa=2B(n_A+n_Q+2),\qquad n_A=9q,\qquad
  n_Q=(2T+1)^2[T(L+m-1)+1]^4.
 \]
-This bound is independent of $|R|$ and $n_0$.
+Each output uses $B$ predecessor helper sites. This bound is independent of $|R|$ and $n_0$.
 \end{proposition}
 \begin{proof}
-An ordinary query reads at most $9q$ old data sites. In $T$ iterations the planar displacement lies in $[-T,T]^2$ and each provider coordinate in $[0,T(L+m-1)]$; recentering translates this box. At output $w$ the $A,Q$ bases are the $B$ sites $w-j\mathbf e_y$, including $w$. The gate's provisional fields use the already counted base $w$ and $B$ predecessor helper sites. The helper outputs add one predecessor site. Thus there are at most $B(n_A+n_Q)+(B+1)\le B(n_A+n_Q+2)$ parents. Translation invariance gives the same reverse degree. Alphabet enlargement changes finite lookup tables, with the checker radius remaining one.
+An ordinary query reads at most $9q$ old data sites. In $T$ iterations the planar displacement lies in $[-T,T]^2$ and each provider coordinate in $[0,T(L+m-1)]$; recentering translates this box. At output $w$ the $A,Q$ bases are the $B$ sites $w-j\mathbf e_y$, including $w$. The gate's provisional fields use the already counted base $w$ and the $B$ predecessor helper sites $w+j\mathbf e_y-\mathbf e_x+v$, $j<B$. The helper outputs read only $w-\mathbf e_x+v$, the case $j=0$. Thus there are at most $B(n_A+n_Q)+B\le B(n_A+n_Q+2)$ parents. Translation invariance gives the same reverse degree. Alphabet enlargement changes finite lookup tables, with the checker radius remaining one.
 \end{proof}
 
 \section{Charts, frames and routing}\label{sec:chart}
@@ -258,7 +271,7 @@ The lane phase is
 \begin{equation}\label{eq:phase}
  p(x,y)=y-\tau_2-1\pmod B.
 \end{equation}
-It is implemented by a higher-block Wang extension. Here is an effective construction of its lookup table. For residues modulo $B$ encode the quarter offset and $2k-1$ base substitution digits. Enumerate finite hierarchy patches of increasing radius, with the source's explicit substitution and matching constraints. Search for a central radius whose projected fine words for distinct residues are disjoint, and a finite hierarchy radius witnessing this disjointness. Each test is finite exhaustive enumeration. The search terminates: phase sectors are disjoint compact sets by the tower and local phase facts of \cref{prop:scaffold}; if every larger hierarchy patch allowed an ambiguous fixed central word, compactness would give ambiguity in two full sectors. There are finitely many central words and sector pairs. Decode a liftable word by its unique residue and give an unliftable word a fixed default. Require $p$ to agree with that table, to copy horizontally and increase by one vertically. The usual overlapping-block edge colours recode these finite constraints as a Wang set, retaining the central tile projections.
+It is implemented by a higher-block Wang extension. Here is an effective construction of its lookup table. For residues modulo $B$ encode the quarter offset and $2k-1$ base substitution digits. Enumerate finite hierarchy patches of increasing radius, with the source's explicit substitution and matching constraints. For a residue $\pi$, central radius $r$ and hierarchy radius $R_{\rm h}$, let $\mathcal A(\pi,r,R_{\rm h})$ be the central words projected from legal radius-$R_{\rm h}$ hierarchy patches with the prescribed digits. These finite sets decrease with $R_{\rm h}$, and their intersections are the sector languages by compactness. Search for $(r,R_{\rm h})$ for which the sets belonging to different residues are pairwise disjoint. Each test is finite exhaustive enumeration. The search terminates: phase sectors are disjoint compact sets by the tower and local phase facts of \cref{prop:scaffold}; if every larger hierarchy patch allowed an ambiguous fixed central word, compactness would give ambiguity in two full sectors. There are finitely many central words and sector pairs. Decode a word by the residue of the unique finite approximant containing it, and give a word lying in no approximant a fixed default; words of legal charts lie in their sector's approximant. Require $p$ to agree with that table, to copy horizontally and increase by one vertically. The usual overlapping-block edge colours recode these finite constraints as a Wang set, retaining the central tile projections.
 
 Define $\Orig$ as the intersection of a bottom light horizontal wall with a left light vertical wall, and $\End$ with a right light vertical wall. These are literal functions of a quarter tile's red atoms, quadrant and ruler bits from \cite[Definition~3.11]{DMhard}. On a finite bottom row of depth $d$, origins and ends are respectively
 \[
@@ -269,7 +282,7 @@ Here $\operatorname{Bot}_d$ denotes the lower endpoint of a row frame. Finite-ra
 \[
  p(\operatorname{Bot}_d(z'))\equiv(4z'+1)4^d\pmod{4^{\min(d+1,k)}},
 \]
-so the phase-zero gates are exactly the finite bottom rows with $d\ge k$.
+so a finite bottom row is a phase-zero gate row exactly when $d\ge k$. (Exceptional phases may contain further gate sites of infinite rank. The local rule acts there too, and no argument below uses them.)
 
 \subsection{Local routing rules}
 
@@ -423,7 +436,7 @@ Planar displacements do not affect these potentials.
 \begin{equation}\label{eq:polebound}
  e\le A_0(g-1)+\Omega g/\varrho_+
 \end{equation}
-positive support edges, counted with multiplicity. Unary zero-potential links are permitted; they create no additional charge sources. With singleton groups a nonterminal root has at least two terminal flags. If support edges decrease time by one and group identifications preserve time, the span is at most $e$.
+positive support edges, counted with multiplicity. Unary zero-potential links are permitted; they create no additional charge sources and do not enter $e$. With singleton groups, a root witness that contains a positive support edge has at least two terminal flags. If support edges decrease time by one, and unary links and group identifications preserve time, the span is at most $e$.
 \end{lemma}
 \begin{proof}
 Give each vertex its set of descendant terminal-group names. Expose the graph in topological order, replacing a frontier nonterminal by its supports. Join frontier vertices when their descendant sets overlap. Replacing a binary vertex splits its component into at most two: each remaining vertex remains linked to one support by the old shortest overlap chain. It joins no outside component because support descendant sets are subsets of the removed set. A unary replacement cannot split a component. At the end each component is one terminal group.
@@ -434,7 +447,7 @@ At most $5(g-1)$ edges are bad. Summing charge increments, the source sums vanis
 \[
  \varrho_+ e-(\varrho_++\varrho_-)5(g-1)\le g\Omega,
 \]
-which proves \eqref{eq:polebound}. For a nonterminal root $e>0$, so singleton groups require $g\ge2$. A minimum-time vertex is terminal because any arm interior continues earlier. A connected path from the root to it uses at most $e$ support edges, while terminal identifications change time by zero. This proves the span assertion. The argument for the edge count used acyclicity and potential oscillations, so it also applies to groups at unequal times when their potentials agree.
+which proves \eqref{eq:polebound}. If the root witness contains a positive support edge, then $e>0$, so singleton groups require $g\ge2$. Under the stated clock hypotheses a connected path from the root to any vertex changes time only on positive support edges. A simple such path uses at most $e$ of these edges; unary links and group identifications change time by zero. This proves the span assertion. The argument for the edge count used acyclicity and potential oscillations, so it also applies to groups at unequal times when their potentials agree.
 \end{proof}
 
 \subsection{The raw marked set and coherence}
@@ -473,7 +486,7 @@ and labels persist backwards on overlaps. A nonempty $V_t$ expands to cover ever
 \begin{proof}
 Every wrong live actual reading is marked by \cref{lem:coherence}. A wrong live forecast retains its letter at at least $h$ center providers. At each of its $T$ virtual levels these wrong centers occupy two distinct clusters; append their finite marked derivations. Give a virtual $F_R^j(D_s)(u,P)$ the provider characteristic coordinate $P+vs+jv$, and actual $D_s(u,P)$ the coordinate $P+vs$. Every virtual support has displacement $s'-v$, $s'\in S$, as does the final step to actual data; its potentials are the five spatial potentials $5\sum \chi_{P,i},-5\chi_{P,i}$. The gains are \eqref{eq:poleconstants} and $-715$. Recentring in \eqref{eq:drivers} places the query root at the current characteristic coordinate.
 
-Apply \cref{lem:pole}. Every root-to-flag arm crosses all $T$ virtual levels, so $e\ge T=500$, and $e\le50(f-1)$ gives $f\ge11$. Virtual levels precede no actual input flag in physical time; their bookkeeping levels account for part of $e$. The remaining physical span is at most $e$, and adding lag $\ell$ gives the stated bound.
+Apply \cref{lem:pole}. Every root-to-flag arm crosses all $T$ virtual levels, so $e\ge T=500$, and $e\le50(f-1)$ gives $f\ge11$. Virtual levels precede no actual input flag in physical time; their bookkeeping levels account for part of $e$. For the span use formal time $s+j$ at virtual level $j$ over $D_s$, and physical time on actual data and flags. Each support edge drops this clock by one and there are no unary links. Recentring puts the query root on the output characteristic, so $t-t_0\le\ell+1-T+e\le\ell+e$. This gives the stated bound.
 \end{proof}
 
 \section{Noise sensors and their joint source law}\label{sec:sensors}
@@ -592,9 +605,9 @@ Project the selected witness to characteristic coordinates, bin, virtual level a
 \begin{proof}
 Condition on the correct chart. \Cref{lem:joint,lem:memorycount} bound every data or second-coordinate error, uniformly in time, by
 \[
- \sum_{g\ge1}(K_{\rm mem}\gamma)^g<\frac14,
+ \sum_{g\ge1}(K_{\rm mem}\gamma)^g=e_{\rm base}<\frac3{125},
 \]
-where the inequality follows from the parameter choices in \cref{sec:parameters}. Integrate over the invariant chart/helper initial law. In the bit-$b$ initialization the probability of the live data cylinder with bit $b$ is greater than $3/4$ at every site and time. The two bit cylinders are disjoint.
+where the inequality follows from the parameter choices in \cref{sec:parameters}. Integrate over the invariant chart/helper initial law. In the bit-$b$ initialization the probability of the live data cylinder with bit $b$ is greater than $122/125$ at every site and time. The two bit cylinders are disjoint.
 
 The configuration space is compact and the kernel is Feller, since updates are local. A weak limit of temporal Cesaro averages is stationary: the difference of an average and its one-step image is the initial law minus the final law, divided by the averaging length. The initial law and dynamics are spatially invariant, so each limit is invariant under all six spatial coordinates. The one-site cylinder inequalities persist in the limit. The limits from bits zero and one are distinct.
 \end{proof}
@@ -689,11 +702,11 @@ Partition provider space into cubes $Y=\lambda z+[0,\lambda-1]^4$. All flag cent
 \begin{proof}
 A flagged output is common. An unflagged differing output requires a live $A_t(w-j\mathbf e_y)$ in one run for some $0\le j<B$: otherwise data and second coordinate are bottom and every helper proposal is the same UNKNOWN by \eqref{eq:helper}. Thus every discrepancy lies in a fixed finite union of planar translates of the birth field at time $t-1$. It also has a discrepant parent in the actual neighbourhood, since equal parents give equal deterministic outputs. A discrepancy would therefore generate an infinite backward path in this shifted union.
 
-Attach grouped contours for that rare field greedily along the path, restarting before the earliest group time. Shift every path and contour vertex down by one time unit to align the birth field with the discrepancy time. Connect a path root to its selected planar target by one literal offset edge. These edges have zero pole increment. Leaves in one group share planar site, time and provider cube, with total potential oscillation at most
+Attach grouped contours for that rare field greedily along the path, restarting before the earliest group time. Draw the discrepancy path one time unit lower, so that a path vertex for actual time $s$ sits at $s-1$; attach the birth contour at its actual time $s-1$ by a time-preserving planar edge, without shifting the contour. Connect a path root to its selected planar target by one literal offset edge. These edges have zero pole increment. Leaves in one group share planar site, time and provider cube, with total potential oscillation at most
 \[
  \Omega=2\cdot5\cdot4\cdot175=7000.
 \]
-By \cref{lem:pole} the support and covered path spans each cost at most $H_0g$, where $H_0=A_0+7000/85=11000/85<130$. Group identifications cost at most $5g$ star edges and shifted roots at most $g$ connectors. Thus fewer than $282g<512g$ edges suffice. The selected time slabs make all group identities distinct.
+By \cref{lem:pole} a contour has $e\le H_0g-A_0$ support edges. Its path coverage, including the restart, is at most $e+1\le H_0g$, since $A_0>2$. The support count is also at most $H_0g$, where $H_0=A_0+7000/85=11000/85<130$. Group identifications cost at most $5g$ star edges and shifted roots at most $g$ connectors. Thus fewer than $282g<512g$ edges suffice. The selected time slabs make all group identities distinct.
 
 The augmented graph has fixed degree $\Delta_{\rm rare}$ as derived in \cref{lem:counts}; it includes actual dependency offsets, group stars, and the $B$ literal planar shifts. Keeping these as edge labels gives at most $K_{\rm rare}^g$ witnesses. By \cref{lem:rare} each has weight at most $(N_0\eps^M)^{g/16}$. A path length tending to infinity forces $g\to\infty$, by the span bound. The geometric series has base below $1/64$ by \cref{sec:parameters} and excludes every such infinite path, simultaneously at every root. This proves full-state equality.
 \end{proof}
@@ -788,7 +801,11 @@ The memory bound follows from
  K_{\rm mem}\sqrt C=1/128,\qquad
  K_{\rm mem}\widehat\eta_B^{1/6}<1/64,
 \]
-so $K_{\rm mem}\gamma<1/32$ and its geometric sum is below $1/4$. The raw-path base $K_{\rm mem}\eps$ is small under \eqref{eq:epsstar}. The historical statistical base is below $1/64$ by \eqref{eq:Bsearch}. Its other base is at most $K_{\rm hist}C^{6/11}(64K_{\rm hist})^{-9}<1/64$. Finally, since $\eps\le1$ and $M\ge1$,
+so $\theta:=K_{\rm mem}\gamma<3/128$ and
+\begin{equation}\label{eq:baselineerror}
+ e_{\rm base}:=\frac{\theta}{1-\theta}<\frac3{125}.
+\end{equation}
+This is the original-kernel error bound; $1/31$ below is the perturbed-kernel bound. The raw-path base $K_{\rm mem}\eps$ is small under \eqref{eq:epsstar}. The historical statistical base is below $1/64$ by \eqref{eq:Bsearch}. Its other base is at most $K_{\rm hist}C^{6/11}(64K_{\rm hist})^{-9}<1/64$. Finally, since $\eps\le1$ and $M\ge1$,
 \[
  K_{\rm rare}(N_0\eps^M)^{1/16}
  \le \frac{N_0^{1/16}}{64(N_0+1)}<1/64.
@@ -816,8 +833,51 @@ The rule is fixed and computably specified by \cref{prop:local,prop:parameters}.
 The midpoint $\eps_n=41C/(20\ell_{n+n_0})$ is computable and rational. An algorithm deciding the promised question at $\eps_n$ would decide whether $U(n)$ halts by \cref{thm:main}.
 \end{proof}
 
+\subsection{Exponential coalescence and extremal states}
+
+For the specified replacement maps let
+\begin{equation}\label{eq:qt}
+ q_t(\eps)=\Prob\{x\mapsto X_t^x(0)\text{ is not constant on }\Sigma^{\Z^6}\}.
+\end{equation}
+This tests all starts against one realization of the maps. Put
+$W_n^*=\lfloor\ell_{n+n_0}/2\rfloor$.
+
+\begin{theorem}[Exponential all-input coalescence]\label{thm:exponential}
+\proved\ If $U(n)$ halts, there is $C_n>0$ such that, uniformly for $\eps\in I_n$ and $t\ge0$,
+\[
+ q_t(\eps)\le C_ne^{-c_nt},\qquad
+ c_n=\frac1{4(4V+1)(W_n^*+52)}.
+\]
+The rate $c_n$ is total computable from $n$; a procedure computes $C_n$ and terminates on every halting input. For any finite target set $D_*$, the forward or pullback noncoalescence probability is at most $|D_*|C_ne^{-c_nt}$.
+\end{theorem}
+\begin{proof}
+The finite motif search of \cref{lem:motif} terminates on halting inputs. The finite-history estimates \cref{lem:finitecoherence,lem:unmarkedfinite,lem:bulk,lem:finitepacking} prove the displayed bound, with the stated rate, for the existence of any two starts with different full output symbols. Their prefactors are computed from the finite motif radius and the constants of \cref{sec:parameters}. Translation and a union bound give the finite-set assertion. A forward and a pullback block have the same law. Coupling to the stationary law also gives exponential attraction on every finite set.
+\end{proof}
+
+\begin{theorem}[Continuum many extremal states]\label{thm:continuum}
+\proved\ If $U(n)$ does not halt and $\eps\in I_n$, the set of all stationary laws has continuum many extreme points. The normalized space--time interaction has continuum many extremal Gibbs measures. No translation invariance is asserted for these extremes; the two translation-invariant laws of \cref{thm:main} are a separate conclusion.
+\end{theorem}
+\begin{proof}
+The chart law of \cref{prop:chart} has a nonatomic Haar phase marginal. Unique phase determination gives uncountably many distinct correct typical charts $c$, with a fixed global bit. Condition on one such $c$, clone it over providers, and initialize helpers by its ideal negative-time process. The proof of \cref{thm:memory}, before spatial averaging, bounds a data error at every site and time by $e_{\rm base}<3/125$. A temporal Cesaro limit $\mu_c$ is stationary by the Feller property. All clopen cylinder bounds pass along one subsequence, so
+\[
+ \mu_c\{D(u,P)=c(u)\}\ge1-e_{\rm base}
+ \quad\text{for every }(u,P).
+\]
+Different charts differ at some $u$. At that cylinder their laws differ by at least $1-2e_{\rm base}>119/125$. Their stationary trajectory laws are DLR states by \cite[Lemma~2.4]{DMst}, which assumes no spatial invariance. Their time-zero marginals give the same separation.
+
+For either the stationary-law set or the DLR set, let $\mathcal K$ be the full compact convex set of states. It is metrizable; compactness follows from the Feller property in the first case and continuity of the finite-range specification in the second. If its extreme set were countable, the metrizable Choquet theorem \cite{Choquet} would express every state as a countable mixture of these extremes. Truncation, putting the tail mass on one fixed extreme, changes total variation by at most the tail mass. Rationalizing the remaining weights would give a countable total-variation-dense subset of $\mathcal K$. A separable metric space cannot contain an uncountable uniformly separated family, a contradiction.
+
+For a compatible weak metric $d$, the nonextreme set equals
+\[
+ \bigcup_{j\ge1}
+ \{(\nu+\rho)/2:\nu,\rho\in\mathcal K,\ d(\nu,\rho)\ge1/j\}.
+\]
+Each set in the union is compact. Every nonextreme point is the midpoint of a shorter nontrivial segment through it, proving the equality. Thus the extreme set is $G_\delta$ in a compact metrizable space. The perfect-set theorem \cite{Kechris} gives continuum cardinality for this uncountable Polish space. The ambient probability space has cardinality at most continuum. The stationary limits $\mu_c$ themselves need not be extreme. The stacked translation-invariant continuum of \cite[Corollary~8.17]{DMforget} is a precursor with a different invariance scope.
+\end{proof}
+\subsection{The fixed interaction}
+
 \begin{gibbsB}
-\proved\ There is one computably specified translation-invariant finite-range interaction on $\Z^7$, with a finite alphabet and energies in $\{0,1\}$, and computable pairwise disjoint rational open intervals $\mathcal J_n$ of inverse temperature, such that for every $\beta\in\mathcal J_n$ there is exactly one Gibbs measure invariant under all translations of $\Z^7$ if $U(n)$ halts, and at least two if it does not. In the halting case this measure is also the only uniformly recurrent, and hence the only periodic, Gibbs measure.
+\proved\ There is one computably specified translation-invariant finite-range interaction on $\Z^7$, with a finite alphabet and energies in $\{0,1\}$, and computable pairwise disjoint rational open intervals $\mathcal J_n$ of inverse temperature, such that for every $\beta\in\mathcal J_n$: if $U(n)$ halts the interaction has exactly one Gibbs measure, with no invariance assumed, and its specification has arbitrary-volume exponential weak spatial mixing; if $U(n)$ does not halt it has at least two translation-invariant Gibbs measures and continuum many extremal Gibbs measures.
 \end{gibbsB}
 \begin{proof}
 Use the automaton of \cref{thm:main}, write $N_\Sigma=|\Sigma|$, and let $N_F$ be its finite neighbourhood. At $(w,t)\in\Z^6\times\Z$ put
@@ -825,46 +885,373 @@ Use the automaton of \cref{thm:main}, write $N_\Sigma=|\Sigma|$, and let $N_F$ b
  S_{w,t}=\{(w,t)\}\cup\{(w+z,t-1):z\in N_F\},\\
  \Phi_{w,t}(\sigma)=\ind\{\sigma(w,t)\ne f((\sigma(w+z,t-1))_{z\in N_F})\}.
 \end{gather*}
-These translates define one interaction, independent of $\beta$, with finite range and energies $0,1$. Its Gibbs specification on a finite set $\Lambda$ uses every factor $e^{-\beta\Phi_{w,t}}$ with $S_{w,t}\cap\Lambda\ne\varnothing$, including factors of exterior children.
-
-Put $\eps(\beta)=N_\Sigma/(e^\beta+N_\Sigma-1)$. For every parent word $\eta$ and symbol $c$,
+The specification uses every factor with $S_{w,t}\cap\Lambda\ne\varnothing$, including factors of exterior children. Put $\eps(\beta)=N_\Sigma/(e^\beta+N_\Sigma-1)$. For every parent word $\eta$ and symbol $c$,
 \[
  \frac{e^{-\beta\ind\{c\ne f(\eta)\}}}{1+(N_\Sigma-1)e^{-\beta}}
  =(1-\eps(\beta))\ind\{c=f(\eta)\}+\frac{\eps(\beta)}{N_\Sigma}.
 \]
-The denominator is independent of the parent word, so normalization cancels it in every finite-volume specification. This is precisely the normalized space--time specification of $F_{\eps(\beta)}$.
+The parent-independent denominator cancels from every specification, giving precisely the normalized space--time interaction.
 
-The PCA has a finite alphabet, finite range and transition probabilities at least $\eps(\beta)/N_\Sigma>0$. By the correspondence of \cite{GKLM89}, in the form of \cite[Lemma~2.4 and Corollary~10.4]{DMst}, in every spatial dimension its spatially translation-invariant stationary laws correspond bijectively to the Gibbs measures of this specification invariant under all space--time translations, through their two-sided stationary trajectory laws. Distinct stationary laws have distinct time-zero marginals and hence distinct trajectory laws. In the halting case the unique stationary law is spatially translation invariant: every spatial translate is stationary and uniqueness identifies it. Its trajectory law is therefore the only Gibbs measure invariant under all translations of $\Z^7$. In the nonhalting case the two translation-invariant laws of \cref{thm:main} give two such Gibbs measures.
+We apply \cite[Corollary~13.7]{DMst}: a PCA on $\Z^d$, $d\ge1$, must have a finite alphabet, a finite neighbourhood containing $0$, a strictly positive table, and an i.i.d.\ local-map representation whose all-input common-map coefficient satisfies $q_t\le Ce^{-\alpha t}$ for all $t\ge0$ with $C,\alpha>0$. Here $d=6$, $\Sigma$ is finite, and $N_F$ contains $0$ because $\zeta=0$, $s=0$ occurs in the ordinary driver. The table is at least $\eps(\beta)/N_\Sigma>0$. The independent $(E,Z)$ updates are a local-map representation, and \cref{thm:exponential} supplies exactly its common-map coefficient. All hypotheses hold on halting windows. The conclusion is a single DLR state $\bar\mu$ and constants $C_*,c_*>0$ such that
+\begin{align}
+ d_{\rm TV}((\gamma^\tau_\Lambda)_E,\bar\mu_E)
+ &\le C_*\sum_{z\in E}e^{-c_*\operatorname{dist}_\infty(z,\Lambda^c)},\label{eq:gibbsconv}\\
+ d_{\rm TV}((\gamma^\tau_\Lambda)_E,(\gamma^{\tau'}_\Lambda)_E)
+ &\le C_*\sum_{z\in E}e^{-c_*\operatorname{dist}_\infty(z,\Lambda^c)}.\label{eq:gibbswsm}
+\end{align}
+After enlarging $C_*$, both hold for every finite $\Lambda$, every $E\subseteq\Lambda$ and all exteriors, including disconnected volumes and volumes with holes.
 
-Uniform recurrence here is for the full space--time translation action, with syndetic returns to every weak neighbourhood; periodicity means invariance under a finite-index subgroup. On a halting window, \cref{thm:main} gives convergence to the stationary law from every initial law. The strictly positive finite-alphabet finite-range PCA therefore satisfies \cite[Theorem~10.10(i)]{DMst}, so its stationary trajectory law is the only uniformly recurrent Gibbs measure, and in particular the only periodic one.
+On nonhalting windows, \cref{thm:continuum} gives continuum many extremal DLR states. The two translation-invariant stationary laws of \cref{thm:main} give two fully space--time translation-invariant Gibbs measures by \cite[Lemma~2.4 and Corollary~10.4]{DMst}, the correspondence of \cite{GKLM89}. Their time-zero marginals distinguish them.
 
-The decreasing computable bijection $\eps\mapsto\log(N_\Sigma/\eps-N_\Sigma+1)$ sends $I_n=(\eps_n^-,\eps_n^+)$ to
+The decreasing computable map $\eps\mapsto\log(N_\Sigma/\eps-N_\Sigma+1)$ sends $I_n=(\eps_n^-,\eps_n^+)$ to an open interval with computable endpoints. Approximate these endpoints until two strictly interior rationals are certified and take the interval between them as $\mathcal J_n$. These choices are uniform in $n$ and disjoint. They give every asserted conclusion. The direct all-Gibbs precursor for varying rules is \cite[Corollary~8.8 and Remark~8.14]{DMforget}.
+\end{proof}
+\subsection{Field response and effective consequences}
+
+Write a symbol as $\sigma=(D,H,I_0,\ldots,I_{B-1})$ and fix
 \[
- \left(\log(N_\Sigma/\eps_n^+-N_\Sigma+1),
-       \log(N_\Sigma/\eps_n^--N_\Sigma+1)\right).
+ m_{\rm bit}(\sigma)=
+ \ind\{D\text{ is live with bit }1\}-
+ \ind\{D\text{ is live with bit }0\}.
 \]
-Both endpoints are computable reals, uniformly in $n$, since the finite alphabet is effectively specified. Approximate them until two rational numbers strictly between them are certified, and let $\mathcal J_n$ be the interval between those rationals. The images are disjoint, so the $\mathcal J_n$ are disjoint. The correspondence and \cref{thm:main} give the conclusion throughout each $\mathcal J_n$.
+Use counting a priori measure and a dimensionless field $h_{\rm f}$, with weights
+$\exp[-\beta\sum_v\Phi_v+h_{\rm f}\sum_{v\in\Lambda}m_{\rm bit}(\sigma_v)]$.
+Let $P(\beta,h_{\rm f})$ be the pressure. The subscript distinguishes this field from the checker threshold $h$.
+
+\begin{theorem}[Field response for one fixed interaction]\label{thm:field}
+\proved\ The pressure is computable for computable $\beta>0,h_{\rm f}$, is even in $h_{\rm f}$, and
+\[
+ P(\beta,0)=\log(1+(N_\Sigma-1)e^{-\beta})
+\]
+is analytic for $\beta>0$. For $\beta\in\mathcal J_n$, its field derivative at zero exists exactly when $U(n)$ halts, and then equals zero. Otherwise
+\[
+ \partial_{h_{\rm f}}^+P(\beta,0)>119/125,\qquad
+ \partial_{h_{\rm f}}^-P(\beta,0)<-119/125,
+\]
+so the jump exceeds $238/125$. This conclusion uses only translation-invariant Gibbs facts.
+\end{theorem}
+\begin{proof}
+Let $\iota$ flip the global bit in each live $D,H$ letter, fix bottom and leave helpers unchanged. Compatibility and the threshold checker are equivariant, and all chart predicates ignore that bit. Thus $F\iota=\iota F$, uniform replacement preserves the involution, $\Phi\circ\iota=\Phi$ and $m_{\rm bit}\circ\iota=-m_{\rm bit}$. Applying this bijection to free finite-volume partition functions proves evenness.
+
+For a box $\Lambda_L$ of side $L$ in $\Z^7$, fix its exterior and first keep only factors anchored at children inside $\Lambda_L$. Each sum over a child is
+\[
+ \sum_c e^{-\beta\ind\{c\ne f(\eta)\}}
+ =a_\beta:=1+(N_\Sigma-1)e^{-\beta},
+\]
+independent of its parents. Sum the latest row first, then each earlier row. Children in one row occur only in their own remaining factors, so this partition sum is exactly $a_\beta^{|\Lambda_L|}$. The DLR convention adds only $O_{R_\Phi}(L^6)$ exterior-child factors, where $R_\Phi$ bounds the support distance from each anchor. Each factor is between $e^{-\beta}$ and $1$. Their logarithmic contribution divided by $L^7$ tends uniformly to zero, proving the identity and analyticity. This is the binary-energy form of the normalized zero-pressure fact \cite[Remark~10.13]{DMst}.
+
+For computability, use free cubes of side $L$ and put
+$p_L=L^{-7}\log Z_{\Lambda_L}^{\rm free}(\beta,h_{\rm f})$. Tiling a large cube by these cubes removes crossing anchors at density at most $14R_\Phi/L$. Field terms are additive. Since $0\le\Phi\le1$,
+\[
+ p_L-14\beta R_\Phi/L\le P(\beta,h_{\rm f})\le p_L.
+\]
+Leftover boundary sites have vanishing density in the large-cube limit; this argument also gives existence of the pressure. Each $p_L$ is a finite computable sum of exponentials, and an effective upper bound on $\beta$ makes the displayed error a computable modulus.
+
+We recall the finite-range Gibbs variational principle and Lanford--Ruelle identification \cite{LanfordRuelle69}, also used in \cite[Corollary~10.7]{DMthermal}. On the compact set $\mathcal I$ of translation-invariant laws, entropy density $\mathfrak s$ is upper semicontinuous and
+\[
+ P(\beta,h_{\rm f})=\max_{\nu\in\mathcal I}
+ \{\mathfrak s(\nu)-\beta\nu(\Phi_0)+h_{\rm f}\nu(m_{\rm bit})\}.
+\]
+Maximizers are precisely the translation-invariant Gibbs states. Let $\mathcal G_{\beta,0}^{\rm inv}$ be the zero-field maximizers. For $h_{\rm f}>0$, substitution of any zero-field maximizer bounds the secant slope below by its magnetization. Conversely a maximizer $\nu_{h_{\rm f}}$ at $h_{\rm f}$ has zero-field objective at most $P(\beta,0)$, so the slope is at most $\nu_{h_{\rm f}}(m_{\rm bit})$. Pressure is $1$-Lipschitz in the field, and compactness and upper semicontinuity put every limit of these maximizers as $h_{\rm f}\downarrow0$ in $\mathcal G_{\beta,0}^{\rm inv}$. Applying the argument also to negative fields gives
+\[
+ \partial_{h_{\rm f}}^+P(\beta,0)
+ =\max_{\nu\in\mathcal G_{\beta,0}^{\rm inv}}\nu(m_{\rm bit}),\qquad
+ \partial_{h_{\rm f}}^-P(\beta,0)
+ =\min_{\nu\in\mathcal G_{\beta,0}^{\rm inv}}\nu(m_{\rm bit}).
+\]
+Halting gives one translation-invariant Gibbs state by \cref{thm:main} and \cite[Corollary~10.4]{DMst}. Symmetry fixes it and its magnetization is zero. This uses neither \cref{thm:exponential} nor unrestricted Gibbs uniqueness. Nonhalting gives the two invariant bit states of \cref{thm:memory}, with error $e_{\rm base}<3/125$. Their trajectory laws have magnetizations at least $1-2e_{\rm base}>119/125$ and at most $-1+2e_{\rm base}<-119/125$. The slope formula proves the asserted gap. Rational midpoints of $\mathcal J_n$ reduce halting to differentiability.
+\end{proof}
+
+\begin{corollary}[Computable pressure and noncomputable response scales]\label{cor:response}
+\proved\ At the rational midpoint $\beta_n$ of $\mathcal J_n$, put
+$M_n=\partial_{h_{\rm f}}^+P(\beta_n,0)$. It is uniformly upper semicomputable but has no uniform computable approximation to error $1/4$. There is no total computable $g$ such that on every halting input
+\[
+ 2^{g(n)}[P(\beta_n,2^{-g(n)})-P(\beta_n,0)]<1/2.
+\]
+\end{corollary}
+\begin{proof}
+Convexity gives $M_n=\inf_{k\ge0}2^k[P(\beta_n,2^{-k})-P(\beta_n,0)]$, a decreasing infimum of computable reals. Rational upper approximations and running minima give upper semicomputability. An error-$1/4$ approximation separates $M_n=0$ from $M_n>119/125$, deciding halting. A proposed $g$ would instead give a computable secant below $1/2$ on halting inputs and above $119/125$ on nonhalting inputs. Approximation to error $1/10$ separates these cases, again deciding halting. The unbounded-scale principle is the one in \cite[Theorem~11.5]{DMthermal}; here the variable is a field secant for one fixed interaction.
+\end{proof}
+
+\begin{corollary}[Finite common-map certificates]\label{cor:certificate}
+\proved\ Let $r_F\ge1$ bound the sup norm of every offset in $N_F$, and put $M_H=(2r_FH+1)^6$. Exponential coalescence of the specified maps is equivalent to $M_Hq_H(\eps)<1$ for some $H$. These strict tests form an effectively open set of rates, and select exactly the halting windows on the promised domain.
+\end{corollary}
+\begin{proof}
+For the last $H$ maps to transmit initial dependence, their composite must be nonconstant and at least one of their at most $M_H$ time-$t$ inputs must depend on the initial row. Independence of the two map blocks and the union bound give
+$q_{t+H}\le M_Hq_Hq_t$. Iteration and monotonicity of pullback images give exponential decay if $M_Hq_H<1$. Conversely an exponential beats the polynomial $M_H$ for large $H$. Finite-cone enumeration makes $q_H(\eps)$ an effectively computable polynomial in $\eps$, so strict positivity margins give effective openness. On halting windows use \cref{thm:exponential}; on nonhalting windows coalescence would contradict the two stationary laws. This is the $\Z^6$ form of \cite[Propositions~4.2--4.3]{DMst}.
+\end{proof}
+
+\begin{corollary}[No computable bound on forgetting times]\label{cor:times}
+\proved\ At the rational midpoint $\eps_n$ of $I_n$, let
+\[
+ \Delta_n(t)=\max_{x,y}d_{\rm TV}((\delta_xP_{\eps_n}^t)_{\{0\}},
+                                  (\delta_yP_{\eps_n}^t)_{\{0\}}).
+\]
+The first times $\Delta_n(t)<1/2$ and $q_t(\eps_n)<1/2$ are partial computable functions with domain exactly $\{n:U(n)\text{ halts}\}$. Neither has a total computable upper bound on its domain. The mean all-input CFTP depth is finite on each halting input and has no total computable bound over these inputs.
+\end{corollary}
+\begin{proof}
+The finite cone makes $\Delta_n(t)$ and $q_t(\eps_n)$ exact computable rationals. Both are nonincreasing: an extra initial step mixes deterministic-start laws for $\Delta_n$, and nested pullback images give monotonicity for $q_t$. Coupling gives $\Delta_n(t)\le q_t(\eps_n)$. On halting inputs they tend to zero by \cref{thm:exponential}. On nonhalting inputs the stationary bit marginals differ by more than $119/125$. These marginals are mixtures of the deterministic-start marginals at every $t$, so their diameter gives
+$\Delta_n(t)>119/125$ for every $t$.
+
+A total bound for either first time would decide halting by the corresponding exact test at that bound. If $T_n$ is the actual origin pullback depth, nestedness gives $\Prob(T_n>t)=q_t(\eps_n)$, so its expectation is finite by \cref{thm:exponential} and at least half the first time $q_t<1/2$. A total bound on these expectations would therefore bound those first times. This specializes \cite[Corollary~8.7]{DMforget} to a fixed rule.
+\end{proof}
+
+\begin{corollary}[Finitary coding and exact finite-window sampling]\label{cor:coding}
+\proved\ On halting windows the stationary space--time law is a finitary, translation-equivariant factor of a finite-alphabet i.i.d.\ field on $\Z^7$, with exponential tails for coding depth, and is mixing of every order. At rational rates it admits exact finite-window coupling from the past. At rational rates its finite marginals are computable by a partial algorithm that terminates on halting inputs. No operation-count bound for exhaustive enumeration is asserted.
+\end{corollary}
+\begin{proof}
+At each update use one innovation taking the deterministic-map value or one of $N_\Sigma$ replacement values, with probabilities $1-\eps$ and $\eps/N_\Sigma$. The nested pullback images eventually agree at every target by \cref{thm:exponential}. Their common value defines a translation-equivariant factor, depending on a finite random past cone. Its depth tail is bounded by $C_ne^{-c_nt}$; for a finite set use the union bound. The spatial radius is at most $r_F$ times the depth.
+
+At a rational rate, sample the innovations in nested finite cones, enumerate all finite initial words and stop when the target outputs agree. This almost surely terminates and gives their exact joint law, the Propp--Wilson construction \cite{PW96}; see the finitary-coding context of \cite{vdBS99}. A deterministic partial algorithm instead enumerates $q_t$ until the finite-window failure bound is below a desired tolerance and uses any fixed-start law at that depth. All these finite laws are computable.
+
+For mixing of every order, truncate finitely many local coded observables at a fixed depth. At sufficiently large pairwise separation their finite innovation cones are disjoint, so the truncations are independent. The sum of coding-failure probabilities controls the difference from the true joint law. Let separation and then truncation depth tend to infinity. This proves the assertion for the full space--time translation action. These coding-depth bounds do not control the time needed to enumerate all initial words.
+\end{proof}
+
+\begin{corollary}[Complexity on and beyond the promise]\label{cor:complexity}
+\proved\ If $U$ is effectively many-one universal, the rational ergodicity set restricted to $\bigcup_n I_n$ is c.e.-complete, and its relative complement in that promise is co-c.e.-complete. For any fixed $U$ used above, the full positive-rational ergodicity set is $\Pi^0_2$.
+\end{corollary}
+\begin{proof}
+Membership of a positive rational in the union of windows is decidable: their rational endpoints decrease to zero, so only finitely many can contain it, and endpoints are compared exactly. Within the promise, find its unique $n$ and simulate $U(n)$; \cref{thm:main} gives a semidecision for ergodicity. The computable midpoint map reduces the halting set to this set. Under the stated universality hypothesis that halting set is c.e.-complete. Taking relative complements proves the other completeness assertion.
+
+For the full set, the table is rational and strictly positive at each positive rational rate. By Halawi's uniform-ergodicity result, as reproduced in \cite[Proposition~10.7]{DMst}, and \cite[Lemma~10.8]{DMst}, ergodicity is equivalent to $\forall I\ \forall k\ \exists t\ \Delta(I,t)<1/k$, where $\Delta(I,t)=\max_{x,y}d_{\rm TV}((\delta_xP_\eps^t)_I,(\delta_yP_\eps^t)_I)$. Each finite-window diameter is a computable rational by finite-cone enumeration. This is the recalled $\Pi^0_2$ placement of \cite[Remark~10.9]{DMst}; compare \cite[Remark~8.9]{DMforget}. The extra universality assumption is confined to this corollary and is not an assumption of \cref{cor:undecidable}.
 \end{proof}
 
 \paragraph{Scale and remaining questions.} Every window lies below $10^{-5\cdot10^8}$, and the alphabet has more than $10^{10^{31539}}$ symbols. With the constants above, $k=52386$, $\log_{10}B=31539.51470\ldots$ and $n_0=888653587$. The rare-birth term in \eqref{eq:epsstar} is the minimum. It and the largest window give
 \begin{align*}
  \log_{10}\eps_*&=-535038537.39331\ldots,\\
  \log_{10}\sup I_1&=-535038537.61745\ldots.
-\end{align*} Indeed the helper alphabet alone has $100^B$ symbols, and $\log_{10}(2B)=31539.81573\ldots>31539$. The behaviour between windows, a lower-dimensional construction, an exponential mixing bound on halting windows, and the complexity class of the full set of ergodic rates remain questions.
+\end{align*} Indeed the helper alphabet alone has $100^B$ symbols, and $\log_{10}(2B)=31539.81573\ldots>31539$. The behaviour between windows, a lower-dimensional construction, and whether there are continuum many extreme translation-invariant stationary laws or Gibbs measures on the nonhalting windows remain questions. The full positive-rational ergodicity set has the recalled $\Pi^0_2$ upper bound of \cite[Remark~10.9]{DMst}; its exact complexity remains open. Robustness under arbitrary unnormalized energy perturbations remains open as well.
+
+\begin{remark}[Chernoff alternative for the scales]\label{rem:chernoff}
+\proved\ The original choices $w_B=2^{-\lfloor BC^2/50\rfloor}$, $k=52386$ and $n_0=888653587$ are retained in this construction because a Lean formalization of Theorem~A (Theorem~9.3) and Corollary~9.4, in progress, not yet released and not part of this version, uses them. A smaller alternative follows from a standard multiplicative Chernoff bound \cite{Chernoff52}. For $X\sim\operatorname{Bin}(B,p_W)$, put $\vartheta=.8C$. We have $s\le .8CB$ since $B\ge20/C$, and $p_W>.9C$, so
+\[
+ \Prob(X<s)\le
+ \exp\!\left[-B\frac{(p_W-\vartheta)^2}{2p_W}\right]
+ \le e^{-BC/180}.
+\]
+Indeed the derivative of $(p-\vartheta)^2/(2p)$ is
+$(p-\vartheta)(p+\vartheta)/(2p^2)>0$ for $p>\vartheta$, and its value at $.9C$ is $C/180$. Thus one could replace only the definition of $w_B$ by $2^{-\lfloor BC/180\rfloor}$ and recompute all later constants in their original order. The recomputed values are
+\[
+ k=26200,\qquad n_0=458784211,\qquad
+ \log_{10}B=15773.97177279\ldots,
+\]
+\[
+ \log_{10}\eps_*=-276231384.60659605\ldots,\qquad
+ \log_{10}\sup I_1=-276231384.83074221\ldots.
+\]
+The rare-birth term remains the minimum. Also
+$\log_{10}(2B)=15774.27280278\ldots$. The integer searches and these logarithms were independently recomputed with a second arithmetic method in the verification record. These alternative values are not substituted into the fixed rule of this paper.
+\end{remark}
 
 \section*{How this work was done}
 \addcontentsline{toc}{section}{How this work was done}
 
-\paragraph{AI note.} GPT-6.1 Sol derived the construction and proofs in a long working session in which agents of the same model family audited parts of the argument; Claude Opus 5.5 checked the result refutation-first in three reviews from the other developer. GPT-6.1 Sol also searched the literature and wrote this manuscript. Claude Opus 5.5 then checked the written text refutation-first against the derivation and the three reviews. GPT-6.1 Sol then added Corollary~B, which Claude Opus 5.5 checked in a further refutation-first pass. The authors chose the question, directed the work and take responsibility. Models are not listed as authors.
+\paragraph{AI note.} GPT-6.1 Sol derived the construction and proofs in a long working session in which agents of the same model family audited parts of the argument; Claude Opus 5.5 checked the result refutation-first in three reviews from the other developer. GPT-6.1 Sol also searched the literature and wrote this manuscript. Claude Opus 5.5 then checked the written text refutation-first against the derivation and the three reviews. GPT-6.1 Sol then added Corollary~B, which Claude Opus 5.5 checked in a further refutation-first pass. For version~1.1.0, GPT-6 Astra and GPT-6.1 Sol, directed by Nidhal Mghirbi, found the corrections and new results; Claude Opus 5.5 verified that package refutation-first and independently recomputed both scale choices. GPT-6.1 Sol integrated the verified package into this version, and Claude Opus 5.5 read the integrated text back refutation-first. The authors chose the question, directed the work and take responsibility. Models are not listed as authors.
 
 \section*{Verification status}
 \addcontentsline{toc}{section}{Verification status}
 
-The construction and component proofs were derived with separate agents re-deriving and challenging them. The first review, from the other developer, re-derived the contour, coherence, birth and pullback arguments of Sections~5 and~8 in a general form, including the grouped potential estimate and the complete-history chart argument. The second review checked the fixed-rule assembly, sensor ownership, direct machine, parameter inequalities, feedback memory estimate, historical compression and shifted-target coupling. It identified the missing written proof for finite-board forcing in exceptional phases. The repaired lemma was then re-derived from the rules of \cite[Section~4]{DMhard} in the third review. The subsequent refutation-first check of the written text found no mathematical error and identified the credit and presentation corrections made in this version.
+The construction and component proofs were derived with separate agents re-deriving and challenging them. The first review, from the other developer, re-derived the contour, coherence, birth and pullback arguments of Sections~5 and~8 in a general form, including the grouped potential estimate and the complete-history chart argument. The second review checked the fixed-rule assembly, sensor ownership, direct machine, parameter inequalities, feedback memory estimate, historical compression and shifted-target coupling. It identified the missing written proof for finite-board forcing in exceptional phases. The repaired lemma was then re-derived from the rules of \cite[Section~4]{DMhard} in the third review. The subsequent refutation-first check of the version~1.0.0 text found no mathematical error at that stage and identified credit and presentation changes; the later audit described in the AI note identified the defects corrected here, and the cross-family verification confirmed them.
 
 The scaffold statements of \cref{prop:scaffold}---desubstitution with a unique tower for every tiling, local phase determination, frames, and the finite-rank red-path and ruler-bit lemmas---are formalized in Lean in \cite[Appendix~D, version~1.2.0]{DMhard}, without \texttt{sorry}. The formal results include \texttt{desub}, \texttt{tower\_unique}, \texttt{phase\_local}, \texttt{red\_col}/\texttt{red\_row}, the \texttt{rank\_bits} lemmas and the frame and laminar lemmas. Their trust base is \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. Quarter encoding (\texttt{quarter\_exists}, \texttt{quarter\_unique}) is formalized there as well; the typical-phase routing existence is cited from \cite[Propositions~5.1 and 5.7 and Lemma~5.3]{DMhard}; the black-type comparison is proved in \cref{sec:chart}. The finite-rank statements used in \cref{lem:allphase} are among these formalized inputs and apply even when the other axis has infinite rank.
 
-The first review re-derived the pole/frontier argument and grouped estimates. The second and third reviews checked their unequal-time and zero-potential-link use; they did not repeat all of the original fine combinatorics. The check of the written text re-derived the frontier invariant and the numerical estimates. The Wang set $R$ and the physical alphabet were not enumerated; with the constants of \cref{sec:parameters} they are far too large to list. Nonhalting satisfiability follows from the cited typical-phase construction and the finite computations in \cref{prop:chart}. Corollary~B was added after the check of the written text. A further refutation-first check by the other model family re-derived its proof, checked each hypothesis of \cite[Lemma~2.4 and Corollary~10.4]{DMst} for this automaton, and recomputed the scale of \cref{sec:parameters} with an independent program. The additional conclusion about uniformly recurrent and periodic Gibbs measures was checked against \cite[Theorem~10.10(i)]{DMst} in this revision. The new theorem has no formal proof in Lean. The authors' role is selection of the question and direction of the work; no additional human line-by-line verification is claimed.
+The first review re-derived the pole/frontier argument and grouped estimates. The second and third reviews checked their unequal-time and zero-potential-link use; they did not repeat all of the original fine combinatorics. The check of the written text re-derived the frontier invariant and the numerical estimates. The Wang set $R$ and the physical alphabet were not enumerated; with the constants of \cref{sec:parameters} they are far too large to list. Nonhalting satisfiability follows from the cited typical-phase construction and the finite computations in \cref{prop:chart}. Corollary~B was added after the check of the written text. A further refutation-first check by the other model family re-derived its proof, checked each hypothesis of \cite[Lemma~2.4 and Corollary~10.4]{DMst} for this automaton, and recomputed the scale of \cref{sec:parameters} with an independent program. The additional conclusion about uniformly recurrent and periodic Gibbs measures was checked against \cite[Theorem~10.10(i)]{DMst} in version~1.0.0; version~1.1.0 drops it because uniqueness among all Gibbs measures subsumes it. For version~1.1.0, a further cross-family refutation-first verification re-derived the four corrections, finite-history argument, extremal cardinality, robustness, field response and effective corollaries, and independently recomputed both scales. It treated the earlier scaffold and stochastic lemmas as inputs, spot-checking their uses, and checked the statement and hypotheses of \cite[Corollary~13.7]{DMst} rather than re-proving it. These are shared dependencies of the verification. Theorem~A (Theorem~9.3) and Corollary~9.4 retain their printed statements and original constants for a Lean formalization in progress, not yet released and not part of this version; apart from the cited scaffold inputs, no statement of this paper is claimed as formally verified, and the added results are written proofs. No alphabet enumeration or new Lean run was performed. The authors' role is selection of the question and direction of the work; no additional human line-by-line verification is claimed.
+
+\appendix
+\crefalias{section}{appendix}
+\section{Finite histories and exponential coalescence}\label{app:finite}
+
+We prove \cref{thm:exponential} quantitatively. To also prepare the robustness proof, allow an independent exceptional flag $A$ of probability $\delta$ at each update, selecting any random local map when present. The baseline maps are used otherwise. All update randomness is independent across space--time. Assume
+\begin{equation}\label{eq:overlayconditions}
+ 0\le\delta\le\min\{\eps_n^-,\widehat\eta_B/(2BW_n^*),1/(64K_{\rm rare})\}.
+\end{equation}
+The original maps correspond to $\delta=0$. Write $E'=E\vee A$,
+$e'=\eps+(1-\eps)\delta\le2\eps$, $A'=4V+1$, and $J=W_n^*+52$.
+Define $\MM$ with $E'$ in place of $E$. This two-sided flag field may use auxiliary negative-time flags even though the trajectory starts at zero. Every marked point has a finite flag derivation; an unmarked output has marked Moore parents in at most one provider cluster.
+
+\begin{lemma}[A finite motif certificate]\label{lem:motif}
+\proved\ If $U(n)$ halts, a terminating finite search finds $r\ge1$ such that every Moore-compatible live patch on $Q_r=[-r,r]^2$ contains one of the following motifs. A type S motif is a horizontal segment of $\ell_{a-1}+1$ letters, with $\Orig$ at the left endpoint and at no other position of the segment, and $\End$, $p=0$, $H_{\rm row}=0$ at its right endpoint. Type L has length $\ell_a+1$ and right flag one instead.
+\end{lemma}
+\begin{proof}
+By \cref{prop:chart}, every full legal chart has a wrong bottom row at depth $a-1$ or $a$. Its finite ride has only its endpoint walls. Indeed the closed depth-$d$ frame avoids residues $0,1$ modulo $4^{d+1}$, so its relevant ranks are finite, as in \cref{lem:allphase}. For $e<d$, the bottom row has residue $1$ modulo $4^{e+1}$ relative to $\tau_2$, so lies in no shallower row frame. Shallower vertical walls are therefore absent; same-depth frames are disjoint, and strict laminarity excludes a deeper column endpoint inside the frame. The only origin and end on the ride are its endpoints, at distance $\ell_d$. Its phase is zero since $d\ge k$. This gives a motif in every full chart, including exceptional phases.
+
+Enumerate all assignments from the effective finite alphabet $\mathcal L_R$ on $Q_r$ and reject internal incompatibilities and either contained motif. Each test is finite, using the finite-approximant phase decoder. If a survivor existed for every $r$, extend it arbitrarily outside the box and take a product-compactness limit. Every compatibility and motif test eventually lies inside the boxes; the limit is a legal full chart avoiding both motifs, a contradiction. The first empty test therefore terminates on halting inputs. Its termination is a semidecision, not an infinite-extension test.
+\end{proof}
+
+\begin{lemma}[Finite-time coherence within one trajectory]\label{lem:finitecoherence}
+\proved\ In one fixed trajectory starting at time zero, two unmarked live data or second-coordinate readings at time $s$, at equal or Moore-neighbouring planar sites and at provider $\ell^1$ distance $d$, agree or are compatible, respectively, whenever $s\ge d+1$.
+\end{lemma}
+\begin{proof}
+At $d=0$, $s\ge1$, an unmarked live reading is unflagged, so its letter is the live ordinary proposal; data and second coordinate agree when both are live. For planar neighbours the retained offset sets overlap in at least $2h-q=3K$ offsets. A check at a common offset certifies compatibility of their retained centres. Neither argument imposes a condition on time zero.
+
+For $d>0$, reduce one component of provider separation by one and pair offsets by that unit shift in each provider cube. There are $5K(15/16)$ injective pairs. Each root excludes at most $K$ nonretaining offsets and at most $K$ with marked Moore parents. At least $(11/16)K=45056$ pairs remain. A remaining pair gives unmarked live data parents with the respective labels at time $s-1$, provider distance $d-1$, and the same planar displacement. The induction condition $s-1\ge(d-1)+1$ holds. This proves the claim within the fixed trajectory.
+\end{proof}
+
+\begin{lemma}[Exponential unmarked-liveness bound]\label{lem:unmarkedfinite}
+\proved\ For a fixed site at time $t$, the probability that some initial configuration produces an unmarked live data or second-coordinate reading there is at most
+\[
+ C_U\exp[-t/(A'J)].
+\]
+The prefactor is computable from the motif radius and is uniform over $\eps\in I_n$ and the exceptional maps satisfying \eqref{eq:overlayconditions}.
+\end{lemma}
+\begin{proof}
+Put $R_*=r+T$. From a putative unmarked live root $(u_0,P_0,t)$ propagate $R_*$ ordinary steps backwards, choosing a retained provider outside the possibly marked cluster at each step. At least $h-K$ such providers exist and supply nine unmarked live data parents. This gives witnesses throughout $u_0+Q_{R_*}$ at time $t-R_*$, with providers in $P_0+[0,VR_*]^4$. If $t-R_*\ge4VR_*+1$, \cref{lem:finitecoherence} makes their letters a compatible reference patch. Each witness has a letter-preserving centre-parent path at its planar site, with provider at time $\sigma$ in $P_0+[0,V(t-\sigma)]^4$.
+
+Choose a motif in $u_0+Q_r$, with right endpoint $g$, and follow its witness's unmarked centre path for
+\[
+ N=\lfloor t/(2A')\rfloor
+\]
+vertices, beginning at time $t-R_*$. At a sampled time $b$ and lag $\ell$, the deep query reads data at $\sigma=b-\ell-1$. Its actual leaf providers are
+\[
+ P_b+\ell v-(T-1)v+\sum_{i=1}^T s_i,\qquad s_i\in S.
+\]
+Relative to $P_0$ these lie coordinatewise between $-VT$ and $V(t-\sigma+T)$. Reference providers at time $\sigma$ lie between $0$ and $V(t-\sigma)$, so their $\ell^1$ distance is at most $4V(t-\sigma+T)$. All query sites lie in the motif, and the full virtual cone is inside $Q_{R_*}$. Type S needs lags at most $\ell_{a-1}<W$; type L needs lags at most $W\le W_n^*<\ell_a$. Here $W\le C/\eps<\ell_a/2$ gives $W\le W_n^*$; in particular no origin is in the long recent window.
+
+It suffices to take the computable burn-in
+\begin{equation}\label{eq:burnin}
+ t\ge2[A'(R_*+W_n^*)+4VT+2].
+\end{equation}
+Since $t-\sigma\le R_*+N+W_n^*$, this gives
+$\sigma\ge4V(t-\sigma+T)+1$ as well as the patch condition.
+Thus every unmarked live leaf agrees with its reference letter by within-trajectory coherence. A wrong live query can be traced using retained centres at all $T$ virtual levels; these keep its planar site and label. Its actual leaves are consequently marked. Append their finite $\MM$ derivations. The formal-clock argument of \cref{lem:deep}, using \cref{lem:pole}, gives a contour with $f_i\ge11$ distinct $E'$ flags, at most $50(f_i-1)$ support edges, and earliest flag time
+\[
+ t_{\min}\ge b-\ell-1-50(f_i-1).
+\]
+The derivations may reach auxiliary negative times; their flags are still paid for by their probabilities.
+
+At a sampled vertex, live unmarked data implies a live $A_b$ and $\Pin=0$, hence a live current deep driver. A wrong current driver supplies lag zero. If no wrong live deep instruction occurs on the relevant ride, define $\mathcal X$ to be its baseline intrinsic bad event or any exceptional flag on its lane atoms. Its probability is at most
+$\widehat\eta_B+BW_n^*\delta\le2\widehat\eta_B$.
+Absent $\mathcal X$, a short motif forces erasure: its origin starts with a set containing zero, bottom ordinary instructions give UNKNOWN, bottom deep instructions insert zero, correct nonorigins copy, and replacements contain their upper scalar mark. Induction makes each actual interval contain the ideal upper bit. Fewer than $s$ upper ones implies fewer than $s$ singleton ones. For a long motif, at least $s$ recent last-HIGH marks write singleton ones. Subsequent correct copies, unions with zero and UNKNOWN preserve the possibility of one. This also forces erasure. Both contradict liveness, so $\mathcal X$ or a wrong live query must occur.
+
+Greedily inspect the $N$ path vertices. For $\mathcal X$, advance one centre step. For a deep contour record its lag and restart one step before $t_{\min}$. Keep the whole contour even if it passes the prefix's lower end, and stop the path there. Different contours' flag times are disjoint. With total flags $f$, contours $c$ and intrinsic tests $m_0$, we have $c\le f/11$. At the same planar endpoint, distinct sampled times have disjoint lane atoms: an atom has planar coordinate $g_x-\ell$ and time $b-\ell$, so equality forces the same $\ell$ and $b$, regardless of the provider path. Hence, for each fixed certificate, the $m_0$ tests are independent.
+
+For completeness the finite encoding includes the truncated last piece. A contour of size $f_i$ has at most $2W$ lags and restart gap at most $52f_iW$. A gap $h_*$ has at most $(Vh_*+1)^4$ provider endpoints. Lag, gap and endpoint together cost at most
+\[
+ 2[54(V+1)]^5 f_i^5 W^6.
+\]
+A truncated unused endpoint may be recorded as zero. Raw contour traversals and their flag subset cost at most $(2\Delta^2)^{51f_i}$ by \cref{lem:counts}; exact physical times and virtual levels use the same degree bound. Compositions cost $2^f$, interleavings $2^{f+m_0}$, and stop/source annotations fit its slack, using $f_i^5\le2^{5f_i}$ and $q$ choices at an intrinsic step. Thus the number of tests is at most
+\[
+ K_{\rm hist}^{f+m_0}W^{6f/11},\qquad
+ N\le J(f+m_0).
+\]
+Raw and statistical tests may overlap. H\"older gives joint weight
+$(e')^{3f/4}(2\widehat\eta_B)^{m_0/4}$. Since $W\le C/\eps$, the two weighted bases are
+\[
+ K_{\rm hist}2^{3/4}C^{6/11}\eps^{9/44},
+ \qquad K_{\rm hist}(2\widehat\eta_B)^{1/4},
+\]
+both below $1/32$ by \eqref{eq:Bsearch} and \eqref{eq:epsstar}. Summing masses $k=f+m_0\ge\lceil N/J\rceil$ gives
+\[
+ \sum_{k\ge\lceil N/J\rceil}(k+1)32^{-k}
+ \le(16/15)16^{-\lceil N/J\rceil}.
+\]
+Take the deterministic union over at most $2|Q_r|(VR_*+1)^4$ endpoint roots and types at time $t-R_*$. Patch fillings are not counted or conditioned on: once these roots and a certificate are fixed, only their specified flags and lane experiments are tested. This is a noise event covering existence of any start. Since $\log16/2>1$, the tail is a computable multiple of $e^{-t/(A'J)}$. Enlarge that multiple for times below \eqref{eq:burnin}.
+\end{proof}
+
+\begin{lemma}[Late-cone domination]\label{lem:bulk}
+\proved\ Let $r_F\ge1$ bound every read offset, and $m_t=\lfloor t/4\rfloor$. Except on a noise event of probability at most a computable polynomial in $t$ times $e^{-t/(2A'J)}$, simultaneously for every initial row: the relevant live ordinary proposals along the top $m_t$ vertices of a backward dependency path from a fixed time-$t$ target belong to the grouped rare-birth field of \cref{lem:rare}, with $E'$ as flags.
+\end{lemma}
+\begin{proof}
+The finite-prefix version of \cref{lem:rawpaths} bounds an ordinary marked path of $L_*$ vertices from a prescribed root by
+\[
+ \sum_{f\ge\lceil L_*/50\rceil}(K_{\rm mem}e')^f.
+\]
+Indeed retain each whole attached contour, including the final truncated piece; it covers at most $50f_i$ vertices, the flags have disjoint time slabs, and the path and support count is at most $101f$. The same degree and traversal count applies. The base is below $1/64$.
+
+Take the part of the target's backward cone with
+$\lceil t/2\rceil\le s\le t$, of size at most $(t+1)(2r_Ft+1)^6$.
+Union-bound \cref{lem:unmarkedfinite} and the marked-path bound with
+$L_*=m_t+1$ at every point. Outside the resulting event every start has all live readings marked there and no marked ordinary path of $m_t$ edges there. The unmarked-liveness exponent is at least $1/(2A'J)$, and the raw-path exponent at least $\log64/200$.
+
+A live data parent of a relevant ordinary proposal has time at least $t-m_t$. Recursively stop it at an $E'$ flag and otherwise use its retained live centre parents. Through depth $m_t$ all sites remain in the cone portion because $t-2m_t\ge\lceil t/2\rceil$. Every node is marked. A branch of $m_t$ edges is excluded, so finite branching gives a finite ancestry terminating at actual $E'$ flags. Induction puts the parent in the minimal scalar $W^{\rm live}$ and the live proposal in $N^{\rm live}$ one time earlier. This establishes domination for the finite trajectory before the rare-birth estimate is used. The grouped seed proof of \cref{lem:rare} then applies with seed weight
+$(N_0(e')^M)^{g/16}$.
+\end{proof}
+
+\begin{lemma}[Finite discrepancy packing]\label{lem:finitepacking}
+\proved\ Under \eqref{eq:overlayconditions}, the all-input full-symbol coefficient is at most
+$C_ne^{-t/(4A'J)}$, with a prefactor computable on halting inputs, uniformly over the window and exceptional maps.
+\end{lemma}
+\begin{proof}
+Outside the bad event of \cref{lem:bulk}, two different target outputs give a backward discrepancy path of $m_t$ vertices. At a direct exceptional vertex, record that $A$ flag as a singleton certificate. Otherwise a baseline replacement agrees across starts. A differing deterministic output needs a live $A_s(w-j\mathbf e_y)$ in one run for some $j<B$: if all these proposals are bottom, data and second coordinate are bottom and every helper is UNKNOWN in both runs. The chosen base is in the grouped rare field at actual time $s-1$.
+
+Attach a grouped contour at that actual time and keep its group times unchanged. If its earliest group time is $v_*$, resume the discrepancy path at physical time $v_*-1$, or stop at the prefix end. The connector from time $s$ to $s-1$ is outside the pole contour. Its time change is paid for explicitly. The contour has
+\[
+ e\le H_0g_i-A_0,\qquad A_0=4000/85>2,\quad H_0=11000/85<130.
+\]
+It covers at most $e+2\le H_0g_i$ path vertices, including connector and restart. A seed-only contour satisfies the same bound. Its support edges drop physical time by one; group stars preserve time, with oscillation $7000$. Thus this application meets the repaired \cref{lem:pole}.
+
+For $g$ groups and $h_*$ direct exceptions, all selected seed slabs and direct-flag times are disjoint, and
+\[
+ m_t\le H_0g+h_*.
+\]
+The connected graph uses fewer than $(2H_0+6)g+h_*<512(g+h_*)$ edges. Project onto physical vertices and one auxiliary centre per group. Edges are actual dependency offsets, ordinary support offsets, $B$ literal shifted-root offsets with time decrement one, and same-time cube stars. A direct exception uses an existing physical source role. The role and degree bounds of \cref{lem:counts} still give $K_{\rm rare}^{g+h_*}$ tests. No new $B$ factor is omitted.
+
+The group parity bound and the disjoint direct-flag times give weight
+$(N_0(e')^M)^{g/16}\delta^{h_*}$. Both weighted bases are at most $1/64$:
+\[
+ K_{\rm rare}(N_0(e')^M)^{1/16}
+ \le\frac{(2N_0)^{1/16}}{64(N_0+1)}<1/64,\qquad
+ K_{\rm rare}\delta\le1/64.
+\]
+Here $(e')^M\le e'\le2\eps$ and \eqref{eq:epsstar} were used. Summing $g+h_*\ge\lceil m_t/H_0\rceil$, and using $k+1\le2^k$, gives an exponential tail with rate at least $\log32/(4H_0)$. This exceeds $1/(2A'J)$, as does the raw-path rate in \cref{lem:bulk}. The cone factor is polynomial, so halving the slowest exponent absorbs it, giving $1/(4A'J)$. All finite prefactors, small-time allowances and this polynomial absorption are computable from $r$ and the construction constants. Every test is a noise event; existence of any pair of disagreeing starts implies one of these tests. This proves the all-input quantifier.
+\end{proof}
+\section{A computable robustness radius for local kernels}\label{app:robust}
+
+This is robustness in stochastic tables and their normalized space--time interactions. Its precursors are \cite[Corollary~8.12 and Remark~8.14]{DMforget} and \cite[Proposition~4.5]{DMst}. Arbitrary perturbations of unnormalized equilibrium energies have different normalization factors and are outside this statement.
+
+\begin{theorem}[A radius preserving both labels]\label{thm:robust}
+\proved\ On local stochastic tables on $\Sigma$ with the same neighbourhood $N_F$, use
+$d(P,Q)=\max_\eta d_{\rm TV}(P(\cdot\mid\eta),Q(\cdot\mid\eta))$.
+Put
+\begin{align*}
+ \delta_n&=\min\{\eps_n^-,C/W_n^*,
+       \widehat\eta_B/(2BW_n^*),1/(64K_{\rm rare}),1/2\},\\
+ r_n&=\delta_n\eps_n^-/(2N_\Sigma).
+\end{align*}
+The radius is positive and computable from $n$ without its halting answer. For every $\eps\in I_n$ and $d(P_\eps,Q)\le r_n$, $Q$ is strictly positive. If $U(n)$ halts, an i.i.d.\ representation of $Q$ has the exponential all-input bound of \cref{thm:exponential}, uniformly over these $Q$ and $\eps$. If $U(n)$ does not halt, $Q$ has two translation-invariant stationary bit laws with error less than $1/31$, and continuum many extremal stationary laws. Its own normalized interaction $-\log Q(c\mid\eta)$ has all-Gibbs uniqueness and arbitrary-volume exponential weak spatial mixing in the halting case, and two translation-invariant Gibbs measures and continuum many extremal Gibbs measures otherwise.
+\end{theorem}
+\begin{proof}
+For each entry, total variation gives
+\[
+ |Q(c\mid\eta)-P_\eps(c\mid\eta)|
+ \le r_n\le\delta_n P_\eps(c\mid\eta)/2,
+\]
+because $P_\eps(c\mid\eta)\ge\eps_n^-/N_\Sigma$.
+Thus $Q\ge(1-\delta_n)P_\eps>0$ entrywise, and
+$Q=(1-\delta_n)P_\eps+\delta_n Q'$ for a stochastic table $Q'$.
+At each update choose an independent flag $A$ of probability $\delta_n$; when present sample a local map for $Q'$ by independently drawing its value for each parent word. Otherwise use the baseline map. This is an i.i.d.\ representation of $Q$.
+
+The augmented raw flag $E'=E\vee A$ has probability $e'\le2\eps$. The augmented single-gate intrinsic event has probability at most
+$\widehat\eta_B+BW_n^*\delta_n\le2\widehat\eta_B$.
+All conditions of \eqref{eq:overlayconditions} hold, so \cref{lem:motif,lem:finitecoherence,lem:unmarkedfinite,lem:bulk,lem:finitepacking} prove the halting bound. Their historical bases are explicitly
+\[
+ K_{\rm hist}2^{3/4}C^{6/11}\eps^{9/44}<1/32,\qquad
+ K_{\rm hist}(2\widehat\eta_B)^{1/4}<1/32.
+\]
+Direct exceptional vertices are charged by
+$K_{\rm rare}\delta_n\le1/64$ as in \cref{lem:finitepacking}.
+Thus the proof covers parent-dependent exceptional maps without treating them as common replacements.
+
+For nonhalting, fix a correct typical chart and the ideal helper initialization driven by baseline negative-time noise, as in \cref{sec:memory}. A raw characteristic bin now has probability at most
+$W\eps+W\delta_n\le C+W_n^*\delta_n\le2C$.
+Enlarge each statistical bin event by any exception on the lane supports of its finite gates. Those atoms lie in its own or preceding time bin on $B$ lane characteristics, so there are at most $2BW_n^*$ such atoms. Its probability is at most
+$\widehat\eta_B+2BW_n^*\delta_n\le2\widehat\eta_B$.
+Raw bins have disjoint supports. Statistical supports on different base characteristics are disjoint by \cref{lem:ownership}, and every third bin on one characteristic is disjoint. The proof of \cref{lem:joint} therefore applies with
+\[
+ \gamma_{\rm tube}=\sqrt{2C}+(2\widehat\eta_B)^{1/6},\qquad
+ K_{\rm mem}\gamma_{\rm tube}
+ <\frac{\sqrt2}{128}+\frac{2^{1/6}}{64}<\frac1{32}.
+\]
+
+The deterministic error derivation is unchanged. A replacement or exception at the output is a raw source. At an unflagged output the original rule acts. A false erasure either has a recent bad driver or, if a relevant lane is exceptional, the augmented statistical event. With no such exception, the original ideal-helper comparison holds. Thus \cref{lem:decomposition,lem:memorycount} give the same witness count and a geometric error sum
+\[
+ e_{\rm tube}=
+ \frac{K_{\rm mem}\gamma_{\rm tube}}{1-K_{\rm mem}\gamma_{\rm tube}}
+ <1/31.
+\]
+This is weaker than the original-kernel bound $e_{\rm base}<3/125$ and gives separation greater than $29/31$, rather than $119/125$.
+
+Spatial averaging followed by temporal Cesaro limits gives two translation-invariant bit laws. Keeping each chart fixed instead gives an uncountable separated family, so the full proof of \cref{thm:continuum}, now with $e_{\rm tube}$, gives the extremal continuum. Stationary trajectories are DLR states by \cite[Lemma~2.4]{DMst}. On halting inputs $Q$ has finite alphabet, the same finite neighbourhood containing zero, strict positivity, and the exponential all-input coefficient just proved. Applying \cite[Corollary~13.7]{DMst} to its normalized interaction proves all-Gibbs uniqueness and both arbitrary-volume estimates. All quantities defining $r_n$ use only the fixed effective construction and $n$, so their computation needs no halting decision.
+\end{proof}
 
 \begin{thebibliography}{99}\raggedright
 \bibitem{BCW21} J. Bausch, T. S. Cubitt and J. D. Watson, \emph{Uncomputability of phase diagrams}, Nature Communications \textbf{12} (2021), 452. \href{https://doi.org/10.1038/s41467-020-20504-6}{doi:10.1038/s41467-020-20504-6}.
@@ -872,6 +1259,7 @@ The first review re-derived the pole/frontier argument and grouped estimates. Th
 \bibitem{BMM13} A. Bu\v{s}i\'c, J. Mairesse and I. Marcovici, \emph{Probabilistic cellular automata, invariant measures, and perfect sampling}, Advances in Applied Probability \textbf{45} (2013), 960--980. \href{https://arxiv.org/abs/1010.3133}{arXiv:1010.3133}.
 \bibitem{CH10} J.-R. Chazottes and M. Hochman, \emph{On the zero-temperature limit of Gibbs states}, Communications in Mathematical Physics \textbf{297} (2010), 265--281. \href{https://doi.org/10.1007/s00220-010-0997-8}{doi:10.1007/s00220-010-0997-8}.
 \bibitem{Chernoff52} H. Chernoff, \emph{A measure of asymptotic efficiency for tests of a hypothesis based on the sum of observations}, Annals of Mathematical Statistics \textbf{23} (1952), 493--507. \href{https://doi.org/10.1214/aoms/1177729330}{doi:10.1214/aoms/1177729330}.
+\bibitem{Choquet} G. Choquet, \emph{Existence et unicit\'e des repr\'esentations int\'egrales au moyen des points extr\'emaux dans les c\^ones convexes}, S\'eminaire Bourbaki, expos\'e 139 (1956--1958), 33--47.
 \bibitem{CPGW15} T. S. Cubitt, D. Perez-Garcia and M. M. Wolf, \emph{Undecidability of the spectral gap}, Nature \textbf{528} (2015), 207--211. \href{https://doi.org/10.1038/nature16059}{doi:10.1038/nature16059}.
 \bibitem{CPGW22} T. S. Cubitt, D. Perez-Garcia and M. M. Wolf, \emph{Undecidability of the spectral gap}, Forum of Mathematics, Pi \textbf{10} (2022), e14. \href{https://doi.org/10.1017/fmp.2021.15}{doi:10.1017/fmp.2021.15}.
 \bibitem{DMforget} S. Douglas and N. Mghirbi, \emph{Forgetting under noise is undecidable: ergodicity of positive-rate cellular automata at a fixed noise rate}, version 1.4.0, 2026. \href{https://doi.org/10.5281/zenodo.24126025}{doi:10.5281/zenodo.24126025}.
@@ -879,6 +1267,7 @@ The first review re-derived the pole/frontier argument and grouped estimates. Th
 \bibitem{DMhard} S. Douglas and N. Mghirbi, \emph{An uncomputable phase diagram at positive temperature for one classical lattice model}, version 1.2.0, 2026. \href{https://doi.org/10.5281/zenodo.24144192}{doi:10.5281/zenodo.24144192}.
 \bibitem{DMnil} S. Douglas and N. Mghirbi, \emph{A nilpotent cellular automaton that remembers under noise}, version 1.2.0, 2026. \href{https://doi.org/10.5281/zenodo.24120279}{doi:10.5281/zenodo.24120279}.
 \bibitem{DMst} S. Douglas and N. Mghirbi, \emph{Exponential ergodicity and the space--time Gibbs states of one-dimensional probabilistic cellular automata}, version 1.2.0, 2026. \href{https://doi.org/10.5281/zenodo.24122307}{doi:10.5281/zenodo.24122307}.
+\bibitem{DMthermal} S. Douglas and N. Mghirbi, \emph{Spontaneous magnetization and thermal decay are undecidable at positive temperature}, version 1.2.0, 2026. \href{https://doi.org/10.5281/zenodo.23962706}{doi:10.5281/zenodo.23962706}.
 \bibitem{Gacs01} P. G\'acs, \emph{Reliable cellular automata with self-organization}, Journal of Statistical Physics \textbf{103} (2001), 45--267. \href{https://doi.org/10.1023/A:1004823720305}{doi:10.1023/A:1004823720305}.
 \bibitem{Gacs21} P. G\'acs, \emph{A new version of Toom's proof}, 2021. \href{https://arxiv.org/abs/2105.05968}{arXiv:2105.05968}.
 \bibitem{GST25} L. Gayral, M. Sablik and S. Taati, \emph{Characterisation of the set of ground states of uniformly chaotic finite-range lattice models}, Nonlinearity \textbf{38} (2025), 075011. \href{https://doi.org/10.1088/1361-6544/addbb8}{doi:10.1088/1361-6544/addbb8}.
@@ -886,7 +1275,9 @@ The first review re-derived the pole/frontier argument and grouped estimates. Th
 \bibitem{HM10} M. Hochman and T. Meyerovitch, \emph{A characterization of the entropies of multidimensional shifts of finite type}, Annals of Mathematics \textbf{171} (2010), 2011--2038. \href{https://doi.org/10.4007/annals.2010.171.2011}{doi:10.4007/annals.2010.171.2011}.
 \bibitem{Hoeffding63} W. Hoeffding, \emph{Probability inequalities for sums of bounded random variables}, Journal of the American Statistical Association \textbf{58} (1963), 13--30. \href{https://doi.org/10.1080/01621459.1963.10500830}{doi:10.1080/01621459.1963.10500830}.
 \bibitem{Kari92} J. Kari, \emph{The nilpotency problem of one-dimensional cellular automata}, SIAM Journal on Computing \textbf{21} (1992), 571--586. \href{https://doi.org/10.1137/0221036}{doi:10.1137/0221036}.
+\bibitem{Kechris} A. S. Kechris, \emph{Classical Descriptive Set Theory}, Graduate Texts in Mathematics 156, Springer, 1995.
 \bibitem{Kur78} G. L. Kurdyumov, \emph{An algorithm-theoretic method of studying homogeneous random media}, Doklady Akademii Nauk SSSR \textbf{238}(5) (1978), 1047--1050.
+\bibitem{LanfordRuelle69} O. E. Lanford III and D. Ruelle, \emph{Observables at infinity and states with short range correlations in statistical mechanics}, Communications in Mathematical Physics \textbf{13} (1969), 194--215.
 \bibitem{MST19} I. Marcovici, M. Sablik and S. Taati, \emph{Ergodicity of some classes of cellular automata subject to noise}, Electronic Journal of Probability \textbf{24} (2019), article 41, 1--44. \href{https://doi.org/10.1214/19-EJP297}{doi:10.1214/19-EJP297}.
 \bibitem{MT26} I. Marcovici and S. Taati, \emph{Positive-rate PCA and IPS with stationary Bernoulli measures are rapidly forgetful}, 2026. \href{https://arxiv.org/abs/2605.16904}{arXiv:2605.16904}.
 \bibitem{MS24} H. Marsan and M. Sablik, \emph{Characterization of the set of zero-noise limits measures of perturbed cellular automata}, 2024. \href{https://arxiv.org/abs/2412.04672v2}{arXiv:2412.04672v2}.
@@ -894,10 +1285,12 @@ The first review re-derived the pole/frontier argument and grouped estimates. Th
 \bibitem{MST26} H. Marsan, M. Sablik and I. T\"orm\"a, \emph{A perturbed cellular automaton with two phase transitions for the ergodicity}, Journal of Statistical Physics \textbf{193} (2026), article 6. \href{https://doi.org/10.1007/s10955-025-03564-0}{doi:10.1007/s10955-025-03564-0}. \href{https://arxiv.org/abs/2507.03485}{arXiv:2507.03485}.
 \bibitem{Ollinger08} N. Ollinger, \emph{Two-by-two substitution systems and the undecidability of the domino problem}, in \emph{Logic and Theory of Algorithms (CiE 2008)}, Lecture Notes in Computer Science \textbf{5028}, Springer, 2008, 476--485. \href{https://doi.org/10.1007/978-3-540-69407-6_51}{doi:10.1007/978-3-540-69407-6\_51}.
 \bibitem{PLC24} J. Purcell, Z. Li and T. Cubitt, \emph{Chaitin Phase Transition}, 2024. \href{https://arxiv.org/abs/2410.02600}{arXiv:2410.02600}.
+\bibitem{PW96} J. G. Propp and D. B. Wilson, \emph{Exact sampling with coupled Markov chains and applications to statistical mechanics}, Random Structures Algorithms \textbf{9} (1996), 223--252.
 \bibitem{Toom80} A. L. Toom, \emph{Stable and attractive trajectories in multicomponent systems}, in R. L. Dobrushin and Ya. G. Sinai (eds.), \emph{Multicomponent Random Systems}, Advances in Probability and Related Topics \textbf{6}, Marcel Dekker, New York, 1980, 549--575.
 \bibitem{Toom00a} A. Toom, \emph{Algorithmical unsolvability of the ergodicity problem for binary cellular automata}, Markov Processes and Related Fields \textbf{6} (2000), 569--577. \href{https://math-mprf.org/journal/articles/id882/}{Journal article page}.
 \bibitem{Toom00b} A. Toom, \emph{Algorithmical unsolvability of the ergodicity problem for locally interacting processes with continuous time}, Journal of Statistical Physics \textbf{98} (2000), 495--501. \href{https://doi.org/10.1023/A:1018699527637}{doi:10.1023/A:1018699527637}.
 \bibitem{Toometal90} A. L. Toom, N. B. Vasilyev, O. N. Stavskaya, L. G. Mityushin, G. L. Kurdyumov and S. A. Pirogov, \emph{Discrete local Markov systems}, in R. L. Dobrushin, V. I. Kryukov and A. L. Toom (eds.), \emph{Stochastic Cellular Systems: Ergodicity, Memory, Morphogenesis}, Manchester University Press, 1990.
+\bibitem{vdBS99} J. van den Berg and J. E. Steif, \emph{On the existence and nonexistence of finitary codings for a class of random fields}, Annals of Probability \textbf{27} (1999), 1501--1522.
 \end{thebibliography}
 \end{document}
 

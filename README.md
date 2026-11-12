@@ -1,40 +1,86 @@
 # One noisy cellular automaton with an uncomputable noise diagram
 
-Seth Douglas and Nidhal Mghirbi. Version 1.0.0, November 2026. DOI for all versions: [10.5281/zenodo.24147268](https://doi.org/10.5281/zenodo.24147268); version 1.0.0: [10.5281/zenodo.24147269](https://doi.org/10.5281/zenodo.24147269).
+Seth Douglas and Nidhal Mghirbi. Version 1.1.0, November 2026. DOI for all versions: [10.5281/zenodo.24147268](https://doi.org/10.5281/zenodo.24147268); version 1.0.0: [10.5281/zenodo.24147269](https://doi.org/10.5281/zenodo.24147269).
 
 **This is a preprint. It has not been peer reviewed.**
 
 ## Abstract
 
-Can varying only the noise rate of one cellular automaton encode the halting problem? We construct one computably specified cellular automaton on Z^6, with a finite alphabet and a finite neighbourhood, whose ergodicity under uniform replacement noise does so. There are pairwise disjoint open intervals I_n with rational endpoints computable from n such that, at every rate in I_n, the perturbed automaton is ergodic exactly when a fixed universal machine halts on input n. In the nonhalting case it has at least two translation-invariant stationary laws; in the halting case it has one stationary law attracting every initial law.
+Can varying only the noise rate of one cellular automaton encode halting? We construct one computably specified finite-alphabet, finite-range automaton on Z^6 with computable disjoint rational open rate intervals I_n. Throughout I_n, uniform replacement noise makes it ergodic exactly when a fixed universal machine halts on n. Halting gives exponential all-input coalescence and attraction from every initial law; nonhalting gives at least two translation-invariant stationary laws and continuum many extremal stationary laws.
 
-Finite rulers in a hierarchical tiling turn the noise rate into a cutoff in a sequence of local flags. Computation boards read that cutoff and simulate the selected input. A threshold checker preserves a global bit when the computation does not halt. When it halts, interval-valued sensors erase every surviving chart, and a common-noise coupling removes dependence on every initial state. The guaranteed intervals accumulate at zero and lie at astronomically small rates. The space-time Gibbs correspondence gives a finite-energy interaction on Z^7 with undecidable translation-invariant Gibbs uniqueness. Thus one fixed local rule has an uncomputable noise diagram.
+Hierarchical rulers select the input from the noise rate. Finite computation boards read the input; a threshold checker preserves a bit, and interval sensors erase every surviving chart when the computation halts. The space-time correspondence gives one fixed {0,1}-energy interaction on Z^7: on the corresponding temperature windows, halting gives one Gibbs measure and exponential weak spatial mixing in arbitrary volumes; nonhalting gives continuum many extremal Gibbs measures. These extremes need not be translation invariant. The zero-field pressure is analytic, yet its derivative in one fixed field direction exists at zero exactly on halting windows. Thus one fixed local rule has an uncomputable noise diagram.
 
 ## What the paper proves
 
-Fix a universal machine U whose halting set is undecidable.
+Fix a universal machine U whose halting set is undecidable. Theorem numbers refer to `paper/main.pdf`.
+
+The main theorem:
 
 - **Theorem A (Theorem 9.3).** One computably specified cellular automaton on Z^6, with a finite alphabet and a finite neighbourhood, and computable pairwise disjoint open intervals I_n with rational endpoints, such that at every rate in I_n uniform whole-symbol replacement makes the automaton ergodic exactly when U(n) halts. Nonhalting gives at least two translation-invariant stationary laws. Halting gives a unique stationary law attracting every initial law.
 - **Corollary 9.4.** For this fixed automaton, deciding ergodicity at a rational noise rate is undecidable, even under the promise that the rate lies in one of the intervals I_n.
-- **Corollary B.** One computably specified translation-invariant finite-range interaction on Z^7, with a finite alphabet and energies in {0, 1}, and computable pairwise disjoint rational intervals J_n of inverse temperature, on which the Gibbs measure invariant under all translations of Z^7 is unique exactly when U(n) halts. This answers Open problem 9.1 of our paper on the undecidable phase diagram in dimension seven. In the halting case this measure is also the only uniformly recurrent, and hence the only periodic, Gibbs measure.
+
+Halting and nonhalting windows in more detail:
+
+- **Theorem 9.5 (exponential all-input coalescence).** If U(n) halts, then uniformly for every rate in I_n, the probability that the symbol at the origin at time t still depends on the initial configuration, when all initial configurations are run with one shared realization of the noise, is at most C_n e^(-c_n t). The rate c_n is computable from n, and C_n is computed by a procedure that terminates on every halting input. The proof is in Appendix A (Lemmas A.1-A.5).
+- **Theorem 9.6 (continuum many extremal states).** If U(n) does not halt, then at every rate in I_n the set of all stationary laws has continuum many extreme points, and the corresponding normalized space-time interaction, the Gibbs model of Corollary B, has continuum many extremal Gibbs measures. These extremes are not asserted to be translation invariant; the two translation-invariant stationary laws of Theorem A are a separate conclusion.
+
+The Gibbs model on Z^7:
+
+- **Corollary B.** One computably specified translation-invariant finite-range interaction on Z^7, with a finite alphabet and energies in {0, 1}, and computable pairwise disjoint rational open intervals J_n of inverse temperature, such that at every inverse temperature in J_n:
+  - if U(n) halts, the interaction has exactly one Gibbs measure, with no invariance assumed, and its specification has exponential weak spatial mixing in arbitrary finite volumes. This follows from Theorem 9.5 through Corollary 13.7 of our space-time paper;
+  - if U(n) does not halt, it has at least two translation-invariant Gibbs measures and continuum many extremal Gibbs measures.
+
+  This answers Open problems 9.1 and 9.2 of our paper on an uncomputable phase diagram at positive temperature, in dimension seven with finite energies. Version 1.0.0 answered Open problem 9.1, which asks for one translation-invariant finite-range interaction with finite rational energies whose translation-invariant Gibbs measure has undecidable uniqueness at computable rational inverse temperatures. The strengthened corollary also answers Open problem 9.2, which asks for one interaction whose uniqueness among all Gibbs measures, as a function of the inverse temperature, is undecidable.
+- **Theorem 9.7 (field response).** Add a field coupled to the global bit carried by live data letters. The pressure is computable and even in the field. At zero field it equals log(1 + (N - 1)e^(-β)), where N is the alphabet size, so it is analytic in β > 0. At every inverse temperature in J_n, the field derivative at zero exists exactly when U(n) halts, and then it is zero. Otherwise the one-sided derivatives are above 119/125 and below -119/125, so the jump exceeds 238/125. This uses only translation-invariant Gibbs facts.
+- **Corollary 9.8.** At the rational midpoint of J_n, the right field derivative at zero is upper semicomputable, uniformly in n, but has no uniform computable approximation to error 1/4. No total computable choice of field scale makes the secant slope at that scale smaller than 1/2 on every halting input.
+
+Robustness and effective consequences:
+
+- **Theorem B.1 (robustness).** A positive radius r_n, computable from n without knowing whether U(n) halts, such that every local stochastic table on the same neighbourhood within r_n of the noisy automaton at a rate in I_n (in the largest total-variation distance over parent words) is strictly positive and keeps the label. If U(n) halts, an i.i.d. representation of the table satisfies the exponential all-input bound of Theorem 9.5, uniformly over these tables and rates. If U(n) does not halt, it has two translation-invariant stationary bit laws and continuum many extremal stationary laws. The table's own normalized space-time interaction has exactly one Gibbs measure, with exponential weak spatial mixing in arbitrary volumes, in the halting case, and two translation-invariant and continuum many extremal Gibbs measures otherwise. Perturbations of unnormalized energies are not covered.
+- **Corollary 9.9 (finite certificates).** Exponential coalescence is equivalent to a finite strict test, M_H q_H < 1, at some time depth H. These tests define an effectively open set of rates, which picks out exactly the halting windows among the intervals I_n.
+- **Corollary 9.10 (forgetting times).** At the rational midpoint of I_n, the first time at which the largest one-site total-variation distance between two deterministic starts falls below 1/2, and the first time at which the all-input noncoalescence probability falls below 1/2, are partial computable functions of n defined exactly on the halting inputs. Neither has a total computable upper bound. The mean depth of all-input coupling from the past is finite on each halting input and has no total computable bound.
+- **Corollary 9.11 (coding and exact sampling).** On halting windows the stationary space-time law is a finitary, translation-equivariant factor of a finite-alphabet i.i.d. field on Z^7, with exponential tails for the coding depth, and it is mixing of every order. At rational rates it admits exact finite-window coupling from the past, and its finite marginals are computable by a partial algorithm that terminates on halting inputs. No bound on the running time of the enumeration is claimed.
+- **Corollary 9.12 (complexity).** If U is effectively many-one universal, the rational ergodicity set restricted to the union of the intervals I_n is c.e.-complete, and its complement within that union is co-c.e.-complete. For every U, the full set of positive rational rates at which the automaton is ergodic is Pi^0_2, a recalled upper bound; its exact complexity is open.
+- **Remark 9.13 (sharper scales, not used).** A multiplicative Chernoff bound would allow smaller constants: k = 26200 and n0 = 458784211 instead of 52386 and 888653587, with the largest window endpoint near 10^(-2.762·10^8) instead of near 10^(-5.350·10^8). The construction keeps the original constants and does not use these values.
+
+Scale:
+
 - **Scale (Section 9).** Every guaranteed window lies below 10^(-5·10^8), and the alphabet has more than 10^(10^31539) symbols.
 
 Marsan and Sablik realize every G_delta subset of [0,1] containing 1 as the uniqueness and ergodicity set of a continuous map on the Cantor space under uniform noise. They state that every Pi_2-computable such set is the uniqueness set of a computable map, and that for cellular automata the possible uniqueness sets are still to be characterized. The map here is a cellular automaton: it commutes with shifts and has one finite neighbourhood. The paper does not characterize all noise diagrams of cellular automata. Section 1 gives the full credits.
 
+## Changes in 1.1.0
+
+Corrections to version 1.0.0:
+
+- **Lemma 5.1.** The time-span clause now requires unary zero-potential links to preserve time. The two-terminal clause now requires a positive support edge. The proof of Lemma 5.4, which uses the span clause, now runs a formal clock on its virtual levels.
+- **Section 3.2, gate classification.** Version 1.0.0 said that the phase-zero gates are exactly the finite bottom rows of depth d ≥ k. Exceptional phases can have further gate sites of infinite rank. The statement now concerns finite bottom rows only: such a row is a phase-zero gate row exactly when d ≥ k. No argument uses the infinite-rank gate sites.
+- **Section 3.2, phase decoder.** The decoder now uses finite approximants instead of infinite liftability. Words of legal charts lie in their own sector's approximant.
+- **Lemma 8.4.** The birth-contour clock is stated once: the discrepancy path is drawn one time unit lower instead of shifting the contour.
+- **Proposition 2.1.** The proof counted B + 1 helper parents. One of them was already counted, so the right count is B. The parent bound κ is unchanged.
+
+Other changes:
+
+- Corollary B is strengthened as described above. Its version 1.0.0 sentence on uniformly recurrent and periodic Gibbs measures is removed, because uniqueness among all Gibbs measures covers it.
+- New results: Theorems 9.5, 9.6 and 9.7, Corollaries 9.8 to 9.12, Remark 9.13, Appendix A (Lemmas A.1-A.5, the finite-history proof of Theorem 9.5) and Appendix B (Theorem B.1).
+- The memory estimate in the proof of Theorem 7.3 is sharpened: each bit cylinder now has probability above 122/125, where version 1.0.0 stated 3/4. Theorems 9.6 and 9.7 use this.
+- Theorem A, Theorem 9.3 and Corollary 9.4 keep their statements word for word. The construction constants, including k = 52386 and n0 = 888653587, are unchanged, so `verification/` is unchanged.
+
 ## Contents and reproduction
 
-- `paper/main.pdf`: the manuscript (28 pages).
+- `paper/main.pdf`: the manuscript (40 pages).
 - `paper/`: the LaTeX source (`main.tex`), the plain-text abstract and a strict build driver. Run `python -B build.py` there with pdflatex installed. The build disables shell escape, runs pdflatex three times, and rejects warnings, unresolved references and box defects.
-- `verification/scale_check.py`: recomputes the parameters of Section 9 with exact integers and high-precision decimal logarithms, and writes `scale-output.json` and `scale-output.txt` (the recorded outputs are included). It includes a positive control on exact binomial coefficients. Run `python -B scale_check.py` in that directory.
+- `verification/scale_check.py`: recomputes the parameters of Section 9 with exact integers and high-precision decimal logarithms, and writes `scale-output.json` and `scale-output.txt` (the recorded outputs are included). It includes a positive control on exact binomial coefficients. Run `python -B scale_check.py` in that directory. It checks the constants that the construction uses; the alternative values of Remark 9.13 are not part of it.
 - `SHA256SUMS`: SHA-256 hashes of every shipped file except this manifest. Check with `sha256sum -c SHA256SUMS` from the repository root.
 
 ## How it was checked
 
 The paper's AI note and its "Verification status" paragraph give the full account. In short:
 
-- The main theorem and the written manuscript were checked refutation-first by a model from a different developer than the one that wrote it. Corollary B and the scale received a further refutation-first check, which re-derived the corollary's proof and recomputed the scale with an independent program.
+- Version 1.0.0: the main theorem and the written manuscript were checked refutation-first by a model from a different developer than the one that wrote it. Corollary B and the scale received a further refutation-first check, which re-derived the corollary's proof and recomputed the scale with an independent program.
+- Version 1.1.0: the corrections and new results were found by OpenAI models (GPT-6 Astra and GPT-6.1 Sol), directed by Nidhal Mghirbi. Claude Opus 5.5 verified them refutation-first and independently recomputed both scale choices. That verification took the earlier scaffold and stochastic lemmas as inputs, and it checked the statement and hypotheses of Corollary 13.7 of our space-time paper without re-proving it. Claude Opus 5.5 then read the integrated text back refutation-first.
 - The scale computation is exact or certified to stated precision.
-- The theorem rests on the hierarchical scaffold of our paper on the undecidable phase diagram, cited as an input. Several scaffold facts are formalized in Lean in that paper's Appendix D, as the Verification status says. The main theorem of this paper is not formalized.
+- The theorem rests on the hierarchical scaffold of our paper on an uncomputable phase diagram, cited as an input. Several scaffold facts are formalized in Lean in that paper's Appendix D, as the Verification status says. A Lean formalization of Theorem A and Corollary 9.4 is in progress; it is not part of this release. Apart from the cited scaffold facts, no statement of this paper is formally verified, and the new results are written proofs.
 
 ## Citation and rights
 
