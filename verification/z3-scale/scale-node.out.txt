@@ -1,0 +1,41 @@
+{
+  "engine": "Node BigInt outward fixed-point Taylor intervals",
+  "k": 43429,
+  "n0": "33644133613821753975",
+  "binding": "(64K_full)^(-44)",
+  "Fw": "10747726824774400122",
+  "s_digits": 13084,
+  "s_leading": "46977106814678979421",
+  "log10_epsilon_reciprocal": [
+    "20255786791774346221.279452991654",
+    "20255786791774346221.279452991655"
+  ],
+  "log10_K_full": [
+    "460358790722144230.495625775826",
+    "460358790722144230.495625775827"
+  ],
+  "log10_c_reciprocal": [
+    "26169.752135867780",
+    "26169.752135867781"
+  ],
+  "c": "1/(2^42*17600000000*(4^43429+176363))",
+  "k_previous_margin_log2": [
+    "3430042758831094765.405494952700",
+    "3430042758831094765.405494952701"
+  ],
+  "k_margin_log2": [
+    "4630611622261349998.594505047299",
+    "4630611622261349998.594505047300"
+  ],
+  "n0_margin_log2": [
+    "0.036905417122",
+    "0.036905417123"
+  ],
+  "n0_previous_failure_log2": [
+    "1.963094582877",
+    "1.963094582878"
+  ],
+  "all_decisions": "CERTIFIED by BigInt interval separation",
+  "earlier_k": "exhaustively rejected by exact floors or separated intervals",
+  "eta_tail": "0 < ln(eta*2^(Fw-1)) < 2^-250; no enormous powers constructed"
+}

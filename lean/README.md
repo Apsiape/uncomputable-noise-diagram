@@ -2,6 +2,33 @@
 
 This directory proves, in Lean 4 with Mathlib, Theorem A of "One noisy cellular automaton with an uncomputable noise diagram" (in the existential form of Theorem 9.3), Corollary 9.4, and the one-rule corollary stated after Theorem A. The proofs contain no `sorry` and take no named hypotheses, and they use no axioms beyond Lean's three standard axioms `propext`, `Classical.choice` and `Quot.sound`. Appendix C of the paper describes the formalization: its exact scope, the proof-route differences and the recorded checks.
 
+## Reproduce
+
+Install the toolchain specified by `lean-toolchain` (Lean 4.35.0), and have Git and Mathlib's cache prerequisites available. From this directory run:
+
+```sh
+export LEAN_NUM_THREADS=1
+lake exe cache get
+lake build
+lake env lean -j1 -M5000 Audit.lean
+```
+
+The cache command fetches the pinned Git dependencies and Mathlib's standard build cache. Plain `lake build` compiles the entire `UncomputableNoiseDiagram` library from the shipped sources. Compare the audit's axiom lines with `AXIOMS.txt`; this paper's recorded hypothesis policy in the evidence and statement files remains authoritative. Named hypotheses are preserved. The standard build does not run the comparator, the custom Python replay, or independent kernel replays, and does not rewrite `AXIOMS.txt`.
+
+The recorded root `AXIOMS.txt` has 1169 axiom diagnostic lines; the unchanged release `Audit.lean` emits 2332 because it pairs `#print axioms` with `#audit_axioms_strict` for every root. The named-root-to-axiom-set comparison is identical for all 1166 roots, with no added or missing root or changed axiom set. For a direct normalized-line comparison of the complete release diagnostics, use the unchanged `evidence/AXIOMS.txt`, which matches the standard test output. Both original reference files are retained.
+
+Allow at least 8 GiB of available physical memory and run one Lean compiler process on the machine at a time. The package passes `-j1 -M5000`. On PowerShell set `$env:LEAN_NUM_THREADS = '1'`. Compiler thread limits do not provide a machine-wide process lock: serialize launches externally and check memory before building. This toolchain's Lake has no `lake build -j1` option.
+
+Mathlib is required by Git at `56a005855ea17e0b0958f73ec801ae140b0a1679`; the Lake-generated manifest pins its eight inherited dependencies to the recorded revisions. Use the shipped manifest; ordinary reproduction does not require `lake update`. The stock Mathlib cache tool is used without the historical override.
+
+`Challenge.lean`, `Solution.lean`, and `Audit.lean` are ordinary files checked with `lake env lean -j1 -M5000 FILE.lean`. Challenge retains its intentional comparator holes and is excluded from the library. Library and final audit output must have no `declaration uses sorry` warnings.
+
+The reused cores are real local Lake packages in `deps/`, declared with `require <Core> from "deps/<Core>"`. Only each consumer's recorded import closure is shipped, byte for byte. All packages share the same pinned Mathlib; no cross-repository source path or Git core dependency is needed.
+
+`UPDStatements` is a separate library with only `UndecidablePhaseDiagram.Statements` as its root. It supplies `-Dbackward.isDefEq.respectTransparency=false` for the unchanged Lean 4.35 `Fintype` derivations. Other modules retain their original elaboration options. The two UPD libraries together cover exactly the original module set (or the consuming package's recorded subset).
+
+The Python replay, evidence, and previous reproduction instructions below are retained as optional historical tools. They assume the old `vendor/` layout, prebuilt objects, and in some cases a host-memory heartbeat; plain `lake build` does not invoke them. Run any historical preparation in a separate copy and retain the standard manifest in this one. Historical checks describe the original release, not new comparator or kernel replays by the standard build.
+
 ## What is proved
 
 `UncomputableNoiseDiagram/Statements.lean` defines, transparently and with no proofs of substance, every object that occurs in the three statements, and states them as propositions. The proofs are in `UncomputableNoiseDiagram/Main.lean` and the modules it imports.
@@ -28,8 +55,7 @@ The development imports parts of two earlier Lean cores, compiled from their pub
 - the forgetting core: the `lean/` folder of "Forgetting under noise is undecidable", version 1.4.0, DOI [10.5281/zenodo.24126025](https://doi.org/10.5281/zenodo.24126025);
 - the hard-model core: the `lean/` folder of "An uncomputable phase diagram at positive temperature for one classical lattice model", version 1.2.0, DOI [10.5281/zenodo.24144192](https://doi.org/10.5281/zenodo.24144192).
 
-## Reproduction
-
+## Historical reproduction workflow (optional)
 `README-ARXIV.md` gives the recorded setup and commands, as run on a Linux (WSL) workspace. The Mathlib dependencies and the two reused cores are placed under `vendor/` as path packages; they are fetched, not shipped. The pinned dependency versions are recorded in `lake-manifest.json`. `scripts/replay.py` compiles the needed core modules, the development, `Challenge`, `Solution` and `Audit`, one process at a time.
 
 The working records of the development (`STATUS.md`, `BLUEPRINT.md`) are kept as they were at the source commit.

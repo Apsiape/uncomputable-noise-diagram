@@ -2,8 +2,8 @@
   "title": "One noisy cellular automaton with an uncomputable noise diagram",
   "upload_type": "publication",
   "publication_type": "preprint",
-  "version": "1.3.0",
-  "publication_date": "2026-11-12",
+  "version": "1.4.0",
+  "publication_date": "2026-11-13",
   "creators": [
     {
       "name": "Douglas, Seth",
@@ -14,7 +14,7 @@
       "orcid": "0009-0005-6534-1118"
     }
   ],
-  "description": "Can varying only the noise rate of one cellular automaton encode halting? We construct one computably specified finite-alphabet, finite-range automaton on Z^4 with computable disjoint rational open rate windows. Throughout the nth window, uniform whole-symbol replacement is ergodic exactly when a fixed universal machine halts on n. Halting gives exponential coalescence simultaneously over all initial configurations and attraction from every initial law; nonhalting gives two laws invariant under every spatial translation. Planar rulers and computation boards select the input; three transverse quorum boxes, marked-parent density and interval sensors control errors. The space-time construction gives one fixed translation-invariant finite-range {0,1}-energy interaction on Z^5 with computable rational inverse-temperature windows: halting is equivalent to uniqueness among all Gibbs measures and also gives exponential weak spatial mixing in arbitrary volumes. The earlier Z^6 and Z^7 constructions, their extremal and field-response results, and the Lean verification of Theorem A and its stated corollaries are retained. The Z^4 theorem and Z^5 corollary are not formalized.",
+  "description": "We construct one computably specified finite-alphabet, finite-range cellular automaton on Z^3 with computable disjoint nonempty rational rate windows. Throughout the nth window, uniform whole-symbol replacement is ergodic exactly when a fixed universal machine halts on n. Halting gives exponential full-symbol coalescence over all starts, with a fixed positive computable decay coefficient and an effective halting-dependent prefactor uniform on each window; nonhalting gives two stationary laws invariant under every spatial translation. A corner-deterministic chart, causal L-frame computations, history strips, private interval sensors and a packed wrong-gate boundary give the construction. Its fixed finite-range {0,1}-energy space-time interaction on Z^4 has computable rational inverse-temperature windows: halting is equivalent to uniqueness among all Gibbs measures and gives exponential weak spatial mixing in arbitrary volumes. Earlier results on Z^4, Z^5, Z^6 and Z^7 are retained. Lean verifies the stated original six-dimensional results; the three- and four-dimensional automaton results are not formalized.",
   "keywords": [
     "cellular automata",
     "probabilistic cellular automata",
@@ -29,7 +29,7 @@
   "access_right": "open",
   "license": "cc-by-4.0",
   "language": "eng",
-  "notes": "Preprint. It has not been peer reviewed. Version 1.3.0 updates version 1.2.0 (10.5281/zenodo.24174445). New Section 10: Theorem C, one fixed finite-alphabet finite-range automaton on Z^4 with computable rational rate windows on which it is ergodic exactly when a universal machine halts, with exponential all-input coalescence on halting windows; and Corollary D, one fixed {0,1}-energy interaction on Z^5 whose uniqueness among all Gibbs measures on computable windows is equivalent to halting. The Z^4 parameters are certified by two independent exact-arithmetic programs (verification/z4-scale/). No existing statement or number changes; the Lean core (lean/) is unchanged and does not cover Theorem C or Corollary D. Text: CC BY 4.0. Scripts: MIT or Apache 2.0. Lean sources: Apache 2.0.",
+  "notes": "Preprint. It has not been peer reviewed. Version 1.4.0 updates version 1.3.0 (10.5281/zenodo.24178271). New Section 11: Theorem E, one fixed finite-alphabet finite-range automaton on Z^3 with computable rational rate windows on which it is ergodic exactly when a universal machine halts, with exponential all-input coalescence at one fixed computable rate on halting windows; and Corollary F, one fixed {0,1}-energy interaction on Z^4 whose uniqueness among all Gibbs measures on computable windows is equivalent to halting. The Z^3 parameters are certified by two independent exact-arithmetic programs (verification/z3-scale/). No existing statement or number changes; the Lean core (lean/) is unchanged and does not cover Theorems C or E or Corollaries D or F. Text: CC BY 4.0. Scripts: MIT or Apache 2.0. Lean sources: Apache 2.0.",
   "related_identifiers": [
     {
       "identifier": "https://finite.works/papers/uncomputable-noise-diagram/",

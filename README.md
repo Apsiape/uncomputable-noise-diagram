@@ -1,12 +1,12 @@
 # One noisy cellular automaton with an uncomputable noise diagram
 
-Seth Douglas and Nidhal Mghirbi. Version 1.3.0, November 2026. DOI for all versions: [10.5281/zenodo.24147268](https://doi.org/10.5281/zenodo.24147268); version 1.3.0: [10.5281/zenodo.24178271](https://doi.org/10.5281/zenodo.24178271); version 1.2.0: [10.5281/zenodo.24174445](https://doi.org/10.5281/zenodo.24174445); version 1.1.0: [10.5281/zenodo.24152233](https://doi.org/10.5281/zenodo.24152233); version 1.0.0: [10.5281/zenodo.24147269](https://doi.org/10.5281/zenodo.24147269).
+Seth Douglas and Nidhal Mghirbi. Version 1.4.0, November 2026. DOI for all versions: [10.5281/zenodo.24147268](https://doi.org/10.5281/zenodo.24147268); version 1.3.0: [10.5281/zenodo.24178271](https://doi.org/10.5281/zenodo.24178271); version 1.2.0: [10.5281/zenodo.24174445](https://doi.org/10.5281/zenodo.24174445); version 1.1.0: [10.5281/zenodo.24152233](https://doi.org/10.5281/zenodo.24152233); version 1.0.0: [10.5281/zenodo.24147269](https://doi.org/10.5281/zenodo.24147269).
 
 **This is a preprint. It has not been peer reviewed.**
 
 ## Abstract
 
-Can varying only the noise rate of one cellular automaton encode halting? We construct one computably specified finite-alphabet, finite-range automaton on Z^4 with computable disjoint rational open rate windows. Throughout the nth window, uniform whole-symbol replacement is ergodic exactly when a fixed universal machine halts on n. Halting gives exponential coalescence simultaneously over all initial configurations and attraction from every initial law; nonhalting gives two laws invariant under every spatial translation. Planar rulers and computation boards select the input; three transverse quorum boxes, marked-parent density and interval sensors control errors. The space-time construction gives one fixed translation-invariant finite-range {0,1}-energy interaction on Z^5 with computable rational inverse-temperature windows: halting is equivalent to uniqueness among all Gibbs measures and also gives exponential weak spatial mixing in arbitrary volumes. The earlier Z^6 and Z^7 constructions, their extremal and field-response results, and the Lean verification of Theorem A and its stated corollaries are retained. The Z^4 theorem and Z^5 corollary are not formalized.
+We construct one computably specified finite-alphabet, finite-range cellular automaton on Z^3 with computable disjoint nonempty rational rate windows. Throughout the nth window, uniform whole-symbol replacement is ergodic exactly when a fixed universal machine halts on n. Halting gives exponential full-symbol coalescence over all starts, with a fixed positive computable decay coefficient and an effective halting-dependent prefactor uniform on each window; nonhalting gives two stationary laws invariant under every spatial translation. A corner-deterministic chart, causal L-frame computations, history strips, private interval sensors and a packed wrong-gate boundary give the construction. Its fixed finite-range {0,1}-energy space-time interaction on Z^4 has computable rational inverse-temperature windows: halting is equivalent to uniqueness among all Gibbs measures and gives exponential weak spatial mixing in arbitrary volumes. Earlier results on Z^4, Z^5, Z^6 and Z^7 are retained. Lean verifies the stated original six-dimensional results; the three- and four-dimensional automaton results are not formalized.
 
 ## What the paper proves
 
@@ -47,11 +47,25 @@ Lower dimension (version 1.3.0, Section 10):
 - **Corollary D.** One computably specified translation-invariant finite-range interaction on Z^5 with energies in {0, 1} and computable rational inverse-temperature windows, on which uniqueness among all Gibbs measures is equivalent to halting; halting also gives exponential weak spatial mixing in arbitrary volumes, and nonhalting gives two translation-invariant Gibbs measures. This answers Open problem 9.2 of our paper on an uncomputable phase diagram in dimension five.
 - Theorem C and Corollary D are not formalized in Lean, and the extremal-continuum, field-response and robustness results are stated only for the Z^6 rule.
 
+Dimension three (version 1.4.0, Section 11):
+
+- **Theorem E (Theorem 11.1).** One computably specified finite-alphabet, finite-range automaton on Z^3, with computable pairwise disjoint nonempty rational open rate windows, on which uniform whole-symbol replacement is ergodic exactly when U(n) halts. Nonhalting gives two stationary laws invariant under every spatial translation. Halting gives finite-window coupling from the past over all starts, attraction from every initial law, and the bound |F| C_n e^(-ct) on the probability that the shared depth-t full-symbol map is nonconstant on a finite set F, uniformly throughout the window. The rate c > 0 is one fixed computable rational, the same for every n; C_n is found effectively on halting inputs. A fixed rate does not mean fast forgetting: c is about 10^(-26170).
+- **Corollary F (Corollary 11.7).** One computably specified translation-invariant finite-range interaction on Z^4 with energies in {0, 1} and computable rational inverse-temperature windows, on which uniqueness among all Gibbs measures is equivalent to halting; halting also gives exponential weak spatial mixing in arbitrary finite volumes, and nonhalting gives two Gibbs measures invariant under every translation of Z^4.
+- Theorem E and Corollary F are not formalized in Lean.
+
 Scale:
 
 - **Scale (Section 9).** Every guaranteed window lies below 10^(-5·10^8), and the alphabet has more than 10^(10^31539) symbols.
+- **Scale (Section 11).** The Z^3 rule uses k = 43429 and n0 = 33644133613821753975; its rate windows lie below ε_*, where log10(1/ε_*) ≈ 2.0256·10^19.
 
 Marsan and Sablik realize every G_delta subset of [0,1] containing 1 as the uniqueness and ergodicity set of a continuous map on the Cantor space under uniform noise. They state that every Pi_2-computable such set is the uniqueness set of a computable map, and that for cellular automata the possible uniqueness sets are still to be characterized. The map here is a cellular automaton: it commutes with shifts and has one finite neighbourhood. The paper does not characterize all noise diagrams of cellular automata. Section 1 gives the full credits.
+
+## Changes in 1.4.0
+
+- New Section 11, Dimension three: Theorem E (the noise diagram on Z^3, with a fixed computable decay coefficient) and Corollary F (the Gibbs version on Z^4), with complete proofs. The parameters of the Z^3 rule are certified by two independent exact-arithmetic programs in `verification/z3-scale/`.
+- The abstract, introduction, open problems and verification account now describe the Z^3 and Z^4 results.
+- `lean/` now builds from a fresh clone with the standard commands `lake exe cache get` and `lake build`. Only build configuration and documentation changed; every proof and statement file is byte-identical.
+- No existing statement, statement number or construction constant changes. The Lean appendix is unchanged.
 
 ## Changes in 1.3.0
 
@@ -83,11 +97,12 @@ Other changes:
 
 ## Contents and reproduction
 
-- `paper/main.pdf`: the manuscript (59 pages).
-- `paper/`: the LaTeX source (`main.tex`), the plain-text abstract and a strict build driver. Run `python -B build.py` there with pdflatex installed. The build disables shell escape, runs pdflatex three times, and rejects warnings, unresolved references and box defects.
-- `lean/`: the Lean 4 development of Appendix C (Lean 4.35.0, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`): the statement file, the proofs, the comparator challenge, the axiom audit, the evidence records and the report. `lean/README.md` explains it. The Mathlib dependencies and the two reused cores are fetched, not shipped.
+- `paper/main.pdf`: the manuscript (72 pages).
+- `paper/`: the LaTeX source (`main.tex`, with Sections 10 and 11 and Appendix C in `lower-dimension.tex`, `dimension-three.tex` and `appendix-lean.tex`), the plain-text abstract and a strict build driver. Run `python -B build.py --build-dir ../build-fresh` there with pdflatex installed. The build disables shell escape, runs pdflatex three times, and rejects warnings, unresolved references and box defects.
+- `lean/`: the Lean 4 development of Appendix C (Lean 4.35.0, Mathlib `56a005855ea17e0b0958f73ec801ae140b0a1679`): the statement file, the proofs, the comparator challenge, the axiom audit, the evidence records and the report. `lean/README.md` explains it. A fresh clone builds with `lake exe cache get` then `lake build` in `lean/`: Mathlib is a pinned Git requirement, and the two reused proof cores are shipped as local packages in `lean/deps/`.
 - `verification/scale_check.py`: recomputes the parameters of Section 9 with exact integers and high-precision decimal logarithms, and writes `scale-output.json` and `scale-output.txt` (the recorded outputs are included). It includes a positive control on exact binomial coefficients. Run `python -B scale_check.py` in that directory. It checks the constants that the construction uses; the alternative values of Remark 9.13 are not part of it.
 - `verification/z4-scale/`: two independently written exact-arithmetic programs (`verify_scale.py`, Python fractions; `verify_scale.mjs`, Node BigInt) that certify the least parameters k = 43406 and n0 = 713161615 of the Z^4 rule, with their recorded outputs. Run `python -B verify_scale.py`, then `node verify_scale.mjs`, in that directory.
+- `verification/z3-scale/`: two independently written exact-arithmetic programs (`verify_scale.py`, Python fractions; `verify_scale.mjs`, Node BigInt) that certify the parameters of the Z^3 rule: k = 43429, n0 = 33644133613821753975, the binding window term and the exact decay coefficient c. Recorded outputs are included. Run `python -B verify_scale.py`, then `node verify_scale.mjs`, in that directory.
 - `SHA256SUMS`: SHA-256 hashes of every shipped file except this manifest. Check with `sha256sum -c SHA256SUMS` from the repository root.
 
 ## How it was checked
@@ -98,6 +113,7 @@ The paper's AI note and its "Verification status" paragraph give the full accoun
 - Version 1.1.0: the corrections and new results were found by OpenAI models (GPT-6 Astra and GPT-6.1 Sol), directed by Nidhal Mghirbi. Claude Opus 5.5 verified them refutation-first and independently recomputed both scale choices. That verification took the earlier scaffold and stochastic lemmas as inputs, and it checked the statement and hypotheses of Corollary 13.7 of our space-time paper without re-proving it. Claude Opus 5.5 then read the integrated text back refutation-first.
 - Version 1.2.0: the Lean development was written by Claude Opus 5.5 agents, and this version's text by GPT-6.1 Sol. Claude Opus 5.5 read the text back refutation-first against the Lean records.
 - Version 1.3.0: Theorem C and Corollary D were found in a GPT-6.1 Sol research run, proved again in an independent blind GPT-6.1 Sol replication, and checked refutation-first by Claude Opus 5.5, which re-derived each step from the source papers; GPT-6.1 Sol wrote this version's text, and its readback found no issue.
+- Version 1.4.0: Theorem E was found in a GPT-6.1 Sol research run, checked refutation-first by Claude Opus 5.5, and proved again in an independent blind GPT-6.1 Sol replication with a different construction. Claude Opus 5.5 recomputed the Z^3 scale; its repairs are in the text. GPT-6.1 Sol wrote this version's text, and a refutation-first readback re-ran both scale programs. Its three repairs, to one proof sentence and to two release files, are applied.
 - The scale computation is exact or certified to stated precision.
 - The theorem rests on the hierarchical scaffold of our paper on an uncomputable phase diagram, cited as an input. Several scaffold facts are formalized in Lean in that paper's Appendix D, as the Verification status says. Theorem A, Corollary 9.4 and the one-rule corollary are formally verified in Lean (Appendix C and `lean/`). The other results, including Corollary B and the results added in version 1.1.0, are written proofs.
 

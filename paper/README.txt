@@ -1,21 +1,15 @@
 One noisy cellular automaton with an uncomputable noise diagram
 Seth Douglas and Nidhal Mghirbi
-Version 1.3.0, November 2026
+Version 1.4.0, November 2026
 
-Build: python -B build.py [--build-dir NEW_OR_EMPTY_DIRECTORY]
-Requires Python 3 and pdflatex with the packages loaded by main.tex (including aliascnt). The bibliography is
-inline. The build runs pdflatex three times without shell escape and rejects warnings, unresolved references and
-overfull or underfull boxes. main.pdf is the compiled preprint (59 pages). abstract.txt is the abstract as plain
-text; lower-dimension.tex (Section 10) and appendix-lean.tex (Appendix C) are included by main.tex.
+Theorem E gives one fixed finite-alphabet finite-range cellular automaton on Z^3 with computable rational noise-rate windows encoding halting. Halting gives exponential all-input full-symbol coalescence with a fixed positive computable coefficient; nonhalting gives two fully translation-invariant stationary laws. Corollary F gives its fixed finite-range {0,1}-energy space-time interaction on Z^4, uniqueness among all Gibbs measures iff halting, and exponential weak spatial mixing. Complete proofs are in Section 11, dimension-three.tex.
 
-Version 1.3.0 adds Theorem C, one fixed finite-alphabet finite-range automaton on Z^4 whose rational rate windows
-encode halting, with exponential all-input coalescence on halting windows and two translation-invariant stationary
-laws on nonhalting windows; and Corollary D, one fixed translation-invariant finite-range {0,1}-energy interaction
-on Z^5 whose uniqueness among all Gibbs measures, on computable inverse-temperature windows, is equivalent to
-halting. Section 10 proves both. All earlier statements and statement numbers, the Z^6 and Z^7 results and the Lean
-appendix are unchanged. Theorem C and Corollary D are not formalized in Lean.
+All earlier statements and numbers are retained. The Z^3 and Z^4 automaton results and their Gibbs corollaries are not formalized. Appendix C describes the original Lean development and its scope.
 
-The Lean sources and records of Appendix C are in lean/ of the release repository; lean/README.md explains them.
-The scale of the Z^6 construction is checked by verification/scale_check.py; the parameters of the Z^4 rule
-(k = 43406, n0 = 713161615) are certified by two independent exact-arithmetic programs in verification/z4-scale/.
-No publication or submission is performed by the build.
+Paper files: main.tex, lower-dimension.tex, dimension-three.tex, appendix-lean.tex, abstract.txt, build.py and main.pdf (72 pages). The bibliography is inline.
+
+Build from this directory with Python 3 and pdflatex, with the LaTeX packages loaded by main.tex installed:
+  python -I -B build.py --build-dir ../build-fresh
+The build directory must be new or empty. build.py runs pdflatex three times without shell escape and rejects warnings, unresolved references, and overfull or underfull boxes. The resulting PDF is copied to main.pdf.
+
+Independent scale certificates and recorded outputs for Section 11 are in ../verification/z3-scale/. The Python program uses only the standard library; the Node program uses native BigInt and standard modules. See that directory's README.txt for commands and arithmetic details. The certified recipe has k=43429, n0=33644133613821753975, binding term (64K_full)^(-44), and c=1/(2^42*17600000000*(4^43429+176363)).

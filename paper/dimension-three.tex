@@ -1,0 +1,366 @@
+\section{Dimension three}\label{sec:three}
+
+This section specifies a third rule; none of its alphabets or constants replaces an earlier one. Section~10 and Appendices~A--C retain their statements and numbers. The physical space is $(i,P)\in\Z\times\Z^2$, with chart coordinates
+\begin{equation}\label{eq:three-chart-time}
+ (x,y)=(i,t-i).
+\end{equation}
+WEST and SOUTH are the actual-time parents $(i-1,t-1)$ and $(i,t-1)$. We call this determinism from southwest inputs; \cite{LGO12} calls the resulting completion NE-deterministic. Only two-input uniqueness and a lift of one canonical configuration are needed from its cover theorem.
+
+\subsection{Fixed parameters and the statement}
+
+Fix
+\[
+ \begin{gathered}
+ S_0=\{0,\ldots,15\}^2,\quad S_1=(160,0)+S_0,\quad
+ S_2=(0,160)+S_0,\quad S=S_0\cup S_1\cup S_2,\\
+ q=768,\quad h=512,\quad K=256,\quad T=500,\quad
+ V=175,\quad v=(58,58),\quad C_*=2^{40}.
+ \end{gathered}
+\]
+Here $K$ is the size of one provider box. Put
+\begin{equation}\label{eq:three-memory-constants}
+ \begin{gathered}
+ \Delta_{\rm mem}=10^6(T+2)(9q+10),\quad X=2\Delta_{\rm mem}^2,\\
+ K_{\rm mem}=2^{20}X^{257},\qquad C=(128K_{\rm mem})^{-2},\\
+ \Delta_{\rm full}(B)=10^{30}(T+2)^{10}(q+1)^{10}(B+1)^4,\\
+ K_{\rm full}(B)=2^{20}[2\Delta_{\rm full}(B)^2]^{2C_*}.
+ \end{gathered}
+\end{equation}
+For $B=4^k$ define
+\[
+ u_B=2^{-\lfloor3BC/100\rfloor},\quad
+ z_B=2^{-\lfloor BC/3\rfloor},\quad
+ w_B=2^{-\lfloor BC^2/50\rfloor},\qquad
+ \eta_B=\frac{3u_B}{1-4z_B}+2w_B.
+\]
+Choose the least $k\ge1$ with
+\begin{equation}\label{eq:three-B-search}
+ B\ge20/C,\quad4z_B<1,\quad
+ \eta_B<\min\{(64K_{\rm mem})^{-6},(64K_{\rm full}(B))^{-4}\}.
+\end{equation}
+Set $s=\lceil3CB/4\rceil$ and, as a definite rational number, set
+\begin{equation}\label{eq:three-epsstar}
+ \eps_* =\min\{C/100,\ 382205952^{-33720},\
+ (64K_{\rm mem})^{-4},\ (64K_{\rm full}(B))^{-44}\}.
+\end{equation}
+Choose the least $n_0\ge k+2$ with $21C/[10(2\cdot4^{n_0+1}-1)]<\eps_*$. Only then construct the chart and the machine of Section~4 with this fixed $n_0$. For $n\ge1$ put
+\begin{equation}\label{eq:three-windows}
+ \begin{gathered}
+ a=n+n_0,\quad \ell_d=2\cdot4^d-1,\quad
+ I_n^{(3)}=(2C/\ell_a,\ 21C/(10\ell_a)),\\
+ W=\lfloor C/\eps\rfloor,\qquad W_n^*=4^a-1.
+ \end{gathered}
+\end{equation}
+Throughout $I_n^{(3)}$, $\ell_{a-1}<W$, $2W\le\ell_a$ and $W\le W_n^*$. The windows are rational, nonempty and pairwise disjoint, since $\ell_{a+1}=4\ell_a+3$ and $21/(10\ell_{a+1})<2/\ell_a$. They lie below $\eps_*$. The rule reads neither $n$, $\eps$ nor $W$.
+
+The $B$ search terminates: $C$ is fixed, $\eta_B$ decays exponentially in $B$, and $K_{\rm full}(B)$ is a fixed polynomial. All graph counts below are independent of palette size. Two independently written exact-arithmetic interval programs in \texttt{verification/z3-scale/} certify
+\begin{equation}\label{eq:three-scale}
+ \begin{gathered}
+ k=43429,\qquad n_0=33644133613821753975,\\
+ \log_{10}\eps_*\simeq-20255786791774346221.28,
+ \end{gathered}
+\end{equation}
+with $(64K_{\rm full}(B))^{-44}$ binding. These are not the scale values of Section~10. Define
+\begin{equation}\label{eq:three-rate}
+ \begin{gathered}
+ r_F=B+2(V+1)(T+1)+10=B+176362,\\
+ K_0=10^8(V+1)(r_F+1)=17600000000(4^{43429}+176363),\\
+ c=\frac1{2^{42}K_0}
+   =\frac1{2^{42}\cdot17600000000(4^{43429}+176363)}.
+ \end{gathered}
+\end{equation}
+Thus $\log_{10}(1/c)=26169.7521\ldots$. Exact recipes specify the rule.
+
+\begin{theorem}[One noise diagram on $\Z^3$]\label{thm:three}
+The single computably specified finite-alphabet finite-range automaton below has, for every $n\ge1$ and every $\eps\in I_n^{(3)}$, ergodicity under uniform whole-symbol replacement if and only if $U(n)$ halts. Nonhalting gives two stationary laws invariant under every spatial translation. On a halting input an algorithm terminates and returns an integer $C_n\ge1$ such that for every $\eps\in I_n^{(3)}$, integer $t\ge0$ and finite $F\subset\Z^3$,
+\[
+ \Prob\{\text{the shared depth-$t$ full-symbol map is nonconstant on }F\}
+ \le |F|C_ne^{-ct}.
+\]
+This holds simultaneously over all starts, for forward and pullback blocks. Every finite-window pullback image is almost surely eventually a singleton; the unique stationary law attracts every initial law. The coefficient $c$ in \eqref{eq:three-rate} is independent of $n$, and the effective halting-dependent prefactor is uniform on the whole window.
+\end{theorem}
+
+\subsection{An automatic geometry with a deterministic cover}
+
+\begin{lemma}\label{lem:three-cover}
+There is an effective finite geometry alphabet, deterministic from its full west and south neighbours, projecting to the scaffold, orientation/event and lane-phase constraints of Section~3. It has a full-plane tiling, and its projected finite-board geometry holds in every represented phase.
+\end{lemma}
+\begin{proof}
+Use the decorated 276-letter substitution $\sigma$ of \cite[Tables~4--5]{DMhard}. Its child $(1,1)$ has components $(b,F(\theta),\mathsf A,0,0)$; the latter's child $(0,0)$ has components $(a,F(\theta),\mathsf A,1,1)$. Thus the child $(2,2)$ map of $\sigma^2$ fixes
+\[
+ t_*=(a,\angle b,\mathsf A,1,1),
+\]
+since $F(a)=\angle b$. Applying that map twice is constant at $t_*$. Table~5 admits this letter (a thin-$a$ corner requires equal ruler bits).
+
+Set $q(z)=\lfloor(z-1)/4\rfloor$ and $d(z)=(z-1)\bmod4$ componentwise. Every integer coordinate iterates to $-1$. Start with $t_*$ at $(-1,-1)$ and apply $\sigma^2$ with offset $(1,1)$. The nested legal patches exhaust the plane; their limit satisfies $A_0(z)=\sigma^2(A_0(q(z)))(d(z))$. Its phase solves $\varpi=1+4\varpi$, hence $\varpi=-1/3$ on both axes. Quartering with offset zero gives $\tau_0=(-2/3,-2/3)$.
+
+This phase is not typical in \cite[Definition~3.15]{DMhard}. The three properties used are: all ranks are finite; every coordinate has a finite frame owner; and walls on each row and column are unbounded both ways. The first follows from nonintegrality, as in \cite[Lemma~3.14]{DMhard}. For the second,
+\[
+ 0-\tau_{0,i}\pmod{4^{d+1}}=(4^{d+1}+2)/3
+       \in[4^d+1,3\cdot4^d]\quad(d\ge1).
+\]
+Any fixed integer perturbation remains in this interval for sufficiently large $d$. If a row belongs to a depth-$e$ row frame, the periodically repeated depth-$e$ column endpoints give walls arbitrarily far to either side; transpose for columns.
+
+Check (O1)--(E3) directly. On edge $(x,x+1)$ put the side of the nearest vertical wall at or left of $x$ in the minus orientation entry, and that of the nearest wall at or right of $x+1$ in the plus entry. At a non-wall the west/east pairs coincide; at a wall of side $a$ the west plus and east minus entries both equal $a$. Transpose vertically. Put a pair event tag exactly on edges with orientation $(\mathrm L,\mathrm R)$, or $(\mathrm B,\mathrm T)$ vertically, and $*$ otherwise. On a carrier edge its event entries are the cell/wall types of the nearest stops on either side, with stops the active cells and bounding walls. Between stops entries copy. An active site resets west plus and east minus to cell; inward left/right walls reset their inward entries to wall. Transpose for south/north resets. These verify the orientation, tag-admissibility, copy and reset cases, including empty corridors with pair (wall,wall). Finite laminar frames give the carriers and active sites by \cite[Lemma~3.13, Lemma~A.8 and Proposition~5.1(b,c)]{DMhard}. Its typical-only Proposition~5.7(b) is not used.
+
+This canonical coloring is effectively automatic on signed coordinates: base-four subtraction has finite borrow states; compositions of the sixteen finite child maps form a finite set of maps. Sign extension eventually selects child $(2,2)$, whose two-step constancy makes the output stable. Reversal and determinization give a conventional digit-output automaton. Quartering and fixed collars preserve automaticity. Nearest-wall and nearest-stop predicates are first-order formulas in automatic predicates and integer order. For instance a nearest left wall satisfies
+\[
+ \operatorname{Wall}(w,y),\quad w\le x,\quad
+ \nexists w'\,[\operatorname{Wall}(w',y),\ w<w'\le x].
+\]
+Projection, complement and finite products implement the formulas. Include $p=y-\tau_{0,2}-1\pmod B$ and the finite phase-decoder collar from Section~3 in the output alphabet $\mathcal C$.
+
+Each finite canonical patch has finite rank, owner, wall and stop witnesses determined by a finite hierarchy prefix. Sufficiently large positive translations divisible by an appropriate power of four preserve that prefix and the residue modulo $B$. Thus every patch recurs arbitrarily far in the positive quadrant. Convert the output automaton to base two, respecting leading zeros. For its residual-state set $Q$ and transition $\delta$, the substitution $\rho(q)(e)=\delta(q,e)$ has a fixed state quadrant projecting to this coloring. Translated state quadrants reproducing increasingly large canonical patches have a whole-plane compact limit $S_\infty$. For each $m$, taking the finitely many block phases and preimages to a subsequence gives a whole-plane $\rho^m$ preimage up to shift.
+
+The definition in \cite[Section~1]{LGO12} is
+\[
+ \Lambda_\rho=\bigcap_{m\ge0}\ \bigcup_{u\in\Z^2}
+ u\cdot\rho^m(Q^{\Z^2}),
+\]
+equivalently the set admitting an infinite desubstitution history. Hence $S_\infty\in\Lambda_\rho$. Theorem~4 of that paper effectively gives a strongly deterministic tileset projecting onto this limit set. Apply it once to the state substitution, compose with the output map, and reject violations of the original local scaffold/routing/phase and collar-overlap constraints. Append projected edge colors and overlap strips to covering colors. Incoming full neighbours still determine the completion, because these are restrictions of the old covering choices. The canonical coloring has a lift and survives. Every surviving projection satisfies the local geometry used in Lemma~3.3's all-phase finite-board argument. This is one cover including routing, not a product of two covers.
+\end{proof}
+
+Add $H_{\rm row}$ from the west and $V$ from the south, imposing \eqref{eq:rankfilter} and quarter equalities, and a bit equal on all edges. These only reject completions. Lemma~3.2 gives the common nonincreasing sequence $b_r$. Its cutoff converse uses only finite ranks and the black-type rank comparisons, so also applies to the canonical seed.
+
+\subsection{The causal L-frame computation}
+
+Retain the finite machine $P$ of Section~4, with the fixed $n_0$ above, but replace its tableau. Its content alphabet is enlarged by computational WALL, distinct from erasure. Write tape address $j\ge0$ as $k=-j$, put WALL at $k>0$, and use the reflected radius-one rule $F(a,b,c)=f_P(c,b,a)$ on non-WALL centers, interpreting a neighbouring WALL as the tape end, preserving central WALL, and sending attempted exits to $\fail$. The malformed-triple convention remains total. Forbid only central $\halt$.
+
+An active payload has role LEFT, DIAG or RIGHT, a symbol $b$, a center cache $c$, and a pair $L$ for LEFT, $R$ for RIGHT, both for DIAG. Unused boundary pairs are fixed arbitrarily. The following is the complete interior table; unlisted role pairs are rejected.
+\[
+\begin{array}{c|c|c}
+ (w\text{ role},s\text{ role})&\text{role}&\text{output}\\\hline
+ (\{\mathrm{DIAG},\mathrm{RIGHT}\},\mathrm{RIGHT})&\mathrm{RIGHT}&
+ \begin{gathered}w.R=(u,v'),\ b=F(u,v',s.b),\\R=(v',s.b),\ c=w.c\end{gathered}\\[5pt]
+ (\mathrm{LEFT},\{\mathrm{DIAG},\mathrm{LEFT}\})&\mathrm{LEFT}&
+ \begin{gathered}s.L=(u,v'),\ b=F(w.b,u,v'),\\L=(w.b,u),\ c=s.c\end{gathered}\\[5pt]
+ (\mathrm{LEFT},\mathrm{RIGHT})&\mathrm{DIAG}&
+ \begin{gathered}w.c=s.c=c_{\rm old},\ b=c=F(w.b,c_{\rm old},s.b),\\
+ R=(c_{\rm old},s.b),\ L=(w.b,c_{\rm old})\end{gathered}
+\end{array}
+\]
+On the first active column above the corner put LEFT with $b=\init(H_{\rm row},\chi_2,0)$ and $c$ copied from the south predecessor, of role DIAG or LEFT. On the first active row right of the corner put RIGHT with $b=\mathrm{WALL}$ and $c$ copied from the west predecessor, of role DIAG or RIGHT. At the corner put DIAG with $b=c=\init(H_{\rm row},\chi_2,1)$. Incoming outer colors are empty. The flags $f_W,f_S$ recognize these cases; $f_E,f_N$ suppress outgoing colors, without suppressing the payload or its no-halt test. Horizontal-only carriers copy the whole west payload east, vertical-only carriers copy south north, and other colors are empty. Interior input tracks are retained by $F$ and are not compared with external row flags: those comparisons occur only on the initial left leg.
+
+\begin{lemma}[The L-frame chart]\label{lem:three-chart}
+The resulting finite chart alphabet $\mathcal R$ is deterministic from west and south. Each depth-$d$ board represents the initialized $P$ computation on $t+|k|<N_d$, where $N_d=2^{d+2}-2$. For $a=n+n_0$, nonhalting supplies legal charts with either bit and cutoff $b_r=\ind\{r<2a-2\}$. Halting forces in every full chart either a depth-$(a-1)$ finite bottom end with flag zero or a depth-$a$ finite bottom end with flag one, in every represented phase.
+\end{lemma}
+\begin{proof}
+The two incoming letters determine geometry, flags, bit, and then each carrier or active case. Thus the completion is unique. The geometric proof of Lemma~3.3 forces the same $N_d\times N_d$ grid and flags. Sparse channels are causal for time $x+y$: a gap of length $g$ takes $g$ local steps.
+
+At active position $(i,j)$ set $t=\min(i,j)$, $k=i-j$. Induction on $i+j$ gives $b(i,j)=a^t_k$ for the $F$ orbit from the initial legs. If $i>j$, the south value is $a^{j-1}_{k+1}$ and west pair is $(a^{j-1}_{k-1},a^{j-1}_k)$; RIGHT gives the update and shifted pair. LEFT is the transpose. On the diagonal west/south give $a^{t-1}_{-1},a^{t-1}_{1}$ and both centers equal $a^{t-1}_0$, yielding DIAG and its two caches. Boundary pairs are never read at interior updates: the first interior pair comes from a computed diagonal. Since $\max(i,j)=t+|k|$, the represented region is exactly the one stated. Any infinite extension of its finite initial legs gives the same represented states; every finite halt appears on sufficiently large boards.
+
+Lemmas~3.2 and~4.2 give the unchanged input calculation. At cutoff $2a-2$, a depth-$d>a$ board has its first odd-parity zero at $j_*=2^{a+1}-2$, and $P$ decodes $n$. A smaller board either has an even first zero and fails, or has an all-one extension on which SCAN runs forever. On large boards use the initialized cutoff tape. If $U(n)$ never halts, none of these finite restrictions contains halt. Fill each grid by its restriction and each channel from its endpoints; empty corridors have empty colors. Finite ownership of the canonical geometry covers all active sites, and the direct routing check gives legality. Choose either bit. Spatial averages have weak limits supported on legal charts. Their phase laws are Haar on finite residue tori, hence typical almost surely; each finite-rank cutoff condition persists.
+
+If neither wrong critical gate exists, the common-rank filter forces $b_{2a-3}=1$ and $b_{2a-1}=0$. Lemma~4.2 then forces input $n$ on all sufficiently large boards. A finite halting trace appears in one L-frame diamond and violates the no-halt filter. The finite-board argument does not assume typicality. Both critical depths are gated since $a-1\ge k$. All algorithms terminate before selecting $n$; no halting answer enters the alphabet.
+\end{proof}
+
+\subsection{History strips and the literal noisy rule}
+
+A live augmented symbol is a vertically matching $T$-tuple $c=(c_0,\ldots,c_{T-1})$ of chart tiles. With erasure $\botv$, define the total bottom-spreading generator $g$ by
+\[
+ c_0=g_{\mathcal R}(w_0,s_0),\qquad c_j=s_{j-1}\quad(1\le j<T).
+\]
+Return bottom if either input is bottom, the central completion fails, internal vertical matching fails, or any $c_j$ fails its horizontal match to $w_j$. On a legal chart $\tau$, $c_j(i,t)=\tau(i,t-i-j)$ is an all-live recurrence. Conversely every all-live recurrence projects to locally legal chart tiles. Let $\mathcal A$ contain all live tuples and bottom.
+
+For $D\in\mathcal A^{\Z^3}$ let $F(D)(i,P)$ retain the unique live value occurring at least $h$ times among
+\[
+ g(D(i-1,P+\alpha),D(i,P+\alpha)),\qquad\alpha\in S,
+\]
+or bottom if none. Use the helper alphabet of Section~2 and $\Sigma_3=\mathcal A\times\mathcal A\times\HH^B$. At time $t$ form
+\[
+ A_t=F(D_{t-1}),\qquad Q_t(i,P)=F^T(D_{t-1})(i,P-(T-1)v).
+\]
+Decode a live $Q_t$ through slot $T-1$. On the moving reference, its $T$ forecast steps and $T-1$ old slots cancel: this is exactly the current tile $\tau(i,t-i)$.
+
+Field $j$ at $(w,P)$ has base $(w+j,P)$ and predecessor $(w-1,P+v)$ at time $t-1$. Its provisional interval is UNKNOWN if base $A_t$ is bottom; predecessor interval union $\{0\}$ if $A_t$ is live but $Q_t$ bottom; $\{0\}$ if both are live and the decoded instruction is $\Orig$; otherwise the predecessor interval. At base $(i,P)$ gather these from $(i-j,P)$, $0\le j<B$. Let $h_i$ count intervals containing one and $l_i$ those equal to $\{1\}$. Pin when $Q_t$ is bottom, or its instruction is a phase-zero $\End$ and either $H_{\rm row}=1,h_i\ge s$, or $H_{\rm row}=0,l_i<s$. Output pinned-or-retained $A_t$, unpinned $A_t$ as second coordinate, and canonical representatives of provisional intervals. Then replace the entire symbol uniformly with probability $\eps$. This specifies malformed inputs too. History is inside the voted alphabet and is erased with data.
+
+Every read has radius at most $r_F$. A conservative full-graph dependency count, including both orientations, is
+\begin{equation}\label{eq:three-degree}
+ \kappa(B)=2B(9q+n_Q+2),\qquad n_Q=(2T+1)^2(175T+1)^2.
+\end{equation}
+This includes literal helper shifts and virtual supports; the two-input support only reduces the old nine-input overcount. It is independent of palette size.
+
+\begin{lemma}[Relocated sensors and deep witnesses]\label{lem:three-sensors}
+Lemmas~6.1--6.3 and~10.4 give the same intrinsic laws, $\eta_B$, and mixed-source bound $\gamma^g$ with $\gamma=\sqrt C+\eta_B^{1/6}$. A wrong live decoded depth-$T$ instruction whose wrong actual leaves are marked has a complete witness with $f\ge11$ distinct physical flags and at most $50(f-1)$ support edges. A helper lag at most $W$ is one zero-characteristic link.
+\end{lemma}
+\begin{proof}
+A physical atom $(w,P,t)$ belongs to a phase-zero experiment for a unique $j$ modulo $B$, because its base row is $y=t-w-j$. Lane $j$ lies at old $(x-j,y+j)$ relative to the base. Copying preserves $(i-t,P+vt)$. A phase-zero row owns $B$ consecutive physical rows; its finite rulers own disjoint intervals $[L_d,R_d-1]$, with exactly $\ell_d$ updates ending before the gate replacement. Thus each atom has at most one owner and a gate's lanes are independent. The scalar upper and recent lower probabilities remain $.99[1-(1-\eps)^{\ell_d}]$ and $.98[1-(1-\eps)^W]$. Lemma~6.2's moment and lower-tail estimates give $\eta_B$. Raw bins cost at most $C$; every third statistical bin has disjoint support. Cauchy--Schwarz gives $\gamma^g$ without raw/statistical independence, exactly as in Lemma~6.3.
+
+A wrong slot $j>0$ forces $h$ providers with wrong copied south slot $j-1$. At slot zero functionality gives a wrong actual input at west or south. No history copy bypasses a quorum level, and $h>K$ gives two clusters at every level. Attach complete raw-mark derivations at actual leaves. Lemma~10.3 applies with characteristic $\chi=P+vt$, poles $3(\chi_1+\chi_2),-3\chi_1,-3\chi_2$, gains $129,-351$, and coefficient $1440/129$. Logical offsets do not enter these poles. Crossing all $500$ virtual levels gives $f\ge11$ and at most $50(f-1)$ edges. Actual flags precede the queried input time. Recentring and copying preserve $\chi$, so helper lag adds only its one anchor.
+\end{proof}
+
+\begin{proof}[Nonhalting direction of Theorem~\ref{thm:three}]
+Use either-bit cutoff charts from Lemma~\ref{lem:three-chart}, lift their strips and clone transversely. Initialize helpers by ideal negative-time instructions and innovations, spatially average, and keep positive-time innovations independent. A bad ordinary proposal has at least $257$ failing providers, each with a bad west or south input by functionality. Bottom $Q$ also counts as bad. The same recursion applies virtually. False erasure with correct drivers requires an intrinsic source or a driver error on one base characteristic within lag $W$, by the interval inclusions of Section~7.
+
+The memory count of Lemma~10.4 transfers literally: all $B$ lanes of a base use the same $A/Q$ driver characteristic, so collapsing source-free corridors adds no $B$-valued role or shifted-driver choice. Logical degree $2q\le9q$ is within its bound. At most $32(T+2)$ roles, support choices, ten zero-offset types, five bin differences and both orientations give degree below $\Delta_{\rm mem}$. The characteristic arm estimate applied before projection gives fewer than $12(g-1)$ positive edges for $g$ source labels, and fewer than $39g<256g$ edges after corridors and entries. Doubled traversal and terminal subsets give
+\[
+ 2\sum_{e=0}^{256g}X^e\le4X^{256g}\le K_{\rm mem}^g.
+\]
+Recursion lowers physical time or virtual level and ends at ideal pre-zero drivers. The source law bounds either data-coordinate error by
+\[
+ \sum_{g\ge1}(K_{\rm mem}\gamma)^g<3/125,
+\]
+since $K_{\rm mem}\sqrt C=1/128$ and $K_{\rm mem}\eta_B^{1/6}<1/64$. Its live bit-$b$ cylinder has probability above $122/125$ at every time. Feller compactness and temporal Ces\`aro limits give two stationary laws separated by these disjoint cylinders. Spatial invariance persists, proving the stated nonhalting conclusion.
+\end{proof}
+
+\subsection{Coherence down to time zero}
+
+Let $M$ be the two-sided least finitary raw marked closure for ordinary parents $\{-1,0\}\times S$: a root is marked if flagged or if it has marked parents in two distinct provider boxes. Write $\mathsf H(z)$ if it has a marked ordinary parent, and $\mathcal D_N(z)$ if some $N$-edge backward path has $\mathsf H$ at least $N/1404$ times among its first $N$ vertices. Apply \cite[Lemmas~12.3--12.4]{DMforgetLower} with $r=1$, $J=\{-1,0\}$ (reflection of $\{0,1\}$), $|J|\le9$, and their constants
+\[
+ B_0=382205952,\quad\delta=1/1404,\quad C_\delta=16860,
+ \quad e_0=B_0^{-33720}.
+\]
+For $\eps\le e_0$,
+\begin{equation}\label{eq:three-density}
+ \Prob(\mathcal D_N(z))\le(16/3)e^{-N}\le6e^{-N/4212}.
+\end{equation}
+These noise-only events control paths selected after innovations are fixed.
+
+\begin{lemma}[Full-age pairing]\label{lem:three-coherence}
+In one finite history of integer age $s\ge1$, two unmarked live readings at equal logical position/time and transverse $\ell^1$ distance $d$ agree if $s\ge2d$ and neither root has $\mathcal D_s$. This includes the ordinary-proposal coordinate and holds simultaneously over all starts. One further clean step gives local west/south chart compatibility.
+\end{lemma}
+\begin{proof}
+At positive time, unmarked live data and stored ordinary-proposal readings at the same physical site both equal its ordinary proposal. After one backward step, both selected readings are of the first data coordinate. At distance zero these agree in one history, including at time zero; no equality between the two arbitrary time-zero coordinates is assumed. An unmarked live root has at least $h-K=256$ clean successes. Conflicting successful outputs have conflicting inputs at a common west/south index by functionality. If neither root has $\mathsf H$, signed unit pairing inside the three boxes gives $720$ pairs reducing distance by one; at most $2(q-h)=512$ fail. Otherwise choose any clean success at each root, and use functionality to select a common conflicting logical input index; distance increases by at most $350$. The two selected offsets need not coincide at these exceptional steps. This is the finite-history pairing of \cite[Theorem~12.12]{DMforgetLower}, now for the functional two-input tuple rule.
+
+Run it for exactly the age $s$, down to time zero. If $b_s$ steps have $\mathsf H$ on either path,
+\[
+ d_s\le d-s+351b_s<d-s+351(2s/1404)=d-s/2\le0.
+\]
+Distance-zero conflict in the same history is impossible even at time zero. At a common clean provider $g$ checks west/south matching; same-site agreement one step earlier identifies those inputs with their references. Off flags a live second coordinate equals its proposal; a flagged root is already marked. The exceptions are noise-only, proving simultaneity over starts.
+\end{proof}
+
+\subsection{Packing a single wrong-gate boundary}
+
+Fix a gate plane $\Gamma=\{(i_\Gamma,P,b):P\in\Z^2\}$, a critical type/reference phase and finite deterministic transverse footprint. Boundary exceptions have complete witnesses: (R) a raw contour rooted there with $f\ge1$ flags, at most $50(f-1)$ edges, flags at times at most $b$; or (D) a wrong-deep contour with $f\ge11$, the same edge bound and flags at times at most $b-1$, connected by a zero-$\chi$ lag in $\{0,\ldots,W\}$. Intrinsic singleton seeds $S_P$ have joint probability at most $\eta_B^m$ for any $m$ distinct fixed $P$. They may overlap raw flags.
+
+\begin{lemma}[Boundary eroder on the full graph]\label{lem:three-boundary}
+Enlarge boundary exceptions by the packed balls below and close by the finitary two-cluster rule, adding flags strictly above $b$; call this field $M_\Gamma$. For every fixed root, the probability that some $N$-vertex full-actual backward path entirely above $b$ has shifted $M_\Gamma$ readings at at least half its vertices is at most
+\begin{equation}\label{eq:three-boundary-tail}
+ 16\exp[-N/(2C_*)].
+\end{equation}
+Shifts may be any literal helper shift or zero. The same estimate holds for two-sided raw-only $M$, with no boundary floor. Live-data inclusion on the boundary implies domination of all live data and ordinary proposals in a finite region whose chosen parent routes end in that footprint.
+\end{lemma}
+\begin{proof}
+Choose one complete witness for each exceptional boundary point, minimizing flag count then a finite lexicographic code. Process them in decreasing size, keeping one exactly when its flags are disjoint from all previously kept flags. A discarded size-$f$ witness shares a flag with a kept size-$f'\ge f$ witness. Their gate roots are within
+\[
+ 350\cdot50(f+f')\le35000f'<Rf',\qquad R=10^6,
+\]
+in characteristic distance, because long helper links have zero displacement. Balls of radius $Rf'$ at kept roots cover all exceptions. Only kept complete witnesses are encoded. If their total flag count is $f_B$ and $c_D$ are deep witnesses, then
+\begin{equation}\label{eq:three-anchor-cost}
+ c_D\le f_B/11.
+\end{equation}
+No eleven-flag claim is made for a pruned one-charge arm.
+
+Treat a used ball as one terminal group, and intrinsic seeds and future flags as singleton groups. Let $f_+$ count future flags, $m$ intrinsic seeds, $f=f_++f_B$ and $k'=f+m$. There are $g\le k'$ groups. Lemma~10.3's printed gains (unchanged from version~1.3.0 \cite{DMnoise13}) $129,-351$ and coefficient $1440/129$ give the sum form
+\[
+ 129E-1440(g-1)\le\sum_{j=1}^g\Omega_j\le9Rf_B.
+\]
+Its proof compares each group with its own reference leaf; each of three poles varies by at most $3Rf'$ on a ball. Hence
+\begin{equation}\label{eq:three-boundary-edges}
+ E<12g+69768f_B<2^{18}k'.
+\end{equation}
+Here $E$ counts positive edges above $b$. Connect each ball's at most three charge endpoints to its center by unit transverse paths, totaling at most $3Rf_B$ edges, and attach the complete kept witnesses with at most $50f_B$ edges. Neither ball area nor discarded-witness multiplicity is charged.
+
+Inspect marked path occurrences from latest to earliest, attaching an entire grouped contour and skipping strictly earlier than its earliest ordinary terminal time. A contour covers at most $E+2$ occurrences. Keep the final contour whole even past the path prefix. A contour reaching $b$ is final, since every path vertex is above $b$; boundary groups and intrinsic labels thus appear in at most one contour. Future flags have disjoint strict terminal slabs and lie above all boundary flags. Summing gives $N\le2^{20}\sum k'$. The whole actual path, helper spurs, contours, group connectors and full witnesses use fewer than $2^{23}\sum k'$ underlying edges and seed incidences. Fewer than $64(T+2)<2^{15}$ role incidences per item leave fewer than $2^{38}\sum k'<C_*\sum k'$ role-graph edges.
+
+For the prescribed graph \eqref{eq:three-degree}, degree is below $\Delta_{\rm full}(B)$: roles are actual path, shifted root, three charges, group/source center, raw/intrinsic terminal, unit connector and $T+1$ forecast levels. Choices are bounded by $\kappa(B)$, $B+1$ spurs, $q$ providers, two logical inputs and fixed orientations. Encode the connected embedded source test by doubled traversal, role masks, physical flag subset and intrinsic subset. A first deep-anchor traversal selects a lag in at most $W+1\le2W$ ways; known gate time, characteristic and virtual role determine its endpoint. Repeated traversals reuse that edge. Different witness partitions yielding the same annotated graph and source subsets are the same probability event and counted once. A valid decomposition proves its size and \eqref{eq:three-anchor-cost} before that decomposition is forgotten. Traversal, masks, compositions and stopping data therefore give, for fixed $f,m$,
+\[
+ \#\text{tests}\le K_{\rm full}(B)^{f+m}W^{6c_D}.
+\]
+The sixfold power overcounts lag orientations and endpoint conventions. Fixed polynomial annotations satisfy $f^j\le2^{jf}$ and fit the edge budget. There is no factorial assignment to group names, no free group-position factor and no lag charge for discarded witnesses. The polynomial $K_{\rm full}$ depends on neither palette, $W$ nor input.
+
+For a fixed test, H\"older with weights $3/4,1/4$ bounds probability by $\eps^{3f/4}\eta_B^{m/4}$. Only the distinct raw flags and the fixed distinct intrinsic experiments require within-family independence. Since $W\le C/\eps$ and $c_D\le f_B/11$, the two weighted bases are
+\[
+ K_{\rm full}(B)C^{6/11}\eps^{9/44},\qquad
+ K_{\rm full}(B)\eta_B^{1/4}.
+\]
+Both are below $1/64$ by the parameter choices. Summing $(k'+1)64^{-k'}$ for $k'\ge N/C_*$ proves \eqref{eq:three-boundary-tail}. The encoded whole path already pays paths selected after seeing innovations.
+
+For raw-only $M$, repeat strict-slab selection without a lower floor. A complete raw contour covers at most $50f+2\le52f$ marked occurrences, giving $N\le104f$. Its disjoint slabs have distinct flags; there are no anchors or intrinsic sources. The same count is an overestimate. This proves the two-sided version directly, without identifying it with an empty boundary initialization.
+
+For domination choose WEST when $x>x_\Gamma$, otherwise SOUTH, routing northeast sites to $\Gamma$ in exactly the time difference. An unflagged live output has $h$ successful providers, all with live selected-index inputs by bottom-spreading. If these inputs are marked, $h>K$ occupies two boxes and marks the child. Flags above $b$ are seeds. Induction also covers ordinary proposals before pinning. The deterministic boundary footprint includes all routed endpoints, so no unseeded boundary point is used.
+\end{proof}
+
+\subsection{Halting and the four boundary conditions}
+
+On a halting input, Lemma~\ref{lem:three-chart} and compactness give an effective $r_n$ such that every locally legal chart patch on $[-r_n,r_n]^2$ contains a wrong short or long critical gate with its full ride and recent query segment. Enumerate finite patches, test internal legality and absence of both finite motifs, and stop at the first empty set. Survivors at all radii would give a full chart with neither wrong gate. This tests no infinite extendibility.
+
+For a target of age $t$ and chart position $(x_0,y_0)$ put
+\[
+ \begin{gathered}
+ m_t=\lfloor t/K_0\rfloor,\quad R_n=10(r_n+W_n^*+B+T+r_F+1),\\
+ L_t=100(r_F+1)m_t+R_n,\\
+ D_t=4L_t+4r_n+4W_n^*+4B+4T+20,\\
+ U_t=(r_F+1)(m_t+3)+(V+1)D_t.
+ \end{gathered}
+\]
+Center the motif box at $(x_0-L_t,y_0-L_t)$. Every comparison, query and routed boundary endpoint has age at least $t-D_t$ and physical radius at most $U_t$: the full late cone has chart excursions at most $(r_F+1)(m_t+2)$, forests have depth at most $D_t$ and transverse increment at most $V$, and the fixed $B,T,W_n^*$ terms cover shifts, forecasts, strips and rides, with a compatibility step.
+
+Here is an explicit burn-in. Set
+\[
+ \begin{gathered}
+ d_1=400(r_F+1)/K_0,\quad d_0=4R_n+4r_n+4W_n^*+4B+4T+20,\\
+ u_1=(r_F+1)/K_0+(V+1)d_1,\quad u_0=3(r_F+1)+(V+1)d_0.
+ \end{gathered}
+\]
+Then $D_t\le d_1t+d_0$, $U_t\le u_1t+u_0$, and $d_1+8u_1<10^{-3}$. Take
+\begin{equation}\label{eq:three-burnin}
+ t_0=2+\left\lceil\max\left\{2K_0,\frac{d_0}{1/2-d_1},
+ \frac{d_0+8u_0+2}{1-d_1-8u_1}\right\}\right\rceil.
+\end{equation}
+For $t\ge t_0$, $m_t\ge1$, $D_t\le t/2$ and $t-D_t\ge8U_t+2$. Let $\mathcal G_t$ exclude $\mathcal D_s(z)$ at every deterministic point with $t-D_t\le s\le t$ and physical radius at most $U_t$ about the target. By \eqref{eq:three-density},
+\begin{equation}\label{eq:three-good-box}
+ \Prob(\mathcal G_t^c)\le6(t+1)(2U_t+1)^3e^{-(t-D_t)/4212}
+ \le P_n(t)e^{-t/8424}
+\end{equation}
+for an explicit effective polynomial. Comparison spans are at most $4U_t$, so full-age pairing applies with its extra compatibility step. This probability is added to the other bounds, never used as a conditioning event.
+
+The four conditions for the single wrong-gate boundary are explicit:
+\begin{enumerate}
+\item \emph{Southwest of the whole full cone.} The margin $L_t$ puts the motif, ride, queries and strips southwest of every relevant late point, including all $B$ helper shifts and proposal parents. Their query ages are at least $t/2$. This requires $K_0$ proportional to the full read radius.
+\item \emph{One coherent same-history footprint.} On $\mathcal G_t$, an unmarked late reading supplies a clean west/south forest reaching that common box. At least $h-K=256$ clean successes remain at every exposure. Coherence labels its whole southwest region legally, including the motif and routed transverse footprint. The extracted gate is fixed for that entire history. Different histories need not agree.
+\item \emph{Complete exceptional witnesses.} Marked live boundary data have full raw witnesses. Unmarked live data agree with the reference. A wrong live current $Q$ has a complete deep witness at lag zero; otherwise survival requires an intrinsic failure or a wrong live $Q$ on the short ride or recent $W$ window. Decreasing-size flag-disjoint packing retains complete witnesses, and only retained deep ones incur lag entropy, with $c_D\le f_B/11$.
+\item \emph{One final boundary contour.} Positive future edges pay above-plane span. A contour reaching $b$ is the last selected contour, because the whole late path is above $b$. Boundary flags and intrinsic groups are charged once. A below-plane $W$ lag is never counted as $W$ ordinary path steps.
+\end{enumerate}
+
+The interval inclusion in item~3 holds for arbitrary initial helpers. At a short wrong flag-zero gate, its true origin starts a set containing the ideal upper bit. UNKNOWN, union with zero, correct copying and common replacements preserve containment. Fewer than $s$ ideal upper ones imply fewer than $s$ actual singleton-one fields, forcing a pin. At a long wrong flag-one gate, last HIGH marks in the recent $W$ segment preserve the possibility of one under UNKNOWN, union and copy; no origin occurs there since $2W\le\ell_a$. At least $s$ such marks force $h_i\ge s$ and pin. Bottom $Q$ adds zero, bottom $A$ gives UNKNOWN, both favorable to these inclusions; bottom current $Q$ already pins. Thus every surviving live gate belongs to the intrinsic/raw/deep union, a noise-only event once gate type and phase are fixed, without reference colors.
+
+\begin{proof}[Halting direction of Theorem~\ref{thm:three}]
+On $\mathcal G_t$, a history with no unmarked live data or proposal in the enlarged late cone uses the raw-only field $M$. Otherwise one unmarked reading supplies a coherent reference and a wrong gate $\Gamma$ as above. Pack its witnesses in a deterministic gate box containing all endpoints routed from the full late cone. Lemma~\ref{lem:three-boundary} dominates all relevant live data and ordinary proposals by its $M_\Gamma$. This is one field for the entire history. Possible gate positions, the two types, finite phase residues determining the intrinsic experiment and reference-root positions form a deterministic finite or polynomial-in-$t$ list. Every candidate field is noise-only; no initial words or chart fillings are enumerated.
+
+If the target map is nonconstant, choose a witnessing pair of starts after fixing innovations. A shared fresh replacement cannot differ. At an unflagged differing full output, a full actual parent differs. Follow such parents for $m_t$ steps in the late cone. At each vertex one history has a live ordinary proposal at one of the $B$ shifted bases: if all $A_t(i+j,P)$ were bottom in both, both outputs would be the common $(\botv,\botv,\mathrm{UNKNOWN}^B)$. Each history has one dominating field for all these proposals, so at least half the vertices are shifted-marked in one of its two fixed fields. Apply \eqref{eq:three-boundary-tail}, including its raw-only form, union over the candidate list, and add \eqref{eq:three-good-box}. These bound existence over all starts without a union over configurations or conditioning on selected histories.
+
+Since $m_t\ge t/K_0-1$, an effective polynomial $Q_n$ gives, uniformly on $I_n^{(3)}$ for $t\ge t_0$,
+\[
+ q_t(\eps)\le Q_n(t)e^{-dt},\quad
+ d=\min\{1/8424,1/(2C_*K_0)\}=1/(2^{41}K_0).
+\]
+Here $q_t$ is the single-site all-input full-symbol coefficient. If $Q_n(t)\le A_n(t+1)^p$, an effective integer
+\[
+ C_n>3A_np!(2/d)^p+3^{t_0+1}
+\]
+works for every $t\ge0$ with $c=d/2$. Indeed $(t+1)^pe^{-dt/2}\le e^{d/2}p!(2/d)^p$, $e^{d/2}<3$, and the last term covers earlier times. A fixed decay coefficient does not mean fast forgetting: the prefactor contains $3^{t_0+1}$, and $t_0$ grows linearly in $r_n$ and $W_n^*$. All coefficients and the burn-in are effective once the halting motif search terminates.
+
+Translation and a finite union bound give the estimate on $F$. Shared finite-window pullback images are nested finite nonempty sets; the summable estimate makes them eventually singletons almost surely. Forward blocks have the same distribution. Feller compactness supplies a stationary law, and coupling it to every initial law proves uniqueness and attraction. Together with the nonhalting proof this establishes the theorem.
+\end{proof}
+
+\subsection{The fixed interaction on $\Z^4$}
+
+\begin{corollary}[All Gibbs measures in dimension four]\label{cor:three-gibbs}
+There is one computably specified translation-invariant finite-range interaction on $\Z^4$, with finite alphabet and individual energies in $\{0,1\}$, and computable pairwise disjoint nonempty rational open inverse-temperature windows $\mathcal J_n^{(4)}$, such that at every $\beta\in\mathcal J_n^{(4)}$ uniqueness among all Gibbs measures is equivalent to halting of $U(n)$. Halting gives exponential weak spatial mixing in arbitrary finite volumes, uniformly over exterior configurations, including holes and disconnected volumes. Nonhalting gives two Gibbs measures invariant under every translation of $\Z^4$. Mixing constants may depend on $\beta$.
+\end{corollary}
+\begin{proof}
+For the fixed rule $f$, actual neighborhood $N$ and $N_\Sigma=|\Sigma_3|$, put on $\Z^3\times\Z$ the anchored energy
+\[
+ \Phi_{z,t}(\sigma)=\ind\{\sigma_{z,t}\ne f((\sigma_{z+u,t-1})_{u\in N})\}.
+\]
+Include every factor meeting a finite volume, including exterior-child factors. The normalizer $1+(N_\Sigma-1)e^{-\beta}$ is parent-independent; dividing by it leaves every DLR specification unchanged and gives exactly replacement at
+\[
+ \eps(\beta)=N_\Sigma/(e^\beta+N_\Sigma-1).
+\]
+For $I_n^{(3)}=(a_n,b_n)$ enumerate positive rationals $c_n<d_n$ until $a_n<\eps(d_n)<\eps(c_n)<b_n$ is certified by computable exponential approximations. Strict monotonicity and openness guarantee termination. Set $\mathcal J_n^{(4)}=(c_n,d_n)$; the windows are nonempty and pairwise disjoint. Their endpoints are computable but far too large to print: $N_\Sigma\ge100^{4^{43429}}$ and their scale is $\log N_\Sigma+\log(1/\eps)$.
+
+All hypotheses of \cite[Section~2.1 and Corollary~13.7]{DMst} hold: the alphabet has at least two letters; $N$ contains zero because $S_0$ contains zero and SOUTH has logical index $i$; entries are at least $\eps/N_\Sigma>0$; retain-or-replace basic maps are independent; spatial dimension is $d=3\ge1$; and the coefficient of its equation~(4) satisfies $q_t\le C_ne^{-ct}$ for all $t\ge0$ on halting windows. Corollary~13.7, with estimates (7)--(8), therefore gives uniqueness among all DLR measures and arbitrary-volume exponential weak spatial mixing. No invariance is assumed of competing measures. On nonhalting windows \cite[Lemma~2.4]{DMst} sends the two spatially invariant stationary laws to distinct stationary-history Gibbs measures, distinguished by time-zero marginals and invariant under all four translations.
+\end{proof}
+
+No dimension-three analogue of Theorem~B.1, Theorems~9.6--9.7 or Corollaries~9.8--9.12 is asserted. These new results, and those of Section~10, are not formalized in Lean.
