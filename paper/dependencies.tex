@@ -1,0 +1,64 @@
+\section{Dependencies of the lemmas}\label{sec:dependencies}
+
+The table is the exact directed \texttt{\string\ref} graph on the labelled lemmas and Proposition~\ref{prop:organization}, with self-references omitted, using each statement and its proof; the organization row includes its surrounding induction explanation and final assembly. It has 33 nodes and 89 edges. An arrow means that the row text references the result in its Uses column, including explanatory forward pointers. Used in is the exact reverse relation. References to definitions, equations, sections and theorems are outside this induced graph. Unlabelled native-rule and lower-rank premises remain as stated in each proof.
+
+At rank j, references to Proposition~\ref{prop:organization} within an induction step invoke a rank-\((j-1)\) clause or identify the current conclusion being proved; the assembly invokes the established rank-j lemmas. In the birth branch the computing test is proved before strong issue, incoming clearance and successor properness are used.
+
+The supplied-interval Lemma~\ref{lem:local-wound} reproduces the first-clean-Purge count independently and uses only lower transitions and held-flank clearance. The held-flank proof fixed-backing pointer goes to the independent step~2 of Lemma~\ref{lem:ordinary-response}, so this longer textual cycle also supplies no missing premise.
+
+Every pair of reciprocal textual references has the following interpretation.
+\par\noindent Proposition~\ref{prop:organization} and Lemma~\ref{lem:ballot} are reciprocal only because the lemma invokes a lower-rank clause or names the current conclusion, while the assembly uses the completed lemma at rank j.
+\par\noindent Proposition~\ref{prop:organization} and Lemma~\ref{lem:end-ledger} are reciprocal only because the lemma invokes a lower-rank clause or names the current conclusion, while the assembly uses the completed lemma at rank j.
+\par\noindent The transition/ascent pair: the transition proof only points to the separately centered cap tests of Lemma~\ref{lem:ascent}; the ascent uses the transition conventions.
+\par\noindent The flanks/ordinary-response pair reuses only the fixed-backing induction in step~2, which is closed independently of the local response or repair.
+\par\noindent The flanks/seed pair concerns the paired-seam application conditional on an already supplied full seed; obtaining that seed uses only the independently proved backing and ordinary geometry.
+\par\noindent The flanks/attachment pair points from the held-wall mechanism to its issued-source application; attachment supplies the walls before invoking clearance.
+\par\noindent The ordinary-response/seed pair points forward to the count of open-end episodes; the ordinary proof establishes the nonlatching geometry before that independent counting application.
+\par\noindent The ordinary-response/attachment pair is an application pointer from ordinary work; the local calculation is proved earlier as Lemma~\ref{lem:local-wound} without an issued-source conclusion.
+\par\noindent The attachment/components pair uses only the independent clean-evolution paragraph in the forward direction; the component count receives its initial source interval from attachment.
+\par\noindent The attachment/remote pair points to an independently rederived sterile-band induction; source attachment does not use the remote-source conclusion.
+\par\noindent The competitors/calendar pair uses only the independent old middle-wall selection, which is made without births or the terminal-exclusion conclusion.
+\par\noindent The calendar/end-ledger pair uses the \(97q\) guard only in the conditional filling remark; the end ledger selects that guard before invoking the clear calendar.
+
+Longer textual cycles reduce to these pairs. Delete the pointer or independent-sub-argument direction of each pair (flanks to ordinary-response, seed and attachment; ordinary-response to seed and attachment; attachment to components and remote; competitors to calendar; calendar to end-ledger; transition to ascent) and every reference from a lemma of the one-rank induction to Proposition~\ref{prop:organization}, which invokes a rank-\((j-1)\) clause or names the conclusion currently being established. The remaining graph is acyclic. In particular the cycle attachment--remote--thin-density--attachment is broken at the attachment/remote pointer, the cycles through the rank-\((j-1)\) classification clause cited by Lemma~\ref{lem:ordinary-start} are broken at that clause, and every cycle through Lemma~\ref{lem:transition} is broken at its pointer to Lemma~\ref{lem:ascent}.
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.14\linewidth}>{\raggedright\arraybackslash}p{.40\linewidth}>{\raggedright\arraybackslash}p{.38\linewidth}@{}}
+\toprule
+Result & Uses & Used in \\
+\midrule
+\endhead
+\ref{lem:clean} & --- & \ref{lem:past} \\
+\ref{lem:sparse-witness} & --- & \ref{lem:joint} \\
+\ref{lem:reader} & --- & \ref{lem:receiver-mixing}, \ref{lem:stripes} \\
+\ref{lem:receiver-mixing} & \ref{lem:reader} & \ref{lem:stripes} \\
+\ref{lem:stripes} & \ref{lem:reader}, \ref{lem:receiver-mixing} & \ref{lem:joint}, \ref{lem:past} \\
+\ref{lem:joint} & \ref{lem:sparse-witness}, \ref{lem:stripes} & \ref{lem:clock-witness} \\
+\ref{prop:organization} & \ref{lem:transition}, \ref{lem:ballot}, \ref{lem:classification}, \ref{lem:exclusion}, \ref{lem:end-ledger}, \ref{lem:advance} & \ref{lem:ordinary-start}, \ref{lem:ballot}, \ref{lem:attachment}, \ref{lem:end-ledger}, \ref{lem:ascent}, \ref{lem:clock-witness} \\
+\ref{lem:transition} & \ref{lem:ascent} & \ref{prop:organization}, \ref{lem:ordinary-start}, \ref{lem:local-wound}, \ref{lem:startup}, \ref{lem:advance}, \ref{lem:two-period}, \ref{lem:ascent} \\
+\ref{lem:ordinary-start} & \ref{prop:organization}, \ref{lem:transition} & \ref{lem:ordinary-response}, \ref{lem:seed}, \ref{lem:attachment}, \ref{lem:thin-density} \\
+\ref{lem:flanks} & \ref{lem:ordinary-response}, \ref{lem:seed}, \ref{lem:attachment} & \ref{lem:local-wound}, \ref{lem:ordinary-response}, \ref{lem:seed}, \ref{lem:ballot}, \ref{lem:attachment}, \ref{lem:exclusion}, \ref{lem:end-ledger} \\
+\ref{lem:local-wound} & \ref{lem:transition}, \ref{lem:flanks} & \ref{lem:ordinary-response}, \ref{lem:attachment} \\
+\ref{lem:ordinary-response} & \ref{lem:ordinary-start}, \ref{lem:flanks}, \ref{lem:local-wound}, \ref{lem:seed}, \ref{lem:attachment} & \ref{lem:flanks}, \ref{lem:seed}, \ref{lem:ballot}, \ref{lem:attachment}, \ref{lem:thin-density} \\
+\ref{lem:seed} & \ref{lem:ordinary-start}, \ref{lem:flanks}, \ref{lem:ordinary-response} & \ref{lem:flanks}, \ref{lem:ordinary-response}, \ref{lem:ballot}, \ref{lem:exclusion}, \ref{lem:end-ledger}, \ref{lem:two-period} \\
+\ref{lem:ballot} & \ref{prop:organization}, \ref{lem:flanks}, \ref{lem:ordinary-response}, \ref{lem:seed} & \ref{prop:organization}, \ref{lem:attachment}, \ref{lem:inheritance}, \ref{lem:exclusion}, \ref{lem:cap-cut} \\
+\ref{lem:classification} & --- & \ref{prop:organization}, \ref{lem:exclusion} \\
+\ref{lem:attachment} & \ref{prop:organization}, \ref{lem:ordinary-start}, \ref{lem:flanks}, \ref{lem:local-wound}, \ref{lem:ordinary-response}, \ref{lem:ballot}, \ref{lem:components}, \ref{lem:remote} & \ref{lem:flanks}, \ref{lem:ordinary-response}, \ref{lem:components}, \ref{lem:thin-density}, \ref{lem:remote}, \ref{lem:calendar}, \ref{lem:end-ledger} \\
+\ref{lem:components} & \ref{lem:attachment} & \ref{lem:attachment}, \ref{lem:thin-density} \\
+\ref{lem:thin-density} & \ref{lem:ordinary-start}, \ref{lem:ordinary-response}, \ref{lem:attachment}, \ref{lem:components} & \ref{lem:remote}, \ref{lem:inheritance}, \ref{lem:competitors} \\
+\ref{lem:remote} & \ref{lem:attachment}, \ref{lem:thin-density} & \ref{lem:attachment}, \ref{lem:inheritance}, \ref{lem:competitors} \\
+\ref{lem:inheritance} & \ref{lem:ballot}, \ref{lem:thin-density}, \ref{lem:remote} & \ref{lem:exclusion}, \ref{lem:competitors}, \ref{lem:end-ledger} \\
+\ref{lem:exclusion} & \ref{lem:flanks}, \ref{lem:seed}, \ref{lem:ballot}, \ref{lem:classification}, \ref{lem:inheritance} & \ref{prop:organization} \\
+\ref{lem:endpoint} & --- & \ref{lem:end-ledger}, \ref{lem:advance}, \ref{lem:two-period} \\
+\ref{lem:competitors} & \ref{lem:thin-density}, \ref{lem:remote}, \ref{lem:inheritance}, \ref{lem:calendar} & \ref{lem:calendar}, \ref{lem:end-ledger} \\
+\ref{lem:calendar} & \ref{lem:attachment}, \ref{lem:competitors}, \ref{lem:end-ledger} & \ref{lem:competitors}, \ref{lem:end-ledger} \\
+\ref{lem:end-ledger} & \ref{prop:organization}, \ref{lem:flanks}, \ref{lem:seed}, \ref{lem:attachment}, \ref{lem:inheritance}, \ref{lem:endpoint}, \ref{lem:competitors}, \ref{lem:calendar} & \ref{prop:organization}, \ref{lem:calendar} \\
+\ref{lem:startup} & \ref{lem:transition} & \ref{lem:advance} \\
+\ref{lem:advance} & \ref{lem:transition}, \ref{lem:endpoint}, \ref{lem:startup}, \ref{lem:two-period} & \ref{prop:organization} \\
+\ref{lem:two-period} & \ref{lem:transition}, \ref{lem:seed}, \ref{lem:endpoint} & \ref{lem:advance}, \ref{lem:clock-witness} \\
+\ref{lem:locking} & --- & \ref{lem:cap-cut}, \ref{lem:past} \\
+\ref{lem:cap-cut} & \ref{lem:ballot}, \ref{lem:locking} & \ref{lem:ascent} \\
+\ref{lem:ascent} & \ref{prop:organization}, \ref{lem:transition}, \ref{lem:cap-cut} & \ref{lem:transition} \\
+\ref{lem:past} & \ref{lem:clean}, \ref{lem:stripes}, \ref{lem:locking} & \ref{lem:clock-witness} \\
+\ref{lem:clock-witness} & \ref{lem:joint}, \ref{prop:organization}, \ref{lem:two-period}, \ref{lem:past} & --- \\
+\bottomrule
+\end{longtable}

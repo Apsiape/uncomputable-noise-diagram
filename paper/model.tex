@@ -1,0 +1,24 @@
+\section{Models and convergence}\label{sec:model}
+
+A finite-alphabet cellular automaton of radius \(r\) on \(\Z\) applies one map \(f:\A^{[-r,r]\cap\Z}\to\A\) simultaneously at all sites. A probabilistic cellular automaton (PCA) has a probability table \(p(a\mid\xi)\) in place of \(f\). Given the previous row, its outputs are conditionally independent at all sites. For uniform replacement with rate \(\varepsilon\) the table is
+\begin{equation}\label{eq:replacement}
+p_\varepsilon(a\mid\xi)
+=(1-\varepsilon)\mathbf 1_{\{a=f(\xi)\}}+\frac{\varepsilon}{|\A|}.
+\end{equation}
+One realization at each site and time draws an independent replacement flag of probability \(\varepsilon\) and an independent uniform symbol. The pair is called an innovation. A flag replaces the entire proposed symbol. We couple trajectories by using the same innovations for all initial configurations.
+
+Write \(P_\varepsilon\) for the Markov kernel and \(\eta\) for a deterministic initial row. Uniform exponential ergodicity means that there are a stationary law \(\mu\) and constants \(C,c>0\) such that, for all initial rows \(\eta\), finite sets \(F\subset\Z\) and integer times \(t\ge0\),
+\begin{equation}\label{eq:uee}
+\dtv\bigl((\eta P_\varepsilon^t)_F,\mu_F\bigr)
+\le C|F|e^{-ct}.
+\end{equation}
+Here \(d_{\mathrm{TV}}\) is the supremum of the difference of probabilities over events. The bound extends by integration to every initial law. A finite-range kernel on a finite product alphabet is Feller and has a stationary law by weak compactness and Ces\`aro averaging. The bound implies that the stationary law is unique. For the other alternative we exhibit an initial law and a one-site event with probabilities that fail to converge. Cylinder events are clopen in the product topology, so the laws fail to converge weakly.
+
+For a finite-range interaction \(\Phi\) on a finite alphabet on \(\Z^2\), let \(H_\Lam(\omega\mid\tau)\) be the sum of interaction terms meeting the finite set \(\Lam\) in the configuration with interior \(\omega\) and exterior \(\tau\). Its finite-volume specification \(\gamma^\tau_\Lam\) at inverse temperature \(\beta\) assigns weights proportional to \(e^{-\beta H_\Lam(\omega\mid\tau)}\). A probability measure is a DLR measure if its conditional interior law given the exterior is \(\gamma_\Lam\) for every finite \(\Lam\). This definition allows arbitrary measures, including measures that break time-translation symmetry.
+
+The normalized space--time interaction of a strictly positive table \(p\) contributes \(-\log p(a\mid\xi)\) on each anchored child and its parents on the preceding row. In such a specification all factors meeting the volume enter, including the factor of an exterior child with an interior parent. In Section~\ref{sec:gibbs} we use exponential weak spatial mixing in the arbitrary-volume form
+\begin{equation}\label{eq:wsm}
+\dtv\bigl((\gamma^\tau_\Lam)_E,(\gamma^{\tau'}_\Lam)_E\bigr)
+\le C\sum_{v\in E}\exp\bigl(-c\,\dist(v,\Lam^c)\bigr)
+\end{equation}
+for finite \(\Lam\), \(E\subset\Lam\), and all exteriors \(\tau,\tau'\), with graph distance on \(\Z^2\).

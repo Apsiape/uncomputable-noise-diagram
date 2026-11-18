@@ -1,6 +1,0 @@
-.lake/
-scratch/
-*.olean
-*.ilean
-vendor/
-.host-memory.*

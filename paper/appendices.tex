@@ -1,0 +1,53 @@
+\section{Numerical choices}\label{sec:constants}
+
+Fix the instruction set, finite track order, tape template and polynomial time allowance first. Choose \(w\) sufficiently large for every polynomial comparison with \(P_0\), every constant-times-\(A\) comparison with \(v\), and the collar inequalities. A lower bound of \(10^{10}\) is compatible with all specified finite lower bounds, and \(w\) may be increased to satisfy the interpreter allowance and the fixed collar requirements. All native lengths are then fixed. In particular \(d_1\ll P_0\), and any fixed polynomial in \(w\) is \(o(P_0)\). The estimates use fixed proof constants independent of word width. The following table lists the choices and the larger allowances used when estimates overlap.
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.30\linewidth}>{\raggedright\arraybackslash}p{.62\linewidth}@{}}
+\toprule
+Quantity & Value and role \\
+\midrule
+\endhead
+\(q,A,B,v\) & \(w^2,w^3,128q,w^4\), respectively. They determine the propagation length, Shrink thresholds, provisional pass and Grow rounds. \\
+\(P_0,P,T\) & \(2^w,5P_0\), and the duration of the fixed clock in Section~\ref{sec:clock}. \\
+\(H_0,d_0,d_1\) & \(2q+2,(2A+4)H_0,qd_0\). These are the handle, Main cycle and active Shrink spacing. \\
+\(r_{\mathrm{last}},s_0,s_1,s_c\) & Start of final withdrawal, start of ordinary phase, end of \(\operatorname{Shrink}(0)\), and the service date in early computation. \\
+\(m,d\), incoming pad & \(m=\lfloor w/5\rfloor\), \(d=4w+8\), and \(64A\) child units. Common span \(3w+2m+4+2(608)<d\): the \(2\cdot608\) term is fixed slack; owner-level displacements are paid by the m-owner collar (\(608<m\)) and do not enlarge K. \\
+\(M\), verifier threshold & \(M=128d\), count strictly greater than \(4d\), epoch length \(M+1\). \\
+Vacant-band thresholds & \(4B+4\) at all retired strobes, \(8B+8\) before a partial pass. At most \(B\) positions can be entered from each side of a pass, so the central band stays vacant. Width \(4B+4\) works throughout the ordinary and terminal estimates. \\
+End gap and old material & Use \(16B+2d+24\) in the early certificate and comparison with \(\Delta\). After removal of \(K\) and boundary positions it leaves a vacant band of width \(4B+4\); also \(\Delta<16B+2d+24<3\Delta\). \\
+\(\Delta\) and the survivor budgets & \(\Delta=1024q\); the budgets are \(3A+3\Delta\) and \(6A+3\Delta\). The assignment allowance is \(9d+80\); surviving faces advance at least \(B-20\) in the partial pass. \\
+Common full seed & Derived \(100A d_1\) bound per home and \(N=200A d_1\) as uniform search allowance. For \(b_{\rm seed}=6N+4w^6+20\), search \(b_{\rm seed}+1\) trials of \(5d_0+1\) dates. The transport margin adds the relaxation and preparation delays to this bound. \\
+Source density & \(L=60B+3d+40\) for the vacant interval comparison, at most five labels and \(4d+12\) components per label. The resulting deficit is at most \(2{,}000{,}000A\). \\
+Terminal bands & Thin radius \(100B\), near-source radius \(300B\), wide half-width \(v/5\). Permanent gain at most \(35B\) across the event. Delete at most \((220A+2w+20)d_0\) terminal comparison dates. \\
+Endpoint repair & Search length \(3v d_0+2w^6+12d_0\), clear zone \(100q\), retained guard at depth below \(97q\). Use \(4q+4\) inspections for one search and \(8q+12\) for two. Strip length \(17q+25\) leaves a \(q+1\) backing after two-sided losses, with the nearest witness within \(47q\). Final common exception has width at most \(d+q+42<2q\). \\
+Directed advance & Startup in \(6d_0\) clean ticks, allow \(12d_0\) with the pulse. Cost \(d+4(q+20)<5q\) old sites and six cycle equivalents; overshoot \(P+10v\). \\
+Nested tests & \(M_0=\lfloor2w/5\rfloor\); fixed multipliers with four rounding units. The cap test pays the extra spatial factor \(4T/P+4\) and temporal factor \(6\), before its one-rank collar. \\
+\(D_0,H_n\) & Fix \(D_0\) after \(P,T,w\) and test multipliers; set \(H_n=D_0^{n+2}\). Fix the paint multiplier at this stage. \\
+\(M_s,b_h,v_h,s_h\) & Choose the required short exponent and then its refresh, replica and reader counts. Require \(b_h>20\) and strict exponent slack in Lemma~\ref{lem:stripes}. \\
+\(M_l,m_h\) & After \(b_h\) fix the long admission exponent and choose \(m_h\) for the long estimate. Use odd reader and channel counts. \\
+\(D_{\rm lane},\ell_0,n_0\) & Choose the stride and base word width after the helper counts. Increase \(n_0\) last for the uniform probability and time bounds on all \(I_n\). \\
+\bottomrule
+\end{longtable}
+
+
+\subsection{Notation and local scopes}\label{sec:notation}
+The following conventions distinguish global parameters from the explicitly local variables reused in individual calculations.
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.28\linewidth}>{\raggedright\arraybackslash}p{.64\linewidth}@{}}
+\toprule
+Notation & Meaning and scope \\
+\midrule
+\endhead
+\(\Delta,\Delta_{\rm leaf}\) & \(\Delta=1024q\) is the ordinary depth margin; \(\Delta_{\rm leaf}\) is the enlarged-leaf overlap degree in Section~\ref{sec:joint}. \\
+\(H,H_0,H_n\) & H denotes a spatial home in organization proofs, the suffix length \(\lceil p^{-6}\rceil\) throughout Section~\ref{sec:receiver}, and a cone height where explicitly stated. \(H_0=2q+2\) is always the handle; \(H_n=D_0^{n+2}\) is a stripe-box radius. The decoding exception is \(I_{\rm dec}\). \\
+\(L,P_0\) & L is a local gap bound, strip length or time horizon, defined afresh in its lemma, the segment length in Sections~\ref{sec:receiver}--\ref{sec:stripes}, and the leaf count \(L=2^{i-j}\) in Section~\ref{sec:joint}; the Grow label L in the advance proof denotes the left donor. \(P_0=P/5\) is the packet length, including in the classification calculation. \\
+\(D,D_{\rm tr}\) & D denotes the dead symbol in state expressions. In numerical proofs D is explicitly a pair count, a \(35B\) gain, a rear-wall interval, or the advance debit \(d+4(q+20)\). \(D_{\rm tr}\) is the ballot transport margin. \(D_0,D_j,D_{\rm lane}\) have their displayed geometric, recursive and stride meanings. \\
+\(b_0,b_j,b_{\rm dst}\) & \(b_0=0,b_j\) are service lookahead. The destination coordinate in the ballot path equation is \(b_{\rm dst}\). The probability \(b_j\) in the iid sparsity proof is local to that proof. Other local b's denote a scale base, lock rank, interval end or epoch offset, as explicitly introduced. \\
+\(W,W_0\) & W is \(4B+4\) in sterile-band proofs, \(\lceil p^{-3/2}\rceil\) in Sections~\ref{sec:receiver}--\ref{sec:stripes}, and the explicitly displayed end-search duration in the end ledger. \(W_0\) is the protected two-period test. \\
+\(N,p,Y\) & N is a nonfull-date allowance, a local Grow-cycle count, or the alphabet size in Section~\ref{sec:gibbs}. The probe rate is p; a local endgap also called p is confined to ordinary geometry. The PCA probability table is \(p(a\mid\xi)\). Y is the native carrier; \(Y_i\) are autonomous reference channels. \\
+\(v,w,\beta_-,\beta_+\) & \(v=w^4\) and w are native geometry parameters; v also denotes a space--time site in \eqref{eq:wsm} and Section~\ref{sec:gibbs}; \(\beta_-<\beta_+\) are rational inverse-temperature endpoints. \\
+Nonfull & At least one of a home's P positions lacks an actual matching served child at that fine date. \\
+\bottomrule
+\end{longtable}
+
+\input{interruption-cases}
+\input{dependencies}

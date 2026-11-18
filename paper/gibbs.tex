@@ -1,0 +1,63 @@
+\section{The square-lattice interaction}\label{sec:gibbs}
+
+Write \(f\) for the rule of Theorem A, \(r_0\) for its physical radius and \(N=|\A|\ge2\) for its full alphabet size. An interaction term is anchored at \(v=(x,t)\in\Z^2\). Write \(U(v)=(x+[-r_0,r_0]\cap\Z,t-1)\) for its ordered parent neighborhood, and put \(S_v=\{v\}\cup U(v)\). The term on \(S_v\) has energy
+\[
+\Phi_v(\sigma)=\mathbf 1_{\{\sigma_v\ne f(\sigma_{U(v)})\}}.
+\]
+This single finite-range interaction is translation invariant. For each parent pattern the sum of the child weights is the same number
+\[
+c_\beta=1+(N-1)e^{-\beta}.
+\]
+In a finite volume the factors touching the volume are indexed by \(v:S_v\cap\Lam\ne\varnothing\). Dividing each by \(c_\beta\) cancels out of the conditional normalization. The resulting specification is
+\begin{equation}\label{eq:spec}
+\gamma^\tau_\Lam(\omega)=\frac{1}{Z^\tau_\Lam}
+\prod_{v:S_v\cap\Lam\ne\varnothing}
+p_\varepsilon\bigl((\omega\tau)_v\mid(\omega\tau)_{U(v)}\bigr).
+\end{equation}
+Indeed, the normalized weight of a child unequal to the rule's proposal is \(e^{-\beta}/c_\beta=\varepsilon/N\) and the normalized weight of a child equal to it is \(1/c_\beta=1-\varepsilon+\varepsilon/N\), where
+\begin{equation}\label{eq:rate-temperature}
+\varepsilon=\varepsilon(\beta)=\frac{N}{e^\beta+N-1}.
+\end{equation}
+
+For \(I_n=(a_n,b_n)\), enumerate positive rational pairs \(\beta_-<\beta_+\) and dovetail increasing precision enclosures for \(\varepsilon(\beta_-)\) and \(\varepsilon(\beta_+)\). Return \(J_n=(\beta_-,\beta_+)\) on the first certified pair with
+\[
+a_n<\varepsilon(\beta_+)<\varepsilon(\beta_-)<b_n.
+\]
+The map \eqref{eq:rate-temperature} is a continuous strictly decreasing bijection from \((0,\infty)\) onto \((0,1)\). The inverse image of each \(I_n\) is therefore a nonempty open interval, so the search terminates. Images of the chosen windows lie in the disjoint \(I_n\), hence the \(J_n\) are disjoint. The search uses only the rule's alphabet size and the endpoints of \(I_n\).
+
+\subsection{Halting windows}
+
+We use the following theorem from the preprint \cite{dmSpaceTime}. The equation references below refer to the corresponding formulas in this paper; in \eqref{eq:spec}, replace \(p_\varepsilon\) by the generic strictly positive table p. The source uses the sup norm, while \eqref{eq:wsm} uses graph distance; since \(\|z\|_\infty\le\|z\|_1\le2\|z\|_\infty\), the source estimate implies our convention after replacing its exponent c by c/2. Its forward implication uses B\'erard's triangular coupling, as explained in \cite{dmSpaceTime}.
+
+\begin{transfer}[{\cite[Theorem~3.1]{dmSpaceTime}: one-dimensional dynamical--equilibrium equivalence}]\label{thm:transfer}
+Let $p$ be a finite-alphabet, finite-radius, strictly positive PCA on $\Z$, and let $\gamma$ be the specification \eqref{eq:spec} of its normalized space--time interaction on $\Z^2$. The following are equivalent:
+\begin{enumerate}[label=(\roman*)]
+\item the PCA is uniformly exponentially ergodic, \eqref{eq:uee};
+\item $\gamma$ has arbitrary-volume exponential weak spatial mixing, \eqref{eq:wsm}.
+\end{enumerate}
+Under either condition $\gamma$ has exactly one DLR state, $\ba$, the two-sided stationary trajectory law of the unique stationary row law $\mu$; there are $C_*,c_*>0$ such that for every finite $\Lam$, every $E\subset\Lam$ and every exterior $\tau$,
+\begin{equation}
+\dtv\bigl((\gamma^\tau_\Lam)_E,\ba_E\bigr)\;\le\;C_*\sum_{v\in E}e^{-c_*\dist(v,\Lam^c)};
+\label{eq:conv}
+\end{equation}
+and for bounded observables $f,g$ supported on finite sets $E,F$,
+\begin{equation}
+\bigl|\Cov_{\ba}(f,g)\bigr|\;\le\;C_*\|f\|_\infty\|g\|_\infty\,(|E|+|F|)\,e^{-c_*\dist(E,F)},
+\label{eq:cluster}
+\end{equation}
+after enlarging the constants if necessary.
+\end{transfer}
+
+For every \(\beta\) in a halting window, \eqref{eq:replacement} and \eqref{eq:rate-temperature} give a strictly positive finite-radius PCA on the line, and Theorem A gives \eqref{eq:uee} from every start. Thus \eqref{eq:spec} has exactly one DLR measure by Theorem~\ref{thm:transfer}. The constants in the weak mixing estimate may depend on \(\beta\), including through the halting rank.
+
+\subsection{Nonhalting windows}
+
+Let \(P\) denote the PCA kernel at the rate \(\varepsilon(\beta)\) for a fixed \(\beta\) in a nonhalting window. Let \(\nu\) be the initial law from the phase witness, \(T\ge2\) its clock period and \(E_s\) the one-site event that the data site at the origin is live with age \(s\in\{0,\ldots,T-1\}\). For every \(k\ge0\),
+\[
+(\nu P^{kT+s})(E_s)>\tfrac34.
+\]
+Consider the averages \(\rho_M=M^{-1}\sum_{k=0}^{M-1}\nu P^{kT}\) and take a weak subsequential limit \(\rho\). This limit exists by compactness. The difference \(\rho_M P^T-\rho_M=M^{-1}(\nu P^{MT}-\nu)\) has total variation at most \(1/M\), so the Feller property gives \(\rho P^T=\rho\). The events \(E_s\) are clopen and \(P^s\) is Feller, hence \((\rho P^s)(E_s)\ge3/4\) for all \(s\).
+
+For each \(k\), start at date \(-kT\) with law \(\rho\) and evolve by \(P\). The resulting histories are consistent on their overlapping domains since \(\rho P^T=\rho\). Their extension defines a two-sided PCA history with row laws \(\rho P^{t\bmod T}\). This history satisfies the DLR equations for \eqref{eq:spec}. To see this, fix a finite region \(\Lam\) and a finite exterior cylinder. Choose a date strictly before both and a finite collection of sites by tracing their parents back to that date. Include every \(S_v\) meeting \(\Lam\), then close the collection under parents down to the same date. Condition on the bottom row. The joint law on the finite collection is a product of the update factors, as each new row is conditionally independent given its parents. Conditioning on the other variables of this collection, the factors affected by the assignment in \(\Lam\) are exactly those in \eqref{eq:spec}. This proves the integrated DLR identity against the exterior cylinder after marginalization, and the monotone class theorem extends it to the full exterior sigma algebra. This is the finite-cone argument underlying \cite[Lemma~2.4]{dmSpaceTime} and also works with these periodic row laws.
+
+The one-time translate is a DLR measure by translation invariance. The original measure gives \(E_0\) probability at least \(3/4\) at date zero. The translate with row law \(\rho P\) at date zero gives it probability at most \(1/4\), since \(E_0\cap E_1=\varnothing\). The two measures are distinct. This argument exhibits the nonstationary alternative behind the general implication in \cite[Theorem~9.2 and Corollary~9.3]{dmSpaceTime}. It completes Theorem B.

@@ -1,0 +1,24 @@
+\subsection{Sparse sets and independent flags}
+
+Fix integers \(P,T,w\) as in the construction. Write \(V^j=[0,P^j)\times[0,T^j)\), intersected with the site--time lattice, and use half-open rectangles throughout. Whenever an error set is restricted to a rectangle, it is taken to be empty outside that rectangle.
+
+\begin{definition}[Sparsity]\label{def:sparse}
+A set is \(0\)-sparse if it is empty. It is \(j\)-sparse if every translate \(Q\) of \(wV^j\) admits a translate \(J\) of \(3wV^{j-1}\) such that \((E\cap Q)\setminus J\) is \((j-1)\)-sparse.
+\end{definition}
+
+Sparsity is inherited by subsets, and \((j-1)\)-sparsity implies \(j\)-sparsity. The latter follows by applying the restriction property before choosing any \(J\). A full \(V^j\) is never \(j\)-sparse. For \(j>0\) one can choose a \(wV^j\) window containing it, and a deletion of \(3wV^{j-1}\) cannot intersect two widely separated full \(V^{j-1}\) rectangles inside it. This reduces to the nonempty \(0\)-cell. We use only the sparsity definition and the disjoint-pair argument from \cite[Section~4, Lemma~4.1]{gacs86}. That lemma applies under bounds on joint errors. Here the iid case will suffice as the base for the correlated estimates.
+
+\begin{lemma}[Disjoint sparse-set witnesses]\label{lem:sparse-witness}
+If the restriction to a full box of side vector \(2wV^{j+1}\) fails \((j+1)\)-sparsity, two disjoint full child boxes of side vector \(2wV^j\) inside it fail \(j\)-sparsity. The child positions come from a deterministic list of at most \( (2P+3)(2T+3)\) boxes. Consequently, for independent flags of rate \(u\) sufficiently small, the probability of \(j\)-nonsparsity on a prescribed fixed multiple of \(V^{j+1}\) is at most \(C_0 u^{c_0 2^j}\), with \(C_0,c_0>0\) independent of \(j\), of the translate and of \(u\).
+\end{lemma}
+
+\begin{proof}
+Place the full child rectangles on a grid of spacing \(wV^j\), using positions flush to the boundaries. The intersection of any moving \(wV^j\) test with the parent fits in one of these children. If the bad children pairwise intersect, their lower corners span at most one grid step in each coordinate. Their union then fits a \(3wV^j\) rectangle. Delete that rectangle. Each remaining moving \(wV^j\) test is contained in a good child or has no errors in the parent. This makes the remaining error set \(j\)-sparse. The same reasoning applies to restriction to any moving parent window, contradicting \((j+1)\)-nonsparsity. Thus there is a disjoint pair.
+
+Let \(b_j\) be the supremum, over locations of a full rank-\(j\) box, of its nonsparsity probability. At rank zero \(b_0\le4w^2u\). Disjoint children carry independent flags and there are at most \(D=8(P+2)^2(T+2)^2\) candidate pairs. Thus \(b_{j+1}\le Db_j^2\), and
+\[
+b_j\le D^{-1}(4Dw^2u)^{2^j}\le D^{-1}u^{2^{j-1}}
+\quad\text{if }u\le(4Dw^2)^{-2}.
+\]
+A fixed multiple of \(V^{j+1}\) can be tested with a bounded cover by full rank-\(j\) boxes, arranged so each moving \(wV^j\) test intersected with the prescribed rectangle fits in a covering box. If all these boxes are good then every such test is good. The number in the cover depends only on the multipliers and \(P,T,w\), which proves the bound.
+\end{proof}

@@ -1,0 +1,37 @@
+\section{Case tables for the numerical bounds}\label{sec:case-tables}
+
+The rows below collect the timing reserves used in Lemmas~\ref{lem:advance}, \ref{lem:reader} and~\ref{lem:receiver-mixing}. The corresponding calculations are in the proofs of those lemmas. Each row uses the same native clock.
+
+\subsection{Directed interruption}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.25\linewidth}>{\raggedright\arraybackslash}p{.38\linewidth}>{\raggedright\arraybackslash}p{.28\linewidth}@{}}
+\toprule
+State at interruption & Repair & Timing and vacancy bounds \\
+\midrule
+\endhead
+Startup & Restart from the \(K\)-avoiding ordinary backing and use a complete clear pass. & At most \(12d_0\) from the cut. Discard one cycle. \\
+Free attack or free withdrawal & Compare to the last unmarked reference row. Rejoin its persistent guards. An uncommitted pair of provisional tails uses no reference positions. & At most \(D=d+4(q+20)\) old positions and two touched cycles, with at most \(v\) additional retreat to the next complete cycle. \\
+Established contact & Restore the interval connecting the two fixed guards. Each branch pays for its own short detached end. & At most \(D\) old positions. The later free displacement calculation is unnecessary if the Grow repair fits; otherwise use the final-withdrawal row. \\
+Lone attained overshoot & Restore the backed free prefix or the genuinely joined one. & The restored prefix reaches at least \(P+9v-D>P+8v\), before the next withdrawal. \\
+Final withdrawal and normalization & Keep guards inside the target and switch to the in-home repair. Each old face was trimmed by ten sites. & At most two early Shrink inspections, included in the guard allowance. \\
+Ordinary work & Use the old full target, its surviving guards, or the already observed service sample. & The sample has at least \(P-D>P/2\) matching sites. \\
+\bottomrule
+\end{longtable}
+
+\subsection{Reader and reference estimates}
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.29\linewidth}>{\raggedright\arraybackslash}p{.63\linewidth}@{}}
+\toprule
+Quantity & Choice, after the data geometry has been fixed \\
+\midrule
+\endhead
+Primitive pools & Thirteen wall probes, five mode probes, three groups of 59 replicas per reader. Thirty flags are needed to affect a decoded bundle. A reference group uses \(b_h+2\) probes and \(2v_h-1\) replicas. \\
+Wall and mode rates & Wall refresh \(p^{12}\), new wall choice Bernoulli \(p\), CLEAN probability \(p^5\), RUN probability \(p^3(1-p^2)\). \\
+Reader radius and buffer & \(W=\lceil p^{-3/2}\rceil\), \(\ell'_0=\lfloor p^{-1/2}\rfloor\), with the fixed extra boundary sites of Lemma~\ref{lem:reader}. \\
+Reader time & \(B_0=\lceil p^{-14}\rceil\) sets the prefix, \(H=\lceil p^{-6}\rceil\) the suffix, and \(S=\lceil p^{-4}\rceil\) the time budget. A fully blanked segment gets at least \(S/2\) ticks to publish. \\
+All-start mixing & Eight suffix slabs, enduring walls in the two exterior strips, and a CLEAN period of at least \(5W+10\) in each isolated segment. \\
+Anchor and cutoff & \(A_n=8^{n+n_0}\), \(k_n=\lfloor A_n/8\rfloor\), \(R_n=2^{\lfloor A_n/4\rfloor}\), and the stripe width \(P^n\). \\
+Short and long supports & Short radius \(p^{-16}\); long radius \(p^{-(b_h+5)}\), including the reference refresh prefix of length \(\lceil p^{-(b_h+3)}\rceil\). Leaf cutoff exponents \(17\) and \(b_h+6\) in the minimum side. \\
+Tree and chain constants & Bounded child-pair count \(8(P+2)^2(T+2)^2\), enlarged-leaf overlap degree fixed by geometry, and the geometric count \(C_1 r_\lambda^4\) for each ordered ball. Their use precedes the final small-\(p\) choice. \\
+\bottomrule
+\end{longtable}
