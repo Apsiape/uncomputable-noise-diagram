@@ -1,6 +1,6 @@
 \section{Dependencies of the lemmas}\label{sec:dependencies}
 
-The table is the exact directed \texttt{\string\ref} graph on the labelled lemmas and Proposition~\ref{prop:organization}, with self-references omitted, using each statement and its proof; the organization row includes its surrounding induction explanation and final assembly. It has 33 nodes and 89 edges. An arrow means that the row text references the result in its Uses column, including explanatory forward pointers. Used in is the exact reverse relation. References to definitions, equations, sections and theorems are outside this induced graph. Unlabelled native-rule and lower-rank premises remain as stated in each proof.
+The table is the exact directed \texttt{\string\ref} graph on the labelled lemmas and Proposition~\ref{prop:organization}, with self-references omitted, using each statement and its proof; the organization row includes its surrounding induction explanation and final assembly. It has 35 nodes and 90 edges. An arrow means that the row text references the result in its Uses column, including explanatory forward pointers. Used in is the exact reverse relation. References to definitions, equations, sections and theorems are outside this induced graph. Unlabelled native-rule and lower-rank premises remain as stated in each proof. The theorem-level arguments are also outside the graph: Section~\ref{sec:halting} uses Lemmas~\ref{lem:stripes}, \ref{lem:joint}, \ref{lem:locking} and~\ref{lem:ascent}, and Section~\ref{sec:gibbs} uses Lemmas~\ref{lem:past} and~\ref{lem:clock-witness} with Lemmas~\ref{lem:blocking} and~\ref{lem:doubling}.
 
 At rank j, references to Proposition~\ref{prop:organization} within an induction step invoke a rank-\((j-1)\) clause or identify the current conclusion being proved; the assembly invokes the established rank-j lemmas. In the birth branch the computing test is proved before strong issue, incoming clearance and successor properness are used.
 
@@ -55,10 +55,12 @@ Result & Uses & Used in \\
 \ref{lem:startup} & \ref{lem:transition} & \ref{lem:advance} \\
 \ref{lem:advance} & \ref{lem:transition}, \ref{lem:endpoint}, \ref{lem:startup}, \ref{lem:two-period} & \ref{prop:organization} \\
 \ref{lem:two-period} & \ref{lem:transition}, \ref{lem:seed}, \ref{lem:endpoint} & \ref{lem:advance}, \ref{lem:clock-witness} \\
-\ref{lem:locking} & --- & \ref{lem:cap-cut}, \ref{lem:past} \\
+\ref{lem:locking} & --- & \ref{lem:cap-cut}, \ref{lem:past}, \ref{lem:clock-witness} \\
 \ref{lem:cap-cut} & \ref{lem:ballot}, \ref{lem:locking} & \ref{lem:ascent} \\
 \ref{lem:ascent} & \ref{prop:organization}, \ref{lem:transition}, \ref{lem:cap-cut} & \ref{lem:transition} \\
 \ref{lem:past} & \ref{lem:clean}, \ref{lem:stripes}, \ref{lem:locking} & \ref{lem:clock-witness} \\
-\ref{lem:clock-witness} & \ref{lem:joint}, \ref{prop:organization}, \ref{lem:two-period}, \ref{lem:past} & --- \\
+\ref{lem:clock-witness} & \ref{lem:joint}, \ref{prop:organization}, \ref{lem:two-period}, \ref{lem:locking}, \ref{lem:past} & --- \\
+\ref{lem:blocking} & --- & --- \\
+\ref{lem:doubling} & --- & --- \\
 \bottomrule
 \end{longtable}

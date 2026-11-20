@@ -2,9 +2,9 @@
 
 Write \(f\) for the rule of Theorem A, \(r_0\) for its physical radius and \(N=|\A|\ge2\) for its full alphabet size. An interaction term is anchored at \(v=(x,t)\in\Z^2\). Write \(U(v)=(x+[-r_0,r_0]\cap\Z,t-1)\) for its ordered parent neighborhood, and put \(S_v=\{v\}\cup U(v)\). The term on \(S_v\) has energy
 \[
-\Phi_v(\sigma)=\mathbf 1_{\{\sigma_v\ne f(\sigma_{U(v)})\}}.
+\Phi_v(\omega)=\mathbf 1_{\{\omega_v\ne f(\omega_{U(v)})\}}.
 \]
-This single finite-range interaction is translation invariant. For each parent pattern the sum of the child weights is the same number
+This single finite-range interaction \(\Phi=(\Phi_v)_{v\in\Z^2}\) is translation invariant. For each parent pattern the sum of the child weights is the same number
 \[
 c_\beta=1+(N-1)e^{-\beta}.
 \]
@@ -25,7 +25,9 @@ a_n<\varepsilon(\beta_+)<\varepsilon(\beta_-)<b_n.
 \]
 The map \eqref{eq:rate-temperature} is a continuous strictly decreasing bijection from \((0,\infty)\) onto \((0,1)\). The inverse image of each \(I_n\) is therefore a nonempty open interval, so the search terminates. Images of the chosen windows lie in the disjoint \(I_n\), hence the \(J_n\) are disjoint. The search uses only the rule's alphabet size and the endpoints of \(I_n\).
 
-\subsection{Halting windows}
+Subsections~\ref{sec:gibbs-halting} and~\ref{sec:gibbs-nonhalting} prove the dichotomy for \(\Phi\) itself: exactly one DLR measure in each halting window and at least two in each nonhalting window. Subsection~\ref{sec:blocking} blocks an interaction by a time period and doubles it, and Subsection~\ref{sec:proofB} applies both steps to \(\Phi\) with the clock period to prove Theorem B.
+
+\subsection{Halting windows}\label{sec:gibbs-halting}
 
 We use the following theorem from the preprint \cite{dmSpaceTime}. The equation references below refer to the corresponding formulas in this paper; in \eqref{eq:spec}, replace \(p_\varepsilon\) by the generic strictly positive table p. The source uses the sup norm, while \eqref{eq:wsm} uses graph distance; since \(\|z\|_\infty\le\|z\|_1\le2\|z\|_\infty\), the source estimate implies our convention after replacing its exponent c by c/2. Its forward implication uses B\'erard's triangular coupling, as explained in \cite{dmSpaceTime}.
 
@@ -48,16 +50,93 @@ and for bounded observables $f,g$ supported on finite sets $E,F$,
 after enlarging the constants if necessary.
 \end{transfer}
 
-For every \(\beta\) in a halting window, \eqref{eq:replacement} and \eqref{eq:rate-temperature} give a strictly positive finite-radius PCA on the line, and Theorem A gives \eqref{eq:uee} from every start. Thus \eqref{eq:spec} has exactly one DLR measure by Theorem~\ref{thm:transfer}. The constants in the weak mixing estimate may depend on \(\beta\), including through the halting rank.
+For every \(\beta\) in a halting window, \eqref{eq:replacement} and \eqref{eq:rate-temperature} give a strictly positive finite-radius PCA on the line, and Theorem A gives \eqref{eq:uee} from every start. Thus \eqref{eq:spec} has exactly one DLR measure and satisfies \eqref{eq:wsm} by Theorem~\ref{thm:transfer}. The constants in the weak mixing estimate may depend on \(\beta\), including through the halting rank.
 
-\subsection{Nonhalting windows}
+\subsection{Nonhalting windows}\label{sec:gibbs-nonhalting}
 
-Let \(P\) denote the PCA kernel at the rate \(\varepsilon(\beta)\) for a fixed \(\beta\) in a nonhalting window. Let \(\nu\) be the initial law from the phase witness, \(T\ge2\) its clock period and \(E_s\) the one-site event that the data site at the origin is live with age \(s\in\{0,\ldots,T-1\}\). For every \(k\ge0\),
+Let \(P\) denote the PCA kernel at the rate \(\varepsilon(\beta)\) for a fixed \(\beta\) in a nonhalting window. Let \(\nu\) be the initialized law of Lemma~\ref{lem:past}, \(T\ge2\) the clock period and \(E_s\) the one-site event that the data field at the origin is live with age \(s\in\{0,\ldots,T-1\}\). Write \(\theta_x\) for the spatial shift by \(x\), acting on rows, events and laws, so that \(\theta_xE_s\) is the same event at the site \(x\). By Lemma~\ref{lem:clock-witness}, for every \(x\in\Z\) and every integer \(t\ge0\),
 \[
-(\nu P^{kT+s})(E_s)>\tfrac34.
+(\nu P^{t})(\theta_xE_{t\bmod T})>\tfrac34.
 \]
-Consider the averages \(\rho_M=M^{-1}\sum_{k=0}^{M-1}\nu P^{kT}\) and take a weak subsequential limit \(\rho\). This limit exists by compactness. The difference \(\rho_M P^T-\rho_M=M^{-1}(\nu P^{MT}-\nu)\) has total variation at most \(1/M\), so the Feller property gives \(\rho P^T=\rho\). The events \(E_s\) are clopen and \(P^s\) is Feller, hence \((\rho P^s)(E_s)\ge3/4\) for all \(s\).
+For \(R\ge1\) consider the joint averages over times and spatial shifts
+\[
+\lambda_R=\frac{1}{R(2R+1)}\sum_{k=0}^{R-1}\sum_{|x|\le R}\theta_x\bigl(\nu P^{kT}\bigr).
+\]
+The difference \(\lambda_RP^T-\lambda_R\) telescopes to \(\bigl(R(2R+1)\bigr)^{-1}\sum_{|x|\le R}\theta_x(\nu P^{RT}-\nu)\), so its total variation is at most \(1/R\). The sum over \(x\) in \(\theta_1\lambda_R-\lambda_R\) telescopes to two terms, so its total variation is at most \(1/(2R+1)\). The kernel commutes with every \(\theta_x\). Hence, for \(0\le s<T\) and every \(y\), the number \((\lambda_RP^s)(\theta_yE_s)\) is an average of numbers \((\nu P^{kT+s})(\theta_{y'}E_s)\), each greater than \(3/4\). Take a weak subsequential limit \(\rho\) of \(\lambda_R\) as \(R\to\infty\); it exists by compactness. Since the two discrepancies tend to zero, the Feller property gives \(\rho P^T=\rho\), and continuity of the shift gives \(\theta_1\rho=\rho\). The events \(\theta_yE_s\) are clopen and \(P^s\) is Feller, hence \((\rho P^s)(\theta_yE_s)\ge3/4\) for every \(y\) and every \(0\le s<T\).
 
 For each \(k\), start at date \(-kT\) with law \(\rho\) and evolve by \(P\). The resulting histories are consistent on their overlapping domains since \(\rho P^T=\rho\). Their extension defines a two-sided PCA history with row laws \(\rho P^{t\bmod T}\). This history satisfies the DLR equations for \eqref{eq:spec}. To see this, fix a finite region \(\Lam\) and a finite exterior cylinder. Choose a date strictly before both and a finite collection of sites by tracing their parents back to that date. Include every \(S_v\) meeting \(\Lam\), then close the collection under parents down to the same date. Condition on the bottom row. The joint law on the finite collection is a product of the update factors, as each new row is conditionally independent given its parents. Conditioning on the other variables of this collection, the factors affected by the assignment in \(\Lam\) are exactly those in \eqref{eq:spec}. This proves the integrated DLR identity against the exterior cylinder after marginalization, and the monotone class theorem extends it to the full exterior sigma algebra. This is the finite-cone argument underlying \cite[Lemma~2.4]{dmSpaceTime} and also works with these periodic row laws.
 
-The one-time translate is a DLR measure by translation invariance. The original measure gives \(E_0\) probability at least \(3/4\) at date zero. The translate with row law \(\rho P\) at date zero gives it probability at most \(1/4\), since \(E_0\cap E_1=\varnothing\). The two measures are distinct. This argument exhibits the nonstationary alternative behind the general implication in \cite[Theorem~9.2 and Corollary~9.3]{dmSpaceTime}. It completes Theorem B.
+Call this history \(Q\). Since \(\theta_1\rho=\rho\) and \(P\) commutes with \(\theta_1\), \(Q\) is invariant under the translation by \((1,0)\). Its row laws and kernel are \(T\)-periodic in time, so it is invariant under the translation by \((0,T)\).
+
+The one-time translate \(Q_1\) of \(Q\) is a DLR measure by translation invariance of \(\Phi\), and it has the same two invariances. The original measure gives \(E_0\) probability at least \(3/4\) at date zero. The translate with row law \(\rho P\) at date zero gives it probability at most \(1/4\), since \(E_0\cap E_1=\varnothing\). The two measures are distinct. This argument exhibits the nonstationary alternative behind the general implication in \cite[Theorem~9.2 and Corollary~9.3]{dmSpaceTime}. It proves the nonhalting alternative for \(\Phi\).
+
+\subsection{Blocking and doubling}\label{sec:blocking}
+
+Fix an integer \(T\ge1\). The blocking map \(\Pi_T:\A^{\Z^2}\to(\A^T)^{\Z^2}\) is
+\[
+(\Pi_T\omega)_{(x,k)}=\bigl(\omega_{(x,kT)},\omega_{(x,kT+1)},\ldots,\omega_{(x,kT+T-1)}\bigr).
+\]
+The block of the coarse site \(u=(x,k)\) is \(\{x\}\times[kT,kT+T)\). The map is a homeomorphism, and it acts in the same way on configurations on any union of blocks; every configuration of blocks is allowed. For \(v=(x,kT+j)\) with \(0\le j<T\), anchor at \(u=(x,k)\) the term \(\Phi^{[T]}_{u,j}(\eta)=\Phi_v(\Pi_T^{-1}\eta)\). Its support is the set of coarse sites whose blocks meet \(S_v\): \((x+[-r_0,r_0])\times\{k\}\) if \(j\ge1\), and \(\{(x,k)\}\cup(x+[-r_0,r_0])\times\{k-1\}\) if \(j=0\). These \(T\) terms at each coarse site form the blocked interaction \(\Phi^{[T]}\) on \((\A^T)^{\Z^2}\). The decomposition \(t=kT+j\) is unique, so every term of \(\Phi\) appears exactly once. The coarse translation by \((a,b)\) is the original translation by \((a,bT)\), so \(\Phi^{[T]}\) is translation invariant. It has horizontal range \(r_0\) and vertical range one, and each of its anchored terms takes values in \(\{0,1\}\).
+
+\begin{lemma}[Exact vertical blocking]\label{lem:blocking}
+Fix \(T\ge1\) and \(\beta>0\), and write \(\gamma\) and \(\hat\gamma\) for the specifications of \(\Phi\) and \(\Phi^{[T]}\) at inverse temperature \(\beta\).
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item For every finite \(\hat\Lam\subset\Z^2\), with \(U\) the union of its blocks, and every exterior \(\tau\) on \(U^c\), the image of \(\gamma^\tau_U\) under \(\Pi_T\) is \(\hat\gamma^{\Pi_T\tau}_{\hat\Lam}\).
+\item The map \(\mu\mapsto\mu\circ\Pi_T^{-1}\) is a bijection from the DLR measures of \(\gamma\) onto those of \(\hat\gamma\). The image is invariant under all coarse translations exactly when \(\mu\) is invariant under the translations by \((1,0)\) and \((0,T)\).
+\item If \(\gamma\) satisfies \eqref{eq:wsm} with constants \(C,c\), then \(\hat\gamma\) satisfies \eqref{eq:wsm} on the coarse lattice with constants \(CT,c\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) A term \(\Phi_v\) meets \(U\) exactly when some site of \(S_v\) lies in a block of \(\hat\Lam\), that is, exactly when the support of the corresponding coarse term meets \(\hat\Lam\). Hence \(H_U(\omega\mid\tau)=\hat H_{\hat\Lam}(\Pi_T\omega\mid\Pi_T\tau)\) term by term, for every interior \(\omega\) and every exterior \(\tau\). This includes the terms of an exterior child with an interior parent. The two normalizations are the same finite sum under the bijection \(\A^U\to(\A^T)^{\hat\Lam}\).
+
+(ii) Let \(\mu\) be a DLR measure of \(\gamma\) and let \(\hat\Lam\) be finite. The sigma algebra of the spins off \(U\) is the preimage under \(\Pi_T\) of the sigma algebra of the coarse spins off \(\hat\Lam\). Hence (i) carries the DLR identity of \(\mu\) on \(U\) to the DLR identity of \(\mu\circ\Pi_T^{-1}\) on \(\hat\Lam\). Conversely, let \(\hat\mu\) be a DLR measure of \(\hat\gamma\) and put \(\mu=\hat\mu\circ\Pi_T\). Given a finite \(\Lam\subset\Z^2\), let \(U\) be the union of the blocks meeting \(\Lam\). By (i) the conditional law of \(\omega_U\) given the spins off \(U\) is \(\gamma^\tau_U\). Conditioning further on \(\omega_{U\setminus\Lam}\) gives the conditional law of \(\omega_\Lam\) given the spins off \(\Lam\). All weights are positive, and the terms of \(H_U\) that miss \(\Lam\) cancel, so this law is \(\gamma^{\omega_{U\setminus\Lam}\tau}_\Lam\). Neither direction uses invariance, and holes or disconnected volumes change nothing. The statement on invariance holds because the coarse translation by \((a,b)\) is the original translation by \((a,bT)\).
+
+(iii) Let \(v\) and \(z\) lie in the blocks of distinct coarse sites \(u=(x_1,k_1)\) and \(u'=(x_2,k_2)\). If \(k_1\ne k_2\), the times of \(v\) and \(z\) differ by at least \(T(|k_1-k_2|-1)+1\ge|k_1-k_2|\). Hence the graph distance from \(v\) to \(z\) is at least that from \(u\) to \(u'\), and \(\dist(v,U^c)\ge\dist(u,\hat\Lam^c)\) for every site \(v\) in the block of \(u\in\hat\Lam\). Let \(\hat E\subset\hat\Lam\) and let \(E\) be the union of its blocks. By (i), the \(\hat E\)-marginal of \(\hat\gamma^{\Pi_T\tau}_{\hat\Lam}\) is the image of the \(E\)-marginal of \(\gamma^\tau_U\) under a bijection. Since each block has \(T\) sites, for all exteriors \(\tau,\tau'\) on \(U^c\)
+\[
+\dtv\bigl((\hat\gamma^{\Pi_T\tau}_{\hat\Lam})_{\hat E},(\hat\gamma^{\Pi_T\tau'}_{\hat\Lam})_{\hat E}\bigr)
+\le C\sum_{v\in E}e^{-c\dist(v,U^c)}
+\le CT\sum_{u\in\hat E}e^{-c\dist(u,\hat\Lam^c)}.
+\]
+\end{proof}
+
+The normalized factors of \eqref{eq:spec} differ from \(e^{-\beta\Phi_v}\) by the constant \(c_\beta\), so (i) holds equally in the normalized form. The terms with \(1\le j<T\) at a coarse site share a within-row support when this family is nonempty. After merging by support, the energy on that support is an integer between \(0\) and \(T-1\). The offset-zero term has its own support across two coarse rows and takes values in \(\{0,1\}\). Thus the bound for all merged terms is \(\max\{1,T-1\}\). We keep the anchored terms separate, as in Section~\ref{sec:model}.
+
+Let \(\A'\) be a finite alphabet and \(\Phi'\) a translation-invariant finite-range interaction on \(\A'^{\Z^2}\), given by finitely many anchored terms at each site. On \(\mathcal B=\A'\times\A'\times\{0,1\}\) the doubled interaction \(\Phi'^{(2)}\) has, for each anchored term \(\Phi'_\alpha\) of \(\Phi'\), the two anchored terms \((s,s',r)\mapsto\Phi'_\alpha(s)\) and \((s,s',r)\mapsto\Phi'_\alpha(s')\) with the same support; no term reads \(r\). Define \(\sigma(s,s',r)=(s',s,1-r)\) at every site. Write \(\upsilon\) for the uniform product law on \(\{0,1\}^{\Z^2}\) and \(\upsilon_\Lam\) for the uniform law on \(\{0,1\}^\Lam\).
+
+\begin{lemma}[Doubling with an exact symmetry]\label{lem:doubling}
+Fix \(\beta>0\), and write \(\gamma'\) and \(\gamma^{(2)}\) for the specifications of \(\Phi'\) and \(\Phi'^{(2)}\).
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item For every finite \(\Lam\) and every exterior \((\tau_1,\tau_2,\tau_r)\), \(\gamma^{(2),(\tau_1,\tau_2,\tau_r)}_\Lam=\gamma'^{\tau_1}_\Lam\otimes\gamma'^{\tau_2}_\Lam\otimes\upsilon_\Lam\).
+\item The map \(\sigma\) is an involution of \(\mathcal B\) without fixed points, and it permutes the terms of \(\Phi'^{(2)}\).
+\item If \(\gamma'\) satisfies \eqref{eq:wsm} with constants \(C,c\), then \(\gamma^{(2)}\) satisfies \eqref{eq:wsm} with constants \(2C,c\).
+\item If \(\kappa_1\) and \(\kappa_2\) are DLR measures of \(\gamma'\), then \(\kappa_1\otimes\kappa_2\otimes\upsilon\) is a DLR measure of \(\gamma^{(2)}\), and \(\sigma\) maps it to \(\kappa_2\otimes\kappa_1\otimes\upsilon\). It is translation invariant if \(\kappa_1\) and \(\kappa_2\) are.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+(i) The Hamiltonian of \(\Phi'^{(2)}\) is the sum of the Hamiltonians of \(\Phi'\) in \(s\) and in \(s'\), and every assignment of \(r\) has the same weight, so the Boltzmann weight factors. This holds in every finite volume, with or without holes. (ii) Applying \(\sigma\) twice gives the identity, and \(r\ne1-r\). The map \(\sigma\) exchanges the two terms built from each \(\Phi'_\alpha\), so every \(H_\Lam\) is invariant. (iii) By (i), for two exteriors the \(E\)-marginals are products of the \(E\)-marginals of the two copies and of the same law of the free bits. Total variation of products satisfies \(\dtv(\mu_1\otimes\mu_2,\nu_1\otimes\nu_2)\le\dtv(\mu_1,\nu_1)+\dtv(\mu_2,\nu_2)\), by adding and subtracting \(\nu_1\otimes\mu_2\). Each of the two terms is bounded by \eqref{eq:wsm} for \(\gamma'\). (iv) Under the product measure the three coordinate fields are independent, so the conditional law of the spins in \(\Lam\) given those outside is the product of the three conditional laws. These are \(\gamma'^{\tau_1}_\Lam\), \(\gamma'^{\tau_2}_\Lam\) and \(\upsilon_\Lam\), and (i) identifies their product with the kernel of \(\gamma^{(2)}\). The map \(\sigma\) exchanges the factors of the two copies and preserves \(\upsilon\). Products of translation-invariant measures are translation invariant.
+\end{proof}
+
+\subsection{Proof of Theorem B}\label{sec:proofB}
+
+Let \(T\ge2\) be the clock period of Section~\ref{sec:clock}. It is fixed with the rule and does not depend on \(n\) or \(\beta\). Let \(\Psi\) be the doubled interaction of \(\Phi^{[T]}\), on the alphabet \(\mathcal B=\A^T\times\A^T\times\{0,1\}\) with \(2N^{2T}\) letters. It is one translation-invariant finite-range interaction on \(\Z^2\), independent of \(n\) and \(\beta\), with horizontal range \(r_0\) and vertical range one. At each site it has \(2T\) anchored terms, two copies of each term of \(\Phi^{[T]}\), and each takes values in \(\{0,1\}\). Merging the terms with a common support gives integer energies at most \(2T-2\), since the \(2(T-1)\) terms with \(j\ge1\) of the two copies share one support. By Lemma~\ref{lem:doubling}(ii) the involution \(\sigma\) of \(\mathcal B\) has no fixed points and leaves \(\Psi\) invariant. Let \(\A_0\subset\A\) be the set of symbols whose data field is live with age zero, and define the one-site observable
+\[
+M(s,s',r)=\tfrac12\bigl(\mathbf 1_{\A_0}(s_0)-\mathbf 1_{\A_0}(s'_0)\bigr),
+\]
+where \(s_0\) is the component of \(s\in\A^T\) at time offset zero. Then \(M\circ\sigma=-M\). The windows \(J_n\) are those constructed above.
+
+Let \(\beta\in J_n\) with \(U(n)\) halting. By Subsection~\ref{sec:gibbs-halting}, the specification \eqref{eq:spec} of \(\Phi\) satisfies \eqref{eq:wsm} with some constants \(C,c>0\). Lemmas~\ref{lem:blocking}(iii) and~\ref{lem:doubling}(iii) give \eqref{eq:wsm} for the specification of \(\Psi\), with constants \(2CT,c\). If \(\varrho,\varrho'\) are DLR measures of \(\Psi\) and \(G\) is an event depending on the spins in a finite set \(E\), then for every finite \(\Lam\supset E\)
+\[
+|\varrho(G)-\varrho'(G)|\le\sup_{\tau,\tau'}\bigl|\gamma^{(2),\tau}_\Lam(G)-\gamma^{(2),\tau'}_\Lam(G)\bigr|\le2CT\sum_{v\in E}e^{-c\dist(v,\Lam^c)},
+\]
+where \(\gamma^{(2)}\) is the specification of \(\Psi\). The right side tends to zero as \(\Lam\) grows, so \(\Psi\) has at most one DLR measure. It has one: with \(\hat\mu=\ba\circ\Pi_T^{-1}\), where \(\ba\) is the unique DLR measure of \(\Phi\), Lemmas~\ref{lem:blocking}(ii) and~\ref{lem:doubling}(iv) show that \(\hat\mu\otimes\hat\mu\otimes\upsilon\) is a DLR measure of \(\Psi\).
+
+Let \(\beta\in J_n\) with \(U(n)\) running forever, and let \(Q,Q_1\) be the two DLR measures of \(\Phi\) from Subsection~\ref{sec:gibbs-nonhalting}. By Lemma~\ref{lem:blocking}(ii), \(\hat Q=Q\circ\Pi_T^{-1}\) and \(\hat Q_1=Q_1\circ\Pi_T^{-1}\) are DLR measures of \(\Phi^{[T]}\), invariant under all coarse translations. The indicator \(\chi(s)=\mathbf 1_{\A_0}(s_0)\) at the coarse origin satisfies \(\hat Q(\chi)=\rho(E_0)\ge3/4\) and \(\hat Q_1(\chi)=(\rho P)(E_0)\le1-(\rho P)(E_1)\le1/4\). By Lemma~\ref{lem:doubling}(iv),
+\[
+\mu^+_\beta=\hat Q\otimes\hat Q_1\otimes\upsilon,\qquad
+\mu^-_\beta=\hat Q_1\otimes\hat Q\otimes\upsilon
+\]
+are translation-invariant DLR measures of \(\Psi\), and \(\sigma\) exchanges them. Moreover \(\mu^+_\beta(M)=\tfrac12\bigl(\hat Q(\chi)-\hat Q_1(\chi)\bigr)\ge\tfrac14\) and \(\mu^-_\beta(M)=-\mu^+_\beta(M)\le-\tfrac14\).
+
+Nothing is asserted at inverse temperatures outside the union of the \(J_n\). The space--time interaction \(\Phi\) itself has exactly one DLR measure in each halting window and at least two in each nonhalting window, by Subsections~\ref{sec:gibbs-halting} and~\ref{sec:gibbs-nonhalting}. This completes the proof of Theorem B.

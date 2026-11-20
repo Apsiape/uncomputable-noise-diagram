@@ -1,7 +1,7 @@
 An uncomputable noise diagram on the line
 and a finite-energy Gibbs diagram on the square lattice
 Seth Douglas and Nidhal Mghirbi
-Version 2.0.0, November 2026
+Version 2.1.0, November 2026
 
 Build from this directory with pdfLaTeX (three passes):
 
@@ -17,7 +17,7 @@ main.pdf is the archive edition, with the version in the date line.
 The arXiv edition uses the date November 2026. Its PDF, sources and source
 package are in ../arxiv/. Extract paper-arxiv.tar.gz into an empty directory
 and run the same three commands there. The two editions differ only in the
-date line and the paragraph Changes from version 1.4.0, which appears only
+date line and the paragraph Changes from version 2.0.0, which appears only
 in the archive edition.
 
 Theorems A and C concern cellular automata on the line. Theorem B concerns

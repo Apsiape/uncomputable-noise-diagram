@@ -1,11 +1,11 @@
 cff-version: 1.2.0
 message: |-
-  Preprint. Version 2.0.0. Text: CC BY 4.0.
-  Previous version: 1.4.0 (10.5281/zenodo.24204195).
+  Preprint. Version 2.1.0. Text: CC BY 4.0.
+  Previous version: 2.0.0 (10.5281/zenodo.24352353).
 title: "An uncomputable noise diagram on the line and a finite-energy Gibbs diagram on the square lattice"
-version: 2.0.0
+version: 2.1.0
 doi: "10.5281/zenodo.24147268"
-date-released: '2026-11-18'
+date-released: '2026-11-20'
 license: CC-BY-4.0
 authors:
   - family-names: Douglas
@@ -14,8 +14,8 @@ authors:
   - family-names: Mghirbi
     given-names: Nidhal
     orcid: https://orcid.org/0009-0005-6534-1118
-keywords: ["cellular automata", "probabilistic cellular automata", "noise", "ergodicity", "undecidability", "halting problem", "Gibbs measures", "noise diagram"]
-abstract: "We construct one finite-range cellular automaton on the line with computable disjoint rational windows of uniform replacement noise. Throughout the window indexed by a program, the perturbed automaton is uniformly exponentially ergodic from every initial configuration if the program halts. If it runs forever, a one-site clock observable fails to converge from a specified initial law. The same dichotomy holds at one fixed positive rational noise rate for a computable family of radius-one rules. On the square lattice, the single-rule construction gives one finite-range interaction with local energies zero and one. Its Dobrushin-Lanford-Ruelle specification has a unique Gibbs measure in each halting window of inverse temperature and at least two Gibbs measures in each nonhalting window. The construction uses a hierarchy of fault-tolerant simulations and autonomous spatial signals that encode the noise window."
+keywords: ["cellular automata", "probabilistic cellular automata", "noise", "ergodicity", "undecidability", "halting problem", "Gibbs measures", "spontaneous magnetization", "noise diagram"]
+abstract: "We construct one finite-range cellular automaton on the line with computable disjoint rational windows of uniform replacement noise. Throughout the window indexed by a program, the perturbed automaton is uniformly exponentially ergodic from every initial configuration if the program halts. If it runs forever, a one-site clock observable fails to converge from a specified initial law. The same dichotomy holds at one fixed positive rational noise rate for a computable family of radius-one rules. On the square lattice, the single-rule construction gives one translation-invariant finite-range interaction whose anchored terms have energies zero and one, with a fixed-point-free symmetry of its alphabet. In each halting window of inverse temperature its Dobrushin-Lanford-Ruelle specification has a unique Gibbs measure, with exponential weak spatial mixing. In each nonhalting window it has two translation-invariant Gibbs measures exchanged by the symmetry, under which an odd one-site observable has expectation at least 1/4 and at most -1/4, respectively. The construction uses a hierarchy of fault-tolerant simulations and autonomous spatial signals that encode the noise window."
 preferred-citation:
   type: article
   title: "An uncomputable noise diagram on the line and a finite-energy Gibbs diagram on the square lattice"
