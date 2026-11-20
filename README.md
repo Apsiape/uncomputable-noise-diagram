@@ -1,6 +1,6 @@
 # An uncomputable noise diagram on the line and a finite-energy Gibbs diagram on the square lattice
 
-Seth Douglas and Nidhal Mghirbi. Preprint, version 2.1.0, November 2026. [Archive DOI](https://doi.org/10.5281/zenodo.24147268) (all versions); version 2.0.0: [10.5281/zenodo.24352353](https://doi.org/10.5281/zenodo.24352353)
+Seth Douglas and Nidhal Mghirbi. Preprint, version 2.1.0, November 2026. [Archive DOI](https://doi.org/10.5281/zenodo.24147268) (all versions); version 2.1.0: [10.5281/zenodo.24408026](https://doi.org/10.5281/zenodo.24408026); version 2.0.0: [10.5281/zenodo.24352353](https://doi.org/10.5281/zenodo.24352353)
 
 ## Abstract
 
