@@ -1,0 +1,116 @@
+\section{Effective openness of planar mixing sets}\label{sec:effective}
+
+We prove Theorem~\ref{thm:D} for every translation-invariant finite-range rational interaction with finite energies; the symmetry and observable play no role in this direction. Distances in the three sections on mixing sets are maximum-norm distances. Since
+\(\dist_\infty\le\dist_1\le2\dist_\infty\), changing between this convention and \eqref{eq:wsm} changes only the exponential rate.
+
+\subsection{The external weak-to-strong mixing implication}
+
+The one external implication needed for the upper bound is the following; it is also used, through the equivalence below, to state Theorem~\ref{thm:F} in the convention \eqref{eq:wsm}. Suppose a finite-alphabet, translation-invariant, finite-range, finite real-valued interaction on \(\Z^2\), with no hard constraints, satisfies
+\begin{equation}\label{eq:wm-import}
+\dtv\bigl((\gamma_\Lambda^\tau)_D,(\gamma_\Lambda^{\tau'})_D\bigr)
+\le C_w|D|e^{-m_w\dist_\infty(D,\Lambda^c)}
+\end{equation}
+for all finite \(\Lambda\), \(D\subset\Lambda\), and all exteriors, with \(C_w,m_w>0\). Then there are \(L_0,C_s,m_s>0\) such that, for every square \(B\) of odd side \(L\ge L_0\), every \(D\subset B\), and exteriors differing at one site \(j\),
+\begin{equation}\label{eq:ssm-import}
+\dtv\bigl((\gamma_B^\tau)_D,(\gamma_B^{\tau'})_D\bigr)
+\le C_s|D|e^{-m_s\dist_\infty(D,j)}.
+\end{equation}
+This is the two-dimensional theorem of Martinelli, Olivieri and Schonmann \cite[Theorem~1.1]{mos}, in the cardinality-times-distance formulation recorded by Spinka \cite[equations~(2)--(3), Section~1.2]{spinka}; his Remark~2 gives the finite-range extension. The original displayed weak-mixing convention in \cite{mos} is a sum over pairs, so we use Spinka's explicit formulation bridge. The conclusion here is restricted to sufficiently large squares; both sources state it for the centered boxes \([-n,n]^2\cap\Z^2\), hence, by translation invariance, for squares of odd side. It asserts neither strong mixing on arbitrary volumes nor effectivity of \(L_0,C_s,m_s\). Multi-site potentials are allowed; ferromagnetism and pair interactions are not hypotheses.
+
+Finite energies give full support. EWM gives uniqueness by letting a surrounding box grow in the DLR equation, and the unique state is translation invariant. Thus the field formulation in \cite{spinka} applies to our specification. Estimate \eqref{eq:wsm} implies \eqref{eq:wm-import}. All remaining steps are finite-volume arguments proved below.
+
+\subsection{A finite block certificate}
+
+Choose an integer \(R\ge1\) bounding the maximum-norm diameter of every interaction support. For \(B=\{0,\ldots,L-1\}^2\), let
+\[
+J_B=\{j\notin B:\dist_\infty(j,B)\le R\},\qquad N_B=L^2.
+\]
+Every exterior coordinate read by its Hamiltonian belongs to \(J_B\). On laws on \(\mathcal A^B\), let \(W_H\) denote optimal transport with the Hamming cost, the number of different coordinates. Define
+\begin{equation}\label{eq:block-certificate}
+c_j(\beta)=\max_{\substack{\tau,\tau'\text{ on }J_B\\
+                    \tau=\tau'\text{ off }j}}
+W_H(\gamma_{B,\beta}^\tau,\gamma_{B,\beta}^{\tau'}),
+\qquad C_B(\beta)=\sum_{j\in J_B}c_j(\beta).
+\end{equation}
+The certificate is \(C_B(\beta)<N_B\). It is the Dobrushin--Shlosman finite-size uniqueness condition with the Hamming metric \cite{dsConstructive}, in the form stated by Martinelli, Olivieri and Schonmann \cite[Section~3]{mos} and the block-coupling form developed by Weitz \cite{weitz}. Dobrushin and Shlosman showed that it implies weak mixing in all finite volumes, and Martinelli, Olivieri and Schonmann showed that in two dimensions it holds on some finite set exactly when weak mixing holds in all finite volumes \cite[Theorems~3.1 and~3.2]{mos}; the same chain is used for space--time specifications in \cite[Theorem~12.1]{dmSpaceTime}. The two lemmas below prove both directions in the conventions and with the constants used here. What Theorem~\ref{thm:D} adds is the computable modulus and the uniform enumeration in the inverse temperature. For the zero-field nearest-neighbor ferromagnetic Ising model on \(\Z^d\), Shlosman proved \(\sup_V\beta_V(d)=\beta_{cr}(d)\), where the finite-volume Dobrushin--Shlosman condition on \(V\) holds for \(\beta<\beta_V(d)\) \cite[Theorem~4]{shlosmanDS}.
+
+\begin{lemma}[Sufficiency of a block certificate]\label{lem:block-sufficient}
+If \(C_B<N_B\), the specification has arbitrary-volume EWM. More precisely, put \(D_B=L+2R+1\). If \(C_B>0\), set
+\[
+\kappa=\frac{\log(N_B/C_B)}{2D_B},\quad
+h=e^{\kappa D_B}C_B=\sqrt{N_BC_B},\quad g=N_B-h.
+\]
+If \(C_B=0\), set \(\kappa=1,h=0,g=N_B\). With
+\[
+m=\kappa/2,\qquad r=e^{-\kappa/2},\qquad
+K=1+\frac{8r}{(1-r)^2},\qquad
+C=2e^{mL}\max\{1,hK/g\},
+\]
+the maximum-norm version of \eqref{eq:wsm} holds with constants \(C,m\).
+\end{lemma}
+
+\begin{proof}
+Fix a finite volume \(\Omega\) and two exteriors. Update each full translate \(t+B\subset\Omega\) at rate one by its heat bath. For every pair of block-boundary assignments differing at one site, choose an optimal Hamming coupling. For a pair differing at several sites, interpolate in a fixed order and glue the one-site couplings. All intermediate assignments are legal by positivity. If the boundaries agree, use identical outputs. These choices give a finite-state coupled chain, each of whose marginals preserves its prescribed Gibbs law. Start with those marginals and take a limit of time averages to obtain an invariant coupling \(Q\). Irreducibility is unnecessary. Write \(q_x\) for its disagreement probability, including the fixed exterior disagreements.
+
+The choices of coupling are independent of the weights that follow. Fix \(v\in\Omega\), put \(w_x=e^{-\kappa|x-v|_\infty}\), and let \(n_x\) be the number of full translates containing \(x\). On changing a boundary site \(j\) of \(t+B\), each output coordinate has \(w_x\le e^{\kappa D_B}w_j\); its expected total weighted cost is therefore at most \(e^{\kappa D_B}w_jc_{j-t}\). Gluing and the triangle inequality give the sum of these bounds for several boundary disagreements. For any source site, summing over all affected translates costs at most \(h\). On
+\[
+G=\{x\in\Omega:\dist_\infty(x,\Omega^c)\ge L\}
+\]
+we have \(n_x=N_B\). Stationary drift of weighted disagreements consequently gives
+\[
+0\le-\sum_{x\in\Omega}n_xw_xq_x+h\sum_{x\in\Z^2}w_xq_x,
+\qquad
+g\sum_{x\in G}w_xq_x\le h\sum_{x\notin G}w_x.
+\]
+If \(d_v=\dist_\infty(v,\Omega^c)\ge L\), every \(x\notin G\) has \(|x-v|_\infty\ge d_v-L\). The shell count \(|\{x:|x|_\infty=n\}|=8n\) yields
+\[
+q_v\le(hK/g)e^{-m(d_v-L)}.
+\]
+For \(d_v<L\), use \(q_v\le1\). The same invariant coupling works for every \(v\), so the union bound on disagreements in any \(E\subset\Omega\) proves \eqref{eq:wsm} with the displayed constants. This also covers \(h=0\) and volumes containing no full block.
+\end{proof}
+
+\begin{lemma}[Completeness of square certificates]\label{lem:block-complete}
+If the specification has EWM, or already just \eqref{eq:wm-import}, some square has \(C_B<N_B\). With the constants of \eqref{eq:ssm-import}, it suffices to choose an odd integer
+\[
+L\ge\max\{1,L_0\},\quad L>H_B^2,\qquad
+H_B=4R(1+R)(6400/m_s^2+18+C_s).
+\]
+\end{lemma}
+
+\begin{proof}
+For one changed exterior site \(j\), put \(s_L=\lceil5\log(L+1)/m_s\rceil\) and \(F=\{x\in B:|x-j|_\infty>s_L\}\). By \eqref{eq:ssm-import} its two marginal laws have TV distance at most \(C_sL^2(L+1)^{-5}\). Maximally couple those laws and then complete the conditional distributions on \(B\setminus F\). The expected Hamming cost is at most
+\[
+(2s_L+1)^2+C_sL^4/(L+1)^5\le(2s_L+1)^2+C_s.
+\]
+Since \(|J_B|=4RL+4R^2\), this bounds \(C_B\) by \((4RL+4R^2)[(2s_L+1)^2+C_s]\). Using \(\log(L+1)\le4(L+1)^{1/4}\) gives \(C_B\le H_BL^{3/2}<L^2\).
+\end{proof}
+
+In particular, \eqref{eq:wm-import} and \eqref{eq:wsm} are equivalent for these planar finite-energy specifications (compare \cite[Theorem~3.2]{mos}): the first gives a square certificate and Lemma~\ref{lem:block-sufficient} gives the sum-over-sites estimate. We will use this equivalence for the transfer-matrix construction below.
+
+\subsection{Effective continuity and enumeration}
+
+\begin{lemma}[Computable certificate and modulus]\label{lem:block-effective}
+The number \(C_B(\beta_0)\) is a computable real, uniformly in a rational \(\beta_0>0\) and the finite rational table. If \(E_B\) is the range of the finite Hamiltonian over all configurations on \(B\cup J_B\), then
+\[
+|C_B(\beta)-C_B(\beta')|\le K_B|\beta-\beta'|,
+\qquad K_B=|J_B|N_BE_B.
+\]
+\end{lemma}
+
+\begin{proof}
+All energies in this finite Hamiltonian are rational. Differentiation gives
+\(\partial_\beta\gamma(\omega)=\gamma(\omega)[\gamma(H)-H(\omega)]\), so the TV distance between two temperatures is at most \(E_B|\beta-\beta'|/2\). The Hamming metric has diameter \(N_B\); the transport triangle inequality and maximal coupling give
+\[
+|W_H(\mu,\nu)-W_H(\mu',\nu')|
+\le N_B[\dtv(\mu,\mu')+\dtv(\nu,\nu')].
+\]
+Finite maxima and the sum in \eqref{eq:block-certificate} give the modulus. At rational temperature every Gibbs probability is computable by exponential enclosures and finite normalization. Approximate its probability vector within certified TV error \(\epsilon\) by a rational vector. The rational transport optimum is computable by enumerating feasible bases of its finite linear program; the last inequality bounds its error by \(2N_B\epsilon\). This produces rational upper bounds \(u_n(\beta_0)\to C_B(\beta_0)\). Boltzmann probabilities need not be rational.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:D}]
+Dovetail over \(L\ge1\), rational \(\beta_0>0\), rational \(0<\rho<\beta_0\), and precision \(n\). Enumerate \((\beta_0-\rho,\beta_0+\rho)\) whenever
+\[
+u_n(\beta_0)+K_B\rho<N_B.
+\]
+Every enumerated closed interval satisfies the certificate, hence has EWM by Lemma~\ref{lem:block-sufficient}. Conversely, an EWM point has a strict square certificate by Lemma~\ref{lem:block-complete}. Continuity, rational density and sufficiently accurate upper bounds supply an enumerated interval containing it. This remains true when \(K_B=0\). Intersect the union with \([a,b]\); a mixing endpoint is covered by an ordinary neighborhood before restriction. The enumeration uses only the finite table and range, never the external mixing constants.
+\end{proof}

@@ -1,0 +1,99 @@
+\subsection{Exact periodic weights and the dimension lower bound}\label{sec:periodic}
+
+The sharpness statement allows a wider line class than common Perron directions. For positive matrices \(T_e\), put \(\lambda_e=\rho(T_e)\) and \(Q_e=T_e/\lambda_e\). The \emph{periodic-word condition} is
+\begin{equation}\label{eq:periodic-condition}
+\rho(Q_{e_1}\cdots Q_{e_n})=1
+\quad\text{for every nonempty word }e_1\cdots e_n.
+\end{equation}
+It says that every periodic color word has exactly the product of its individual Perron weights in its bulk free energy. With identical horizontal and vertical matrices this condition is necessary for those exact weights on all periodic base color configurations: realize any binary equality word along a row by toggling two colors at disagreements, repeat the word twice if needed, and repeat the row vertically. The uniform-color input fixes the pattern-independent pressure correction to zero. The condition concerns exact periodic weights, rather than phase boundaries alone.
+
+\begin{lemma}[Periodic weights without common directions]\label{lem:periodic}
+For positive \(k\)-dimensional generators, \eqref{eq:periodic-condition} is equivalent to
+\[
+l^{\mathsf T}Q_wr=1\quad\text{for all words }w,
+\]
+where \(r,l\) are the Perron vectors of one generator, normalized by \(l^{\mathsf T}r=1\). It suffices to test words of length at most \(k\). For equality/inequality Potts line decorations satisfying this condition and \(R=\lambda_1/\lambda_0\ge1\), the conclusion of Lemma~\ref{lem:line-transfer} still holds. Moreover \(\lambda_1-c\lambda_0\) is an eigenvalue of the rational matrix \(T_1-cT_0\), for every rational \(c\).
+\end{lemma}
+
+\begin{proof}
+From \eqref{eq:periodic-condition}, let the power of the reference generator in \(Q_0^nQ_w\) tend to infinity. Its limit is \(rl^{\mathsf T}Q_w\), giving the scalar identity by continuity of spectral radius. Conversely apply the identity to powers of \(Q_w\) and take roots; positive \(r,l,Q_w\) identify its Perron growth. For the finite test use \(\operatorname{diag}(Q_e,1)\) on \((r,1)\). Its word span, starting at dimension one, stabilizes by length \(k\) in dimension \(k+1\). The output \((l^{\mathsf T},-1)\) annihilates the full span if it annihilates all these short words.
+
+Here is the boundary estimate needed to retain the physical conclusion. Let \(m_1,M_1\) be the minimum and maximum normalized entries, and \(\theta=1-m_1/M_1<1\). For a product \(C=Q_1\cdots Q_n\), \(2h\le n\), let \(a\) be the normalized column \(Q_1\cdots Q_h\mathbf1\) and \(b^{\mathsf T}\) the normalized row \(\mathbf1^{\mathsf T}Q_{n-h+1}\cdots Q_n\), each with coordinate sum one. Uniformly over words,
+\begin{equation}\label{eq:periodic-boundary}
+C_{ij}=\frac{a_ib_j}{b^{\mathsf T}a}\,[1+O(\theta^h)].
+\end{equation}
+To verify it, set \(\delta=m_1/(kM_1)\). All components of \(a,b\) are at least \(\delta\). Reverse transitions associated with a positive row message \(u\) have probabilities \(u_iQ(i,j)/\sum_su_sQ(s,j)\), minorized by \((m_1/M_1)u_i/\sum_su_s\). Thus the first \(h\) transitions contract arbitrary end laws by \(\theta^h\); reversing directions gives the analogous row bound. With \(S_C=\sum C_{ij}\), these estimates give \(C_{ij}/S_C=a_ib_j+O(\theta^h)\). Apply this matrix to \(a\) and use the positive-vector bounds on its spectral radius. By \eqref{eq:periodic-condition} that radius is \(1/S_C\); hence \(1/S_C=b^{\mathsf T}a+O(\theta^h)\). The lower bound \(\delta\) converts the estimates to the relative form displayed. If \(m_1=M_1\), the normalized matrices are the same rank-one matrix and the formula is immediate.
+
+The same two-ended contraction defines a unique hidden conditional law \(K_\sigma\) for any fixed color configuration. It excludes hidden correlations between distinct lines at infinity by uniform convergence on every finite collection of line segments. For a finite color change \(\sigma\to\sigma'\), let \(G\) be the product of changed indexed-weight ratios. Enclosing each changed segment in longer intervals, \eqref{eq:periodic-boundary} cancels their identical word collars, and gives
+\[
+\mathbb E_{K_\sigma}G=\prod\lambda_{\rm new}/\lambda_{\rm old},
+\qquad K_{\sigma'}=G K_\sigma/\mathbb E_{K_\sigma}G.
+\]
+These identities give Gibbs lifting by finite-change ratios as before. Disintegration and uniqueness of \(K_\sigma\) give the converse projection onto the Potts specification.
+
+For mixing, use the inflated domain \(D\) of the proof of Lemma~\ref{lem:line-transfer}. Apply \eqref{eq:periodic-boundary} to its long runs with collar length \(\lfloor h/3\rfloor\). The leading factor depends only on the two word collars; condition their colors. The remaining reference color law is ordinary Potts. Its EWM couples the inner dilation, while the two-ended contraction couples all tested hidden segments. The summed run error is \(O(|E_0|(4h+1)^2\theta^{\lfloor h/3\rfloor})\); outgoing indices then couple exactly. This is exponential in the distance, uniformly over arbitrary exteriors and holes. As in Section~\ref{sec:effective}, its cardinality form implies \eqref{eq:wsm}. Ordered Potts states lift with the same observable. This proves the phase criterion for the wider class. Constant-spectral-radius semigroups are studied in \cite{protasovVoynov}; the short-word test above is the positive-generator specialization needed here.
+
+Finally put \(D_0=\operatorname{span}\{Q_wr-r\}\) and \(V=\operatorname{span}\{Q_wr\}\). The scalar identity gives \(D_0\subset\ker l^{\mathsf T}\), \(V=D_0\oplus\operatorname{span}(r)\). Both spaces are invariant under every generator, which acts as the identity on \(V/D_0\). On this quotient \(T_1-cT_0\) acts by \(\lambda_1-c\lambda_0\). This proves the eigenvalue assertion even when the invariant spaces vary with temperature.
+\end{proof}
+
+\begin{proposition}[A diagram requiring three line states]\label{prop:three-lower}
+In the inverse-temperature window \([1/2,3]\), put \(z=e^{-\beta}\) and let \(z_1<z_2<z_3\) be the three positive roots of
+\[
+p(z)=(31z-5)(31z-10)(31z-15)+5.
+\]
+The open diagram \(z>z_1\), \(z\ne z_2\), requires at least three internal line states in the identical-orientation periodic-word class with ferromagnetic Perron ratio, allowing arbitrary finite edge-index lists and any rational energy denominator.
+\end{proposition}
+
+\begin{proof}
+For \(H=T_1-cT_0\), the scalar \(f=\lambda_1-c\lambda_0\) is analytic because positive matrices have simple Perron roots, and is an eigenvalue by Lemma~\ref{lem:periodic}. For a nonconstant diagram it is not identically zero. In a rational Boltzmann coordinate clear negative powers and write
+\[
+\det(Y\operatorname{Id}-H(t))=\sum_{i=0}^k a_i(t)Y^i.
+\]
+At real algebraic conjugate points \(\xi\), the finite orders \(v_i\) of the nonzero rational coefficients \(a_i\) are the same: they are multiplicities of the common irreducible polynomial. If the selected eigenvalue has finite order \(s\), substitution of its leading term forces the minimum of \(v_i+is\) to be attained at least twice. The lower envelope of lines of slopes \(0,\ldots,k\) has at most \(k\) distinct breakpoints. Thus there are at most \(k\) possible distinct finite orders across a conjugacy class, even if unused eigenvalues vanish identically. This is the elementary Newton-polygon argument.
+
+For the prescribed diagram, \(z_1\) is a crossing and requires positive odd order, \(z_2\) is an isolated cold point and requires positive even order, and \(z_3\) is warm interior and requires order zero. These are three different orders. The roots lie respectively in \((4/31,6/31)\), \((9/31,11/31)\), and \((14/31,16/31)\), all in the window image. For every integer \(d'\ge1\), \(p(X^{d'})\) is Eisenstein at \(5\): its leading coefficient is \(31^3\), the other coefficients are divisible by \(5\), and the constant is \(-745\), not divisible by \(25\). The three positive \(d'\)-th roots remain conjugate. The order argument therefore excludes \(k\le2\) at every rational energy denominator. Lemma~\ref{lem:three-upper} supplies \(k=3\), completing the sharpness part of Theorem~\ref{thm:F}.
+\end{proof}
+
+\subsection{An explicit two-state example}
+
+The following small list illustrates conjugate selection without the general synthesis. Use \(k=2,L=3\), with the same table on the two orientations:
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Internal tail, head & Equal colors & Different colors \\
+\midrule
+\(1,1\) or \(2,2\) & \((0,0,0)\) & \((1,1,1)\) \\
+\(1,2\) & \((1,1,1)\) & \((1,1,1)\) \\
+\(2,1\) & \((1,1,2)\) & \((1,1,2)\) \\
+\bottomrule
+\end{tabular}
+\end{center}
+With \(z=e^{-\beta}\), its unequal and equal matrices are
+\[
+B=\begin{pmatrix}3z&3z\\2z+z^2&3z\end{pmatrix},\qquad
+A=B+3(1-z)\operatorname{Id},\qquad
+R=1+\frac{3(1-z)}{3z+z\sqrt{3(2+z)}}.
+\]
+The ratio is strictly decreasing in \(z\). Its equation \(R=257\) is
+\(1-257z=256z\sqrt{(2+z)/3}\). Squaring gives
+\((1-z)(3-1539z+65536z^2)=0\). For the two roots \(z_-<z_+\) of \(65536z^2-1539z+3\), only \(z_-<1/257\) satisfies the unsquared equation. Both roots lie in \((e^{-7},e^{-3})\). This one specified magnet therefore has EWM on \([3,-\log z_-)\) and order with gap \(1/4\) on \([-\log z_-,7]\), including the transition; the warmer conjugate \(z_+\) is mixing. Its alphabet has \(65536\cdot2^2\cdot3^2\) symbols and its edge energies are \(0,1,2\).
+
+\subsection{Sizes and the ceiling of the mechanism}\label{sec:ceiling}
+
+The synthesis is effective, with all searches terminating; no elementary size bound is claimed. A bound of three concerns only the internal state on a line. The polynomial degrees, rational energy data and edge-index lists can be extremely large. Their size cannot stay bounded even for a single rational cut. Indeed, with \(k\) line states and \(N\) alternatives per edge, every entry of \(H=T_1-257T_0\), after a common energy shift, has coefficient one-norm at most \(258N\) and at most \(2N\) monomials. If \(\ell\) is the least index of a nonzero coefficient in \(\det(Y\operatorname{Id}-H)=\sum a_i(X)Y^i\), each boundary zero of \(f\) is a zero of \(a_\ell\): divide the characteristic identity by \(f^\ell\) and extend across its isolated zeros. The principal-minor expansion bounds the monomial count of \(a_\ell\) by \(k!(2N)^k\) and its coefficient one-norm by \(k!(258N)^k\). Descartes' rule bounds the number of positive boundary roots, counting an isolated cold point at least twice, by \(k!(2N)^k-1\).
+
+For example, for \(u=4j+2\), \(j\ge1\), prescribe the cut \(z=u/(3u+1)\) in the window \([1/2,2]\). At denominator \(d'\), \((3u+1)X^{d'}-u\) is Eisenstein at \(2\). It divides \(a_\ell\) over the integers, so its leading coefficient gives the lower bound
+\[
+3u+1\le k!(258N)^k.
+\]
+Thus the finite local data grow without bound even when only one cut is requested. Large energies alone cannot remove this cost in this class.
+
+For any fixed rational energy lists, their transfers are Laurent polynomials over \(\mathbb Q\) in a common \(X=e^{-\beta/d'}\). Positive Perron roots are selected by equations with strictly positive eigenvectors. Consequently \(R(X)<257\) is a rational semialgebraic condition by real quantifier elimination. It is open by continuity. In the line class of Lemma~\ref{lem:periodic}, this strict inequality is exactly the EWM region, and all its finite interior boundary values of \(X\) are algebraic.
+
+We only sketch how finite line tables also implement algebraic temperature substitution; the sketch is not used in Theorems~D--F. For a rational base energy table, write \(n_h=d_0(E_h-\min E_h)\in\{0,\ldots,N_h\}\). Along one row chain for each table type, use transfers \(A^{n_h}B^{N_h-n_h}\), with common positive Perron directions. On a range with \(0<\lambda_A/\lambda_B<1\), their selected weights give the positive base inverse temperature
+\[
+\beta'=-d_0\log(\lambda_A/\lambda_B).
+\]
+The finite-change cancellation in Lemma~\ref{lem:line-transfer} identifies its Gibbs states with the base states at \(\beta'\). The inflated-domain proof, with a fixed enlargement for each base stencil, transfers base EWM to the full spins. Conversely a base finite-volume kernel with fixed base exterior, extended by its hidden conditional law, is a mixture of full decorated kernels; full EWM bounds the projected mixture uniformly and hence gives base EWM. Thus this operation pulls the diagram back through an algebraic map in its exponential coordinate. Applied to the semialgebraic diagrams just constructed, it leaves them semialgebraic.
+
+The resulting exp-algebraic transition values are computable. This ceiling concerns the finite rational line-transfer construction and algebraic substitutions of its diagrams; it is not an upper bound on diagrams of general magnets. A substitution into an arbitrary base magnet does not itself supply an algebraic description of that base magnet's mixing set. In particular, these constructions do not resolve the single-magnet problem stated in the discussion.

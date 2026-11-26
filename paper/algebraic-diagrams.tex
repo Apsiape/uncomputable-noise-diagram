@@ -1,0 +1,166 @@
+\section{Exact explicit diagrams by line decorations}\label{sec:algebraic}
+
+The construction in this section uses auxiliary Markov chains shared by consecutive edges of each row and column. Summing finite decorations into effective couplings is classical \cite{syozi,fisher}; sharing a line lets a selected positive-matrix eigenvalue distinguish real algebraic conjugates.
+
+\subsection{The decorated magnet and its Potts input}
+
+At a vertex put a color in \(\{0,\ldots,q-1\}\), \(q=65536\), horizontal and vertical internal states in \(\{1,\ldots,k\}\), and an index for each outgoing east and north edge in \(\{1,\ldots,L\}\). For each ordered internal pair and each equality class \(e\in\{0,1\}\) of the endpoint colors, specify a list of \(L\) rational energies. The index at the tail selects its edge energy. Every alphabet combination is allowed. There are just two translation-invariant nearest-neighbor terms per site. The color half-turn \(s\mapsto s+q/2\pmod q\) fixes the other fields and is an invariant fixed-point-free involution. Let \(M=1\) on the first color half and \(M=-1\) on the second.
+
+At inverse temperature \(\beta\), summing the edge index gives strictly positive transfer matrices \(T_1,T_0\), used identically in the two orientations. The ordinary square-lattice Potts input has coupling \(\log R\), where \(R\ge1\), and threshold
+\[
+c=1+\sqrt q=257,\qquad p_c=\frac{\sqrt q}{1+\sqrt q}=\frac{256}{257}.
+\]
+Theorems~1.2--1.3 of Duminil-Copin, Raoufi and Tassion \cite{drt} give the critical value (proved for every \(q\ge1\) by Beffara and Duminil-Copin \cite{bdc}) and the exponential \emph{finite-volume wired} connection bound below it: in a graph-distance ball of radius \(n\), the wired probability of a center-to-boundary connection is at most \(e^{-c_Pn}\), for some \(c_P>0\). Exploring the dominating wired boundary cluster couples any two fixed-color Potts exteriors: discrepancies on a set \(V\) require a wired connection from a site of \(V\) to the boundary. Indeed a colored random-cluster edge has conditional open probability zero for incompatible pinned clusters, \(p\) when no free color is lost, and \(p/[p+q(1-p)]\) otherwise; all are dominated by the fully wired exploration. At each adaptive step retain each marginal's own partial-assignment conditional kernel. Off the explored cluster the untested interior laws are the same free law and can be coupled. The wired-ball bound thus gives arbitrary-domain EWM, including domains with holes, when \(1\le R<c\).
+
+For order at equality we use the free critical diagonal inverse correlation length from \cite[Theorem~1.2(3)]{dghmt} (there \(x_n=(\lfloor n/2\rfloor,\lfloor n/2\rfloor)\)):
+\[
+\alpha=\ell+2\sum_{n\ge1}\frac{(-1)^n\tanh(n\ell)}n,
+\qquad\cosh\ell=128.
+\]
+Since \(\tanh x/x\) decreases for \(x>0\), the alternating-series estimate gives \(\alpha\ge\ell-2>\log8\). If \(\tau\) denotes free critical connectivity, FKG concatenation gives \(\tau(ns,ns)\ge\tau(s,0)^{2n}\); the diagonal limit therefore gives \(\tau(s,0)\le e^{-s\alpha}\). A finite wired cluster at the origin has a surrounding dual free open circuit crossing both horizontal rays. Its crossing endpoints are separated by \(i+j+1\), for some \(i,j\ge0\). At self-duality the component/face identity exchanges wired and free boundary conditions. A union bound consequently gives
+\[
+\phi^w_{p_c}(0\text{ finite})\le
+\sum_{i,j\ge0}e^{-(i+j+1)\alpha}
+=\frac{e^{-\alpha}}{(1-e^{-\alpha})^2}<\frac8{49}.
+\]
+Monotonicity extends this to \(p\ge p_c\). Coloring the infinite wired cluster with a fixed color and all finite clusters uniformly gives a translation-invariant Potts DLR state whose \(M\)-mean exceeds \(41/49\). The paired color gives the opposite state. We retain the uniform gap \(1/4\). This uses the discontinuous critical order in \cite{dghmt}, rather than treating equality as an unclassified temperature.
+
+\subsection{Shared Perron directions and arbitrary exteriors}
+
+\begin{lemma}[Line decoration criterion]\label{lem:line-transfer}
+Suppose at a fixed temperature the two positive matrices have common strictly positive right and left Perron vectors \(r,l\), with eigenvalues \(\lambda_1,\lambda_0\) and \(R=\lambda_1/\lambda_0\ge1\). The full decorated magnet has arbitrary-volume EWM if \(R<257\), and has opposite translation-invariant DLR states, exchanged by the color half-turn, with \(M\)-means of magnitude at least \(1/4\) if \(R\ge257\).
+\end{lemma}
+
+\begin{proof}
+Put \(\pi_i=l_ir_i/(lr)\) and
+\[
+P_e(i,j)=\frac{T_e(i,j)r_j}{\lambda_er_i},\quad
+\eta=\min_{e,i,j}P_e(i,j)>0,\quad \rho=1-k\eta/2\in[1/2,1).
+\]
+Both stochastic matrices preserve \(\pi\). Coupling rows by their common mass gives, for every product \(P\) of \(n\) transitions,
+\begin{equation}\label{eq:line-contraction}
+|P(i,j)/\pi_j-1|\le\rho^n/\pi_{\min}.
+\end{equation}
+Given a Potts Gibbs state, condition on all colors and independently put the two-sided chain with marginal \(\pi\) and transitions \(P_e\) on each row and column. Consistency follows from \(\pi P_e=\pi\). Draw the outgoing indices with their conditional normalized Boltzmann weights. If \(w_e(i,j,s)\) is an indexed weight, then
+\[
+\lambda_eP_e(i,j)\frac{w_e(i,j,s)}{T_e(i,j)}
+=w_e(i,j,s)\frac{r_j}{r_i}.
+\]
+For a finite change the \(r\)-ratios telescope along each line. The Potts factors, chain factors and index densities therefore give exactly the decorated Hamiltonian's finite-change ratios, also for a fixed exterior tail index. Positivity and finite normalization give the DLR equations. The lift commutes with translations and keeps the color observable. This proves the order assertion.
+
+For mixing, let \(E_0\) be the tested full spins in a finite \(\Lambda\), with distance \(d\) to \(\Lambda^c\). Set
+\[
+\begin{gathered}
+E=E_0\cup(E_0+\text{east})\cup(E_0+\text{north}),\qquad
+h=\lfloor(d-2)/4\rfloor,\\
+U=E+[-h,h]^2,\qquad D=E+[-2h,2h]^2.
+\end{gathered}
+\]
+Take \(d\) large; small distances use TV at most one. The domain \(D\) lies inside \(\Lambda\), every maximal row or column run has length at least \(4h+1\), and there are at most \(2|D|\) runs. Condition on a full exterior for \(D\). Summing indices and internal states along one run of length \(n\), and dividing by its interior Perron factors, gives
+\(u^{\mathsf T}P_{e_1}\cdots P_{e_{n-1}}v\), with positive end vectors \(u,v\). By \eqref{eq:line-contraction} its ratio to \((\sum u_i)(\sum\pi_jv_j)\) lies in \(1\pm\epsilon\), where \(\epsilon=\rho^{4h}/\pi_{\min}\). These reference factors depend only on end colors. Their color law is ordinary Potts on interior edges with arbitrary positive weights on the one-site inner collar.
+
+For \(\epsilon\le1/2\), replacing all run factors changes the normalized density in TV by at most \(60N_{\rm run}\epsilon\). This follows by bounding its log ratio by \(4N_{\rm run}\epsilon\) and using \(\min(1,e^{4y}-1)\le60y\). For two exteriors the total run error is at most \(240|D|\epsilon\). Condition the two reference laws on their inner collars. The remaining color kernels are ordinary Potts with fixed boundaries, so the Potts estimate couples the colors in \(U\) with error at most \(C_P|U|e^{-c_Ph}\), uniformly over both collars.
+
+On agreement in \(U\), compare hidden states on the runs of \(U\) containing tested sites of \(E\), conditioning their outside states first. There are at least \(h\) agreed transitions at either end. The law of the tested segment differs from the common stationary-start Markov segment only by two end-weight ratios in \(1\pm\epsilon'\), where \(\epsilon'=\rho^h/\pi_{\min}\). The same density estimate, summed over at most \(2|E|\) runs in both orientations and both exteriors, gives error at most \(480|E|\epsilon'\). Mix over the conditioned end states. The indices in \(E_0\) couple identically once their colors and internal endpoints agree, because their heads belong to \(E\). Thus the full-spin TV bound is at most
+\begin{equation}\label{eq:line-mixing-bound}
+\frac{240(4h+1)^2|E|\rho^{4h}}{\pi_{\min}}
++C_P(2h+1)^2|E|e^{-c_Ph}
++\frac{480|E|\rho^h}{\pi_{\min}}.
+\end{equation}
+Polynomial factors absorb into an exponential; for example a rate
+\(\min(c_P,-\log\rho)/16\) works after enlarging the constant. Conditioning on the complement of \(D\) and then mixing proves the cardinality form \eqref{eq:wm-import} for every \(\Lambda\). Its equivalence to \eqref{eq:wsm}, established in Section~\ref{sec:effective}, gives our stated EWM convention. The inflated domains ensure that short runs or holes in the original volume cause no loss.
+\end{proof}
+
+\subsection{From polynomial matrices to finite energy lists}\label{sec:lists}
+
+Write \(z=e^{-\beta/d}\), \(t=z/(1+z)\), and \(t_0=1/2\). Since \(a>0\), the window image lies in a rational compact interval \(I\subset(0,1/2)\). The endpoints of its image are transcendental, so comparisons with algebraic cuts terminate. The following conversion will be used without increasing matrix dimension.
+
+\begin{lemma}[Positive matrix conversion]\label{lem:matrix-conversion}
+Suppose rational polynomial matrices \(D,F\) commute, \(D\) is strictly positive on \([0,1]\), and \(D(t_0)\) has all entries equal and positive. Suppose \(F\) has scalar \(f(t)\) on the positive Perron direction of \(D\), and \(f(t_0)\ne0\). One can compute two positive polynomial matrices \(A,B\) sharing both positive Perron directions, with ratio \(R>1\) on \(I\) and
+\[
+\operatorname{sign}(R-257)=\operatorname{sign}f\quad\text{on }I.
+\]
+After a common scalar change they are finite Boltzmann sums in \(z\) with nonnegative integer coefficients and identical total multiplicity for every entry of both matrices. Their energy lists use rational energies \(i/d\).
+\end{lemma}
+
+\begin{proof}
+Commutation and simplicity imply that the positive left Perron vector also has eigenvalue \(f\) under \(F\). In particular \(f(t_0)\) is rational. Choose a rational polynomial \(a_0\) positive on \(I\), with \(a_0(t_0)f(t_0)=1-c\), \(c=257\). A constant works when its required value is positive; otherwise use a positive multiple of \(h_0-t\), with \(\max I<h_0<t_0\). Put
+\begin{equation}\label{eq:matrix-conversion}
+d_K=1+K(t-t_0)^2,\qquad B=d_KD,\qquad A=cd_KD+a_0DF.
+\end{equation}
+At \(t_0\) the two matrices coincide and have equal positive entries. In a fixed neighborhood of that point positivity holds already by continuity; on its compact complement the \(K\)-term dominates all other entries for large \(K\). Increasing \(K\) also makes \(A>B\) entrywise on \(I\). Strict polynomial positivity tests on compact intervals find such an integer. The shared Perron roots have ratio \(c+a_0f/d_K\), proving the sign assertion and \(R>1\).
+
+Choose a common Bernstein degree \(n\) making all coefficients of all entries positive. For an entry \(\sum_jc_jt^j\), its coefficient at position \(i\) is
+\[
+\sum_{j\le i}c_j\frac{\binom{i}{j}}{\binom{n}{j}}.
+\]
+These converge uniformly to the polynomial at \(i/n\): sampling \(j\) indices with and without replacement has discrepancy at most \(j(j-1)/(2n)\). Strict positivity on the compact interval therefore makes degree elevation terminate. This is the univariate Bernstein form of P\'olya's 1928 positivity theorem \cite{powersReznick}. Substitute \(t=z/(1+z)\) and multiply every entry by the same \(L_0(1+z)^n\), with integer \(L_0\) clearing the rational coefficients. The resulting positive integer coefficients encode multiplicities of energies \(i/d\). At \(z=1\) all entries of both matrices have the same integer sum, since \(t=t_0\). Hence the common index alphabet realizes every pair and equality class by a list of exactly that length. Common multiplication changes no Perron ratio.
+\end{proof}
+
+\subsection{Sign operations and individual conjugates}\label{sec:signs}
+
+For orientation, we first give a direct finite-dimensional sign construction. A selected scalar \(f\) is represented by a pair \((D,F)\) satisfying Lemma~\ref{lem:matrix-conversion}. Tensoring carriers and lifting value matrices supports addition, negation, rational scaling and multiplication of selected scalars. Rational polynomials have one-dimensional carriers \(D=1\).
+
+Suppose selected scalars \(a,b\) have no common zero on \([0,1]\) and are nonzero at \(t_0\). Rescale them positively to have absolute values \(3,4\) at \(t_0\), and use their commuting lifts \(F,G\) on a tensor carrier \(D\). Put
+\[
+\begin{gathered}
+H=F^2+G^2,\qquad
+S_0=\begin{pmatrix}0&H/5\\5\operatorname{Id}&0\end{pmatrix},\quad
+\\
+D'=\operatorname{diag}(D^m,D^m)(5\operatorname{Id}+S_0),\\
+F'=\operatorname{diag}(F+G,F+G)\mathbin{\pm}S_0.
+\end{gathered}
+\]
+For sufficiently large \(m\), \(D'\) is positive on \([0,1]\): normalized powers of the positive \(D\) converge uniformly to its Perron projection, and \(D^mH\) has the strictly positive selected scalar \(a^2+b^2\). Compactness makes the convergence and lower bound uniform. At \(t_0\) all blocks coincide with \(5D^m\), because \(a^2+b^2=25\), so all entries of \(D'(t_0)\) agree. The matrices commute, and the new Perron scalar is
+\[
+a+b\pm\sqrt{a^2+b^2}.
+\]
+The plus operation is positive exactly when at least one input is positive; the minus operation is positive exactly when both are positive. Zeros can occur only at input zeros. These are Rvachev's R-function disjunction and conjunction \cite{shapiro}, here implemented on a positive rational polynomial carrier.
+
+For an algebraic cut \(r\in I\), let \(p_r\) be its irreducible rational polynomial, oriented positive just to its right. Choose rational \(l<r<s<1/2\), with no other root in \([l,s]\), \(p_r(l)<0<p_r(s)\). Take the minus operation on \(t-l,p_r(t)\), and the plus operation on its result and \(t-s\). Both pairs have no common zero. The selected result \(g_r\) is strictly negative for \(t<r\), zero at \(r\), and strictly positive for \(t>r\), throughout \([0,1]\). Below \(l\) both outer inputs are negative; between \(l\) and \(s\) the only relevant polynomial zero is \(r\); at and above \(s\) the first, then the second, outer input is positive. Other real conjugates are therefore not forced to be zeros on the selected branch.
+
+After decomposing the explicit open diagram on \(I\), multiply one such factor at each crossing, squared at an isolated excluded point, and choose an overall sign so that \(f<0\) on the desired warm set. Constants handle a full or empty diagram. This constructs a finite carrier with \(f(t_0)\ne0\), hence a physical magnet by Lemmas~\ref{lem:matrix-conversion} and~\ref{lem:line-transfer}. The next argument reduces its line dimension to at most three.
+
+\subsection{Three states suffice}\label{sec:three-upper}
+
+\begin{lemma}[Dimension-three synthesis]\label{lem:three-upper}
+For every input of Theorem~\ref{thm:F} there is a pair \((D,F)\) as in Lemma~\ref{lem:matrix-conversion}, of dimension at most three, whose selected scalar is negative exactly on the required warm portion of \(I\).
+\end{lemma}
+
+\begin{proof}
+For each irreducible rational polynomial with a boundary of the diagram in \(I\), classify its real roots in \(I\) by the required order of a warm-negative analytic scalar: a crossing has positive odd order (type \(1\)); an isolated cold point between warm intervals has positive even order (type \(2\)); a warm interior point has order zero (type \(0\)); a cold interior point may use type \(0\) or \(2\). Choose permitted types and let \(k\le3\) be the maximum number of types needed for any polynomial, with \(k\ge1\). Choose \(I\) slightly larger than the window image without adding boundary roots near its ends. If there are no boundaries, take a constant one-dimensional sign.
+
+Let \(P\) be the product of the distinct irreducible boundary polynomials. For each factor \(p\), assign exponents \(e_{j,p}\in\{0,1,2\}\), \(1\le j\le k\), covering its chosen types, repeating an exponent when needed. At each real root \(\xi\) of \(P\) in \([0,1]\), choose a label \(j(\xi)\) whose exponent is the required type in \(I\); outside \(I\) choose any available label. Put
+\[
+B_j=\prod_p p^{e_{j,p}}.
+\]
+There are no roots at \(0,1,t_0\), since a boundary root is in \((0,1/2)\) and a rational root has a linear minimal polynomial.
+
+Choose nonnegative rational polynomials \(h_j\), zero at \(t_0\), with \(h_{j(\xi)}(\xi)>0\) and strictly larger than all other \(h_i(\xi)\). Approximate separated continuous bump values at these finitely many roots by rational polynomials, square them, and multiply by \((t-t_0)^2\). Strict algebraic comparisons certify a terminating search. The symmetric polynomial matrix
+\[
+L=\operatorname{diag}(h_1,\ldots,h_k)+P^4\mathbf J
+\]
+is positive semidefinite. Off the roots it is entrywise positive. At a root it has a unique positive top diagonal entry. Its top eigenvalue \(\lambda\) is simple everywhere on \([0,1]\), and its continuous unit top vector \(v\) is nonnegative, strictly positive off the roots, and equal to the designated coordinate vector at a root. All other eigenvalues have a uniform ratio less than one to \(\lambda\). Near a root with label \(j\), the Rayleigh principle gives \(0\le\lambda-h_j\le kP^4\).
+
+Define commuting value matrices and their selected scalars by
+\[
+W_j=B_j\prod_{i\ne j}(L-h_i\operatorname{Id})^2,
+\qquad w_j=B_j\prod_{i\ne j}(\lambda-h_i)^2.
+\]
+At \(\xi\) of type \(e\) and label \(j\), the scalar \(w_j\) has exact order \(e\); every other \(w_i\) is \(O(|t-\xi|^8)\). Off the roots no \(w_j\) vanishes. Let \(f_0\) be the real polynomial formed from the assigned factors \((t-\xi)^e\), with sign giving the desired diagram on \(I\). It is an existence device, not an entry of the rational table. The coefficients
+\[
+a_j=\frac{f_0w_j}{\sum_iw_i^2}
+\]
+extend continuously through every root, and \(f_0=\sum_j a_jw_j\). Moreover \(\sum_j|w_j|/|f_0|\) is bounded on the punctured interval, including near the roots. Sufficiently close uniform rational polynomial approximations \(b_j\) to \(a_j\) therefore give \(f=\sum_j b_jw_j\) with the same signs, zeros and orders as \(f_0\). The polynomial matrix \(F=\sum_jb_jW_j\) commutes with \(L\) and selects \(f\). A search for rational tuples can test these properties by real quantifier elimination, specifying \(\lambda\) as the simple top eigenvalue; existence proves termination. In particular \(f(t_0)\ne0\).
+
+It remains to make the top eigenvectors strictly positive at the roots. Choose a rational skew-symmetric polynomial matrix \(K\), zero at \(t_0\), with \(K_{i,j(\xi)}(\xi)>0\) for \(i\ne j(\xi)\). Polynomial approximation of the finitely many consistent assignments supplies it. For a sufficiently small positive rational \(\epsilon\), set \(S=\operatorname{Id}+\epsilon K\). Skew symmetry gives \(\det S>0\) for real \(t\). Both \(Sv\) and \(S^{-\mathsf T}v\) are strictly positive on \([0,1]\): near a formerly zero coordinate their first-order term is \(\epsilon(Kv)_i>0\), with a uniform \(O(\epsilon^2)\) remainder for the second vector; away from these neighborhoods the original coordinates have a positive minimum. At \(k=1\) use \(K=0\).
+
+Set \(L'=SL\operatorname{adj}(S)\) and \(F'=SF\operatorname{adj}(S)\). Their selected eigenvalues are scaled by \(\det S>0\), and they commute. The top projection of \(L'\) has strictly positive entries and a uniform spectral gap. Some power \(D=(L')^m\) is therefore entrywise positive throughout \([0,1]\), by uniform convergence of normalized powers. At \(t_0\), \(S=\operatorname{Id}\) and \(L=P(t_0)^4\mathbf J\), so all entries of \(D(t_0)\) agree. Searches for \(\epsilon,m\) use strict polynomial positivity tests. The pair \((D,F')\) has the required dimension and sign.
+\end{proof}
+
+\begin{proof}[Realization part of Theorem~\ref{thm:F}]
+Apply Lemma~\ref{lem:three-upper}, convert the matrices by Lemma~\ref{lem:matrix-conversion}, and use their equal-length lists in the nearest-neighbor magnet. Lemma~\ref{lem:line-transfer} gives EWM exactly at the negative selected scalar and order with gap \(1/4\) at every other point, including its zeros. The color half-turn and observable are those already specified. All data are finite and rational and every search is uniform from the explicit semialgebraic description. Only the finite edge-index length and the energies, rather than the bound of three line states, depend without a fixed size bound on the input.
+\end{proof}
+
+
+\input{line-optimality}

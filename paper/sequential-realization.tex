@@ -1,0 +1,145 @@
+\section{Sequential realization of effectively open sets}\label{sec:sequential}
+
+Fix the radius-one member of the native family with a literal program that runs forever. Write \(\mathcal H\) for its alphabet, \(F\) for its deterministic map, and \(\Dead\) for its single empty state. Its ordinary simulated maps satisfy \(F_j(\Dead,\Dead,\Dead)=\Dead\). We use the deterministic organization, the initialized occupied comparison of Lemma~\ref{lem:past}, and the descent in Lemma~\ref{lem:clock-witness}. The two additional lemmas below make the probabilistic and empty-state arguments explicit.
+
+\subsection{Local alarms and sparse deviations}
+
+An innovation vector at a logical space--time vertex may have dependent coordinates; vectors at different vertices are independent. A \emph{paint} is simply a set of vertices declared possible deviations. The following estimate permits overlapping local alarms computed from the same vectors as the raw errors.
+
+\begin{lemma}[Sparsity with local alarm paint]\label{lem:alarm-paint}
+Use the native \(P,T,w\), put \(S=\max(P,T)\), and fix positive integers \(M,M_0\). (In Lemmas~\ref{lem:alarm-paint} and~\ref{lem:empty-ancestry}, \(M\) and \(M_0\) are rectangle multipliers local to these lemmas; they differ from the constants of the same names in the appendix tables and from the observable \(M\).) Raw flags are iid with probability at most \(u\). For every \(k\ge1\) and center \(z\), suppose a potential alarm \(A_k(z)\) has probability at most \(e^{-H_{\rm al}\lambda^k}\), with a fixed \(\lambda>1\), depends only on innovations in the rectangle about \(z\) of half-axes \(MP^k,MT^k\), and paints a subset of that rectangle. Let \(E\) be any subset of the raw flags and all such paints. For each \(i\ge0\), prescribe a rectangle of half-axes \(M_0P^{i+1},M_0T^{i+1}\), with deterministic center. Then
+\[
+\sum_{i\ge0}\Prob(E\text{ fails }i\text{-sparsity in the prescribed rectangle})\le\tfrac18
+\]
+under the following explicit choices:
+\begin{gather*}
+1<\nu<\min(2,\lambda),\quad
+B_*=8(P+2)^2(T+2)^2,\quad D_*=(10+8w+8M)^2,\\
+K_* =\min\{k\ge1:2^k/D_*\ge2\nu^k\},\quad
+C_t=2^{K_*}B_*^{2^{K_*}},\\
+A_*=(2M_0P+10)(2M_0T+10),\quad C_0=(2w+2M+3)^2,\\
+C_h=(2M_0+2M+3)^2S^{2K_*},\\
+H_{\rm raw}\ge\max\left\{1,2^{K_*}\log B_*+\log2,
+\frac{\log2}{\nu^{K_*}-1},\log(32K_*A_*C_t)\right\},\\
+H_{\rm al}\ge\max\left\{1,\lambda^{K_*}
+\left[H_{\rm raw}+\log(2K_*C_0)+\frac{2\log S}{\log\lambda}\right],
+\frac{2\log S+\log4}{\lambda-1},\log[16(K_*+1)C_h]\right\},\\
+u\le e^{-H_{\rm raw}}/(4w^2).
+\end{gather*}
+All lower bounds can be rounded strictly upward to rationals. Alarms at different ranks need not be independent. A nonlocal actual alarm is also allowed if it implies an event with the stated local support and bound.
+\end{lemma}
+
+\begin{proof}
+For a multiple \(r\) of \(K_*\), let \(b_r\) be the supremum failure probability in a full rank-\(r\) box of sides \(2wP^r,2wT^r\), using raw flags and paints through rank \(r\). Initially \(b_0\le4w^2u\). If no paint of ranks \(r-K_*+1,\ldots,r\) meets a failed box, Lemma~\ref{lem:sparse-witness}, applied \(K_*\) times to this same restricted error field, gives \(2^{K_*}\) disjoint full leaves at rank \(r-K_*\). There are at most \(B_*^{2^{K_*}-1}\) trees.
+
+A lower-aggregate failure at a leaf of rank \(l\) depends only on that rectangle enlarged by \(2MP^l,2MT^l\) on each side, once for paint and once for its support. The intersection graph of enlarged disjoint leaves has degree plus one at most \(D_*\): after scaling the axes, the relevant original disjoint boxes fit in a square of side at most \(6w+8M+2\), and division by their area gives this conservative bound. A greedy independent set leaves at least \(2^{K_*}/D_*\) events with independent innovation supports. This estimate is unconditional; we do not condition on absence of the larger paints. A union bound for the possible new centers gives
+\begin{equation}\label{eq:paint-recursion}
+b_r\le B_*^{2^{K_*}}b_{r-K_*}^{2^{K_*}/D_*}
+       +K_*C_0S^{2r}e^{-H_{\rm al}\lambda^{r-K_*+1}}.
+\end{equation}
+The displayed choices imply by induction \(b_r\le e^{-H_{\rm raw}\nu^r}\). For the first term, \((2^{K_*}/D_*)\nu^{r-K_*}\ge2\nu^r\) pays the tree count and half the budget. For the second, use \(\nu^r\le\lambda^r\), \(1\le\lambda^r\), and \(r\le\lambda^r/\log\lambda\) in the bound on \(H_{\rm al}\).
+
+For test rank \(i\), put \(r=K_*\lfloor i/K_*\rfloor\). Cover its moving rank-\(i\) windows by full rank-\(i\) boxes at steps \(wP^i,wT^i\), including endpoint overlaps, as in Lemma~\ref{lem:sparse-witness}. There are at most \(A_*\) boxes. A failure with paints only through \(r\) descends at most \(K_*-1\) times to a failed rank-\(r\) leaf, with at most \(A_*C_t\) choices. Paints of rank \(k>r\) meeting the original prescribed rectangle have at most \(C_hS^{2k}\) possible centers, since \(i+1\le k+K_*\). Thus
+\begin{equation}\label{eq:paint-test}
+\Prob(\text{test }i\text{ fails})\le A_*C_te^{-H_{\rm raw}\nu^r}
+       +C_h\sum_{k>r}S^{2k}e^{-H_{\rm al}\lambda^k}.
+\end{equation}
+The sum of the first terms over \(i\) is at most \(2K_*A_*C_te^{-H_{\rm raw}}\le1/16\), using \((\nu^{K_*})^j\ge1+j(\nu^{K_*}-1)\). Each rank \(k\) in the second term is counted at most \(k+K_*\) times. Since \(\lambda^k\ge1+k(\lambda-1)\), their total is at most
+\(C_he^{-H_{\rm al}}\sum_{k\ge1}(k+K_*)4^{-k}\le1/16\).
+Heredity of sparsity handles every subset \(E\).
+\end{proof}
+
+\begin{lemma}[Empty-sector ancestry]\label{lem:empty-ancestry}
+Use the fixed nonhalting native rule above. Join an actual history at an entrance date \(\tau\) to the deterministic all-\(\Dead\) history before \(\tau\), and suppose its deviations are contained in \(E\). Put \(m=\lfloor w/5\rfloor\) and \(M_0=100(T+P+m+100)\). There are deterministic centered tests, one at each rank \(i\), contained in rectangles of half-axes \(M_0P^{i+1},M_0T^{i+1}\), such that a live physical site implies failure of at least one test. Consequently, with the hypotheses of Lemma~\ref{lem:alarm-paint}, the all-empty entrance has live probability at most \(1/8\) at every site and later date. From the occupied entrance of Lemma~\ref{lem:past}, under the same bounds, the live probability is at least \(7/8\).
+\end{lemma}
+
+\begin{proof}
+The all-empty deterministic history is valid because \(F_j(\Dead,\Dead,\Dead)=\Dead\). Suppose the enclosing tests pass and a rank-\(j\) served site is live. Use the intermediate ascent in the proof of Lemma~\ref{lem:ascent}, before its halted-rank conclusion: the site's clock and address choose a translated parent grid. Trace incumbents or donors to the cut one full period before its latest cut, and then to the inputs of the preceding parent work. Proposition~\ref{prop:organization}\ref{org:issue} and the empty-exception cut exclude a dead issue. The positive issue is the native map on three actual served inputs, at least one of which must therefore be live. Continue from that rank-\((j+1)\) input, reselecting its grid as necessary.
+
+The accumulated displacement and protection padding through rank \(j\), as calculated in Lemma~\ref{lem:ascent}, have horizontal half-extent
+\((4T/P+4+m+2+4/P)P^{j+1}\) and temporal half-extent \((6+m+2+4/T)T^{j+1}\). They fit inside the stated \(M_0\) rectangles. They contain the protected queries and service lookahead, so passing the centered test suffices on every selected grid. In each step the move to the earlier cut and the preceding work's input moves the bottom date back by at least two parent periods, \(2T^{j+1}\) in physical units. The rank-\(j\) service lookahead is less than \(T^j\). Eventually the entire reached observation is before \(\tau\), where every grid observes only \(\Dead\). This contradicts its being served live. This argument needs no halted top rank.
+
+The union bound and Lemma~\ref{lem:alarm-paint} give the empty estimate. For the occupied estimate use the deterministic nested descent of Lemma~\ref{lem:clock-witness}, with the present dominating deviation set. Its tests fit the same rectangles. The compatible negative-time occupied comparison supplies the top inputs, and passing all tests gives the live clock at the observation. The same sum of failure probabilities is at most \(1/8\). Flags may be extended independently before entry for these estimates; actual deviations there remain absent.
+\end{proof}
+
+\subsection{A finite thermal counter}
+
+Fix \(M=2\), \(M_0\) as in Lemma~\ref{lem:empty-ancestry}, \(\lambda=3/2\) and \(\nu=5/4\) in Lemma~\ref{lem:alarm-paint}. Choose its rational constants, then rational \(u_c>0\) with \(u_c<e^{-H_{\rm raw}}/(4w^2)\). Set
+\begin{equation}\label{eq:sequence-rate}
+Q=2|\mathcal H|,\qquad J=1+\left\lceil\frac{Q}{au_c}\right\rceil,
+\qquad u(\beta)=\frac{Q}{e^{J\beta}+Q-1},\qquad p(\beta)=u(\beta)/2.
+\end{equation}
+Thus \(u(\beta)<u_c\) on \([a,b]\). These choices precede the enumerator of \(W\). The score map \(p:(0,\infty)\to(0,1/2)\) is a computable strictly decreasing homeomorphism, with inverse
+\[
+p^{-1}(v)=J^{-1}\log[Q/(2v)-(Q-1)].
+\]
+
+For a positive integer \(N\) and finite rational union \(D\subset(0,1/2)\) of open intervals, use the physical alphabet \(\mathcal H\times\{0,1\}\), with coordinates \((H,Z)\). At site \(x\) the raw bit proposes zero. On the old row compute
+\[
+V_x=\frac1N\sum_{i=0}^{N-1}Z_{x+1+2i},\qquad
+H\text{ proposes }
+\begin{cases}
+\Dead,&V_x\in D,\\
+F(H_{x-2},H_x,H_{x+2}),&V_x\notin D.
+\end{cases}
+\]
+Apply one independent uniform whole-symbol replacement of probability \(u(\beta)\). This is a literal finite table: the sum and comparisons can be carried out by integer arithmetic in its definition. Its space--time interaction assigns energy zero when the complete child equals its proposal and \(J\) otherwise. Its normalized child sum is parent-independent, and gives exactly \eqref{eq:sequence-rate}.
+
+For one parity lane, all its reporter sites lie in the opposite parity. After one update the reporter rows are iid Bernoulli\((p)\) in space and time, independently of that lane's entire native innovation tape. Simultaneous tests may overlap. Pack the innovations of one site of each parity into a single independent logical vector. Take all initial reporter bits zero; the first detector cannot fire because \(0\notin D\).
+
+\begin{lemma}[Finite counter away from its collar]\label{lem:finite-counter}
+Fix a rational margin \(\delta>0\). Put
+\[
+\eta_N=2e^{-2N\delta^2},\qquad
+i_N=\max\{1,\min\{i\ge0:P^i\ge N+1\}\}.
+\]
+Choose \(N\) effectively large enough that
+\begin{equation}\label{eq:counter-size}
+\eta_N<\min\{1/12,e^{-H_{\rm al}(3/2)^{i_N}}\}.
+\end{equation}
+If \((p(\beta)-\delta,p(\beta)+\delta)\subset D\), the complete PCA is uniformly exponentially ergodic, with one-site common-innovation disagreement at most \((3\eta_N)^{t-1}\) for \(t\ge2\). If \(\beta\ge a\) and \(\dist(p(\beta),D)\ge\delta\), its mismatch interaction has two translation-invariant DLR measures whose live probabilities are at least \(7/8\) and at most \(1/8\), respectively. Its doubled magnet has magnetic order with gap \(3/8\) in the latter case and arbitrary-volume EWM in the former.
+\end{lemma}
+
+\begin{proof}
+For \(N\) independent reporter bits, the centered log moment-generating function is at most \(h^2/8\): the second derivative of the log moment-generating function is a variance on an interval of length one, at most \(1/4\), and its value and first derivative at zero vanish. Multiplication and optimization at \(h=4\delta\) give \(\Prob(|V_x-p|\ge\delta)\le\eta_N\). This bounds a false alarm in the exterior case and a missed alarm in the interior case. The search \eqref{eq:counter-size} terminates because \(i_N\le1+\log_P(N+1)\), \(P>3/2\), and \(N\delta^2\) eventually dominates \((N+1)^{\log_P(3/2)}\).
+
+On the cold side every actual native step is \(F\) on its actual inputs except at a native raw flag or an alarm that writes \(\Dead\). A past alarm has no further charged effect: later non-alarm steps again use \(F\) on the current, possibly empty, inputs. Each potential false alarm has a determining footprint inside the rank-\(i_N\) box of half-axes \(2P^{i_N},2T^{i_N}\), and paints only its center. Other ranks have no alarms. The packed logical innovations therefore satisfy Lemma~\ref{lem:alarm-paint}, even for overlapping detectors. Lemma~\ref{lem:empty-ancestry} gives the two live bounds from the explicit occupied and empty entrances, uniformly in position and date.
+
+Average each forward history over growing positive space--time rectangles and take a weak limit. Boundary fractions vanish under every fixed translation. The finite-cone factorization in Section~\ref{sec:gibbs-nonhalting} gives the DLR identities for every volume strictly above the entrance; these local identities survive the averages and the limit. The resulting translation-invariant DLR measures retain their respective live bounds. Double the interaction as in Lemma~\ref{lem:doubling}, add its free bit, and use
+\[
+M(h,h',r)=\tfrac12(\mathbf1_{\{h\text{ live}\}}-
+                                \mathbf1_{\{h'\text{ live}\}}).
+\]
+The two orders of the factors give means at least \((7/8-1/8)/2=3/8\) and at most \(-3/8\), exchanged by the fixed-point-free involution. Here no time blocking is needed because the live indicator survives the space--time average.
+
+On the warm side couple any two full starting rows by the same physical innovations. Their entire raw fields agree after one tick. A native discrepancy at a later date requires a missed common detector and a disputed one of its three lane-neighbor parents. A fixed backward path of length \(t-1\) uses distinct positive reporter dates; its misses are independent and cost at most \(\eta_N^{t-1}\). There are at most \(3^{t-1}\) such paths. The raw bit has already coupled, giving the stated bound for the full symbol. A finite-set union bound and comparison with a stationary start prove \eqref{eq:uee}. The PCA is finite-alphabet, finite-radius and strictly positive, so Theorem~\ref{thm:transfer}, imported from \cite[Theorem~3.1]{dmSpaceTime}, gives arbitrary-volume EWM of the normalized space--time specification. It has the same specification as the mismatch energy, differing only by a constant per child. Lemma~\ref{lem:doubling} preserves EWM.
+\end{proof}
+
+\subsection{Nesting the actual mixing sets}
+
+\begin{proof}[Proof of Theorem~\ref{thm:E}]
+Write \(W=G\cap[a,b]\) for the supplied effectively open ambient set, and put \(O=p(G\cap(0,\infty))\). Its rational interval enumeration is computable from the homeomorphism \(p\). Enumerate rational pairs \((c_i,\rho_i)\), \(\rho_i>0\), with
+\([c_i-3\rho_i,c_i+3\rho_i]\subset O\), so that their cores \([c_i-\rho_i,c_i+\rho_i]\) cover \(O\). Strict enclosure in an enumerated image interval is semidecidable and suffices to produce such a cover.
+
+At stage \(s\) take the finite list issued in the first \(s\) enumeration steps. For a pair issued at step \(j_i\le s\), put
+\[
+r_i(s)=2\rho_i-\rho_i2^{-(s-j_i)},\qquad
+d_i(s)=\rho_i2^{-(s-j_i)-3}.
+\]
+Let \(K_s\) be the closed union of radii \(r_i(s)\), let \(D_s\) be the open union of radii \(r_i(s)+d_i(s)\), and let \(O_s\) be the closed union of radii \(r_i(s)+2d_i(s)\), all about \(c_i\). They lie in \(O\), and
+\[
+O_s\subset\operatorname{int}K_{s+1},
+\qquad r_i(s+1)-r_i(s)=4d_i(s).
+\]
+For a nonempty list take \(\delta_s=\min_i d_i(s)\) and choose \(N_s\) by \eqref{eq:counter-size}. It may also be required to exceed every preceding batch size. Use the doubled magnet of Lemma~\ref{lem:finite-counter}. It has EWM on \(p^{-1}(K_s)\) and magnetic order off \(p^{-1}(O_s)\). Order excludes EWM because EWM implies uniqueness. Therefore, with every set restricted to \([a,b]\),
+\begin{equation}\label{eq:actual-nesting}
+p^{-1}(K_s)\subseteq\mathcal M_{\Phi_s}
+\subseteq p^{-1}(O_s)\subseteq p^{-1}(K_{s+1})
+\subseteq\mathcal M_{\Phi_{s+1}}.
+\end{equation}
+The strict inclusion in the interior gives the asserted relative compact containment, including window endpoints. Every point of \(W\) eventually belongs to an issued core. Empty stages have \(D=\varnothing\), with \(N=1\); the two clean-sector estimates use raw flags alone and give order everywhere, hence an empty EWM set. The displayed containments prove the union and all nesting claims. Every \(\beta\notin W\) is outside every \(p^{-1}(O_s)\), so every stage orders there.
+
+The alphabet is the fixed \((\mathcal H\times\{0,1\})^2\times\{0,1\}\); \(J\), the involution and \(M\) are common. Each anchored term has energy zero or \(J\), vertical range is one, and the finite horizontal range grows with the batch size. All searches and finite tables are uniform in the enumerator and stage.
+\end{proof}
+
+Together Theorems~\ref{thm:D} and~\ref{thm:E} give an equivalence: a subset of the window is relatively effectively open if and only if it is a union of actual EWM sets of a uniformly computable sequence of finite rational magnets. The realizing sequence may moreover have the nesting and common data of Theorem~\ref{thm:E}. The uncertain part of a stage lies inside its collars in \(W\); no order claim is made there.

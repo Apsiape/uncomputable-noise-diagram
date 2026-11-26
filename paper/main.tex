@@ -17,6 +17,9 @@
 \newtheorem*{theoremA}{Theorem A}
 \newtheorem*{theoremB}{Theorem B}
 \newtheorem*{theoremC}{Theorem C}
+\newtheorem*{theoremD}{Theorem D}
+\newtheorem*{theoremE}{Theorem E}
+\newtheorem*{theoremF}{Theorem F}
 \newtheorem{transfer}[theorem]{Theorem}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\N}{\mathbb N}
@@ -35,6 +38,7 @@
 \newcommand{\Iwin}{I_n}
 \newcommand{\QEDsection}{\par\medskip\noindent}
 \setlist{nosep}
+\setcounter{tocdepth}{1}
 \setlength{\emergencystretch}{2em}
 \allowdisplaybreaks[1]
 % Finite shrink in longtable's output box; LaTeX issue 1907.
@@ -76,7 +80,7 @@
 
 \title{\vspace{-1.2cm}\LARGE An uncomputable noise diagram on the line\\and a finite-energy Gibbs diagram on the square lattice}
 \author{Seth Douglas \and Nidhal Mghirbi}
-\date{\small Version 2.1.0, November 2026}
+\date{\small Version 3.0.0, November 2026}
 
 \begin{document}
 \maketitle
@@ -87,9 +91,9 @@
 \small Archive: \href{https://doi.org/10.5281/zenodo.24147268}{doi:10.5281/zenodo.24147268}
 \end{center}
 \begin{abstract}
-We construct one finite-range cellular automaton on the line with computable disjoint rational windows of uniform replacement noise. Throughout the window indexed by a program, the perturbed automaton is uniformly exponentially ergodic from every initial configuration if the program halts. If it runs forever, a one-site clock observable fails to converge from a specified initial law. The same dichotomy holds at one fixed positive rational noise rate for a computable family of radius-one rules. On the square lattice, the single-rule construction gives one translation-invariant finite-range interaction whose anchored terms have energies zero and one, with a fixed-point-free symmetry of its alphabet. In each halting window of inverse temperature its Dobrushin--Lanford--Ruelle specification has a unique Gibbs measure, with exponential weak spatial mixing. In each nonhalting window it has two translation-invariant Gibbs measures exchanged by the symmetry, under which an odd one-site observable has expectation at least \(1/4\) and at most \(-1/4\), respectively. The construction uses a hierarchy of fault-tolerant simulations and autonomous spatial signals that encode the noise window.
+Which sets of noise rates or inverse temperatures can separate rapid forgetting from persistent order? We construct one finite-range cellular automaton on the line with computable disjoint rational noise windows: throughout a program's window it is uniformly exponentially ergodic if the program halts, whereas a one-site clock fails to converge from a specified initial law otherwise. The same dichotomy holds at one fixed positive rational rate for a computable family of radius-one rules. On the square lattice, one finite-energy interaction has arbitrary-volume exponential weak spatial mixing in halting windows and opposite translation-invariant Gibbs states in nonhalting windows. We then study the full mixing set of finite rational magnets in a positive rational inverse-temperature window. Every such set is relatively effectively open. Conversely, every effectively open set is the union of nested actual mixing sets of a computable sequence of magnets with a common alphabet; every stage has opposite ordered states outside the target set, and the spatial range of the stages may grow. For every explicitly specified rational semialgebraic open diagram in an exponential temperature coordinate, one finite nearest-neighbor magnet has exactly that mixing set and is ordered everywhere else in the window. At most three hidden line states per direction suffice, and three can be necessary for ferromagnetic 65536-color Potts line decorations with identical matrices in both directions and exact periodic Perron weights. Whether one finite magnet realizes every effectively open set remains open.
 \end{abstract}
-\tableofcontents
+{\small\tableofcontents}
 
 \input{introduction}
 \input{model}
@@ -98,6 +102,9 @@ We construct one finite-range cellular automaton on the line with computable dis
 \input{organization}
 \input{dynamics}
 \input{gibbs}
+\input{effective-openness}
+\input{sequential-realization}
+\input{algebraic-diagrams}
 \input{discussion}
 \appendix
 \input{appendices}
