@@ -1,0 +1,76 @@
+\clearpage
+\section{Software checks: scope and results}\label{sec:software-checks}
+
+The accompanying programs use Python 3.10 or later and only its standard library. They specify finite objects and replay exact identities. The mathematical arguments identify the Gibbs state and its infinite-lag asymptotics.
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{.25\linewidth}p{.65\linewidth}@{}}
+\toprule
+Object & Exact check and scope \\
+\midrule
+Parent table & The printer gives 164\,852 signed Walsh terms with total absolute coefficient \(33\,293\,550\,733\,133\,931<2^{56}\). A separately coded assembly and scattering interpreter produces the same full multiset. \\
+Boolean circuit & Regenerate the 85\,041 ordered gates. Exact symbolic normalization, 315 decoder identities, the east quadratic, 68 arithmetic blocks, the full north polynomial and all 1024 selection rows prove its function on all \(2^{323}\) inputs. \\
+Parity core & Integer terminal polynomials and a nonnegative derivative polynomial verify the core's transmission and its strict monotonicity. \\
+Crystal printer & The checks verify local degrees and the fixed matching, contract each switch type at rational transmissions, test the port cases and representative route bends, and certify the rational temperature endpoints. Its description gives the exact signed-cell size and sampled vector. \\
+Supplementary identities & Exact rational arithmetic checks G's stage-start copy, the general selector coefficient bound, the return-series factorization and the integer estimate used in the \(10^{330}\)-lag bound. \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{What is exact.}
+Gate truth tables, coefficient dictionaries, tuple multisets, compressor identities, polynomial signs in the finite core certificate, and SHA-256 digests use integers. The named temperature endpoint checks use rational outward enclosures, repeated squaring and a Taylor remainder bound. The accompanying certificate proves a Boolean identity for the specified gate list; the thermal reduction is proved by the finite partition identities in Section~\ref{sec:herald-proof}.
+
+\paragraph{What is approximate.}
+The descriptions \(4.7\times10^{22}\) spins and \(1.8\times10^{10}\) spacings round displayed integers. The scale \(10^{2536}\) is only an onset estimate. None of these approximations is used in a proof.
+
+\paragraph{What these calculations do not decide.}
+They do not approximate the halting set, evaluate a correlation to unbounded lag, or execute the general enumerator-to-Ising construction of H. Sampled route checks supplement the disjoint-lane proof; they do not enumerate the signed crystal's entire repeat. Uniqueness, arbitrary-volume EWM, the circle singularities and the finite-data impossibility theorem use the mathematical arguments. In particular the certificate alone makes no assertion about a thermodynamic limit.
+
+\clearpage
+\section{Reproducing the finite objects}\label{sec:reproducibility}
+
+From the \texttt{programs} directory, run
+\begin{verbatim}
+python -I -B export_circuit.py
+python -I -B reference_scattering.py
+python -I -B certify_circuit.py
+python -I -B verify_results.py
+python -I -B crystal.py check
+\end{verbatim}
+The first command regenerates \texttt{herald-gates.json}, \texttt{binary-terms.tsv} and the untrusted component descriptions in \texttt{circuit-hints.json}. The second requires equality of the independently coded parent reference and the printed table, reporting 235 register instructions, 5731 payloads and 164\,852 options. The third verifies every proposed component before using it and writes \texttt{CIRCUIT-CERTIFICATE.json}. It reports \texttt{PASS}, 323 input bits, 85\,041 final gates, 63\,011 raw gates, 68 arithmetic blocks, 96 population calls and 1024 selection rows. The fourth checks the delivered object digests and supplementary identities. The fifth prints a JSON record including
+\begin{verbatim}
+spins_per_geometric_cell: 32
+bonds_per_geometric_cell: 48
+signed_cell_spins: 46752085813280748601344
+degree: 3
+observed_site: [552699460, 0, 0]
+lag: [0, 17686381696, 0]
+\end{verbatim}
+It also checks the named window \([87/4,45/2]\). A single geometric bond is obtained, for example, with
+\begin{verbatim}
+python -I -B crystal.py edge 0 0 0
+\end{verbatim}
+No enumeration of the huge signed repeat is needed for that lookup. \texttt{binary\_wave.py describe} prints the parent alphabet and coefficient count; its \texttt{horizontal}, \texttt{vertical} and \texttt{spin} commands query the finite tables by symbol ordinal. \texttt{herald\_ising.py} and \texttt{square\_ising.py} give the intermediate finite graph and routed realization. Imported modules define their register instructions, rail encoding, parity blocks and compressed route segments. \texttt{cubic\_parity.py} regenerates the finite core's terminal polynomials and derivative checks. \texttt{core\_polys.json} lists their coefficients.
+
+\paragraph{Object identity.}
+The full SHA-256 digests reproduced by the certificate are
+\begin{center}
+\small\ttfamily
+\begin{tabular}{@{}l@{}}
+herald-gates.json\\
+a069b637730ec10e48d7402608e929f1e71\\
+c8b558164388cdd07047a57eff2cc\\[3pt]
+binary-terms.tsv\\
+d59dd512ce13ddbd6ab180b72634f277fdc\\
+cc22b53861ff65c0060483aa84c2d
+\end{tabular}
+\end{center}
+Concatenate the two lines of each digest. These digests identify the compared objects; exact equality decisions within the certifier use full integer or tuple data. The coefficient multiset comparison includes unreachable contexts. The reference is independently coded and checked equal to the printed table.
+
+\paragraph{Building the manuscript.}
+From the manuscript directory run the following command three times:
+\begin{verbatim}
+pdflatex -no-shell-escape -interaction=nonstopmode -halt-on-error main.tex
+\end{verbatim}
+The bibliography is included directly. No bibliography program or shell escape is required. The formal results for the earlier higher-dimensional constructions belong to the version specified in the introduction; this distribution adds finite Python certificates rather than a new formalization.

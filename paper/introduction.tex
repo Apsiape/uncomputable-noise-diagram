@@ -1,6 +1,64 @@
 \section{Introduction}\label{sec:introduction}
 
-Independent noise can make a cellular automaton forget its initial configuration. On the line, Gács showed that even strictly positive transition probabilities can coexist with indefinite memory \cite{gacs86,gacs01}. For a deterministic local rule perturbed by independent, uniform whole-symbol replacement, the replacement probability is a single scalar. We ask how hard it is to determine whether an automaton forgets at a given value of that scalar. We also ask how hard it is to determine uniqueness of Gibbs measures in the associated space--time model.
+A finite interaction can have an uncomputable boundary in the shape of its correlations while its Gibbs state stays unique, exponentially mixing and analytic. We construct a zero-field Ising example with unit-magnitude exchanges. At one noncomputable inverse temperature, a specified spin correlation changes from positive strictly decreasing decay to an asymptotic damped cosine, with period three in units of one specified vector \(d\). This is a disorder line in Stephenson's correlation sense \cite{stephenson}. Fisher and Widom studied the corresponding monotone/oscillatory distinction for linear systems \cite{fisherWidom}.
+
+The observable requires an infinite sequence of separations. Every fixed-lag correlation is computable, but lag and positive signal bounds cannot depend computably only on a promised distance above the cut. The graph is nonplanar, with a 32-vertex geometric cell and degree three; its signs repeat only after about \(4.7\times10^{22}\) spins, and one displayed lag spans about \(1.8\times10^{10}\) geometric lattice spacings. The conclusion concerns an exactly specified infinite-volume correlation.
+
+This example leads to a realization question: which inverse-temperature sets can be oscillatory sets on one fixed Ising geometry? For sampled correlations every relatively effectively open set is realized, and the converse holds under uniqueness and an all-lag sign promise. A separate construction answers the negative point-field-response question among finite rational magnets unique on the window. The full mixing-phase realization problem remains open. These questions extend two earlier strands: temporal forgetting on the line and one Gibbs mixing/order diagram on the square lattice.
+
+\newpage
+\begin{figure}[ht]
+\centering
+\setlength{\unitlength}{1mm}
+\begin{picture}(145,56)
+\put(0,42){\framebox(45,10){\small An enumerator of \(W\)}}
+\put(47,47){\vector(1,0){10}}
+\put(59,42){\framebox(85,10){\small Nested EWM sets; a sequence (E)}}
+\put(0,28){\framebox(45,10){\small Semialgebraic diagram}}
+\put(47,33){\vector(1,0){10}}
+\put(59,28){\framebox(85,10){\small Exact EWM set; one magnet (F)}}
+\put(0,14){\framebox(45,10){\small An enumerator of \(W\)}}
+\put(47,19){\vector(1,0){10}}
+\put(59,14){\framebox(85,10){\small Point-response sign; one magnet (G)}}
+\put(0,0){\framebox(45,10){\small An enumerator of \(W\)}}
+\put(47,5){\vector(1,0){10}}
+\put(59,0){\framebox(85,10){\small Sampled decay shape; one Ising model (H)}}
+\end{picture}
+\caption{Realization in a positive rational inverse-temperature window. E exhausts \(W\) by actual EWM sets and orders outside \(W\); F realizes an explicit diagram with order on its complement. G and H keep one Gibbs state, EWM and analytic pressure throughout, prescribing respectively negative point-field response somewhere and oscillation along \(d\). H is an algorithmic existence construction. The explicit crystal I has its own binary-energy parent. Whether arbitrary relatively effectively open \(W\) is one magnet's EWM set with opposite translation-invariant order on its complement remains open.}\label{fig:realization}
+\end{figure}
+
+\paragraph{Decay shape on a fixed Ising geometry.}
+For a sampled spin write \(\mathcal C_\beta(n)=\langle\sigma_o\sigma_{o+nd}\rangle_\beta\), \(n\ge0\), and \(\mathcal F_\beta(t)=\sum_{n\ge0}\mathcal C_\beta(n)t^n\); here \(d\) is a lattice vector, unrelated to the integer \(d\) of Theorem~\ref{thm:F}. ``Nearest'' refers to the circle of convergence of this lag generating function. For a finite-period interaction, a local spin \(X\), a site \(o\) and a vector \(d\), the sampled correlation \(\langle X_oX_{o+nd}\rangle_\beta\) satisfies the \emph{all-lag sign promise} on \([a,b]\) with \emph{oscillatory set} \(\mathcal O\subseteq[a,b]\) if it is positive for every \(n\ge1\) at each \(\beta\in[a,b]\setminus\mathcal O\), and at each \(\beta\in\mathcal O\) its sign agrees with that of \(\cos(2\pi n/3)\) for all large \(n\). Under the promise, \(\mathcal O\) is exactly the set of \(\beta\in[a,b]\) at which some positive lag is negative.
+
+The geometric graph is fixed; the finite periodic signs and the sampling data are chosen once from the input enumeration.
+\begin{samepage}
+\begin{theoremH}[Ising decay-shape diagrams]\label{thm:H}
+Given rational \(0<a<b\) and an enumerator of a relatively effectively open \(W\subset[a,b]\), there is an effective construction of one periodic sign pattern \(\epsilon_e\in\{-1,+1\}\) on the fixed 32-vertex, three-regular geometric graph of Section~\ref{sec:crystal-geometry}, a site \(o\), and a period vector \(d\). For the zero-field Hamiltonian \(\mathcal H=-\sum_e\epsilon_e\sigma_u\sigma_v\), only \(\beta\in[a,b]\) varies. Throughout this window there is exactly one DLR measure, uniform arbitrary-volume EWM, real-analytic pressure and real-analytic finite marginals. Off \(W\), \(\mathcal C_\beta(n)>0\) decreases strictly from \(n=0\). On \(W\), for pointwise constants \(A_\beta>0\) and \(0<\widehat\varsigma_\beta<\varsigma_\beta<1\),
+\[
+\mathcal C_\beta(n)=A_\beta\varsigma_\beta^n\cos(2\pi n/3)+O(\widehat\varsigma_\beta^n),
+\]
+and \(\mathcal F_\beta\) has exactly two nearest singularities, both simple poles. Conversely, for a finite-period rational interaction, a rational local spin \(X\), a site \(o\) and a sampling vector \(d\), uniqueness throughout the window and the all-lag sign promise with oscillatory set \(\mathcal O\) imply that \(\mathcal O\) is relatively effectively open, uniformly in these data and the window.
+\end{theoremH}
+\end{samepage}
+The period-three law is in units of \(d\). The construction is an algorithmic existence proof; a general compiler from enumerator code is not supplied. A square-lattice variant uses exchanges in \(\{-1,0,+1\}\) on nearest and diagonal pairs. The proof is in Section~\ref{sec:ising-diagrams}.
+
+\newpage
+The next theorem uses a separately specified parent and a pointwise executable bond printer.
+\begin{theoremI}[An explicit crystal]\label{thm:I}
+On that same nonplanar 32-vertex geometric graph, the periodic signs specified in Section~\ref{sec:explicit-crystal} give one zero-field Ising model with every exchange in \(\{-1,+1\}\). In the window \(\mathcal I_{\rm cr}=[87/4,45/2]\), there is exactly one DLR measure, uniform arbitrary-volume EWM, real-analytic pressure and real-analytic finite marginals. For
+\[
+o=(552699460,0,0),\qquad d=(0,17686381696,0),
+\]
+where the third coordinate indexes the geometric basis, the mean-zero spin correlation \(\mathcal C_\beta(n)\) is positive and strictly decreasing from \(n=0\) for \(\beta\le\beta_\star\), and has the two-simple-pole cosine form of H for \(\beta>\beta_\star\). The interior cut \(\beta_\star\) is right-computably enumerable and has exactly the Turing degree of the halting set. At every \(\beta\le\beta_\star\), including equality, the convergence circle has one real simple pole and two non-pole singularities at phases \(\pm2\pi/3\).
+\end{theoremI}
+The signed repeat contains \(46\,752\,085\,813\,280\,748\,601\,344\) spins; every vertex has degree three. One lag is \(17\,686\,381\,696\) axial lattice spacings and four parent lags, so period three is again in units of \(d\). The monotone-side oscillatory remainder has no exponential gap below its positive leading rate.
+\begin{proposition}[Finite-data limits for I]\label{prop:finite-data}
+Every fixed-lag correlation of I is computable, uniformly from a computable inverse temperature in \(\mathcal I_{\rm cr}\). There is no total computable \(N(k)\) bounding a negative sampled lag for all \(\beta\ge\beta_\star+2^{-k}\) in that window, and no total computable \(\varepsilon(k)>0\) guaranteeing any negative lag of magnitude at least \(\varepsilon(k)\) there. In its binary parent, no negative value occurs at any parent inverse temperature in \([1/4,1/2]\) through parent lag \(10^{330}\). The quoted scale \(10^{2536}\) for a parent onset is an estimate only.
+\end{proposition}
+Section~\ref{sec:finite-data} proves these statements and keeps parent lags, sampled lags and geometric spacings distinct.
+
+\paragraph{From forgetting to planar order.}
+Independent noise can make a cellular automaton forget its initial configuration. G\'acs showed that strictly positive transition probabilities on the line can also coexist with indefinite memory \cite{gacs86,gacs01}. For a deterministic rule perturbed by independent, uniform whole-symbol replacement, the replacement probability is a single scalar. Our first diagram asks whether the full automaton forgets at that rate; the associated space--time diagram asks whether its Gibbs specification mixes.
 
 Fix a universal machine \(U\) with inputs \(n\in\N=\{0,1,\ldots\}\). In the following statements, uniform exponential ergodicity refers to the entire observable state at each site. Failure of convergence means failure of weak convergence from at least one initial law.
 
@@ -16,6 +74,7 @@ There exist one translation-invariant, finite-range interaction \(\Psi\) on \(\Z
 There exist one rational replacement rate \(\varepsilon_*\in(0,1)\) and a computable family of finite-alphabet radius-one cellular automata \(f_n\) on \(\Z\). At rate \(\varepsilon_*\), the perturbation of \(f_n\) is uniformly exponentially ergodic if \(U(n)\) halts. If \(U(n)\) runs forever, its laws starting from some initial law fail to converge weakly.
 \end{theoremC}
 
+\paragraph{Which mixing sets can a finite magnet realize?}
 The square-lattice result leads to a second question: which open sets of inverse temperatures can be mixing sets of finite magnets? Here a \emph{finite rational magnet} is a translation-invariant finite-range interaction on a finite alphabet, specified by finite rational energy tables, together with an invariant fixed-point-free alphabet involution \(\sigma\) and a rational one-site observable \(M\), \(|M|\le1\), with \(M\circ\sigma=-M\). Exponential weak spatial mixing (EWM) always means the arbitrary-volume estimate \eqref{eq:wsm}. For a rational window \(0<a<b\), write
 \[
 \mathcal M_\Phi=\{\beta\in[a,b]:\Phi\text{ has EWM at }\beta\}.
@@ -49,34 +108,46 @@ W_U=\{\beta\in[a,b]:e^{-\beta/d}\in U\},
 and which has magnetic order with gap \(1/4\) at every other inverse temperature in the window, including every relative boundary point of \(W_U\) in \([a,b]\). Its single-site alphabet is the product of \(65536\) colors, at most three hidden line states for each of the two directions, and two outgoing edge indices from a finite list. Three line states can be necessary among ferromagnetic \(65536\)-color Potts line decorations with identical horizontal and vertical matrices and exact individual-Perron weights for every periodic color word, even when the rational energy denominator is freely chosen.
 \end{theoremF}
 
+\paragraph{A complete response-sign characterization.}
+If a magnet is unique on the window, symmetry gives \(\mu_\beta(M_x)=0\). Its response at \(x\) to a dimensionless point field at the origin is
+\[
+ R_\beta(x)=\left.\frac{d}{dh}\right|_{h=0}
+ \frac{\mu_\beta(M_xe^{hM_0})}{\mu_\beta(e^{hM_0})}
+ =\langle M_0M_x\rangle_\beta.
+\]
+Write \(\mathcal R_\Phi=\{\beta\in[a,b]:R_\beta(x)<0\text{ for some }x\ne0\}\).
+For this observable one magnet suffices for every relatively effectively open set.
+
+\begin{theoremG}[Response-sign diagrams]\label{thm:G}
+Given rational \(0<a<b\) and an enumerator of a relatively effectively open \(W\subset[a,b]\), one computes one finite rational magnet \(\Phi\) on \(\Z^2\), with \(M=S\in\{-1,1\}\), having the following properties.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item At every \(\beta\in[a,b]\) it has exactly one DLR measure \(\mu_\beta\), and its specification has arbitrary-volume EWM \eqref{eq:wsm}. Its pressure is \(p(\beta)=\log g_0(e^{-\beta})\) for one positive-coefficient integer polynomial \(g_0\), hence is real-analytic on the window.
+\item Its point-field law \(\mu_{\beta,h}=e^{hS_0}\mu_\beta/\mu_\beta(e^{hS_0})\) is the unique Gibbs state with that field, and \(\mu_{\beta,h}(S_x)=\tanh(h)R_\beta(x)\) for every real \(h\) and every \(x\ne0\), where \(R_\beta(x)=\langle S_0S_x\rangle_\beta\). One has \(\mathcal R_\Phi=W\), and \(R_\beta(x)=0\) off the column \(\{(0,n):n\in\Z\}\).
+\item Off \(W\), \(R_\beta(x)\ge0\) for every \(x\), and \(R_\beta((0,n))>0\) for every \(|n|\ge N_0\), with \(N_0\) independent of \(\beta\). On \(W\), \(R_\beta((0,n))<0\) for every \(|n|\ge N(\beta)\). The least such onset \(N(\beta)\) is unbounded near every relative boundary point of \(W\).
+\item Conversely, for every finite rational magnet unique at every \(\beta\in[a,b]\), its response-sign set \(\mathcal R_\Phi\) is relatively effectively open, uniformly in the table, range, observable and rational window.
+\end{enumerate}
+\end{theoremG}
+
+In the constructed family, some negative response and eventual negative column response coincide throughout the window. Proposition~\ref{prop:hidden-markov} explains why retaining its stationary iid hidden row under strictly positive finite decorations freshly sampled from the hidden neighborhood, ignoring their own earlier values, cannot supply the magnetic order required in the open mixing-phase problem.
+
 \begin{table}[ht]
 \centering\small
-\begin{tabular}{@{}p{.15\linewidth}p{.29\linewidth}p{.47\linewidth}@{}}
+\begin{tabular}{@{}p{.09\linewidth}p{.30\linewidth}p{.52\linewidth}@{}}
 \toprule
-Result & Object and input & Temperature conclusion \\
+Result & Object and input & Observable and conclusion in the window \\
 \midrule
-B & One interaction; programs in fixed windows & EWM on halting windows; order on nonhalting windows; other temperatures unclassified. \\
-D & Any finite rational magnet & Its EWM set is effectively open. \\
-E & A sequence; an enumerator of \(W\) & Nested EWM sets exhaust \(W\); every stage orders outside \(W\). \\
-F & One magnet; an explicit semialgebraic diagram & Exact EWM set and order on its complement in the window. \\
+A, C & One rule with program windows (A); a family at one fixed rate (C) & Full-state exponential forgetting for halting; nonconvergence from a specified law for nonhalting. \\
+B & One interaction; programs in fixed inverse-temperature windows & EWM on halting windows; opposite order on nonhalting windows; other temperatures unclassified. \\
+D & Any finite rational magnet & Its arbitrary-volume EWM set is relatively effectively open. \\
+E & A sequence; an enumerator of \(W\) & Nested actual EWM sets exhaust \(W\); every stage orders outside \(W\). \\
+F & One magnet; an explicit semialgebraic diagram & Exact EWM set and opposite order on its complement. \\
+G & One magnet; an enumerator of \(W\) & Some negative point-field response exactly on \(W\); eventual negative sign along the column on \(W\), eventual positive sign there off \(W\); EWM everywhere. \\
+H & One sign pattern on a fixed Ising geometry; an enumerator of \(W\) & Sampled oscillatory set exactly \(W\); all-lag positive decrease off \(W\); one DLR state and EWM everywhere. \\
+I & One explicit nonplanar crystal; a fixed rational window & Monotone decay through a halting-degree cut; asymptotic cosine above it, period three in units of \(d\). \\
 \bottomrule
 \end{tabular}
-\caption{The quantifiers distinguish programmed windows, sequential realization and exact explicit realization.}\label{tab:scope}
+\caption{Known realization results, with each observable and object specified. Theorems D--H use a rational window \(0<a<b\); I uses \(\mathcal I_{\rm cr}\).}\label{tab:scope}
 \end{table}
-
-\begin{figure}[ht]
-\centering
-\setlength{\unitlength}{1mm}
-\begin{picture}(145,27)
-\put(0,15){\framebox(51,10){\small Effectively open \(W\)}}
-\put(53,20){\vector(1,0){18}}
-\put(73,15){\framebox(70,10){\small A sequence of finite magnets (E)}}
-\put(0,0){\framebox(51,10){\small Explicit semialgebraic \(U\)}}
-\put(53,5){\vector(1,0){18}}
-\put(73,0){\framebox(70,10){\small One finite magnet (F)}}
-\end{picture}
-\caption{Two realization statements. The unrestricted single-magnet question remains open.}\label{fig:realization}
-\end{figure}
 
 A finite positive transition matrix contracts total variation after one step, so dimension one is the smallest possible lattice dimension for Theorems A and C. For a finite-alphabet one-dimensional finite-range interaction with finite energies, blocks of length at least the range give a nearest-neighbor transfer matrix with strictly positive entries. The Perron--Frobenius theorem gives convergence of block marginals from every pair of end conditions as the ends recede. The DLR equations then give uniqueness at every finite inverse temperature; see \cite[Chapter~3]{georgii} for the positive-matrix and Markov-specification argument. Theorem B attains the smallest possible dimension for this finite-energy dichotomy.
 
@@ -85,19 +156,19 @@ In Theorem B the alphabet is \(\mathcal B=\A^T\times\A^T\times\{0,1\}\), where \
 The automaton uses finite groups of neighboring sites to represent simulated sites. Each level repeats the same local program and executes a longer bounded-tape computation as the block size increases. To select the program, the rule measures distances between rare randomly refreshed walls. Within each noise window the distances usually identify its index. The measured index determines the lengths of spatial stripes, which are stable for the duration of the local simulations that read them. A comparison of three stripe samples at each scale locks the simulated input at the intended level. In the family of Theorem C the program is specified directly in the local rule. In both constructions a halted computation forces a region of simulated sites to issue the empty symbol. A long physical disagreement would then require a long connected chain of locally bad space--time regions, which has exponentially small probability. When the computation continues, a synchronized initial hierarchy retains a clock signal on every observation scale with high probability.
 
 \paragraph{Related results.}
-Kurdyumov's undecidability of ergodicity for one-dimensional probabilistic cellular automata allows zero transition probabilities \cite{toomChapter}. Toom obtained undecidability results for binary cellular automata with zero transition probabilities \cite{toom}. For deterministic cellular automata on the line, Bu\v{s}i\'c, Mairesse and Marcovici established that ergodicity is equivalent to nilpotency \cite{bmm}, which is undecidable by Kari's theorem \cite{kari}. Theorem C concerns ergodicity at one fixed positive rate. Other undecidability results with positive noise concern stochastic stability in a vanishing-noise limit \cite{msStability} and existence of stationary Bernoulli measures \cite{mtBernoulli}. The fault-tolerant mechanism adapts G\'acs \cite{gacs86,gacs01}: the 1986 paper's Sections~5, 7 and~9 supply computation, Purge, Shrink and Grow designs, and Sections~10--16 supply the tile, properness, nested-rectangle, healing and block-integrity, weak/strong computation, separation and end-relief organization. Its Lemma~4.1 supplies the sparsity argument. We specify the modifications and prove the required implications below.
+Kurdyumov's undecidability of ergodicity for one-dimensional probabilistic cellular automata allows zero transition probabilities \cite{toomChapter}. Toom obtained undecidability results for binary cellular automata with zero transition probabilities \cite{toom}. For deterministic cellular automata on the line, Bu\v{s}i\'c, Mairesse and Marcovici established that ergodicity is equivalent to nilpotency \cite{bmm}, which is undecidable by Kari's theorem \cite{kari}. Theorem C concerns ergodicity at one fixed positive rate. Other undecidability results with positive noise concern stochastic stability in a vanishing-noise limit \cite{msStability}. Marcovici and Taati prove that positive-rate PCA with stationary Bernoulli measures are exponentially ergodic in every dimension, and that in dimensions at least two the existence of such a measure is algorithmically undecidable \cite{mtBernoulli}. The fault-tolerant mechanism adapts G\'acs \cite{gacs86,gacs01}: the 1986 paper's Sections~5, 7 and~9 supply computation, Purge, Shrink and Grow designs, and Sections~10--16 supply the tile, properness, nested-rectangle, healing and block-integrity, weak/strong computation, separation and end-relief organization. Its Lemma~4.1 supplies the sparsity argument. We specify the modifications and prove the required implications below.
 
 Marsan, Sablik and T\"orm\"a constructed a one-dimensional automaton that is ergodic under small and large uniform noise and nonergodic at an intermediate rate \cite{mst}. Their work asks how the noise parameter can organize changes of dynamical behavior. Marsan and Sablik characterized the possible uniqueness sets for noisy continuous maps on a Cantor space, including effective realizations \cite{msMaps}. Theorem A concerns an uncomputable diagram of convergence for a cellular automaton. Its halting windows lie in the uniqueness set; no membership claim for that set is made on its nonhalting windows. Its nonhalting witness separates the temporal phases of a one-site clock. The computable ordering of the windows accumulates at zero. Because the halting set and its complement are both infinite, the two regimes switch infinitely often along this ordering.
 
-The quantum spectral-gap undecidability theorem of Cubitt, P\'erez-Garc\'ia and Wolf \cite{cpw} and the single one-parameter quantum phase diagram of Bausch, Cubitt and Watson \cite{bcw} give zero-temperature precedents for a halting-indexed phase diagram. For classical models, Gu, Weedbrook, Perales and Nielsen proved undecidability of ground-state properties for input-dependent Ising-type families \cite{gwpn}. Fixed finite-range models can have chaotic zero-temperature limits, as shown by Chazottes and Hochman \cite{ch}, Chazottes and Shinoda \cite{cs}, and Barbieri, Bissacot, Dalle Vedove and Thieullen \cite{bbdt}. Gayral, Sablik and Taati show that uniform finite-range models with rational-valued interactions have closed connected \(\Pi^0_2\)-computable ground-state sets and prove a converse realization theorem up to computable affine homeomorphism. They also prove that zero-temperature chaoticity of a two-dimensional finite-range interaction is undecidable and anticipated that most thermodynamic questions near zero temperature are undecidable in dimensions at least two \cite{gst}. The passage from cellular automata to space--time Gibbs measures originates with Domany and Kinzel \cite{dk} and was developed by Goldstein, Kuik, Lebowitz and Maes \cite{gklm} and Lebowitz, Maes and Speer \cite{lms}. Mi\k{e}kisz and Taati use noise-resilient automata to obtain ordered low-temperature behavior for finite-range interactions \cite{mtaati}.
+The quantum spectral-gap undecidability theorem of Cubitt, P\'erez-Garc\'ia and Wolf \cite{cpw} and the continuous one-parameter quantum Hamiltonian family of Bausch, Cubitt and Watson \cite{bcw} give ground-state precedents for uncomputable phase diagrams. In the latter, the varied parameter enters the Hamiltonian, and the alternatives have different spectral gaps and ground-state order. Purcell, Li and Cubitt place a single ground-state phase transition at a halting probability in another quantum Hamiltonian family, again varying a coupling parameter \cite{plc}. Here the interaction tables are fixed and the varied equilibrium parameter is inverse temperature; Theorem~\ref{thm:G} changes the sign of the point-field response along a column while retaining uniqueness, EWM and analytic pressure. For classical models, Gu, Weedbrook, Perales and Nielsen proved undecidability of macroscopic ground-state properties of infinite periodic Ising lattices, including correlation quantities \cite{gwpn}. Their argument supplies a classical precedent; H and I concern positive-temperature sampled decay shape in a unique mixing Gibbs state. Fixed finite-range models can have chaotic zero-temperature limits, as shown by Chazottes and Hochman \cite{ch}, Chazottes and Shinoda \cite{cs}, and Barbieri, Bissacot, Dalle Vedove and Thieullen \cite{bbdt}. Gayral, Sablik and Taati show that uniform finite-range models with rational-valued interactions have closed connected \(\Pi^0_2\)-computable ground-state sets and prove a converse realization theorem up to computable affine homeomorphism. They also prove that zero-temperature chaoticity of a two-dimensional finite-range interaction is undecidable and anticipated that most thermodynamic questions near zero temperature are undecidable in dimensions at least two \cite{gst}. The passage from cellular automata to space--time Gibbs measures originates with Domany and Kinzel \cite{dk} and was developed by Goldstein, Kuik, Lebowitz and Maes \cite{gklm} and Lebowitz, Maes and Speer \cite{lms}. Mi\k{e}kisz and Taati use noise-resilient automata to obtain ordered low-temperature behavior for finite-range interactions \cite{mtaati}.
 
 Our fixed-rate reduction in higher dimensions left the one-dimensional case open \cite{dmForgetting}. We previously proved infinitely many transitions for one noisy automaton on \(\Z^4\) \cite{dmWindows} and a halting-indexed diagram on \(\Z^3\) with a space--time Gibbs consequence \cite{dmNoise}. Theorems A and C give the corresponding reductions on the line. The all-DLR uniqueness implication in Theorem B uses the one-dimensional space--time equivalence \cite{dmSpaceTime}. Our earlier two-dimensional positive-temperature diagram used hard constraints and controlled only translation-invariant Gibbs measures \cite{dmHard}; our all-Gibbs diagrams used higher-dimensional lattices \cite{dmNoise}. Our spontaneous-magnetization preprint treated finite-energy two-dimensional input-dependent families at one fixed positive temperature \cite{dmMagnetization}. Theorem B gives one finite-energy interaction on \(\Z^2\), with the input encoded in temperature windows, uniqueness among all DLR measures in the halting windows and translation-invariant order with an exact symmetry in the nonhalting windows, closing the finite-energy question raised by \cite{dmHard}.
 
 \paragraph{Related planar constructions.}
-The finite certificate behind Theorem~D is the Dobrushin--Shlosman uniqueness condition; see Section~\ref{sec:effective}. Summing auxiliary spins into a temperature-dependent coupling is the decoration--iteration transformation of Sy\^ozi \cite{syozi} and Fisher \cite{fisher}. Decorated planar Ising-type models (Ising--Heisenberg and spin--electron) already exhibit several re-entrant transitions \cite{canovaStrecka,cencarikovaStreckaLyra}, and magnetic re-entrance in the Ising model on a decorated square lattice is analysed in \cite{zarubinKassanOgly}. The construction for Theorem~F shares auxiliary spins along entire rows and columns. It prescribes every explicitly given rational semialgebraic EWM set, selects individual real algebraic conjugates, and controls the full-spin specification under arbitrary exteriors. The positive-coefficient conversion uses P\'olya's 1928 positivity theorem and its quantitative development by Powers and Reznick \cite{powersReznick}. The nearest flexibility precedents for Theorem~E are the perturbed continuous maps of Marsan and Sablik \cite{msMaps} and the two-transition automaton of Marsan, Sablik and T\"orm\"a \cite{mst}; their model classes and convergence properties differ from the EWM and magnetic-order assertions here.
+The finite certificate behind Theorem~D is the Dobrushin--Shlosman uniqueness condition; see Section~\ref{sec:effective}. Summing auxiliary spins into a temperature-dependent coupling uses the decoration transformations generalized by Fisher \cite{fisher}; Sy\^ozi obtained the transition temperature of the Kagom\'e lattice \cite{syozi}. Decorated planar Ising-type models (Ising--Heisenberg and spin--electron) already exhibit several re-entrant transitions \cite{canovaStrecka,cencarikovaStreckaLyra}, and magnetic re-entrance in the Ising model on a decorated square lattice is analysed in \cite{zarubinKassanOgly}. The construction for Theorem~F shares auxiliary spins along entire rows and columns. It prescribes every explicitly given rational semialgebraic EWM set, selects individual real algebraic conjugates, and controls the full-spin specification under arbitrary exteriors. The positive-coefficient conversion uses P\'olya's 1928 positivity theorem and its quantitative development by Powers and Reznick \cite{powersReznick}. The nearest flexibility precedents for Theorem~E are the perturbed continuous maps of Marsan and Sablik \cite{msMaps} and the two-transition automaton of Marsan, Sablik and T\"orm\"a \cite{mst}; their model classes and convergence properties differ from the EWM and magnetic-order assertions here.
 
-\paragraph{Organization.}
-Sections~\ref{sec:model}--\ref{sec:gibbs} contain the constructions and proofs of Theorems~A--C. Section~\ref{sec:effective} proves Theorem~D using a finite block certificate. Section~\ref{sec:sequential} proves Theorem~E, adding local-alarm sparsity and empty-sector ancestry lemmas to the native hierarchy. Section~\ref{sec:algebraic} proves Theorem~F by positive transfer matrices on rows and columns. A reader interested in planar diagrams can read the three new sections in that order; only the cold-state part of Section~\ref{sec:sequential} uses the hierarchy of Sections~\ref{sec:construction}--\ref{sec:dynamics}. The transfer-matrix argument is independent of it.
+\paragraph{Reading guide.}
+Sections~\ref{sec:model}--\ref{sec:gibbs} develop the line automaton, its noise diagram and the planar Gibbs diagram, proving Theorems~A--C. The hierarchy in Sections~\ref{sec:construction}--\ref{sec:dynamics} can be treated as the computational machinery for those results. Sections~\ref{sec:effective}, \ref{sec:sequential} and~\ref{sec:algebraic} then ask which full EWM sets can be prescribed, proving D, E and F. Only the ordered-state argument for E uses that hierarchy. Section~\ref{sec:response} proves G by an independent finite Fourier construction, using Theorem~\ref{thm:transfer} for the PCA-to-Gibbs step. Section~\ref{sec:hidden-markov} proves the supporting hidden Markov proposition. Sections~\ref{sec:ising-diagrams} and~\ref{sec:explicit-crystal} prove H and I. A reader interested in the decay-shape result can start with these statements, the binary-parent return formula in Section~\ref{sec:binary-parent}, the thermal reduction in Section~\ref{sec:herald-proof}, and the discussion. The hierarchy for A--C can be treated as a separate computational input; neither H nor I uses it.
 
-\paragraph{Changes from version 2.1.0.}
-Theorems~D--F add effective openness for finite rational magnets, sequential realization of every relatively effectively open set of inverse temperatures, and exact single-magnet realization of every explicitly specified rational semialgebraic open diagram in an exponential temperature coordinate. The sequential theorem uses one alphabet and growing spatial range, with order outside the target set at every stage. New lemmas prove the correlated local-alarm estimate and empty-sector ancestry used in that theorem. The exact construction uses at most three line states per direction, and three are necessary for one explicit diagram among ferromagnetic \(65536\)-color Potts line decorations with identical matrices in both directions and exact periodic Perron weights. Theorems~A--C and their proofs are unchanged in substance. The constructions on \(\Z^3\) to \(\Z^6\), the Gibbs constructions on \(\Z^4\) to \(\Z^7\), and their Lean appendix remain in version 1.4.0 \cite{dmNoise}.
+\paragraph{Changes from version 3.0.0.}
+Theorem~G adds exact response-sign diagrams and their uniqueness converse; Proposition~\ref{prop:hidden-markov} gives exponential forgetting for positive line PCA with a finite hidden Markov stationary row. References to the lettered theorems now print their letters. Theorems~H and~I add sampled Ising decay-shape diagrams and an explicit crystal with a halting-degree disorder line, together with finite-data limits, a Boolean circuit identity certified on all inputs, and its exact thermal reduction. Theorems~A--F and their proofs are retained. The title changes from ``An uncomputable noise diagram on the line and a finite-energy Gibbs diagram on the square lattice'' to reflect the new results. The higher-dimensional constructions and their formal appendix remain in version 1.4.0 \cite{dmNoise}.

@@ -1,0 +1,300 @@
+\section{An explicit crystal and its halting-degree disorder line}\label{sec:explicit-crystal}
+
+We prove I independently of the cap construction. The parent now has \(2^{105}\) symbols and only the two bond-energy values zero and one. A universal finite circuit identity then identifies the microscopic Gibbs marginal exactly with this parent. Notation introduced in this section is local to it; for example \(\eta\) below is a report multiplier, not an initial row.
+
+\subsection{The binary-energy parent}\label{sec:binary-parent}
+
+The parent table printer and its two register modules define the complete finite tables. We describe their coordinates and the computation relevant to the correlation. A symbol is \((y,l,r,i)\), with \(y\in\mathbb F_2^{20}\), two 14-bit reports \(l,r\), and \(0\le i<2^{57}\). Its ordinal is
+\[
+ (((y\,2^{14}+l)2^{14}+r)2^{57}+i).
+\]
+For a hidden mask \(a\), \(\chi_a(y)=(-1)^{\operatorname{popcount}(a\mathbin{\&}y)}\). The observed parent spin is the majority of the three characters with masks \(1568,1056,1184\). Its four-term Fourier expansion has coefficients \(1/2,1/2,1/2,-1/2\).
+
+The hidden masks use four low resident bits, three incoming-head flags and thirteen payload bits. The side projection \(\pi_-\) or \(\pi_+\) retains that direction's flag and the shared payload. With \(Q\) the adjacent-pair quadratic on a 28-bit word, the east energy is
+\[
+ E_{\rm e}(s,s')=Q\bigl(l'\oplus\pi_-(y),\ r\oplus\pi_+(y')\bigr)\in\{0,1\}.
+\]
+The printed scattering list consists of tuples \((a,l_0,c_0,r_0,c)\). Put \(D_{\rm p}=2^{56}\) and
+\begin{equation}\label{eq:binary-threshold}
+ N_0(l,y,r,y')=D_{\rm p}+\sum_{(a,l_0,c_0,r_0,c)}
+ c\,\chi_a(y')\chi_{l_0}(l)\chi_{c_0}(y)\chi_{r_0}(r).
+\end{equation}
+The north energy from \(s\) to \(s'\) is \(0\) if \(i'<N_0\), and \(1\) otherwise. There are \(164\,852\) terms and
+\begin{equation}\label{eq:binary-norm}
+ \sum |c|=33\,293\,550\,733\,133\,931<2^{56}.
+\end{equation}
+Both north multiplicities are therefore strictly positive for every context, including contexts unreachable from a seed. The finite list, rather than an approximation to a real number, defines the Hamiltonian.
+
+Write \(\mathfrak t\in[1/4,1/2]\) for parent inverse temperature, and set
+\[
+ z=e^{-\mathfrak t},\qquad \nu=\frac{1-z}{1+z},\qquad
+ \eta=\frac{\nu}{2^{14}+\nu},\qquad
+ L_{\rm e}(z)=\tfrac12[2^{28}+2^{14}+(2^{28}-2^{14})z].
+\]
+The quadratic Walsh identity used in Lemma~\ref{lem:cap-parent} gives this east normalizer. Its nontrivial report multiplier is \((-1)^{Q(a)}\eta\). The printed moving coefficients contain that sign, so every single-head move acquires the positive factor \(\eta\). The north update has normalizer \(2^{20}D_{\rm p}(1+z)\). Head flags from distinct senders cannot cancel, and residents send only to themselves. Consequently the iid uniform hidden row is invariant. Slab ratios give the pair Gibbs specification and the pressure per parent site
+\begin{equation}\label{eq:binary-pressure}
+ p_{\rm p}(\mathfrak t)=\log\bigl(2^{20}D_{\rm p}(1+z)\bigr)+\log L_{\rm e}(z).
+\end{equation}
+Every cylinder probability is rational in \(z\), by its finite backward cone.
+
+For completeness, uniqueness is a direct physical Dobrushin comparison; see \cite[Section~2.3]{rebeschiniVanHandel}. Changing one neighbor changes each candidate central energy by a number in \(\{-1,0,1\}\). The likelihood-ratio spread is at most \(e^{2\mathfrak t}\), so its total-variation influence is at most \(\tanh(\mathfrak t/2)\). Thus the Dobrushin row sum is at most
+\[
+ q_{\rm p}=4\tanh(1/4)<0.980<1.
+\]
+For a probe \(V\) at distance \(s\ge1\) from differing exterior sites, path summation gives the uniform total-variation bound
+\begin{equation}\label{eq:parent-comparison}
+ |V|\frac{q_{\rm p}^{s-1}}{1-q_{\rm p}},\qquad
+ \frac1{1-q_{\rm p}}<50.
+\end{equation}
+This is valid in every finite shape and for all boundary symbols. It identifies the constructed trajectory law with the unique DLR law and proves uniform EWM. Formula~\eqref{eq:binary-pressure} and the cylinder formulas give analyticity directly.
+
+\subsection{The halting real and the finite stage program}\label{sec:binary-halting}
+
+An integer encodes a finite instruction list by empty list \(0\) and cons cell \(2^k(2v+1)\), with head \(k\) and tail \(v\). Write \(k=4t+c\). For \(c=0,1\), increment counter \(c\) and advance; for \(c=2,3\), test counter \(c-2\), advance on zero, and otherwise decrement and jump to instruction \(t\). Falling off halts. Let \(K_{\rm h}\) be the zero-start halting set. This successful-decrement convention is the two-counter model of \cite[Definition~2]{dudenhefner}, whose halting problem from an arbitrary configuration is undecidable \cite[Theorem~6, after Minsky]{dudenhefner}. A finite initial configuration is incorporated by an increment prefix and readdressing the original instructions; an increment followed by a successful decrement can jump to any chosen original start while restoring the counter. The effective universal simulation is a many-one reduction. Hence \(K_{\rm h}\) is \(\Sigma^0_1\)-complete, not just undecidable.
+
+Let \(K_{{\rm h},j}\) contain codes \(e<j\) that halt within \(j\) instructions, and put
+\begin{equation}\label{eq:theta-binary}
+ \vartheta_j=\frac12+\sum_{e\in K_{{\rm h},j}}4^{-e-2}
+ =\frac{p_j}{q_j},\quad q_j=4^{j+1},\qquad
+ \vartheta=\frac12+\sum_{e\in K_{\rm h}}4^{-e-2}.
+\end{equation}
+The numerator need not be reduced. We have \(\vartheta_j\uparrow\vartheta\), \(\vartheta_j<\vartheta\) at every finite stage, and \(1/2\le\vartheta\le7/12\). The gap between a missing digit's possible tail and a present digit is at least \((2/3)4^{-e-2}\). An approximation oracle for \(\vartheta\) therefore recovers all halting bits successively; a halting oracle sums a finite prefix and bounds the geometric tail. Thus \(\vartheta\equiv_T K_{\rm h}\).
+
+The finite register program computes these bounded approximants using seventeen unary tracks. Register \(i\) is a prefix of resident bits at positions \(1+i+17k\). Increment sets the first missing bit; successful decrement clears the last present bit; every instruction returns to the marked origin. Binary list decoding uses repeated division by two and a bounded-fuel interpreter. The expanded program has 235 register instructions. It clears all scratch registers, subtracts one from each output length, and installs markers on the first block missing the corresponding prefix. The four coordinates are
+\[
+ 0,\qquad mq_j,\qquad m(2q_j-p_j),\qquad 2mq_j,
+ \qquad m=17.
+\]
+The one-head transition rules, resident updates, incoming directions and unused labels are the finite list generated by the programs. An independently coded register assembly and scattering interpreter generates exactly the same coefficient multiset, as certified in Section~\ref{sec:circuit-identity}.
+
+\subsection{Return series and the two sides}\label{sec:binary-returns}
+
+Residents cost \(\mathfrak r\nu\), with \(\mathfrak r=2^{-6}\). Work heads cost \(e_0\nu\), with \(e_0=2^{-56}\), and moves additionally cost \(\eta\). At the left endpoint an orbit may hold, start either trip, or begin complete erasure. Its hold weight is
+\[
+ \mathfrak b=2^{-7}\nu(\mathfrak r\nu)^3.
+\]
+The long trip goes to the right endpoint and back, moving every tick; head weight is \(a_0\nu\), \(a_0=2^{-14}\), and each traversal of the rightmost \(mp_j\) edges gains a factor two. The short trip goes to \(mq_j\) and back with a stay before every move, head weight \(a_1\nu\), \(a_1=2^{-22}\), and a minus sign on its first stay. Both trips take \(\ell_j=4mq_j\) ticks. A head on a marker pays an extra divisor 4096, omitting that marker's separate resident payment. The net collision factor is \(\varkappa=(64\nu)^{-1}\). Their positive full weights are
+\begin{align}
+ P_j^+&=[a_0\nu(\mathfrak r\nu)^4\eta]^{\ell_j}
+             2^{2mp_j}\varkappa^6,\notag\\
+ P_j^-&=[a_1\nu(\mathfrak r\nu)^4]^{\ell_j}
+             \eta^{\ell_j/2}\varkappa^4,\label{eq:binary-trips}\\
+ \frac{P_j^+}{P_j^-}&=[2^{16}\eta2^{\vartheta_j}]^{2mq_j}\varkappa^2.\notag
+\end{align}
+The long trip has six collision ticks; the short has four and half as many moves. Their elapsed-time color agrees. Every return is a unique sequence of endpoint holds and complete trips. Its series, with the final color omitted, is
+\begin{equation}\label{eq:binary-return}
+ \sum_{k\ge0}\mathfrak B_j(k)t^k
+ =\frac1{1-\mathfrak b t-(P_j^+-P_j^-)t^{\ell_j}}.
+\end{equation}
+The color \(2,-1,-1\) is retained at the origin throughout computation, trips and erasure. Only complete erasure gives a singleton there that pairs with the observed spin.
+
+There is also a positive reference branch. Put \(d_0=2^{-48}\nu\). It either repeats this direct step or installs four resident bits at \(0,1,2,3\), returns, holds with weight \(\mathfrak b\), and erases them. Its fixed part has thirteen ticks, twelve moves, and head coefficient \(2^{-51}\). Denote its weight by \(\omega\). For \(n\ge1\) its total is
+\[
+ \mathfrak K(n)=d_0^n+\omega
+       \sum_{a+c=n-13}d_0^a\mathfrak b^c,
+\]
+with empty sum zero. The exact majority correlation is
+\begin{equation}\label{eq:binary-correlation}
+ C^{\rm bin}_{\mathfrak t}(n)=\frac14\left[
+ \mathfrak K(n)+2\cos(2\pi n/3)
+ \sum_j w_j\mathfrak B_j(n-F_j)\right],\qquad n\ge1.
+\end{equation}
+Set \(\mathfrak B_j(k)=0\) for \(k<0\). Orthogonality against the iid old row selects only the direct return and the seed-to-terminal singleton. The other majority character has no rule and the seed is never reproduced. This proves the formula without interpreting signed dual weights as physical probabilities.
+
+Outside its trips and holds, each tick of a stage path has one working head of weight at most \(e_0\nu\), every other occupied site has weight at most \(\mathfrak r\nu<1\), and moves only add factors \(\eta<1\). Removing the final color factor therefore gives \(0<w_j\le(e_0\nu)^{F_j}\). The stage choice takes at least \(j\) ticks, and installation and erasure each travel from the origin to the right endpoint \(2mq_j\ge136\), so \(F_j\ge j+272\). The following window bounds will suffice:
+\begin{equation}\label{eq:binary-estimates}
+\begin{gathered}
+ \ell_j\ge272,\quad \mathfrak b>2^{-41},\quad
+ \eta>2^{-19},\quad 2^{-1400}<\omega\le d_0^{13},\quad d_0<\mathfrak b/2,\\
+ \frac{|P_j^+-P_j^-|}{\mathfrak b^{\ell_j}}
+       \le2\,16^{-\ell_j},\qquad
+ \frac{w_j}{\mathfrak b^{F_j}}\le2^{-15F_j},\qquad
+ \mathfrak K(n+1)\le(\mathfrak b+2d_0)\mathfrak K(n).
+\end{gathered}
+\end{equation}
+They follow from \(1/16<\nu<1/4\), the thirteen fixed ticks, and the fact that the largest trip tick divided by \(\mathfrak b\) is at most \(2(a_0/2^{-7})\mathfrak r\nu<1/16\). For \(\omega\), each of the thirteen fixed ticks has head coefficient \(2^{-51}\), at most one move and at most three separate residents, so its weight lies between \(2^{-51}\nu\,\eta(\mathfrak r\nu)^3>2^{-104}\) and \(2^{-51}\nu<d_0\).
+
+If \(P_j^+<P_j^-\), put \(\mathfrak d_j=|P_j^+-P_j^-|/\mathfrak b^{\ell_j}\) and choose \(\rho_j\in((\ell_j-1)/\ell_j,1)\) solving \(\rho_j^{\ell_j-1}(1-\rho_j)=\mathfrak d_j\). In \(x=\mathfrak bt\) the factorization
+\[
+ 1-x+\mathfrak d_jx^{\ell_j}=(1-\rho_jx)
+ \left[1-(1-\rho_j)(x+\rho_jx^2+\cdots+
+           \rho_j^{\ell_j-2}x^{\ell_j-1})\right]
+\]
+has reciprocals with nonnegative coefficients. The second bracket has no zero in \(|x|\le1/\rho_j\), since \((\ell_j-1)(1-\rho_j)/\rho_j<1\). Thus \(0<\mathfrak B_j(k)\le\mathfrak b^k\), with a simple positive leading rate \(\lambda_j=\mathfrak b\rho_j\). If \(P_j^+>P_j^-\), the positive recurrence gives a unique simple Perron rate \(\lambda_j>\mathfrak b\) with
+\[
+ \lambda_j^{\ell_j-1}(\lambda_j-\mathfrak b)=P_j^+-P_j^-.
+\]
+The one-tick hold makes equality in the triangle bound possible only in the positive direction. Induction gives \(\mathfrak B_j(k)\le\lambda_j^k\) and
+\(0<\lambda_j/\mathfrak b-1\le2\,16^{-\ell_j}\).
+
+Define \(\mathfrak t_0\) by
+\begin{equation}\label{eq:binary-cut}
+ 2^{16}\eta(\mathfrak t_0)2^\vartheta=1.
+\end{equation}
+The left side increases strictly with \(\mathfrak t\). At \(1/4\) it is below one using \(\nu<1/8\), \(\vartheta\le7/12\); at \(1/2\) it is above one using \(\nu>1/5\), \(\vartheta\ge1/2\). Equivalently, \(\eta=2^{-16-\vartheta}\), \(\nu=2^{14}\eta/(1-\eta)\), and \(\mathfrak t_0=2\operatorname{atanh}\nu\). This is a computable decreasing homeomorphism of \(\vartheta\), with computable inverse, so \(\mathfrak t_0\) is right-c.e. of halting degree.
+
+For \(\mathfrak t\le\mathfrak t_0\), all trips have \(P_j^+<P_j^-\). The estimates in \eqref{eq:binary-estimates} bound the stage sum by \(\mathfrak K(n)/12\). Together with the last inequality there, they give strict positivity and strict decrease at every lag, including \(C(0)=1\). Each \(\lambda_j<\mathfrak b\), so dominated convergence gives a positive constant times \(\mathfrak b^n\). For \(\mathfrak t>\mathfrak t_0\), all sufficiently late trip ratios exceed one. Since their possible excess over \(\mathfrak b\) tends effectively to zero, the largest \(\lambda_j>\mathfrak b\) is attained by finitely many stages, with a gap to the rest. Their positive residues add. Equation~\eqref{eq:binary-correlation} then has the asserted cosine asymptotic and exactly two simple nearest poles, pointwise in \(\mathfrak t\).
+
+On the entire monotone side, \(\rho_j\to1\). Let \(\mathfrak H(n)=\sum_jw_j\mathfrak B_j(n-F_j)\). It is nonnegative, \(\mathfrak H(n)/\mathfrak b^n\to0\), and a fixed-stage lower bound followed by \(j\to\infty\) gives radius \(1/\mathfrak b\) for its series. Pringsheim makes the positive point singular; Abel averaging rules out a pole there. At any other point of \(|\mathfrak b t|=1\), the denominators in \eqref{eq:binary-return} stay bounded away from zero for all late stages on a common neighborhood, since their perturbations are bounded by \(2(|\mathfrak b t|/16)^{\ell_j}\). The finitely many exceptional stages have all poles strictly outside the circle. Summable entrance weights give normal convergence. Rotating this series by the two cube roots produces precisely two non-pole singularities; the reference branch supplies the real simple pole. This argument includes \(\mathfrak t=\mathfrak t_0\).
+
+\subsection{The universal circuit identity}\label{sec:circuit-identity}
+
+The parent involution flips word positions \(57,71,89,90,91\). Represent a parent symbol by an orientation spin and 104 rail pairs recording an orbit representative with pivot 57 set to zero. Decoding is
+\[
+ d=\mathrm{rep}\oplus[g\oplus\operatorname{maj}(\mathrm{rep})]F,
+ \qquad F=\{57,71,89,90,91\}.
+\]
+Here \(\operatorname{maj}(\mathrm{rep})\) is the majority of the three parity bits with masks \(1568,1056,1184\) in its hidden 20-bit block, and \(g\) is the desired negative-spin bit. There are three 105-bit words, seven fair slot bits and one calibration bit, for 323 Boolean inputs. A private orientation per factor reverses the three parent orientations simultaneously, leaving both energies invariant. The circuit computes the two outgoing energy bits and then the following output bit, where \(s\in\{0,\ldots,127\}\) and \(c\in\{0,1\}\):
+\begin{equation}\label{eq:slot-table}
+ T(E,s,c)=
+ \begin{cases}
+ [s\ge64],&E=0,\\
+ [s\ge40],&E=1,\\
+ c,&E=2,\ s<18,\\
+ 0,&E=2,\ 18\le s<25,\\
+ 1,&E=2,\ s\ge25.
+ \end{cases}
+\end{equation}
+
+\begin{lemma}[Circuit identity]\label{lem:circuit-identity}
+The ordered list of 85\,041 gates specified by the accompanying printer computes \eqref{eq:slot-table} for the decoded binary-parent energies on every one of its \(2^{323}\) input assignments.
+\end{lemma}
+
+\begin{proof}
+The finite proof uses exact tuple equality, Boolean polynomial coefficients and integer identities. The accompanying certifier implements the following checks; its full object digests are printed in the reproducibility appendix.
+
+First, hash-cons both the returned list and an explanatory raw gate list in a common symbolic term dictionary. Complemented literals, constant folding and commutative interning are justified by their finite truth tables. Their output IDs agree. This proves equality of functions without trusting interning, pruning or fanout expansion.
+
+Second, compare all 315 decoded wires in algebraic normal form with the displayed decode formula. Regard the decoded words as free variables and check that the east output is the quadratic form of the two report differences.
+
+Third, for each two- or three-input compressor exhaust its truth table and verify \(\mathrm{low}+2\,\mathrm{high}=\sum\mathrm{inputs}\). Traverse each width-\(w\) block backwards from its output weights \(1,2,\ldots,2^{w-1}\), checking that every substituted carry has twice the low weight modulo \(2^w\). Discarded carries have weight zero modulo \(2^w\). The remaining tokens equal the advertised input weights. This proves all 68 blocks, containing 7\,574 full adders and 141 half adders. A popcount of \(m\) bits uses width \(m.\mathrm{bit\_length}()\), so its modular identity is an exact count.
+
+Fourth, interpret every population input as the negative-bit indicator of a signed Walsh character. Expand the proposed groups into full decoded coordinates. Their collected integer character dictionary must equal an independently coded reference, checked equal as a multiset to the printed table of \eqref{eq:binary-threshold}. The reference has its own 235-instruction assembly and scattering interpreter and reads no circuit. Suggested groups are used only after their identities are verified. Writing each signed population as its size minus twice its bit count, compare the resulting quadratic integer polynomial with the actual incoming tokens of the 58-bit accumulator. The equality is modulo \(2^{58}\); \eqref{eq:binary-norm} and \(0\le i'<2^{57}\) put \(i'-N_0\) strictly between \(-2^{57}\) and \(2^{57}\). Its complemented sign bit is exactly \([i'\ge N_0]\), including equality.
+
+Finally, cut the two energy wires and exhaust all \(4\cdot128\cdot2=1024\) remaining assignments. The actual output agrees with \eqref{eq:slot-table}. The verified regions cover the output cone. Composing their identities proves the lemma for every input.
+\end{proof}
+
+\subsection{Exact thermal realization of the circuit}\label{sec:herald-proof}
+
+We give the finite-temperature identity, including the normalization that makes it valid for a Gibbs specification. Begin with a four-terminal parity core. For \(i=0,\ldots,3\), join terminal \(t_i\) to a hub, then the hub to two children \(u_{i,0},u_{i,1}\). Introduce pairs \(c_{j,0},c_{j,1}\), \(j=0,\ldots,3\), with a positive internal bond, and join \(u_{i,\lfloor j/2\rfloor}\) to \(c_{j,\lfloor i/2\rfloor}\) with sign \((-1)^{\operatorname{popcount}(i\mathbin{\&}j)}\). All other bonds are positive. It has 20 private spins, 32 bonds, and one contact at each terminal. Every internal degree is three.
+
+Its trace depends only on the terminal product: even terminal flips are symmetries of the four-column Walsh matrix, combined with relabeling internal vertices. At \(y=e^{-2b}\), enumerate the 256 center assignments and then the eight choices of the three spins at each port. This gives integer terminal polynomials \(P(y),N(y)\), of degree at most 32, for positive and negative product. Their first nonzero degrees are 5 and 4. For \(\widetilde P(x)=(1+x)^{32}P(1/(1+x))\) and \(\widetilde N\) similarly, every coefficient of
+\(\widetilde N'\widetilde P-\widetilde N\widetilde P'\) is nonnegative, with nonzero coefficients at degrees 13 and 54. These finite integer facts are verified by \texttt{cubic\_parity.py}. Thus \(J(b)=\tfrac12\log(N/P)\) increases strictly from zero to infinity. Reversing one terminal contact gives the orientation with trace proportional to \(\exp(J\prod t_i)\), with the same positive analytic normalizer. Put
+\[
+ u=\tanh J(b),\qquad c_b=\tanh(2J(b)),\qquad s_b=\tanh b.
+\]
+
+Concatenating parity cores through a private spin multiplies their transmissions. Repeating a private pad twice gives a two-terminal factor of transmission \(u\). COPY and NOT predicates on rail products use \(u^2\), XOR uses \(u^3\). A constant ZERO or ONE gate uses its output rail pair and herald pair as a four-terminal predicate, so one parity core gives \(\alpha_i=u\). A selector realizes AND and OR with transmission \(u^3s_b^5c_b\). Here is its conditional calculation. Two control rail buffers give a product of mean \(s_b^2\) times the true sign; a separate two-link chain gives a product with mean \(s_b^2\). With these controls \(U,V\), two arms have exponents \(J[XA(V+U)+YB(V-U)]\). Exactly one arm is active. Tracing the other arm and a two-link join gives conditional output mean
+\[
+ s_b^2c_b\,[(V+U)A+(V-U)B]/2
+\]
+with input-independent normalizer. Averaging controls selects the appropriate variable or constant branch with gain \(s_b^4c_b\). Additional parity channels multiply by the output and herald signs; closing one positive bond gives \(u^3s_b^5c_b\). The same transmission is realized by a two-terminal calibration chain. Every raw argument has one contact. Fanout-two expansion gives each rail one producing and at most two consuming contacts.
+
+For gate \(i\), let \(G_i\in\{-1,1\}\) indicate whether its actual output is correct, and use a separate herald product \(h_i\) and loop spins \(t_i\). Realize, up to constant analytic factors,
+\[
+ (1+\alpha_iG_ih_i)(1+\alpha_ih_i)(1+u h_it_it_{i+1}).
+\]
+Summing \(h_i\), and omitting its factor two, gives
+\begin{equation}\label{eq:herald-identity}
+ 1+\alpha_i^2G_i+\alpha_i u(1+G_i)t_it_{i+1}.
+\end{equation}
+An incorrect gate has zero transmitted loop coefficient exactly. Close the loop by \(1+ut_{N_{\rm g}}t_0(-1)^{\mathrm{output}}\), where \(N_{\rm g}\) is the number of gates. The empty loop product, summed over gate outputs, is \(2^{N_{\rm g}}\), independent of the external inputs: gate errors parameterize all output assignments in an acyclic circuit. The full loop product selects its unique fully correct assignment. Their ratio is
+\[
+ \mathcal T(b)=u\prod_{i=0}^{N_{\rm g}-1}(\alpha_i u)
+ =u^{313944}c_b^{23289}s_b^{116445}.
+\]
+The graph has \(N_{\rm g}=85\,041\) gates and 23\,289 nonlinear ones. A separate chain with consecutive transmissions \(\alpha_0,u,\ldots,\alpha_{N_{\rm g}-1},u,u\) has endpoint product of mean \(\mathcal T\). Its endpoints are used once as the calibration input. Averaging the seven fair selector bits in \eqref{eq:slot-table} gives \(1\), \(1-3\mathcal T/8\), and \(1-3\mathcal T/4+9\mathcal T^2/64\), for \(E=0,1,2\). Hence the whole three-site factor is
+\begin{equation}\label{eq:parent-map}
+ A(b)(1-3\mathcal T(b)/8)^E,\qquad
+ B(b)=-\log(1-3\mathcal T(b)/8),
+\end{equation}
+with \(A(b)>0\) analytic and independent of all visible symbols. This is an exact equality for every boundary input. It is the decoration--iteration principle \cite{fisher}, here with a circuit selecting the finite energy table.
+
+The visible word has one orientation spin and 104 rail pairs, each word having \(2^{104}\) equally weighted lifts. A private orientation per factor has three contacts; a visible spin occurs once in each of its three incident factors. Herald rails have three contacts and the loop and calibration chains have at most three. The finite graph has 23\,573\,144 spins and 34\,543\,714 edges per cell, maximum degree three, and no parallel edges. Its pointwise edge printer gives the full finite specification. The map \(B(b)\) is computable and strictly increasing from zero to \(\log(8/5)\), with computable inverse.
+
+\subsection{The fixed geometric graph}\label{sec:crystal-geometry}
+
+Route each edge of the finite trivalent graph on two square layers with disjoint equal-length wire interiors. We record enough of the construction to identify the geometry independently of the circuit. If upper slot counts are \(V_{\rm s},E_{\rm s}\), an edge of rank \(i\) with owner \((a_{\rm own},b_{\rm own})\) has color
+\[
+ j=16i+(a_{\rm own}\bmod4)+4(b_{\rm own}\bmod4).
+\]
+Reserve disjoint port columns for vertices, disjoint horizontal three-lane bands for colors in layer zero, and disjoint trunk columns for colors in layer one. Define
+\[
+\begin{gathered}
+ J_{\rm col}=16E_{\rm s},\quad W_{\rm lay}=8\lceil J_{\rm col}/8\rceil+32,
+ \quad P_y=8(J_{\rm col}+4),\\
+ P_x=4\bigl(W_{\rm lay}+8(V_{\rm s}+1)+P_y+32\bigr),\qquad L=4P_x+100.
+\end{gathered}
+\]
+Vertex \(k\) in that owner cell sits at \((a_{\rm own}P_x+W_{\rm lay}+8k+4,b_{\rm own}P_y,0)\), with distinct west, east and north ports for its incident edges. For port coordinates \((x_1,y_1),(x_2,y_2)\), ordered vertex rows \(u\le v\), and color \(j\), set
+\[
+ T=P_x\lfloor\min(x_1,x_2)/P_x\rfloor+j,
+ \quad a=u+8j+8,\quad b=v+8j+12,
+\]
+\[
+ B_{\rm wire}=8+(a-y_1)+(b-y_2)+(b-a)+(x_1-T)+(x_2-T),
+ \qquad h_{\rm wire}=(L-B_{\rm wire})/2.
+\]
+The path uses its first port, rises to layer one, reaches row \(a\), drops, goes right by \(h_{\rm wire}\), turns one row, goes left to \(T\), rises, follows the trunk to \(b\), drops and goes to the second port column, rises, returns to its row, drops and reaches the vertex. The two endpoint and six via steps account for the eight in \(B_{\rm wire}\). The length is \(L\); parity makes \(B_{\rm wire}\) even. The bounds \(P_y<P_x/4\), \(x_i-T<5P_x/4\) and total vertical contribution less than \(3P_y+2\) give \(h_{\rm wire}>0\). Distinct colors have disjoint lane bands and trunks. Each route spans less than \(4P_x\) horizontally and \(2P_y\) vertically, so equal-color edges, whose owners are separated by four cells, are disjoint. Short port columns are private to their incidences. Thus interiors are vertex-disjoint. Put the old sign on the first interlayer via; these vias form a matching.
+
+For the present finite graph the spacings and length are
+\begin{equation}\label{eq:wire-numbers}
+ 4P_x=82\,606\,081\,152,\qquad
+ 4P_y=17\,686\,381\,696,\qquad L=82\,606\,081\,252.
+\end{equation}
+These numbers belong to the 23\,573\,144-spin circuit graph. At inverse temperature \(\beta'\) a unit-bond path transmits \((\tanh\beta')^L\), so it exactly reproduces the trivalent marginal at inverse temperature \(\operatorname{atanh}((\tanh\beta')^L)\).
+
+Replace this diluted bilayer by a fixed fully bonded graph. At each central vertex in layer zero partition ports into \(\{W\},\{E,S\},\{N,R\}\); in layer one use \(\{N\},\{S\},\{R\}\). The route just described uses at most one direction per group. Indeed horizontal motion occurs only in layer zero and motion in the \(y\) direction only in layer one, apart from the one-step north ports of original vertices. In layer zero an original vertex uses \(W,E,N\); a straight horizontal run uses \(W,E\); the two vertices of a rightward turnaround use \(W,N\) and \(W,S\); a via uses \(R\) with one of \(W,E,S\), where \(S\) occurs only at the end of a north port. Thus \(E\) and \(S\) are never used together, nor are \(N\) and \(R\). In layer one there are no \(x\)-directed links: a vertex uses \(N,S\) on a vertical run, or \(R\) with one of \(N,S\) at a via. Attach three forks to each central vertex by positive stems. The possible intercell links are east and north in layer zero, north in layer one, and a rung. Pair the four unused fork contacts by two extra neutral candidate links. This has eight vertices and twelve candidate edges per geometric cell. In-cell links may cross; the graph is nonplanar.
+
+Keep the six stems. Replace each of the other six links \(a-b\) by
+\[
+ a-h,\ k-b,\ h-p,\ h-q,\ p-k,\ q-k,\ p-q.
+\]
+All-positive signs give positive transmission; negating \(q-k\) makes it exactly zero. Indeed swapping \(p,q\) and flipping \(k,b\) preserves the conditional sum, making it independent of the terminal product. For a negative rung transmission negate \(a-h\) instead. All candidate \(q-k\) edges and the possible negative rung contacts form a fixed matching. No other bond is negative. The graph has \(8+6\cdot4=32\) vertices and \(6+6\cdot7=48\) edges per cell, all degrees exactly three, for every sign choice. The routing embeds, by internally disjoint paths in this same host, any periodic graph of maximum degree three whose edges join a cell to itself or to its east or north neighbor, in particular one copy of a finite cubic graph per cell. Taking \(K_{3,3}\) proves nonplanarity.
+
+If \(t=\tanh\beta\), the active seven-bond switch transmits
+\begin{equation}\label{eq:diamond}
+ \tau(t)=\frac{2t^4(1+t)}{1+2t^3+t^4}.
+\end{equation}
+Its denominator counts even subgraphs and its numerator counts odd-boundary subgraphs. It increases strictly from zero to one: its derivative, after positive factors are removed, has numerator \(4+5t+2t^3+4t^4+t^5>0\). The two stems multiply it by \(t^2\). Thus the full physical-to-parent map for I is
+\begin{equation}\label{eq:crystal-map}
+ \mathfrak t(\beta)=B\left(\operatorname{atanh}
+       \left([t^2\tau(t)]^L\right)\right).
+\end{equation}
+It is computable, analytic, strictly increasing and computably invertible on its image. Rational directed enclosures at the two window endpoints give
+\[
+ e^{-\mathfrak t(87/4)}\in(3/4,19/25),\qquad
+ e^{-\mathfrak t(45/2)}\in(13/20,2/3).
+\]
+The map stays in the parent's window and straddles \(\mathfrak t_0\): the cut equation is below one at \(z=3/4\) and above one at \(z=2/3\), for every \(\vartheta\in[1/2,7/12]\). Consequently
+\(\beta_\star=\mathfrak t^{-1}(\mathfrak t_0)\) is interior, right-c.e. and of halting degree.
+
+The printer \texttt{crystal.py} takes a geometric cell and an edge ordinal \(0,\ldots,47\), returning its two endpoint triples and sign. Its sign lookup uses only finitely many compressed route segments. The signed period is \((4P_x,4P_y)\), containing \(32(4P_x)(4P_y)\) spins. The chosen original site is \((552699460,0,0)\); the displayed vector is \((0,4P_y,0)\). Exact tracing gives
+\begin{equation}\label{eq:sampling-four}
+ \mathcal C_\beta(n)=C^{\rm bin}_{\mathfrak t(\beta)}(4n).
+\end{equation}
+Strict positive decrease survives, and \(\cos(8\pi n/3)=\cos(2\pi n/3)\). The distinct simple conjugate poles remain distinct and simple under fourth-power subsampling. On the monotone side the positive stage coefficients on the subsequence still have rate \(\mathfrak b^4\) and vanishing normalized prefactor. The preceding normal-convergence and Abel arguments apply to this subsequence, leaving precisely the real simple pole and the two rotated non-poles. This proves all correlation assertions of I.
+
+\subsection{Arbitrary microscopic exteriors}\label{sec:collar}
+
+It remains to transfer uniqueness and mixing rather than merely identify one infinite-volume law. Given an arbitrary finite microscopic free set, first sum out every neutral switch whose four interior spins are free; by the swap-and-flip symmetry its sum is a constant independent of both terminals. A factor includes its routed wires, their active switches, and the forks and neutral switches attached to its vertices. Let \(\Lambda_{\rm p}\) consist of parent sites whose visible spins and all three incident factors lie wholly in the free set. Condition on collar visible spins and on private spins in incomplete factors. All factors touching \(\Lambda_{\rm p}\) can now be traced in full. Host spins outside all factors meet the rest only through neutral switches. At distance greater than a fixed collar width from the microscopic exterior, all neighboring neutral-switch interiors and the corresponding central--fork stars are free. After the neutral traces these stars are isolated and exterior-independent; observables in the traced switch interiors are recovered by fixed local kernels. The remaining background cases lie in the fixed-width collar, where the trivial total-variation bound suffices. The conditional law of decoded symbols in \(\Lambda_{\rm p}\) is exactly the finite-volume parent Gibbs law with boundary symbols read from the collar. Factors involving only collar sites are constants, and rail gauge coordinates have uniform fibers.
+
+The parent estimate \eqref{eq:parent-comparison}, or \eqref{eq:diagram-dobrushin} for H, is uniform in all those boundary symbols and in arbitrary finite shapes. A microscopic probe reduces, through its finite conditional decoration kernels, to a bounded function of nearby visible symbols. Averaging the uniform comparison over the random collar preserves the bound. The finite factor diameter and the fixed period convert parent distance to microscopic distance with fixed multiplicative and additive losses. This proves arbitrary-volume microscopic EWM and, by exhaustion, uniqueness among all DLR states. Global spin flip then gives zero means.
+
+On periodic boxes the partition sum is the parent's sum times finite positive analytic normalizers and constant gauge multiplicities. The same fixed-collar surface comparison gives the infinite-volume pressure. Finite microscopic marginals are finite analytic combinations of the rational parent marginals and the conditional decoration kernels. This proves their real analyticity as well as that of the pressure. In particular uniqueness, EWM and analytic pressure all persist at the disorder line.
+
+\subsection{Finite data, margins and lag units}\label{sec:finite-data}
+
+At rational \(y=e^{-2\beta}\), every finite decoration transmission is rational, including the integer wire power. Thus \(e^{-\mathfrak t(\beta)}=1-3\mathcal T/8\) is rational. A fixed-lag parent correlation is a rational function of that coordinate and can be evaluated exactly. At a computable inverse temperature, the same formulas give uniform computability of each fixed-lag value.
+
+Suppose a total computable \(N(k)\) supplied a negative sampled lag by \(N(k)\) for every \(\beta\ge\beta_\star+2^{-k}\). Choose a rational-\(y\) grid with adjacent inverse temperatures less than \(2^{-k}\) apart, covering a computable interior bracket for the cut. All signs up to \(N(k)\) at these grid points are exactly decidable by \eqref{eq:sampling-four}. Every witnessed point is above the cut, and some point between \(\beta_\star+2^{-k}\) and \(\beta_\star+2\cdot2^{-k}\) must be witnessed for all large \(k\). The least witnessed grid point approximates \(\beta_\star\) with computably shrinking error, a contradiction. Uniform EWM supplies a fixed geometric envelope \(M q^n\), \(q<1\), for the sampled correlation. A computable positive magnitude guarantee \(\varepsilon(k)\) would restrict every such witness to a computable finite lag range, giving the same contradiction. Fixed constants in this argument need not be efficiently small or uniformly recoverable from arbitrary model data; they belong to this one model.
+
+There is also a window-uniform lower bound on the first parent witness. From \eqref{eq:binary-estimates}, for \(13\le n\le10^{330}\),
+\[
+ \frac{\sum_jw_j\mathfrak B_j(n-F_j)}{\mathfrak K(n)}
+ \le \frac{2^{-2680}}{1-2^{-15}}
+       \exp(2n\,16^{-272}).
+\]
+Here \(\omega\mathfrak b^{-13}>2^{-1400}\) and \(F_j\ge j+272\) were used. The integer inequality \(2\cdot10^{330}<1024\cdot2^{1088}\) makes the exponent less than 1024. Since \(e<4\) and \((1-2^{-15})^{-1}<2\), the ratio is less than \(2^{-631}\). Thus the factor \(2\cos(2\pi n/3)\) cannot overturn the reference term. Earlier lags have no stage contribution. This proves positivity through \(10^{330}\) parent lags everywhere in the parent window. The scale \(10^{2536}\), obtained by estimating the stage-zero excess and entrance weight at parent inverse temperature \(1/2\), is an estimate, not a certified onset.
+
+One sampled lag is four parent lags and \(D_{\rm geom}=17\,686\,381\,696\) geometric spacings. In I, the preceding bound therefore ensures positive sampled correlations whenever \(4n\le10^{330}\), at separation \(nD_{\rm geom}\) spacings. The cosine period is three in units of \(d\); no claim is made about a three-spacing oscillation. These observations prove Proposition~\ref{prop:finite-data} and explain its placement beside I.

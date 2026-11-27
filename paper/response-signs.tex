@@ -1,0 +1,235 @@
+\section{A single magnet with a prescribed response-sign set}\label{sec:response}
+
+Theorems~\ref{thm:D}--\ref{thm:F} concern the set where the whole specification mixes. We now prescribe a different set while keeping that specification mixing throughout the window: the inverse temperatures where a positive field at one site induces a negative moment somewhere else. The construction uses a small signed Fourier perturbation of an independent update. The computation takes place in its exact moment expansion; the stationary hidden row is independent and uniform.
+
+\subsection{Polynomial signs from an enumeration}\label{sec:sign-polynomials}
+
+Put \(z=e^{-\beta}\) and \(\mathcal K=[e^{-b},e^{-a}]\). A computable change of coordinates transports an enumeration of \(W\) to an enumeration of rational open intervals in \((0,1)\), with union \(V\) satisfying
+\[
+ z\in V\cap\mathcal K\quad\Longleftrightarrow\quad -\log z\in W.
+\]
+For example, enumerate rational intervals whose closures are certified inside the image of an enumerated ambient inverse-temperature interval. These cover that image, including neighborhoods of either endpoint of the window. Fix a tape enumerator for \(V\). In its first \(j\) steps it completes at most \(j\) intervals, with all printed integers of binary length at most \(j\), after a fixed change of the time unit.
+
+Merge the intervals completed by date \(j\), but keep a missing point when two open intervals merely touch. If the components are \((p/q,r/s)\), with positive denominators, define
+\begin{equation}\label{eq:PQ}
+ P_j(z)=\prod_{(p/q,r/s)}(qz-p)(sz-r),\qquad
+ Q_j(z)=1+2^{j^2}P_j(z),\qquad j\ge1.
+\end{equation}
+The empty product is one. At an interior point of a component exactly one pair of factors has negative product; outside the finite union all pairs have nonnegative product. Thus \(P_j<0\) exactly on that union. In particular
+\begin{equation}\label{eq:Q-signs}
+ z\notin V\Rightarrow Q_j(z)\ge1\ (\text{all }j),\qquad
+ z\in V\Rightarrow Q_j(z)<0\ (\text{all sufficiently large }j).
+\end{equation}
+For the second assertion, choose an enumerated neighborhood of \(z\) of radius \(d>0\). Every endpoint of every later component is at least \(d\) from \(z\). There are at most \(2j\) integer linear factors, each of absolute value at least \(\min\{1,d\}\). Hence eventually
+\[
+ P_j(z)<0,\qquad |P_j(z)|\ge\min\{1,d\}^{2j},
+\]
+which proves \eqref{eq:Q-signs}. Also, \(Q_j(z)<0\) at any stage implies \(z\in V\).
+
+\subsection{The finite dual table}\label{sec:dual-table}
+
+We give a finite specification by message types and by the instructions of an ordinary one-ended tape machine. Its finite tape alphabet and control are effectively obtained from the given enumerator. This specifies every entry of the table, including entries not reached from the initial message.
+
+Let \(G=(\mathbb F_2)^w\), with real characters \(\chi_c(y)=(-1)^{c\cdot y}\). Partition the coordinates of a dual index \(c\) into three equal bundles. A message sent to offset \(d\in\{-1,0,1\}\) uses only the bundle reserved for arrival from offset \(-d\). Within each bundle reserve separate resident, head and special-code fields, and one parity coordinate. Choose enough further coordinates for the following finite payloads:
+\begin{itemize}
+\item resident symbols \(\mathsf R(\gamma)\), for \(\gamma\) in a finite tape alphabet \(\Gamma\), including an allocated blank, counter tracks, and left and right delimiter flags;
+\item heads \(\mathsf H(q,i)\), where \(q\) is a common control state and \(i\in\{\mathsf b,\mathsf v,\mathsf u\}\) is a linear index;
+\item the distinct special codes \(A,B_0,I\), and stationary inert codes \(\mathsf J_0,\mathsf J_1\).
+\end{itemize}
+Every resident has parity zero and is nonzero; every head and each of \(A,B_0,I,\mathsf J_1\) has parity one. The nonzero code \(\mathsf J_0\) has parity zero. The codes \(A,B_0,I,\mathsf J_0,\mathsf J_1\) use the self bundle. A resident and a stationary head use their separate fields in the same self bundle, so their sum decodes uniquely. The special-code field distinguishes \(A,B_0,I,\mathsf J_0,\mathsf J_1\) from all tape payloads. The parity of an arbitrary index is the sum of its three parity coordinates.
+
+An option consists of a weight \(k(z)\in\mathbb Z[z]\) and three outgoing indices. An absent option has coefficient zero. The empty index has the unique empty output with coefficient one. For nonzero indices use the following rules; an output to self always uses the self bundle.
+
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.23\linewidth}>{\raggedright\arraybackslash}p{.70\linewidth}@{}}
+\toprule
+Input type & Scattering options before the common factor \(\alpha\) \\
+\midrule
+\endhead
+\(A\) & Output to self the initial head \(\mathsf H(q_{\rm init},\mathsf b)\) and the allocated origin resident, with both delimiter flags; weight one. \\
+Resident only & Send the same resident to self, with weight one. \\
+One head and its resident & Read the resident as the tape symbol. For an instruction \((q,\gamma)\mapsto(q',\gamma',d,L)\), and each nonzero entry \(L_{i'i}(z)\), write \(\mathsf R(\gamma')\) to self and send \(\mathsf H(q',i')\) to offset \(d\), with weight \(L_{i'i}(z)\). If \(d=0\), combine those two payloads in the self bundle. \\
+An allocating head alone & Read an unallocated blank, install its resident, and apply the same instruction rule. Only the initial and right-extension control states permit this case. \\
+Stage fork & For index \(\mathsf b\), retain the resident and enter the next-stage control, with weight one. For index \(\mathsf v\), retain it and enter the delay control, with weight one. For index \(\mathsf u\), there is no option. \\
+Delay control & Either perform the next counter instruction by the ordinary rule with \(L=\mathrm{Id}\), retaining an allocated resident, or retain the current resident and enter a fixed quit-setup state; all weights are one. At the last counter state only the quit option is present. \\
+Quit and seek-right control & Retain the resident and move the head right until it reads the right delimiter, then enter erase control; all weights are one. \\
+Erase control, away from the left delimiter & Delete the current resident and send only the erase head to the left neighbor, with weight one. \\
+Erase control, at the left delimiter & Output \(B_0\) to self immediately, or retain the resident with the wait head; both weights are one. \\
+Wait head with its resident & Send \(B_0\) to self, with weight one. \\
+\(B_0\), \(I\) & Send \(I\) to self, with weight one. \\
+\(\mathsf J_p\), \(p=0,1\) & Send \(\mathsf J_p\) to self, with weight one. \\
+Every other nonzero tuple & Send \(\mathsf J_p\) to self, where \(p\) is its total parity, with weight one. \\
+\bottomrule
+\end{longtable}
+
+The instruction rule applies to a head arriving in any one bundle, with a resident in the self bundle, and also to their stationary combination. All other combinations, including multiple heads, have the last rule. The delimiter tests in the specialized controls take precedence over the ordinary instruction rule. The wait state is not an erase state, so the delimiter test does not apply to it. A zero column of \(L\) gives an empty option list, rather than an option with empty output.
+
+Here is the common tape program and its finite collection of linear instructions. It computes the first \(j\) steps of the fixed enumerator from scratch, merges the completed intervals by integer arithmetic, and issues the factors in \eqref{eq:PQ}. The linear amplitudes are the column vector \((b,v,u)\). Besides the identity, the required maps are
+\begin{equation}\label{eq:linear-instructions}
+\begin{split}
+ &(b,v,u)\mapsto(b,b,0),\quad (b,v,u)\mapsto(b,v,0),\\
+ &(b,v,u)\mapsto(b,v,u+zv),\quad
+ (b,v,u)\mapsto(b,v,u-v),\\
+ &(b,v,u)\mapsto(b,u,0),\quad
+ (b,v,u)\mapsto(b,2v,u),\quad
+ (b,v,u)\mapsto(b,v+b,u).
+\end{split}
+\end{equation}
+At the start of each stage apply \((b,v,u)\mapsto(b,b,0)\). For each factor \(qz-p\), apply \((b,v,u)\mapsto(b,v,0)\), issue \(q\) additions of \(zv\) and \(p\) subtractions of \(v\), and then apply \((b,v,u)\mapsto(b,u,0)\). After the last factor perform \(j^2\) doublings \((b,v,u)\mapsto(b,2v,u)\) and apply \((b,v,u)\mapsto(b,v+b,u)\). Starting from the baseline alone, \((1,0,0)\), this gives \((1,Q_j,0)\). The coefficients used by the finite table belong to \(\{1,-1,z,2\}\). The long integer loops are tape computations, and do not enlarge the physical radius.
+
+All choices of linear index perform the same common instruction, write the same resident and move the same way. Before the fork they therefore occupy the same sites at each date. At the fork the baseline alone continues, so the next stage has no signed carry from the preceding polynomial. Arrange each fork with the head at the right delimiter of one contiguous allocated segment \([0,D_j]\). The baseline visits both ends and takes two extra idle steps before the next fork. Extension of the right end removes the old right flag and uses an allocating head to install the next blank with the new flag. No instruction writes the left flag; only the origin resident carries it, until cleanup. These operations are ordinary read, write and unit-move instructions on finite tracks; they are independent of the linear index.
+
+Before the stage-\(j\) fork prepare a counter track of \(2^j\) bits. The delay branch counts through all its binary values, without allocating any further cells, and offers the quit option at every machine tick. The counter can be implemented by a binary increment scan between marked ends, and stops on overflow. The segment includes all computation and counter tracks. For constants depending only on the finite enumerator, its length and the time between successive baseline forks are at most
+\begin{equation}\label{eq:fork-cost}
+ D_j+1\le C2^{cj},\qquad F_{j+1}-F_j\le C2^{cj}.
+\end{equation}
+Indeed, a \(j\)-step simulation has at most \(j\) completed outputs, each printed integer is at most \(2^j\), binary sorting and merging are polynomial in \(j\), and the unary factor loops cost at most a polynomial in \(2^j\). Doubling the allocated counter track and sweeping the tape have the same bound on a one-tape machine. Each stage terminates even if the enumerator prints nothing. This gives an effective finite program, using only the message types in the table.
+
+\begin{lemma}[Support, parity and terminal coefficients]\label{lem:dual-table}
+The finite table above has the following properties.
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item Every option of a nonzero index has nonempty output, and every option of every nonzero index, reachable or not, preserves total parity.
+\item Starting from \(B_0\), no positive-time expansion contains an \(A\) or \(B_0\) singleton. Starting from \(A\), the only singleton that can pair with an old \(A\) or \(B_0\) is \(B_0\) at the origin, produced by cleanup at a stage fork.
+\item The possible terminal dates of stage \(j\) form a finite integer interval \(\mathcal T_j=[f_j,\ell_j]\cap\N\). Its contribution at date \(n\in\mathcal T_j\) is
+\begin{equation}\label{eq:terminal-coefficient}
+ Q_j(z)c_{j,n}(z),\qquad
+ c_{j,n}(z)=\sum_{\gamma} d_\gamma\alpha(z)^{m_\gamma}>0
+ \quad(0<z<1),
+\end{equation}
+where the sum is finite, \(d_\gamma\) are positive integers, and \(m_\gamma\) counts active scatterings along the common computation and the specified quit and wait path. Outside \(\mathcal T_j\) that stage contributes zero. The intervals cover every sufficiently large integer, and \(f_j\to\infty\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Every ordinary moving head leaves a nonzero resident or sends a nonzero head, and a stationary head remains nonzero. Erasure sends its head until the final nonzero \(B_0\). Resident and inert rules are nonempty. An empty linear-index list contributes zero, not a disappearing branch. Residents have parity zero, heads have parity one, and every listed tape operation replaces one head by one head or by \(B_0\). The other rules preserve parity by their definition. This proves (i).
+
+At a predecessor site, incoming indices from distinct senders occupy disjoint direction bundles. Their sum is a concatenation, so a nonzero message cannot cancel. In particular, a nonempty shape remains nonempty at every contributing step. Induction from \(A\) gives one head on a contiguous allocated segment until cleanup, or one finished inert token afterwards. There are no malformed tuples on such a path. A deleted rightmost cell has no other sender and stays empty. All remaining residents retain their position and their payload until visited by the unique head. No output rule produces \(A\); the only rule producing \(B_0\) is the final erasure at the marked origin. The special-code field prevents a tape tuple, or a merger of messages in distinct bundles, from becoming \(A\) or \(B_0\). An inert token cannot turn into either. From \(B_0\) there is just \(I\) at every subsequent date. Orthogonality against an old \(A\) or \(B_0\) thus selects exactly the terminal singleton specified in (ii). Intermediate single-site tape shapes, when present, have different character indices and contribute nothing to that pairing.
+
+For a fixed stage, all linear paths have the same occupancy before the fork. Multiplication by the common \(\alpha\) at every active site therefore scales the whole vector equally. Summing those paths gives the maps \eqref{eq:linear-instructions}, hence the factor \(Q_j\). The baseline reaching a later stage has only positive weight. After the fork the linear amplitudes have already combined into one \(\mathsf v\)-head, and every delay, quit and erase weight is positive. This proves the coefficient formula, including its sign even when \(Q_j=0\).
+
+For the dates, write \(t\) for a quit tick and \(p_t\in[0,D_j]\) for its head position. The fixed quit-setup state makes the terminal date
+\[
+ d_t=t+(D_j-p_t)+D_j+C_0,
+\]
+or \(d_t+1\) with the private wait. Adjacent ticks satisfy \(|p_{t+1}-p_t|\le1\), so \(d_{t+1}-d_t\in\{0,1,2\}\). The two available dates at each tick fill every gap. The finite loop has at least \(2^{2^j}\) ticks, giving
+\begin{equation}\label{eq:terminal-interval}
+ f_j\le F_j+2D_j+C_1,\qquad
+ \ell_j-f_j\ge2^{2^j}-D_j-C_1.
+\end{equation}
+Here \(F_j\) is the fork date, including its fixed setup. Since every terminal date of stage \(j\) is after its fork, \(f_j\ge F_j\to\infty\). With \(f_j\ge F_j\), equations~\eqref{eq:fork-cost}--\eqref{eq:terminal-interval} give \(f_{j+1}\le\ell_j+1\) for all large \(j\). Since \(\ell_j\to\infty\), every integer at least \(f_{j_0}\), for a sufficiently large fixed \(j_0\), lies in some \(\mathcal T_j\). At a fixed date only finitely many stages, finite shapes and paths occur. This proves (iii) and rules out unintended terminal or merged contributions.
+\end{proof}
+
+\subsection{A positive PCA and a rational energy table}\label{sec:sign-magnet}
+
+For each nonzero dual index \(c\), denote its option list by \(\mathcal L(c)\), and its outgoing messages by \(b_d(c,l)\). Define the hidden transition
+\begin{equation}\label{eq:Fourier-kernel}
+ K_z(y\mid h)=\frac1{|G|}\left[1+
+ \alpha(z)\sum_{c\ne0}\chi_c(y)
+ \sum_{l\in\mathcal L(c)}k_l(z)
+ \prod_{d=-1}^1\chi_{b_d(c,l)}(h_d)\right],\qquad
+ \alpha(z)=\frac{1-z}{R_0(1+z)^B}.
+\end{equation}
+Character orthogonality gives row sum one and gives precisely the prescribed conditional moment for every nontrivial character, with the common factor \(\alpha\). Choose \(B\) at least the degree of every \((1-z)k_l(z)\). Increasing the integer \(R_0\) ensures
+\begin{equation}\label{eq:hidden-reset}
+ K_z(y\mid h)\ge\frac{1-\epsilon}{|G|},\qquad
+ 0\le z\le1,\qquad 0<\epsilon<1/3.
+\end{equation}
+It also makes every coefficient in every numerator, over the common denominator \(|G|R_0(1+z)^B\), a positive integer: at every degree the background \(R_0(1+z)^B\) grows with \(R_0\), whereas the finitely many signed perturbation coefficients are fixed. Thus this choice is effective.
+
+The iid uniform hidden row is invariant. For a nonconstant finite product of characters of a new row, conditional independence multiplies their expansions. Lemma~\ref{lem:dual-table}(i), together with the disjoint arrival bundles, says that each contributing predecessor shape is nonempty. Its expectation under the old iid uniform row is zero. All nonconstant Fourier moments therefore vanish. More generally, the exact \(n\)-step expansion is the sum over its finite message diagrams, with weight equal to the product of the local \(k_l\)'s times \(\alpha\) to the number of active scatterings. The weights can be signed; only the physical kernel \eqref{eq:Fourier-kernel} is a probability.
+
+Adjoin an actual sign \(s\in\{-1,1\}\) with conditional distribution
+\begin{equation}\label{eq:sign-readout}
+ p_z(s\mid y)=\frac{1+s\,\delta(z)(\chi_A(y)+\chi_{B_0}(y))}{2},\qquad
+ \delta(z)=\frac{1-z}{R_1(1+z)^{B'}}.
+\end{equation}
+Choose \(B'\ge1\) and the integer \(R_1\) large enough that \(2\delta<1\) on \([0,1]\) and the numerator coefficients are positive integers, as above. Earlier signs are ignored. The product \(K_z(y\mid h)p_z(s\mid y)\) has a common denominator \(g_0(z)\in\mathbb Z[z]\) with positive coefficients and strictly positive integer-coefficient numerators. At \(z=1\) every projected symbol \((y,s)\) has probability \(1/(2|G|)\), independently of \(h\). Consequently all numerator polynomials have the same sum of coefficients
+\[
+ L_0=\frac{g_0(1)}{2|G|}\in\N.
+\]
+List their monomials with multiplicity in increasing order of exponent, writing \(e(h;y,s,\iota)\) for the exponent at position \(1\le\iota\le L_0\). The full alphabet is \(\mathcal B=G\times\{-1,1\}\times\{1,\ldots,L_0\}\). Its strictly positive radius-one PCA table is
+\begin{equation}\label{eq:full-sign-kernel}
+ T_z(y,s,\iota\mid h)=\frac{z^{e(h;y,s,\iota)}}{g_0(z)}.
+\end{equation}
+One anchored interaction on the child and its three old hidden neighbors has energy \(e(h;y,s,\iota)\). These are fixed nonnegative integers. The energy sum over a new full symbol is \(g_0(e^{-\beta})\), independent of the parents. Dividing each weight by that number gives exactly \eqref{eq:full-sign-kernel}, so the interaction and normalized PCA have the same specification, including factors of exterior children.
+
+Let \(g\in G\) be one on each of the three parity coordinates and zero elsewhere. Parity conservation gives
+\[
+ K_z(y+g\mid h+g)=K_z(y\mid h),\qquad
+ p_z(-s\mid y+g)=p_z(s\mid y).
+\]
+The corresponding numerator polynomials coincide, and therefore so do their sorted exponent lists. Hence
+\[
+ \sigma(y,s,\iota)=(y+g,-s,\iota),\qquad M(y,s,\iota)=S(y,s,\iota)=s
+\]
+give an invariant fixed-point-free involution and an odd Ising-valued one-site observable. We have constructed one finite rational magnet in the sense of the introduction.
+
+Forgetting holds for the full table. Couple two hidden updates through the uniform component of weight \(1-\epsilon\) in \eqref{eq:hidden-reset}. A hidden discrepancy has probability at most \(\epsilon\) times the sum of the three parent discrepancy probabilities, so after \(t\) updates its one-site probability is at most \((3\epsilon)^t\), from any two rows. Once the hidden parents agree, couple the full new symbol in \eqref{eq:full-sign-kernel} identically. A union bound gives \eqref{eq:uee} on every finite test set for the full PCA, with a harmless one-step change of constants. Theorem~\ref{thm:transfer} now gives exactly one DLR measure \(\mu_\beta\), its stationary trajectory law, and arbitrary-volume EWM at every \(\beta\in[a,b]\).
+
+\subsection{Response, onset and pressure}\label{sec:sign-proof}
+
+Conditional on the entire hidden field, the signs at different sites are independent with means \(\delta(\chi_A+\chi_{B_0})\). If the lag is \((k,n)\) with \(n>0\), orthogonality in the old iid row identifies
+\(\langle\chi_p(Y_{(0,0)})\chi_c(Y_{(k,n)})\rangle\)
+with the coefficient of the singleton \(p\) at coordinate \(-k\) in the \(n\)-step expansion from \(c\) at the origin. Lemma~\ref{lem:dual-table} thus gives
+\begin{equation}\label{eq:sign-correlation}
+ \langle S_0S_{(k,n)}\rangle_\beta
+ =\begin{cases}
+ \displaystyle\delta(z)^2\sum_{j:n\in\mathcal T_j}c_{j,n}(z)Q_j(z),&k=0,\\
+ 0,&k\ne0.
+ \end{cases}
+\end{equation}
+The common row has zero correlation at distinct sites. Translation invariance and interchange of the two spins give the same formula with \(|n|\) for negative lags. In particular every off-column correlation is zero.
+
+If \(\beta\notin W\), every summand in \eqref{eq:sign-correlation} is nonnegative, and each available stage contributes strictly positively. The coverage date from Lemma~\ref{lem:dual-table} is therefore one \(N_0\), independent of \(\beta\), beyond which all column correlations are strictly positive off \(W\). If \(\beta\in W\), only finitely many \(Q_j(z)\) are nonnegative. Each such stage has a finite last terminal date. Beyond the maximum of those dates and the coverage date, at least one stage contributes and all contributions are negative. This gives eventual strict negativity along the column. Conversely a negative sum implies a negative \(Q_j\), which implies \(\beta\in W\). These assertions all hold for the same magnet and observable.
+
+Symmetry and uniqueness give \(\mu_\beta(S_x)=0\). A point field with dimensionless strength \(h\) changes the law to
+\begin{equation}\label{eq:point-field}
+ \mu_{\beta,h}(d\omega)=
+ \frac{e^{hS_0(\omega)}}{\mu_\beta(e^{hS_0})}\,\mu_\beta(d\omega),\qquad
+ \mu_{\beta,h}(S_x)=\tanh(h)\langle S_0S_x\rangle_\beta.
+\end{equation}
+The identity follows by expanding \(e^{hS_0}=\cosh h+S_0\sinh h\). A bounded one-site perturbation maps DLR measures bijectively by this tilt, with the inverse tilt \(e^{-hS_0}\); hence this is the unique Gibbs state with the field. Differentiating at zero gives the response \(R_\beta(x)=\langle S_0S_x\rangle_\beta\).
+
+Estimate~\eqref{eq:cluster} bounds the absolute responses exponentially in the distance. Their signs distinguish the two sets even though the measured effects can be extremely small.
+
+To make the onset statement precise, let \(N(\beta)\) be the least integer \(N\ge1\) such that \(R_\beta((0,n))<0\) for every \(|n|\ge N\), for \(\beta\in W\). If \(\beta_{\rm b}\) is a relative boundary point of \(W\), it lies outside \(W\). For any integer \(L\), choose \(n\ge\max\{N_0,L\}\). The finite-lag function in \eqref{eq:sign-correlation} is a finite sum of rational functions of \(z\), hence continuous, and is positive at \(\beta_{\rm b}\). It stays positive in a relative neighborhood of \(\beta_{\rm b}\). Every \(\beta\) of \(W\) in that neighborhood has \(N(\beta)>n\ge L\). Thus \(N(\beta)\) tends to infinity on approach from \(W\) to any relative boundary point; in particular it is unbounded in every such neighborhood.
+
+Finally take square volumes \(\Lambda\). First retain just the energy terms anchored at children inside \(\Lambda\), with the exterior fixed. Summing from the top row down, the parent-independent normalization gives exactly \(g_0(z)^{|\Lambda|}\). The full Hamiltonian adds only terms anchored at exterior children whose parents meet \(\Lambda\); there are \(O(|\partial\Lambda|)\) of them, with uniformly bounded energy. On the compact inverse-temperature window their weights are between \(e^{-C|\partial\Lambda|}\) and \(e^{C|\partial\Lambda|}\). Therefore the pressure, with counting measure on the full alphabet, is
+\begin{equation}\label{eq:sign-pressure}
+ p(\beta)=\lim_{\Lambda\uparrow\Z^2}\frac{\log Z_\Lambda^\tau(\beta)}{|\Lambda|}
+ =\log g_0(e^{-\beta}).
+\end{equation}
+Explicitly \(g_0(z)=2|G|R_0R_1(1+z)^{B+B'}\). Every local expectation is a rational function of \(z\) with denominator a power of \(g_0\): start from the iid hidden row below its finite backward cone and sum the finitely many transition factors. All fixed-lag correlations are therefore real-analytic; the noncomputable sign boundary comes from the quantifier over lags. The polynomial \(g_0\) is positive on the real window. The pressure is real-analytic there, including on a real neighborhood of either endpoint. There is one DLR measure and EWM everywhere in the window, and the pressure has no singularity. Thus the response-sign boundary gives neither coexistence nor a thermodynamic singularity.
+
+\subsection{The effective converse}\label{sec:response-converse}
+
+Let \(\Phi\) now be any finite rational magnet with exactly one Gibbs measure at every \(\beta\in[a,b]\). Its symmetry makes all one-spin means zero. For \(x\ne0\) put \(f=M_0M_x\). For any box \(\Lambda\) containing its support, consider the certificate
+\begin{equation}\label{eq:negative-certificate}
+ \max_\tau\gamma_{\Lambda,\beta}^\tau(f)<0.
+\end{equation}
+Only a finite boundary layer enters, so the maximum has finitely many terms. Every Gibbs measure is a mixture of these finite-volume laws; the certificate is sound. If \(\mu_\beta(f)<0\), uniqueness implies
+\[
+ \sup_\tau|\gamma_{\Lambda,\beta}^\tau(f)-\mu_\beta(f)|\longrightarrow0
+\]
+along growing boxes. Otherwise a sequence of bad boundary laws has a weak limit; finite range and positivity make that limit a DLR measure, contradicting uniqueness. This proves completeness.
+
+Each finite-volume expectation is a uniformly computable analytic function of \(\beta\), since the energies and \(M\) are rational. It has a computable continuity modulus on rational compact intervals, for example from the covariance derivative and the finite Hamiltonian range. Enumerate rational intervals on which interval enclosures certify \eqref{eq:negative-certificate}, dovetailing over \(x\ne0\), boxes and precision, and intersect with \([a,b]\). Soundness and completeness give exactly
+\[
+ \{\beta\in[a,b]:R_\beta(x)<0\text{ for some }x\ne0\}.
+\]
+This is uniform in the finite table, its range, the observable and the rational window, under the stated uniqueness promise. Together with the construction it proves Theorem~\ref{thm:G}. The converse concerns the derivative at zero field. It gives no effective-openness assertion for eventual negativity along the column, which has an additional existential--universal quantifier over the lags.
+
+\subsection{Disorder lines and fixed linear probes}\label{sec:disorder}
+
+A \emph{disorder line}, in the correlation sense of Stephenson \cite{stephenson}, separates different long-distance sign or oscillation patterns within a disordered regime. Fisher and Widom studied the analogous distinction between monotone and oscillatory decay in linear systems \cite{fisherWidom}. In a one-parameter window the locus can consist of individual points or a more complicated boundary. Every relative boundary point of \(W\) in Theorem~\ref{thm:G} is such a locus for the eventual sign along the measurement column. For instance, taking \(W=[a,a+(b-a)\Omega)\) puts this sign boundary at a noncomputable inverse temperature. Formula~\eqref{eq:sign-pressure} and uniqueness distinguish this disorder line from the ordered/mixing boundary sought after Theorem~\ref{thm:F}.
+
+A \emph{disorder variety} is instead a locus of Boltzmann weights admitting a reduction of the equilibrium model to lower-dimensional stochastic evolution. Enting studied crystal growth, Ising models and disorder points \cite{enting}. Peschel and Emery calculate two-dimensional Ising correlations from one-dimensional kinetic models \cite{peschelEmery}, while Ruj\'an obtains exact free energies and correlations on restricted order/disorder loci of competing-interaction IRF models \cite{rujan}. The PCA-history/Gibbs correspondence is developed in \cite{dk,lms}. The parent-independent normalizer \eqref{eq:full-sign-kernel} places the entire temperature window of our magnet on such a variety within the ambient family of interactions on the same supports. The response-sign boundary is a subset of that window, rather than the locus of the reduction itself. Bernoulli invariant rows and independent directions in stationary PCA fields were studied by Mairesse and Marcovici \cite{mairesseMarcovici}.
+
+There is also a useful distinction between the family of local responses and a fixed linear probe of it. In Section~\ref{sec:sign-magnet} choose \(R_0\) so large that also, on a closed complex neighborhood \(U\) of \(\mathcal K\) avoiding \(-1\),
+\[
+ \max_{c\ne0}\sum_{l\in\mathcal L(c)}|\alpha(z)k_l(z)|\le\theta<1.
+\]
+For every nonempty dual shape, the absolute sum of outgoing weights for a full step is at most \(\theta\): the local sums multiply and at least one site is active. Nonextinction then gives a bound \(4\sup_U|\delta|^2\theta^n\) for the absolute column correlation at lag \(n\). Every finite-lag correlation is holomorphic there. This choice preserves \eqref{eq:hidden-reset}, coefficient positivity and every sign above. For a fixed computable sequence \((c_n)\) with a given polynomial growth bound, or a given bound \(|c_n|\le B_1q^n\) with \(q\theta<1\),
+\[
+ F(z)=\sum_{n\ge1}c_n R_{-\log z}((0,n))
+\]
+is computable and holomorphic, with an effective tail bound. For bounded profiles it is the limit of the derivatives for the corresponding finite-support fields. Unless \(F\) vanishes identically, it has finitely many real zeros on \(\mathcal K\), each individually computable by fixing an isolating interval and excluding compact subintervals away from its unique zero. This asserts individual computability, not a uniform zero-isolation algorithm for arbitrary input functions. Thus a fixed such linear response cannot retain a noncomputable boundary. The information lies in the quantification over lags. For a fixed finite transfer matrix the lag sequence instead satisfies a linear recurrence by Cayley--Hamilton; its sign question is a form of the Positivity problem studied by Ouaknine and Worrell \cite{ouaknineWorrell}.

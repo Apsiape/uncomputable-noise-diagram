@@ -1,0 +1,133 @@
+\section{Prescribing sampled decay shape on one Ising geometry}\label{sec:ising-diagrams}
+
+The proof of H has three parts. A finite Fourier table turns an enumeration into a countable family of decay modes. A finite Ising decoration realizes the resulting integer energies. A computable fixed point places the prescribed set in the physical inverse-temperature coordinate. The explicit crystal I uses the decoration but a different Fourier table.
+
+\subsection{A finite parent for an enumeration}\label{sec:cap-parent}
+
+We first describe the parent construction in the coordinate \(z\in(0,1)\). All notation in this section is local to this construction. Let \(O\) be effectively open in \((0,1)\). Enumerate pairs \((K_t,V_t)\), where \(K_t\) is a compact rational interval, \(V_t\) is open and rational, and
+\[
+ K_t\subset V_t,\qquad \overline V_t\subset O,
+\]
+so that the \(K_t\)'s cover \(O\). A bounded simulation of the enumerator decides what has been printed at a given tick; it need not decide when the next interval will appear.
+
+For each printed pair find finitely many rational \((v,s)\), with \(0<s<v<1\), such that the caps \(2^v z^s\) satisfy
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item their closed superlevel sets above \(1+z\), on all of \([0,1]\), lie in \(V_t\), and their centers \(z_c=s/(1-s)\) lie in \(V_t\);
+\item their strict superlevel sets cover \(K_t\);
+\item \(2^vz^s\le(1+2^{-t})(1+z)\) on \([0,1]\).
+\end{enumerate}
+All tests on a finite proposed list are decidable. A common denominator converts them to rational polynomial sign tests after raising positive quantities to that power.
+
+Here is why the search terminates. In \(x=-\log z>0\), the function \(\phi(x)=\log(1+e^{-x})\) is strictly convex. Its tangent at \(x_0\) has slope \(-s_0\), with \(s_0=z_0/(1+z_0)\), and intercept \(c_0=\phi(x_0)+s_0x_0\) satisfying
+\[
+ s_0\log2<c_0<\log2.
+\]
+Raise that tangent slightly and approximate its slope and intercept by \(-s\) and \(v\log2\). Strict slack away from its contact keeps its closed superlevel set inside \(V_t\), and the raise can be small enough for (c). As \(z\downarrow0\), the ratio of the cap to \(1+z\) tends uniformly to zero for slopes near \(s_0>0\); at \(z=1\), strict slack follows from \(v<1\). Compactness supplies finitely many caps covering \(K_t\). Serialize the searches and outputs so that at most one cap is printed per computation tick. There are only finitely many caps with original batch number at most any fixed \(T\).
+
+\begin{lemma}[Finite parent and its return formula]\label{lem:cap-parent}
+From the text of the enumerator one effectively specifies a finite alphabet, an odd one-site spin, and two oriented nearest-neighbor integer energy tables on \(\Z^2\): the east table takes values in \(\{0,\ldots,4\}\) and the north table values in \(\{0,\ldots,11\}\). The alphabet is a product of binary coordinates, so its size is a power of two, and addition of one fixed bit mask is a free involution that preserves both tables and reverses the spin. For \(0<z<1\), the trajectory law started from the iid uniform hidden row, called the invariant-row Gibbs law, is a Gibbs measure for these tables, and its finite marginals are rational in \(z\), hence analytic. For positive lags its axial correlation is
+\begin{equation}\label{eq:cap-correlation}
+ C^{\rm cap}_z(n)=\frac14\left[\mathfrak R_0(z)^n+
+ 2\cos(2\pi n/3)\sum_j w_j(z)\mathfrak B_j(n-F_j,z)\right],
+\end{equation}
+where \(\mathfrak R_0=h(2+z)\), \(\mathfrak R_j=h(1+\gamma_j)\), \(\gamma_j=2^{v_j}z^{s_j}\), and
+\begin{equation}\label{eq:cap-orbit}
+ \mathfrak B_j(k,z)=\frac{h^k}{\ell_j}
+ \sum_{q=0}^{\ell_j-1}(1+\gamma_j e^{2\pi iq/\ell_j})^k
+ =h^k\!\sum_{\substack{0\le a\le k\\\ell_j\mid a}}
+ \binom{k}{a}\gamma_j^a.
+\end{equation}
+It is zero for \(k<0\). The entrance weights obey \(F_j\ge j+2\), \(0<w_j\le(zh/4)^{F_j}\); at a fixed lag only finitely many stages contribute. The scale \(h>0\) can be chosen so small that \(3h<1/4\).
+\end{lemma}
+
+\begin{proof}
+Use the hidden group \(G=\mathbb F_2^w\), with characters \(\chi_a(y)=(-1)^{a\cdot y}\). In a mask \(a\) the low four bits carry a resident label, the next three bits are presence flags for the incoming displacements \(-1,0,1\), and the remaining \(w-7\) bits are a payload shared by the three directions. The sixteen resident labels include the empty label, a unary tape bit, two interior markers, a right endpoint, and three colors each of the computation origin and of the orbit's left endpoint. A head label consists of a payload, exactly one presence flag and an optional resident. The eight orbit head states use payloads \(0,\ldots,7\); the seed, the terminal and the direct character have further reserved payloads with the stationary flag, and the finite control uses the remaining payloads. Residents send only to themselves. An option sends at most one moving head, and may leave a resident; an output to a side neighbor uses only the shared payload and the single flag of that direction, and a center output never carries a side flag. Thus at a receiver distinct senders have distinct flags, and a nonempty character shape cannot cancel to the empty shape. Starting from a seed there is exactly one head; its tape is represented by resident bits. A terminal character has no outgoing option, and reserved majority-triple characters have none either. Unassigned nonzero labels have empty option lists. This means zero Fourier coefficient, rather than an option producing an empty shape.
+
+A finite register program simulates a bounded part of the cap enumeration. Tape stacks in any fixed base, implemented by increment and successful-decrement loops with scratch registers, suffice. Registers are unary prefixes in \(m\) disjoint residue classes of sites. Before an orbit is installed all scratch registers are cleared. For a printed cap \(v=V/Q\), \(s=S/Q\), it deposits markers at
+\[
+ 0,\quad m(Q-V),\quad m(Q-S),\quad mQ.
+\]
+A round trip has \(\ell_j=2mQ\) advances. The gain and thermal markers toggle independent factors \(2\) and \(z\), so the complete trip multiplies the advance weight by \(2^{2mV}z^{2mS}=\gamma_j^{\ell_j}\). A hold is allowed at each tick. Exiting at the original orbit phase and erasing all markers leaves only the terminal at the origin. The origin resident advances a color modulo three at every tick, including holds; its final multiplier is \(2,-1,-1\). This is \(2\cos(2\pi n/3)\). The direct mode has weight \(h(2+z)\).
+
+Each option of an input mask has three output masks, for the west, center and east sites of the old row, and a weight
+\[
+ \frac{c\,u^ez^s}{4M^e}\quad\text{(resident rule)},\qquad
+ \frac{c\,u^ez^s}{4M^e(1+z)}\quad\text{(head rules)},
+\]
+with \(c\in\Z\), \(1\le e\le5\), \(s\in\{0,1\}\) (\(s=0\) for the resident rule), \(u=((1-z)/(1+z))^2\) and one dyadic divisor \(M\ge2\). A resident pays \(u/M\) per tick and the orbit walker \(u/[M(1+z)]\); when they occupy one site both factors are charged there. Thus an orbit tick with four markers and one head has weight \(h=u^5/[M^5(1+z)]\), times the gain and thermal factors \(2\) and \(z\) on the marked segments. A work, installation or erasure head has weight \(zu^5/[4M^5(1+z)]=zh/4\) per tick, and every other occupied site has weight \(u/M\le1\). The only moving \(e=1\) rules are orbit advances, whose report characters lie in the small report block described below. Every remaining moving rule has \(e\ge2\) and uses at most the two blocks of one side report, and stationary rules use no report. Hence \(1\le e\le5\) and \(2e>|J|\), where \(J\) is the set of nontrivial horizontal report blocks inverted in that rule. At most one candidate orbit is installed per tick. Extra residents cost at most one, proving the entrance estimate.
+
+Here is a fixed pair-energy realization of these rational Fourier coefficients. A site carries two side reports \(l,r\). Its left report is compared with \(\pi_-\) of its west neighbor's hidden word, and its right report with \(\pi_+\) of its east neighbor's hidden word; here \(\pi_\pm(y)\) is the shared payload of \(y\) with the flag of that direction as its lowest bit. Split each report into two blocks of even width: a small block of four bits, holding the flag and the three lowest payload bits that carry every orbit head, and a large block holding the remaining payload bits, whose number is chosen even. For a block of \(b\) words put
+\[
+ Q(x)=x_0x_1+x_2x_3+\cdots\pmod2,\qquad
+ L_b(z)=\tfrac12[b+\sqrt b+(b-\sqrt b)z].
+\]
+The report channel has weight \(z^{Q(r\oplus x)}/L_b(z)\). Its nontrivial character multiplier is
+\[
+ (-1)^{Q(a)}\frac{1-z}{\sqrt b+1+(\sqrt b-1)z}.
+\]
+This follows by multiplying the two-bit Walsh identity
+\(\sum_{x,y}(-1)^{xy+ix+jy}=2(-1)^{ij}\).
+Multiply each moving Fourier coefficient by the inverse of its active report multipliers before integrating the reports. For a south context \((l,y,r)\) and a new hidden word \(y'\), clearing the common denominator \(4M^5(1+z)^{11}\) in \(|G|\) times the resulting hidden transition gives a polynomial of degree at most eleven, with background polynomial \(4M^5(1+z)^{11}\). The contribution of an option has a factor \((1-z)^{2e-|J|}\), so it vanishes at \(z=1\). Increase \(M\) until, at each degree \(0\le\iota\le11\), the sum of absolute perturbation coefficients is smaller than the background coefficient \(4M^5\binom{11}{\iota}\). This terminates because the table is finite and every \(e\ge1\). All coefficient lists are then strictly positive integers with the same sum \(I=2^{13}M^5\) at \(z=1\), a power of two. For a south site \((y,l,r,i)\) and a north site \((y',l',r',i')\), list the monomials of the polynomial for \((y'\mid l,y,r)\) with multiplicity in increasing order of exponent; the north energy is the exponent at position \(i'\in\{0,\ldots,I-1\}\), and lies in \(\{0,\ldots,11\}\). The east energy from \((y,l,r,i)\) to its east neighbor \((y',l',r',i')\) is the sum of \(Q\) over the two blocks of \(l'\oplus\pi_-(y)\) and the two blocks of \(r\oplus\pi_+(y')\), and lies in \(\{0,\ldots,4\}\). The alphabet \(G\times\{0,1\}^{2(w-6)}\times\{0,\ldots,I-1\}\) has a power-of-two size.
+
+The normalized factors have configuration-independent sums. Starting with an iid uniform hidden row and using these factors gives the pair Gibbs specification by finite-slab weight ratios. Every fixed cylinder uses a finite backward cone, hence is a rational function of \(z\) with positive denominator. Nonextinction proves iid hidden-row invariance by character orthogonality. The observed spin is the majority of the seed, terminal and direct characters, with Fourier coefficients \(1/2,1/2,1/2,-1/2\). Only the direct return and seed-to-terminal returns can pair. This gives the factor \(1/4\) and \eqref{eq:cap-correlation}. Finally, choosing which ticks advance proves \eqref{eq:cap-orbit}. Flipping the three presence flags of the hidden word and the flag bit of each report adds one fixed bit mask to every symbol. Every option preserves the parity of presence flags, so both pair tables and the index are invariant, while the seed, terminal and direct characters each change sign, and so does the observed spin. This free involution, with one flipped coordinate as pivot, is the one used by the rail representation in Section~\ref{sec:herald-proof}.
+\end{proof}
+
+\subsection{Which mode dominates?}\label{sec:cap-modes}
+
+Each fixed orbit has the simple leading rate \(\mathfrak R_j=h(1+\gamma_j)\): all other roots of unity in \eqref{eq:cap-orbit} give strictly smaller modulus. Put \(\mathfrak H(n)=\sum_j w_j\mathfrak B_j(n-F_j)\). At any comparison rate \(\rho\ge\sup_j\mathfrak R_j\) with \(\rho\ge h\),
+\[
+ 0\le\mathfrak H(n)\le\rho^n\sum_j4^{-F_j}\le\rho^n/12.
+\]
+Off \(O\), every \(\mathfrak R_j<\mathfrak R_0\). Dominated convergence gives \(\mathfrak H(n)/\mathfrak R_0^n\to0\). The same bound places \(C^{\rm cap}_z(n)\) between \((11/12)\mathfrak R_0^n/4\) and \((14/12)\mathfrak R_0^n/4\); the choice of scale makes successive bounds strictly separated, including \(C^{\rm cap}_z(0)=1\). Thus the correlations are positive and strictly decreasing at every lag.
+
+On \(O\), a cap strictly exceeds \(1+z\). The excesses tend effectively to zero with batch number. The maximum rate above \(\mathfrak R_0\) is therefore attained by a finite nonempty collection, with a gap to every remaining rate. Combining its positive residues gives
+\[
+ C^{\rm cap}_z(n)=A\rho^n\cos(2\pi n/3)+O(\sigma^n),
+ \qquad A>0,\quad 0<\sigma<\rho<1.
+\]
+Subtracting the cosine leaves a generating function of strictly larger radius, proving precisely two simple nearest poles. Ties between maximizing stages add positive residues.
+
+For context, the parent construction also distinguishes interior and boundary points of the complement. On a compact neighborhood of a complementary point, integrate the positive curvature of \(\phi\) along the segment toward each cap center. Centers a fixed distance away incur a fixed positive deficit, even when outside that neighborhood. For centers in a common compact interval the log excess is at most \(\log(1+2^{-t})-\kappa\varrho^2/2\), where \(\varrho\) is the distance to the center and \(\kappa=\min\phi''>0\). At an interior complementary point this gives a strict gap below \(\mathfrak R_0\) for all late batches; the finite earlier list also has a gap. At a boundary point the supremum is \(\mathfrak R_0\), unattained. The positive stage series has radius \(1/\mathfrak R_0\), by a fixed-stage lower bound and the summable upper bound. Pringsheim's theorem \cite[Theorem~IV.6]{flajoletSedgewick} makes its positive boundary point singular. Abel averaging of \(\mathfrak H(n)/\mathfrak R_0^n\to0\) rules out a pole. All orbit eigenvalues lie in the disk with center \(h\) and radius \(\mathfrak R_0-h\); it meets the outer circle only on the positive axis. Normal convergence of the entrance-weighted resolvents continues the series across every other arc. Adding the baseline and rotating the stage series gives one real simple pole and two non-poles at the boundary. Thus at boundary points the oscillatory term is only subexponentially smaller than the positive pole term. The converse below therefore uses the all-lag sign promise, whose negative lags finite certificates can detect, rather than a condition on eventual oscillation alone.
+
+\subsection{Finite Ising realization and the physical coordinate}\label{sec:ising-fixedpoint}
+
+The finite decoration proved in Section~\ref{sec:herald-proof} realizes an even Boolean output table as a three-site factor \(1+\mathcal T\,\mathrm{sign}\), up to a positive analytic constant. Its transmission \(\mathcal T\) increases computably and strictly from zero to one. For the integer energy \(E\in\{0,\ldots,15\}\), use \(\delta=1/32\) and the identity
+\begin{equation}\label{eq:general-selector}
+ (1-\delta\mathcal T)^E
+ =1+\mathcal T\sum_{k=1}^E(-\delta)^k\binom Ek\mathcal T^{k-1}.
+\end{equation}
+The absolute coefficient sum is at most \((33/32)^{15}-1<1\). Fair finite selector bits choose the indicated signed monomials with their dyadic probabilities; divide the remaining mass evenly between the two signs. Independent calibration chains supply the powers of \(\mathcal T\). The Boolean circuit uses formal calibration inputs. Install the chains only after the finite circuit is fixed, each duplicating that circuit's own transmission. This proves the identity also for \(E=0\) and avoids any equation involving an unknown chain length.
+
+The pair table is finite and even under its free involution. Disjunctive normal form, finite addition and multiplexing therefore produce a Boolean circuit for it; exhaustive finite verification is an alternative construction. Fanout-two COPY expansion and the one-contact modules give a finite graph of maximum degree three. This first compilation uses only the program text. The unbounded cap searches occur in its dual computation, at increasing lags, rather than during construction of the finite graph.
+
+Apply the equal-length two-layer routing and 32-site switch decoration of Section~\ref{sec:crystal-geometry}. This uses the same geometric graph for every input, changing only a finite periodic sign pattern on a fixed matching. For candidate enumerator text \(p\), its physical-to-parent coordinate is
+\[
+ z_p(\beta)=1-\delta\mathcal T_p(b_{\rm eff}(\beta)).
+\]
+It is a computable strictly decreasing homeomorphism from \((0,\infty)\) to \((31/32,1)\), with computable inverse. These assertions follow from the strictly increasing finite transmission factors and the inverse found by monotone search.
+
+The reached parent inverse temperature \(B_p=-\log z_p\) is at most \(\log(32/31)\). A neighbor changes an energy table of range eleven vertically or four horizontally. The likelihood-ratio bound gives the direct physical Dobrushin row sum
+\begin{equation}\label{eq:diagram-dobrushin}
+ 2\tanh(11B_p/2)+2\tanh(2B_p)
+ \le15\log(32/31)<0.48.
+\end{equation}
+It proves parent uniqueness and arbitrary-boundary exponential mixing on the entire reachable interval. The collar argument of Section~\ref{sec:collar} transfers these properties to the microscopic graph. The configuration-independent finite normalizers give analytic pressure; finite marginals are analytic combinations of the parent's rational marginals. No global hidden-comparison assertion away from this reached interval is required.
+
+Extend the requested \(W\subset[a,b]\) to an effectively open \(U\subset(0,\infty)\) by the preimage under clipping to \([a,b]\). From \(p\), enumerate \(z_p(U)\) by rational inner approximations of images of open intervals. This is a total computable transformation \(F\) of enumerator indices. A fixed index can be chosen effectively. To see this directly, let \(s(i,x)\) fix the first argument of a two-input program. Choose \(e\) so that its computation on \((x,t)\) simulates the \(t\)-th tick of \(F(s(x,x))\). Then \(p=s(e,e)\) enumerates exactly what \(F(p)\) enumerates. The substitutions are finite string operations. For this \(p\),
+\[
+ z_p(\beta)\in O\quad\Longleftrightarrow\quad
+ z_p(\beta)\in z_p(U)\quad\Longleftrightarrow\quad\beta\in W
+ \quad(\beta\in[a,b]).
+\]
+Four-parent-step sampling gives \(C^{\rm cap}_{z_p(\beta)}(4n)\); because \(4\equiv1\pmod3\), it preserves the cosine's residues and the two simple nearest poles. This proves the realization in H, including the fixed geometry and the one-time computation of signs, site and vector. The square-lattice variant omits the switch decoration: flattening the diluted two-layer routing by \((x,y,z)\mapsto(x-y,x+y+z)\) gives nearest and diagonal exchanges in \(\{-1,0,+1\}\). Its coordinate map is \(1-\delta\mathcal T_p(\operatorname{atanh}((\tanh\beta)^{L_p}))\), with \(L_p\) its wire length, and the fixed-point step is repeated with this map.
+
+\subsection{The converse and its sign promise}\label{sec:decay-converse}
+
+For any finite-period rational interaction, rational local spin \(X\), site \(o\) and vector \(d\), use
+\(f_n=X_oX_{o+nd}\). The finite-box certificate
+\[
+ \max_\tau\gamma_{\Lambda,\beta}^\tau(f_n)<0
+\]
+is sound by the DLR equation. Under uniqueness, the all-exterior range converges to the unique expectation as \(\Lambda\) grows: otherwise a weak limit of bad boundary laws is a different DLR law. Every strictly negative expectation consequently has a finite certificate. Finite energies make each finite-box expectation a computable analytic function; certified inequalities on rational compact intervals enumerate its strict-negative neighborhoods. Dovetail over boxes, positive lags and precision, as in Section~\ref{sec:response-converse}. This enumerates exactly the set with some negative sampled lag, uniformly in the interaction, observable, sampling data and window.
+
+Under the all-lag sign promise, the latter set equals the oscillatory set \(\mathcal O\). Uniqueness supplies completeness of the certificates; the promise supplies that identification. In G the object of the converse is already some negative response, so its uniqueness converse needs no additional sign promise. This comparison concerns the sampled-correlation sets; it makes no claim about the crystal's response at every displacement.

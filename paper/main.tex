@@ -14,12 +14,24 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
-\newtheorem*{theoremA}{Theorem A}
-\newtheorem*{theoremB}{Theorem B}
-\newtheorem*{theoremC}{Theorem C}
-\newtheorem*{theoremD}{Theorem D}
-\newtheorem*{theoremE}{Theorem E}
-\newtheorem*{theoremF}{Theorem F}
+\newtheorem{theoremA}{Theorem}
+\renewcommand{\thetheoremA}{A}
+\newtheorem{theoremB}{Theorem}
+\renewcommand{\thetheoremB}{B}
+\newtheorem{theoremC}{Theorem}
+\renewcommand{\thetheoremC}{C}
+\newtheorem{theoremD}{Theorem}
+\renewcommand{\thetheoremD}{D}
+\newtheorem{theoremE}{Theorem}
+\renewcommand{\thetheoremE}{E}
+\newtheorem{theoremF}{Theorem}
+\renewcommand{\thetheoremF}{F}
+\newtheorem{theoremG}{Theorem}
+\renewcommand{\thetheoremG}{G}
+\newtheorem{theoremH}{Theorem}
+\renewcommand{\thetheoremH}{H}
+\newtheorem{theoremI}{Theorem}
+\renewcommand{\thetheoremI}{I}
 \newtheorem{transfer}[theorem]{Theorem}
 \newcommand{\Z}{\mathbb Z}
 \newcommand{\N}{\mathbb N}
@@ -78,9 +90,9 @@
 \makeatother
 \ExplSyntaxOff
 
-\title{\vspace{-1.2cm}\LARGE An uncomputable noise diagram on the line\\and a finite-energy Gibbs diagram on the square lattice}
+\title{\vspace{-1.2cm}\LARGE Computability of noise, mixing and correlation diagrams\\[0.4em]\Large An uncomputable disorder line in a zero-field Ising crystal}
 \author{Seth Douglas \and Nidhal Mghirbi}
-\date{\small Version 3.0.0, November 2026}
+\date{\small Version 4.0.0, November 2026}
 
 \begin{document}
 \maketitle
@@ -91,7 +103,7 @@
 \small Archive: \href{https://doi.org/10.5281/zenodo.24147268}{doi:10.5281/zenodo.24147268}
 \end{center}
 \begin{abstract}
-Which sets of noise rates or inverse temperatures can separate rapid forgetting from persistent order? We construct one finite-range cellular automaton on the line with computable disjoint rational noise windows: throughout a program's window it is uniformly exponentially ergodic if the program halts, whereas a one-site clock fails to converge from a specified initial law otherwise. The same dichotomy holds at one fixed positive rational rate for a computable family of radius-one rules. On the square lattice, one finite-energy interaction has arbitrary-volume exponential weak spatial mixing in halting windows and opposite translation-invariant Gibbs states in nonhalting windows. We then study the full mixing set of finite rational magnets in a positive rational inverse-temperature window. Every such set is relatively effectively open. Conversely, every effectively open set is the union of nested actual mixing sets of a computable sequence of magnets with a common alphabet; every stage has opposite ordered states outside the target set, and the spatial range of the stages may grow. For every explicitly specified rational semialgebraic open diagram in an exponential temperature coordinate, one finite nearest-neighbor magnet has exactly that mixing set and is ordered everywhere else in the window. At most three hidden line states per direction suffice, and three can be necessary for ferromagnetic 65536-color Potts line decorations with identical matrices in both directions and exact periodic Perron weights. Whether one finite magnet realizes every effectively open set remains open.
+Which temperature sets can one finite magnet realize through its correlations? On \([87/4,45/2]\), a zero-field Ising model with exchanges in \(\{-1,+1\}\) has a sampled spin correlation that changes, at a right-computably enumerable inverse temperature of halting degree, from positive strictly decreasing decay to an asymptotically damped cosine of period three in units of a fixed vector \(d\). Its nonplanar degree-three graph has 32 vertices per geometric cell, about \(4.7\times10^{22}\) spins per signed repeat, and \(|d|\approx1.8\times10^{10}\) lattice spacings. One Gibbs state, exponential weak mixing and analytic pressure persist throughout the window. Every fixed-lag correlation is computable, but no computable lag or signal guarantee follows from a prescribed distance above the cut, and no sampled correlation in the window is negative before lag \(10^{329}\). More generally, for every relatively effectively open subset \(W\) of a positive rational window, a periodic \(\pm1\) sign pattern on this fixed geometry, obtained effectively from an enumeration of \(W\), makes \(W\) the oscillatory set of a sampled spin correlation; the converse assumes uniqueness and the all-lag sign promise. For finite rational magnets, negative point-field response somewhere has exactly the relatively effectively open diagrams under uniqueness. These results complement a noise diagram on the line, a mixing/order diagram on the square lattice, effective openness of mixing sets, their sequential realization, and exact realization of explicit semialgebraic diagrams. Realizing every relatively effectively open mixing set by one magnet with opposite order on its complement remains open.
 \end{abstract}
 {\small\tableofcontents}
 
@@ -105,8 +117,13 @@ Which sets of noise rates or inverse temperatures can separate rapid forgetting 
 \input{effective-openness}
 \input{sequential-realization}
 \input{algebraic-diagrams}
+\input{response-signs}
+\input{hidden-markov}
+\input{ising-diagrams}
+\input{crystal}
 \input{discussion}
 \appendix
 \input{appendices}
+\input{reproducibility}
 \input{references}
 \end{document}

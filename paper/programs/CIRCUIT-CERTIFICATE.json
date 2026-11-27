@@ -1,0 +1,16 @@
+{
+  "columns": 68,
+  "final_gates": 85041,
+  "full_adders": 7574,
+  "gate_sha256": "a069b637730ec10e48d7402608e929f1e71c8b558164388cdd07047a57eff2cc",
+  "half_adders": 141,
+  "popcounts": 96,
+  "primary_bits": 323,
+  "profiles": 58,
+  "raw_gates": 63011,
+  "reference": "independently coded 235-instruction assembly, checked equal to the printed table",
+  "slot_rows": 1024,
+  "terms_sha256": "d59dd512ce13ddbd6ab180b72634f277fdccc22b53861ff65c0060483aa84c2d",
+  "verdict": "PASS",
+  "walsh_masks": 164852
+}

@@ -1,0 +1,102 @@
+\section{Finite hidden Markov rows force exponential forgetting}\label{sec:hidden-markov}
+
+The response construction has a stationary iid hidden row. Keeping that row while increasing the Fourier amplitudes cannot turn it into an ordered magnet as long as the PCA stays strictly positive. The following proposition gives the obstruction for every finite hidden Markov row on the line, and also covers finite decorations freshly sampled from a bounded hidden neighborhood, ignoring their own earlier values.
+
+\begin{proposition}[A finite hidden Markov stationary row]\label{prop:hidden-markov}
+Let \(P\) be a translation-invariant synchronous PCA on \(\Z\), with a finite alphabet, finite radius and strictly positive local transition probabilities. Suppose some spatially stationary, temporally invariant row law is the output of a stationary finite-state hidden Markov chain. Then \(P\) is uniformly exponentially ergodic in the full convention \eqref{eq:uee}. Its normalized space--time specification on \(\Z^2\) has exactly one DLR measure and arbitrary-volume EWM \eqref{eq:wsm}.
+\end{proposition}
+
+Hidden transition and emission probabilities may be arbitrary real numbers. Forbidden hidden transitions, periods and several recurrent classes are allowed. The conclusion concerns the full PCA alphabet, rather than a selected readout.
+
+For Bernoulli stationary rows, Marcovici and Taati prove exponential ergodicity in every spatial dimension, with a logarithmic mixing-time bound for finite regions \cite{mtBernoulli}. Earlier explicit examples include the noisy additive rule in \cite[Example~2.3]{bmm}, whose analysis uses \cite[Chapters~16--17]{toomChapter}. Conditions for Markov invariant laws are studied in \cite{toomChapter,casseMarckert}; Casse and Marcovici prove ergodicity for positive-rate memory-two PCA with their product-form invariant law \cite[Theorem~8 in the preprint]{casseMarcovici}. Our proof uses random erasure and the following external entropy theorem.
+
+\subsection{The external block-factorization theorem}
+
+For a probability law \(\pi\) on a finite product space write
+\[
+ \operatorname{Ent}_\pi(f)=\pi\bigl[f\log(f/\pi f)\bigr],\qquad f\ge0.
+\]
+Write \(\pi[\operatorname{Ent}_U f]\) for the mean conditional entropy when the coordinates outside \(U\) are fixed. Thus, for \(\pi f=1\), it is the part of the relative entropy lost by retaining only the coordinates outside \(U\).
+
+\begin{theorem}[{Caputo--Parisi block factorization, \cite[Theorem~2.3, with the non-homogeneous extension of Section~2.2.4]{caputoParisi}}]\label{thm:caputo-parisi}
+Consider a finite-spin nearest-neighbor Gibbs specification on \(\Z\) with bounded symmetric pair potentials, allowed to depend on the edge, and bounded site potentials. Suppose its marginals satisfy the uniform relative-ratio strong spatial mixing condition
+\[
+ \left\|\frac{d\pi_{H,\Delta}^{\tau'}}{d\pi_{H,\Delta}^{\tau}}-1\right\|_\infty
+ \le K e^{-c\dist(x,\Delta)}
+\]
+for every finite \(H\subset\Z\), every \(\Delta\subset H\) and every \(x\notin H\), when \(\tau,\tau'\) differ only at \(x\). There is a constant \(C\), uniform in the finite set \(H\), its exterior, nonnegative weights \((w_U)_{U\subset H}\), and \(f\ge0\), such that
+\begin{equation}\label{eq:CP}
+ \left(\min_{i\in H}\sum_{U\ni i}w_U\right)
+ \operatorname{Ent}_\pi(f)
+ \le C\sum_{U\subset H}w_U\,\pi[\operatorname{Ent}_U f].
+\end{equation}
+\end{theorem}
+
+We use this theorem only for a positive nearest-neighbor latent chain. To match its symmetric-potential convention even when that chain is not reversible, we retain the following reduction. For a positive stochastic matrix \(T\), take an independent copy of its stationary chain running backwards in space. If consecutive pair states before relabeling are \((a,b),(c,d)\), their bond weight can be written \(T(a,c)T(d,b)\). Interchange the two coordinates at every odd site. The two alternating bond weights are then
+\[
+ W_0((a,b),(c,d))=T(a,d)T(c,b),\qquad
+ W_1((a,b),(c,d))=T(b,c)T(d,a).
+\]
+Both are symmetric and strictly positive. They are edge-dependent nearest-neighbor potentials of the form allowed in the external theorem.
+
+Here are its mixing and boundary checks. A positive finite matrix has a positive stationary row, and the rows of \(T^k\) approach it exponentially, entrywise and in relative ratio. In an interval, changing one endpoint changes a prescribed marginal only through the first prescribed spin on that side and the endpoint normalization. Since \(T^k(s,t)=\pi(t)(1+O(e^{-ck}))\) uniformly in \(s\), the stationary weight of the endpoint value cancels between these two factors, and the marginal changes by a factor \(1+O(e^{-ck})\), where \(k\) is the distance to that spin. The reversed positive matrix gives the same bound from the other side. For a disconnected finite set only the one or two interval components incident to the changed exterior site are affected; the product of their ratios satisfies the same bound after changing its constant. This is the relative-ratio condition in Theorem~\ref{thm:caputo-parisi}. It holds for the independent pair and survives the alternating on-site relabeling.
+
+The stationary free marginal on a finite interval differs from a fixed-exterior interval law by two strictly positive bounded endpoint factors. Its density ratio therefore lies between constants \(l,L>0\), uniformly in the interval length. Both entropy and averaged conditional entropy compare within these same constants. Indeed, each is an infimum of expectations of the nonnegative integrand
+\[
+ f\log(f/g)-f+g,
+\]
+over constants \(g\ge0\), or over nonnegative functions of the retained coordinates, respectively. Limits cover zeros. Thus \eqref{eq:CP} holds for the free marginal too, with a uniform changed constant. Apply it to the independent pair, with \(f\) depending only on the original chain. Independence removes the second chain from both entropy and all averaged conditional entropies. We have obtained \eqref{eq:CP} for the free marginal of the original positive chain, with no reversibility assumption.
+
+\subsection{Erasure contracts one cropped step}\label{sec:cropped-entropy}
+
+First suppose a reference input law \(\mu\) is a finite sliding-block function of a stationary finite-state chain with positive transition matrix. Allow each latent site to code a physical word of a fixed length \(b\), at one fixed block alignment. A bounded number of neighboring latent coordinates determines each word. Let \(r\) be the physical PCA radius. For a nonempty finite output set \(J\), put \(I=J+[-r,r]\). We claim that for every input law \(\nu\) on \(I\),
+\begin{equation}\label{eq:cropped-KL}
+ D\bigl((\nu P)_J\,\|\,(\mu P)_J\bigr)
+ \le(1-\kappa)D(\nu\,\|\,\mu_I),
+\end{equation}
+with \(\kappa>0\) independent of \(J,\nu\) and of translates of the alignment. The assertion is automatic when the right side is infinite.
+
+Take the whole interval \(H\) of latent coordinates spanning the coding of \(I\), with its free marginal \(\pi_H\). Lift \(\nu\) by the density
+\(f=(d\nu/d\mu_I)\) evaluated on the decoded input. Then
+\(\operatorname{Ent}_{\pi_H}(f)=D(\nu\|\mu_I)\).
+Strict positivity writes every physical update as a mixture of an input-independent uniform symbol of a fixed weight \(u>0\) and another stochastic kernel. Give the outputs in \(J\) independent Bernoulli\((u)\) uniform flags. A latent coordinate influences at most \(M\) outputs, where \(M\) depends only on the coding and \(r\). Erase that coordinate if all its dependent outputs have uniform flags; coordinates with no such outputs are erased automatically. The random erased set \(E\subset H\) is independent of the input, with
+\[
+ \Prob(i\in E)\ge u^M\qquad(i\in H).
+\]
+The erasures of distinct coordinates need not be independent.
+
+Conditional on the flags, the outputs can be sampled knowing only \(Z_{H\setminus E}\): every other output uses only retained coordinates, and each flagged output is uniform. Reveal the flags and retained coordinates and use data processing. The entropy chain rule and \eqref{eq:CP}, with \(w_U=\Prob(E=U)\), give
+\[
+\begin{split}
+ D\bigl((\nu P)_J\,\|\,(\mu P)_J\bigr)
+ &\le \operatorname{Ent}_{\pi_H}(f)
+       -\sum_U\Prob(E=U)\pi_H[\operatorname{Ent}_U f]\\
+ &\le(1-u^M/C)\operatorname{Ent}_{\pi_H}(f).
+\end{split}
+\]
+This proves \eqref{eq:cropped-KL}. Taking the whole latent hull causes no diameter cost for disconnected \(J\): the lifted density depends only on \(I\), and its entropy is exactly the entropy on \(I\).
+
+\subsection{Hidden chains, classes and time iteration}
+
+A primitive hidden transition matrix may have zeros. Choose \(m\) with \(T^m>0\) and sample the hidden states at multiples of \(m\). Conditional on this skeleton, the finite bridges are independent. A finite independent mark at each skeleton site can consist of a table containing one random bridge for every ordered pair of possible endpoints, with the appropriate bridge law. Select the entry for the actual pair. Include the emission randomness in these tables, using only each table's finite positive support. The augmented chain of skeleton states and tables has a strictly positive transition matrix. Each physical \(m\)-word is a two-site function of it. This is the coding just treated, including deterministic emissions.
+
+For a general stationary finite hidden chain, discard the transient states of zero stationary mass. Take a common multiple \(p\) of the periods of its recurrent classes. Conditional on a class and its cyclic subclass at the origin, the \(p\)-step skeleton is primitive. Sampling a further common multiple and the bridges gives a finite list of physical reference laws \(\mu_1,\ldots,\mu_k\), each mixing for a common block shift, and each with the positive latent coding above. Merge identical physical laws. The given stationary row is a positive mixture of these distinct spatially ergodic components.
+
+Each image \(\mu_iP\) is ergodic for that block shift: realize the update using iid site randomness and take a factor of a mixing component times that randomness. Invariance of the mixture and uniqueness of spatial ergodic decomposition imply that each image is one of the same finite list. Every component has positive mixture weight, so every one is an image; hence \(P\) permutes the list. If \(p_{\min}>0\) is the minimum physical transition probability, conditional independence of the updated sites gives
+\begin{equation}\label{eq:component-cylinder}
+ \mu_i(\eta_I)\ge p_{\min}^{|I|}
+\end{equation}
+for every finite cylinder, because each \(\mu_i\) is an image of another component.
+
+Use the worst \(\kappa>0\) from \eqref{eq:cropped-KL} over this finite list and the finitely many alignments. Iterate that inequality through the nested parent sets \(J+[-rs,rs]\), for \(s=0,\ldots,t\), comparing a deterministic initial row with any initial reference component and its successive images. By \eqref{eq:component-cylinder} the initial relative entropy is at most
+\[
+ |J+[-rt,rt]|\log(1/p_{\min})\le(2rt+1)|J|\log(1/p_{\min}).
+\]
+Pinsker's inequality yields
+\begin{equation}\label{eq:HMM-TV}
+ \dtv\bigl((\eta P^t)_J,(\mu_iP^t)_J\bigr)
+ \le\sqrt{\tfrac12(1-\kappa)^t(2rt+1)|J|\log(1/p_{\min})}.
+\end{equation}
+At times divisible by the permutation period, the same deterministic-start law approaches every \(\mu_i\). The triangle inequality forces all components to coincide on every finite set. Thus the stationary reference is unique, and \eqref{eq:HMM-TV} implies \(C|J|e^{-ct}\), uniformly in \(\eta,J,t\); absorb the polynomial in \(t\) into a smaller exponential and use \(\sqrt{|J|}\le|J|\). Integration covers arbitrary initial laws. This is \eqref{eq:uee}. Theorem~\ref{thm:transfer} proves the DLR and EWM conclusions of Proposition~\ref{prop:hidden-markov}.
+
+For Theorem~\ref{thm:G}, any change of Fourier amplitudes that retains the iid stationary hidden row and strict positivity leaves the hidden PCA exponentially ergodic. A full finite decoration freshly sampled from a fixed finite neighborhood in the old hidden row, the site's new hidden symbol and independent site randomness has a finite hidden Markov row: a finite spatial buffer records the overlapping input coordinates. If its old values are ignored and the full update stays strictly positive, the joint stationary row has a finite hidden Markov presentation and the proposition applies to the full PCA. Consequently these amplitude changes and freshly sampled decorations do not create magnetic order. A decoration that reads its own earlier values, or feeds its outputs back into the hidden dynamics, is outside this assertion.
