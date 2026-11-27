@@ -2,7 +2,7 @@
 
 ## An uncomputable disorder line in a zero-field Ising crystal
 
-Seth Douglas and Nidhal Mghirbi. Preprint, version 4.0.0, November 2026. [Archive DOI](https://doi.org/10.5281/zenodo.24147268) (all versions); version 3.0.0: [10.5281/zenodo.24569235](https://doi.org/10.5281/zenodo.24569235); version 2.1.0: [10.5281/zenodo.24408026](https://doi.org/10.5281/zenodo.24408026); version 2.0.0: [10.5281/zenodo.24352353](https://doi.org/10.5281/zenodo.24352353)
+Seth Douglas and Nidhal Mghirbi. Preprint, version 4.0.0, November 2026. [Archive DOI](https://doi.org/10.5281/zenodo.24147268) (all versions); version 4.0.0: [10.5281/zenodo.24608702](https://doi.org/10.5281/zenodo.24608702); version 3.0.0: [10.5281/zenodo.24569235](https://doi.org/10.5281/zenodo.24569235); version 2.1.0: [10.5281/zenodo.24408026](https://doi.org/10.5281/zenodo.24408026); version 2.0.0: [10.5281/zenodo.24352353](https://doi.org/10.5281/zenodo.24352353)
 
 Versions 1.0.0 to 3.0.0 were titled *An uncomputable noise diagram on the line and a finite-energy Gibbs diagram on the square lattice*.
 
